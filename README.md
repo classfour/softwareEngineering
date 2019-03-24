@@ -33,6 +33,7 @@
 # 学习资源
 可以自己上网找资源，以下均为一些推荐.
 + [git学习](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001373962845513aefd77a99f4145f0a2c7a7ca057e7570000)
++ [github基础视频讲解](https://www.imooc.com/learn/390)
 + [Spring boot](http://tengj.top/2017/04/24/springboot0/)
 + [bootstrap4](http://www.runoob.com/bootstrap4/bootstrap4-tutorial.html)
 + [Jquery](http://www.runoob.com/jquery/jquery-tutorial.html)
