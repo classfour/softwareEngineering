@@ -1,5 +1,19 @@
+body{
+    background-color: #fafafa;
+}
 .header{
     height: 60px;
+    width: 100%;
     background-color: #0483d4;
-    padding: 0 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+    font:normal 24px/60px "microsoft YaHei";
+    color: white;
+}
+.navbar{
+    background-color: white;
+    padding: 10px 70px;
+}
+li{
+    margin-left: 10px;
 }
