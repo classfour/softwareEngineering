@@ -38,4 +38,9 @@
 + [Jquery](http://www.runoob.com/jquery/jquery-tutorial.html)
 + [MVC模式](https://baike.baidu.com/item/MVC%E6%A1%86%E6%9E%B6/9241230?fr=aladdin&fromid=85990&fromtitle=MVC)
 
+## 第四组组员及简单分工
+- 前端：邓德师，金任任
+- 后端：蔡柄岐，金任任
+- 文档和ppt：邓德师，赵雄
+
 
