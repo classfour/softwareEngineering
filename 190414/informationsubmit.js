@@ -1,0 +1,4 @@
+function informationsubmit()
+{
+    alert("woaiyangyunrui");
+}
