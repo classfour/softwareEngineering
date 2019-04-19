@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成绩查询</title>
+    <script src="js(groupFour)/echarts.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css(groupFour)/top.css">
+</head>
+<body class="default">
+    <div class="top">
+        <ul class="default">
+            <li>
+                <img class="left" src="images(groupFour)/computer.png">
+                <h1 style="font-size: 32px;"><a class="left" href="#">教务管理系统</a></h1>
+            </li>
+        </ul>
+    </div>
+    <div class="orghead">
+        <div class="container">
+            <div class="title">
+                <img class="title" src="images(groupFour)/grade.png">
+                <h1 class="title">成绩管理子系统</h1>
+            </div>
+            <div class="orgnav">
+                <a href="#" class="pagehead-tabs-item selected">
+                    <img class="label" src="images(groupFour)/score_figure.png">基本成绩查询
+                </a>
+            </div>
+            <div class="orgnav">
+                <a href="#" class="pagehead-tabs-item">
+                    <img class="label" src="images(groupFour)/GPA_figure.png">GPA查询
+                </a>
+            </div>
+            <div class="orgnav">
+                <a href="#" class="pagehead-tabs-item">
+                    <img class="label" src="images(groupFour)/rank.png">成绩排名查询
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form class="search" action="#">
+            <div class="form-group" style="float: left">
+                <input type="text" class="form-control" placeholder="输入要查询的课程名">
+            </div>
+            <div class="float-right">
+                <button class="btn btn-outline-primary center" type="submit">
+                    查询
+                </button>
+            </div>
+        </form>
+        <div class="card">
+            <div class="cardblock">
+                <h5>成绩列表</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>课程名称</th>
+                            <th>课程成绩</th>
+                            <th>课程绩点</th>
+                            <th>字母制成绩</th>
+                        </tr>
+                        <tr>
+                            <td>高等数学</td>
+                            <td>90</td>
+                            <td>4.00</td>
+                            <td><span class="round A">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>高等数学</td>
+                            <td>80</td>
+                            <td>3.00</td>
+                            <td><span class="round B">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>高等数学</td>
+                            <td>70</td>
+                            <td>2.00</td>
+                            <td><span class="round C">C</span></td>
+                        </tr>
+                        <tr>
+                            <td>高等数学</td>
+                            <td>60</td>
+                            <td>0.00</td>
+                            <td><span class="round D">D</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!--<div id="main" style="width: 600px;height:400px;"></div>-->
+    <!--<script type="text/javascript">-->
+        <!--// 基于准备好的dom，初始化echarts实例-->
+        <!--var myChart = echarts.init(document.getElementById('main'));-->
+
+        <!--// 指定图表的配置项和数据-->
+        <!--var option = {-->
+            <!--title: {-->
+                <!--text: 'ECharts 入门示例'-->
+            <!--},-->
+            <!--tooltip: {},-->
+            <!--legend: {-->
+                <!--data:['销量']-->
+            <!--},-->
+            <!--xAxis: {-->
+                <!--data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]-->
+            <!--},-->
+            <!--yAxis: {},-->
+            <!--series: [{-->
+                <!--name: '销量',-->
+                <!--type: 'bar',-->
+                <!--data: [5, 20, 36, 10, 10, 20]-->
+            <!--}]-->
+        <!--};-->
+
+        <!--// 使用刚指定的配置项和数据显示图表。-->
+        <!--myChart.setOption(option);-->
+    <!--</script>-->
+</body>
+</html>
