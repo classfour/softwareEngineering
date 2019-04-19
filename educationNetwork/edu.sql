@@ -98,23 +98,23 @@ DROP TABLE IF EXISTS `course`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `course` (
-  `number` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程编号',
-  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '课程名字',
-  `departments` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '开课院系',
-  `status` tinyint(4) DEFAULT NULL COMMENT '课程状态 null未排课 1已经排课',
-  `people` int(11) DEFAULT NULL COMMENT '选课人数',
-  `max_number` int(11) DEFAULT NULL COMMENT '最大容量',
-  `location` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '上课地点',
-  `teacher_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '教师编号',
-  `introduce` text CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '课程介绍',
-  `type` tinyint(255) DEFAULT NULL COMMENT '课程类别(0实验课1非实验课)',
-  `credits` decimal(5,1) DEFAULT NULL COMMENT '学分',
-  `occupation` varchar(110) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '10000000000011表示星期一第12.13节',
-  `time` decimal(4,1) DEFAULT NULL COMMENT '学时',
-  `begin` tinyint(4) DEFAULT NULL COMMENT '起始周',
-  `grade` tinyint(4) DEFAULT NULL COMMENT '年级（0大一1大二2大三3大四）',
-  `specialty` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '专业',
-  PRIMARY KEY (`number`) USING BTREE
+                        `number`         varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '课程编号',
+                        `name`           varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '课程名字',
+                        `departments`    varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '开课院系',
+                        `status`         tinyint(4)                                              DEFAULT NULL COMMENT '课程状态 0未排课 1已经排课',
+                        `people`         int(11)                                                 DEFAULT NULL COMMENT '选课人数',
+                        `max_number`     int(11)                                                 DEFAULT NULL COMMENT '最大容量',
+                        `location`       varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '上课地点',
+                        `teacher_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '教师编号',
+                        `introduce`      text CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '课程介绍',
+                        `type`           tinyint(255)                                            DEFAULT NULL COMMENT '课程类别(0实验课1非实验课)',
+                        `credits`        decimal(5,1)                                            DEFAULT NULL COMMENT '学分',
+                        `occupation`     varchar(110) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '10000000000011表示星期一第12.13节',
+                        `time` decimal(4,1) DEFAULT NULL COMMENT '学时',
+                        `begin` tinyint(4) DEFAULT NULL COMMENT '起始周',
+                        `grade` tinyint(4) DEFAULT NULL COMMENT '年级（0大一1大二2大三3大四）',
+                        `specialty` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '专业',
+                        PRIMARY KEY (`number`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
