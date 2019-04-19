@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ArrangeCourseMapper {
 
-    @Select("select name from course where specialty =  #{specialty}")
+    @Select("select name from course where status = 0 and specialty =  #{specialty}")
     List<String> getAllCoursesBySpecialty(String specialty);
 
     @Select("select name,enable_teach_courses,occupation from teacher")
