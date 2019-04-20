@@ -132,6 +132,12 @@ div.card{
     width: 1000px;
 }
 
+div.echart{
+    margin-top: 25px;
+    padding: 20px;
+    height: 400px;
+}
+
 div.card div.cardblock{
     padding: 20px;
 }
