@@ -35,8 +35,8 @@ public interface ArrangeCourseMapper {
     List<ArrangeCourseClassroomEntity> getAvailableClassroomsInfo(int courseMaxNumber);
 
     //    更新course中上课的老师
-    @Update("update course set teacher_number=#{teacherNumber},occupation=#{occupation} where name =#{courseName}")
-    boolean updateCourseTeacher(String teacherNumber, String occupation, String courseNumber);
+    @Update("update course set teacher_number=#{teacherNumber},occupation=#{occupation},location=#{class_number} where name =#{courseName}")
+    boolean updateCourse(String teacherNumber, String occupation, String class_number, String courseName);
 
     //    更新教室的占用情况
     @Update("update classroom set occupied=#{occupied} where class_number=#{classNumber}")
@@ -45,4 +45,5 @@ public interface ArrangeCourseMapper {
     //    获得教室的占用情况
     @Select("select occupied from classroom where class_number=#{classNumber}")
     String getClassroomOccupied(String classNumber);
+
 }

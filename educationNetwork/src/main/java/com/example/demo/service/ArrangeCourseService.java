@@ -16,4 +16,6 @@ public interface ArrangeCourseService {
     String getAvailableClassroom(String course, String week, String detail);
 
     boolean updateClassroomOccupied(String week, String occpuied, String classNumber);
+
+    boolean updateCourse(String week, String detail, String teacherName, String class_number, String course);
 }

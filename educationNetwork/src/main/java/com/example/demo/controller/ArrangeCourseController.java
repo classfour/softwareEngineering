@@ -61,7 +61,10 @@ public class ArrangeCourseController {
         String week = arrangeCourseAllInfo.getWeek();
         String occupied = arrangeCourseAllInfo.getDetail();
         String classNumber = arrangeCourseAllInfo.getClass_number();
-        boolean result = arrangeCourseService.updateClassroomOccupied(week, occupied, classNumber);
+        String teacherName = arrangeCourseAllInfo.getTeacherName();
+        String course = arrangeCourseAllInfo.getCourse();
+        boolean updateClassroomResult = arrangeCourseService.updateClassroomOccupied(week, occupied, classNumber);
+        boolean updateCourseResult = arrangeCourseService.updateCourse(week, occupied, teacherName, classNumber, course);
         return null;
     }
 }

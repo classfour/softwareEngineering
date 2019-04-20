@@ -100,4 +100,19 @@ public class ArrangeCourseServiceImpl implements ArrangeCourseService {
         return arrangeCourseMapper.updateClassroomOccupied(res, classNumber);
     }
 
+    @Override
+    public boolean updateCourse(String week, String detail, String teacherName, String class_number, String course) {
+        String[] details = detail.split("-");
+        int weekInt = Integer.parseInt(week);
+        int start = Integer.parseInt(details[0]);
+        int end = Integer.parseInt(details[1]);
+        int teacherNumber = arrangeCourseMapper.getTeacherNumberByName(teacherName);
+        StringBuilder stringBuilder = new StringBuilder("0000000000000");
+        for (int i = start; i <= end; i++) {
+            stringBuilder.setCharAt(i - 1, '1');
+        }
+        String occupation = weekInt + "" + stringBuilder.toString();
+        return arrangeCourseMapper.updateCourse(teacherName + "", occupation, class_number, course);
+    }
+
 }
