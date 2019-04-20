@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.ArrangeCourseAllInfo;
-import com.example.demo.domain.ArrangeCourseTeacherEntity;
 import com.example.demo.domain.ArrangeCourseTimeEntity;
 import com.example.demo.service.ArrangeCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +21,7 @@ public class ArrangeCourseController {
     @Autowired
     private ArrangeCourseService arrangeCourseService;
 
+    //    查找这个专业所有未排的课
     @RequestMapping("getcoursesbyspecialty")
     public Object getAllCoursesBySpecialty(HttpServletRequest httpServletRequest) {
         String specialty = httpServletRequest.getParameter("specialty");
@@ -32,13 +31,14 @@ public class ArrangeCourseController {
         return mp;
     }
 
+    //    查找能教这个课的老师
     @RequestMapping("getteachersinfoteachcourse")
     public Object getTeachersInfoTeachCourse(HttpServletRequest httpServletRequest) {
         String course = httpServletRequest.getParameter("course");
         return arrangeCourseService.getTeachersInfoTeachCourse(course);
     }
 
-
+    //    按课程最大量查找和教室占用情况查找可以使用的教室，并随机返回一个教室
     @RequestMapping(value = "availableclassroom", method = {RequestMethod.POST})
     public Object getAvailableClassroom(@RequestBody ArrangeCourseTimeEntity arrangeCourseTimeEntity) {
         String week = arrangeCourseTimeEntity.getWeek();
@@ -55,8 +55,9 @@ public class ArrangeCourseController {
         return mp;
     }
 
+    //    更新数据库，包括教室表和课程表
     @RequestMapping("updateAllInfo")
-    public Object updateClassroomOccupied(@RequestBody ArrangeCourseAllInfo arrangeCourseAllInfo) {
+    public Object updateAllInfo(@RequestBody ArrangeCourseAllInfo arrangeCourseAllInfo) {
         String week = arrangeCourseAllInfo.getWeek();
         String occupied = arrangeCourseAllInfo.getDetail();
         String classNumber = arrangeCourseAllInfo.getClass_number();
