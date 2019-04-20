@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排课系统</title>
+    <link rel="stylesheet" href="css/ssss.css">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="js/informationcheck.js"></script>
+    <script src="js/informationsubmit.js"></script>
+    <script src="js/timetable.js"></script>
+</head>
+<body>
+<div class="container" style="width:100%";>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2>排课系统</h2>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="grade" class="col-lg-2 control-label">年级</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" id="grade">
+                                    <option>2019</option>
+                                    <option>2018</option>
+                                    <option>2017</option>
+                                    <option>2016</option>
+                                    <option>2015</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="institute" class="col-lg-2 control-label">院系</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="institute" placeholder="请输入院系">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="major" class="col-lg-2 control-label">专业</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="major" placeholder="请输入专业">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="course" class="col-lg-2 control-label">课程</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="course" placeholder="请输入课程">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="teacher" class="col-lg-2 control-label">教师</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="teacher" placeholder="请输入教师">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="week" class="col-lg-2 control-label">周次</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="week" placeholder="请输入周次(示例1-16)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="classes" class="col-lg-2 control-label">节次</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="classes" placeholder="请输入节次(示例1-3)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2"></div>
+
+                <div class="col-lg-2">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-primary" onclick="informationcheck()">空闲查询</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-primary" onclick="informationsubmit()">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>课表详情</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered" id="timetable">
+
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
