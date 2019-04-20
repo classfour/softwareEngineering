@@ -4,7 +4,6 @@ import com.example.demo.domain.ArrangeCourseClassroomEntity;
 import com.example.demo.domain.ArrangeCourseTeacherEntity;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,7 +11,11 @@ public interface ArrangeCourseMapper {
 
     //    获得这个专业没有排的所有的课
     @Select("select name from course where status = 0 and specialty =  #{specialty}")
-    List<String> getAllCoursesBySpecialty(String specialty);
+    List<String> getUnarrangedCoursesBySpecialty(String specialty);
+
+    //获得此专业已经排的课所有时间
+    @Select("select occupation from course where status=1 and specialty=#{specialty}")
+    List<String> getArrangedCoursesOccupation(String specialty);
 
     //    获得排课所需要的老师的所有信息
     @Select("select name,enable_teach_courses,occupation from teacher")
@@ -34,8 +37,8 @@ public interface ArrangeCourseMapper {
     @Select("select class_number,occupied from classroom where capacity=#{courseMaxNumber}")
     List<ArrangeCourseClassroomEntity> getAvailableClassroomsInfo(int courseMaxNumber);
 
-    //    更新course中上课的老师
-    @Update("update course set teacher_number=#{teacherNumber},occupation=#{occupation},location=#{class_number} where name =#{courseName}")
+    //    更新course中的所有信息
+    @Update("update course set teacher_number=#{teacherNumber},occupation=#{occupation},status=1,location=#{class_number} where name =#{courseName}")
     boolean updateCourse(String teacherNumber, String occupation, String class_number, String courseName);
 
     //    更新教室的占用情况

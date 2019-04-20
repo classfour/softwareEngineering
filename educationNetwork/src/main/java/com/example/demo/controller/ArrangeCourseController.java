@@ -21,13 +21,15 @@ public class ArrangeCourseController {
     @Autowired
     private ArrangeCourseService arrangeCourseService;
 
-    //    查找这个专业所有未排的课
+    //    查找这个专业所有未排的课以及被安排的课的上课时间
     @RequestMapping("getcoursesbyspecialty")
     public Object getAllCoursesBySpecialty(HttpServletRequest httpServletRequest) {
         String specialty = httpServletRequest.getParameter("specialty");
-        List<String> res = arrangeCourseService.getAllCoursesBySpecialty(specialty);
+        List<String> courses = arrangeCourseService.getUnarrangedCoursesBySpecialty(specialty);
         Map<String, Object> mp = new HashMap<>();
-        mp.put("courses", res);
+        String occupation = arrangeCourseService.getArrangedCoursesOccupation(specialty);
+        mp.put("courses", courses);
+        mp.put("occupation", occupation);
         return mp;
     }
 

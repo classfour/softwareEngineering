@@ -16,8 +16,8 @@ public class ArrangeCourseServiceImpl implements ArrangeCourseService {
     private ArrangeCourseMapper arrangeCourseMapper;
 
     @Override
-    public List<String> getAllCoursesBySpecialty(String specialty) {
-        return arrangeCourseMapper.getAllCoursesBySpecialty(specialty);
+    public List<String> getUnarrangedCoursesBySpecialty(String specialty) {
+        return arrangeCourseMapper.getUnarrangedCoursesBySpecialty(specialty);
     }
 
     @Override
@@ -113,6 +113,29 @@ public class ArrangeCourseServiceImpl implements ArrangeCourseService {
         }
         String occupation = weekInt + "" + stringBuilder.toString();
         return arrangeCourseMapper.updateCourse(teacherName + "", occupation, class_number, course);
+    }
+
+    @Override
+    public String getArrangedCoursesOccupation(String specialty) {
+        List<String> occupations = arrangeCourseMapper.getArrangedCoursesOccupation(specialty);
+        StringBuilder[] occupation = {new StringBuilder("0000000000000"), new StringBuilder("0000000000000"), new StringBuilder("0000000000000"), new StringBuilder("0000000000000"), new StringBuilder("0000000000000"), new StringBuilder("0000000000000"), new StringBuilder("0000000000000")};
+
+        for (String s : occupations) {
+            if (!s.equals("")) {
+                int week = s.charAt(0) - 48;
+                for (int i = 1; i <= 13; i++) {
+                    if (s.charAt(i) == '1') {
+                        occupation[week - 1].setCharAt(i - 1, '1');
+                    }
+                }
+            }
+        }
+
+        String res = "";
+        for (int i = 0; i < 7; i++) {
+            res += occupation[i].toString();
+        }
+        return res;
     }
 
 }
