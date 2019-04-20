@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.ArrangeCourseAllInfo;
 import com.example.demo.domain.ArrangeCourseTeacherEntity;
 import com.example.demo.domain.ArrangeCourseTimeEntity;
 import com.example.demo.service.ArrangeCourseService;
@@ -52,5 +53,14 @@ public class ArrangeCourseController {
             mp.put("class_number", class_number);
         }
         return mp;
+    }
+
+    @RequestMapping("updateAllInfo")
+    public Object updateClassroomOccupied(@RequestBody ArrangeCourseAllInfo arrangeCourseAllInfo) {
+        String week = arrangeCourseAllInfo.getWeek();
+        String occupied = arrangeCourseAllInfo.getDetail();
+        String classNumber = arrangeCourseAllInfo.getClass_number();
+        boolean result = arrangeCourseService.updateClassroomOccupied(week, occupied, classNumber);
+        return null;
     }
 }
