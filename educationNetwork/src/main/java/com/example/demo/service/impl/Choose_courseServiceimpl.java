@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.domain.GpaEntity;
 import com.example.demo.domain.ScoreEntity;
 import com.example.demo.mapper.Choose_courseMapper;
 import com.example.demo.service.Choose_courseService;
@@ -17,4 +18,7 @@ public class Choose_courseServiceimpl implements Choose_courseService {
         return choose_courseMapper.score_query(student_number);
     }
 
+    public List<GpaEntity> Gpa_query(String student_number){
+        return choose_courseMapper.gpa_query(student_number);
+    }
 }

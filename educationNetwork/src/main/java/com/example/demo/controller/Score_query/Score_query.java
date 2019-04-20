@@ -1,6 +1,7 @@
 package com.example.demo.controller.Score_query;
 
 
+import com.example.demo.domain.GpaEntity;
 import com.example.demo.domain.ScoreEntity;
 import com.example.demo.service.Choose_courseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,9 @@ public class Score_query {
         return choose_courseService.Score_query("2016001");
     }
 
-
+    @ResponseBody
+    @GetMapping("/gpatest")
+    public List<GpaEntity> gpatest(){
+        return choose_courseService.Gpa_query("2016001");
+    }
 }

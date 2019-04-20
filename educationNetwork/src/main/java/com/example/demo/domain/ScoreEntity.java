@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+//成绩实体
 public class ScoreEntity {
     public ScoreEntity(String coursename,String score,double gpa){
         this.coursename=coursename;
@@ -36,15 +37,22 @@ public class ScoreEntity {
         total=ans;
     }
 
+    //三项成绩,score[0]对应平时成绩,score[1]对应期中成绩,score[2]对应期末成绩
     double score[]=new double[3];
+
+    //三项成绩的占比,rate[0]对应平时成绩占比,rate[1]对应期中成绩占比,rate[2]对应期末成绩占比
     double rate[]=new double[3];
 
+    //课程名称
     private String coursename;
 
+    //总评成绩
     private double total;
 
+    //通过数据库查询出来的score子段(为字符串类型)
     private String score_tmp;
 
+    //课程gpa
     private double gpa;
 
     //平时成绩查询接口
