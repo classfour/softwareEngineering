@@ -1,15 +1,13 @@
 package com.example.demo.service.ServiceImpl;
 
+import com.example.demo.domain.ArrangeCourseClassroomEntity;
 import com.example.demo.domain.ArrangeCourseTeacherEntity;
 import com.example.demo.mapper.ArrangeCourseMapper;
 import com.example.demo.service.ArrangeCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ArrangeCourseServiceImpl implements ArrangeCourseService {
@@ -49,6 +47,41 @@ public class ArrangeCourseServiceImpl implements ArrangeCourseService {
     @Override
     public int getCourseNumber(String courseName) {
         return arrangeCourseMapper.getCourseNumber(courseName);
+    }
+
+    @Override
+    public String getAvailableClassroom(String course, String week, String detail) {
+        String[] details = detail.split("-");
+        int start = Integer.parseInt(details[0]) - 1;
+        int end = Integer.parseInt(details[1]) - 1;
+        int weekInt = Integer.parseInt(week) - 1;
+        int courseMaxNumber = arrangeCourseMapper.getCourseMaxNumber(course);
+        //筛选出教室容量够用的教室
+        List<ArrangeCourseClassroomEntity> classroomEntities = arrangeCourseMapper.getAvailableClassroomsInfo(courseMaxNumber);
+        List<String> classroomNameResult = new ArrayList<>();
+        for (ArrangeCourseClassroomEntity classroom : classroomEntities) {
+            String[] occupied = classroom.getOccupied().split(";");
+            //指定星期的占用情况
+            String occ = occupied[weekInt];
+            boolean flag = true;
+            for (int i = start; i <= end; i++) {
+                if (occ.charAt(i) == '1') {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag == true) {
+                classroomNameResult.add(classroom.getClass_number());
+            }
+        }
+        int size = classroomNameResult.size();
+        if (size != 0) {
+            int random = (int) (Math.random() * size);
+            String name = classroomNameResult.get(random);
+            return name;
+        } else {
+            return null;
+        }
     }
 
 }

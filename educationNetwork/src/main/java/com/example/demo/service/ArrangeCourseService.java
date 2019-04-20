@@ -12,4 +12,6 @@ public interface ArrangeCourseService {
     Map<String, Object> getTeachersInfoTeachCourse(String courseName);
 
     int getCourseNumber(String courseName);
+
+    String getAvailableClassroom(String course, String week, String detail);
 }
