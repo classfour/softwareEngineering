@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>成绩查询</title>
     <script src="js(groupFour)/echarts.min.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css(groupFour)/top.css">
+    <script src="js(groupFour)/style(groupFour).js"></script>
 </head>
 <body class="default">
     <div class="top">
@@ -54,36 +55,24 @@
             <div class="cardblock">
                 <h5>成绩列表</h5>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table id="p" class="table">
                         <tr>
                             <th>课程名称</th>
                             <th>课程成绩</th>
                             <th>课程绩点</th>
                             <th>字母制成绩</th>
+                            <th>查看成绩明细</th>
                         </tr>
-                        <tr>
-                            <td>高等数学</td>
-                            <td>90</td>
-                            <td>4.00</td>
-                            <td><span class="round A">A</span></td>
-                        </tr>
-                        <tr>
-                            <td>大学英语</td>
-                            <td>80</td>
-                            <td>3.00</td>
-                            <td><span class="round B">B</span></td>
-                        </tr>
-                        <tr>
-                            <td>大学物理</td>
-                            <td>70</td>
-                            <td>2.00</td>
-                            <td><span class="round C">C</span></td>
-                        </tr>
-                        <tr>
-                            <td>金工实习</td>
-                            <td>60</td>
-                            <td>0.00</td>
-                            <td><span class="round D">D</span></td>
+                        <tr th:each="e:${model}">
+                            <td th:text="${e.getCoursename()}"></td>
+                            <td th:text="${e.getTotal()}"></td>
+                            <td th:text="${e.getGpa()}"></td>
+                            <td><span th:text="${e.getTotal()}"></span></td>
+                            <td>
+                                <button class="btn btn-outline-primary center" type="submit">
+                                查询
+                                </button>
+                            </td>
                         </tr>
                     </table>
                 </div>
