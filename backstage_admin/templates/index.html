@@ -26,9 +26,63 @@
 <link href="static/css/sts-admin.css" rel="stylesheet">
 <link href="static/lib/bootstrap-daterangepicker/css/daterangepicker.css" rel="stylesheet">
 
+<style>
+        table {
+            width: 900px;
+            padding: 0 ;
+            margin: 20 auto;
+            border-collapse: collapse;
+        }
+        td,th {
+            border: 1px solid #ddd;
+            padding: 6px 6px 6px 12px;
+            color: #4f6b72;
+            text-align: center;
+        }
+        th {
+            background: #d3d3d3;
+
+        }
+    </style>
+<script type="text/javascript">
+        var data={{ data_1|tojson }}
+          var jsonArray = JSON.parse(data);
+		  var headArray = [];
+
+          function parseHead(oneRow) {
+                        for ( var i in oneRow) {
+                                headArray[headArray.length] = i;
+                         }
+            }
+            function appendTable() {
+                          parseHead(jsonArray[0]);
+                          var div = document.getElementById("div1");
+                          var table = document.createElement("table");
+                          var thead = document.createElement("tr");
+                          for ( var count = 0; count < headArray.length; count++) {
+                                    var td = document.createElement("th");
+                                    td.innerHTML = headArray[count];
+                                    thead.appendChild(td);
+                           }
+                           table.appendChild(thead);
+                          for ( var tableRowNo = 0; tableRowNo < jsonArray.length; tableRowNo++) {
+                                    var tr = document.createElement("tr");
+                                    for ( var headCount = 0; headCount < headArray.length; headCount++) {
+                                            var cell = document.createElement("td");
+                                            cell.innerHTML = jsonArray[tableRowNo][headArray[headCount]];
+                                            tr.appendChild(cell);
+                                    }
+                                    table.appendChild(tr);
+                         }
+                          div.appendChild(table);
+
+        }
+
+</script>
+
 </head>
 
-<body>
+<body onload="appendTable(jsonArray);" data-type="generalComponents">
 	<div id="wrapper">
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation" style="margin-bottom: 0">
@@ -47,12 +101,11 @@
                 <a class="navbar-brand" href="index.html">后台管理系统</a>
 			</div>
 
-
 			<ul class="nav navbar-top-links navbar-right">
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 	                    <i class="fa fa-user fa-fw"></i>
-	                    <input id="usernameBtn" type="button" name="fname" value="名字"></input>
+	                    <input id="usernameBtn" type="button" name="fname" value={{ username }}></input>
 	                    <i class="fa fa-caret-down"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-user">
@@ -60,26 +113,24 @@
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a></li>
 						<li class="divider"></li>
 					<li>
-					<a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+					<a href="log_in"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
 					</li>
 					</ul>
 				</li>
 
 			</ul>
+
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
 						<li>
-							<a href="#"><i class="glyphicon glyphicon-user"></i> 管理1<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="#user_form">管理1-1</a></li>
-							</ul>
+							<a href="/"><i class="glyphicon glyphicon-user"></i> 用户信息管理</a>
 						</li>
 
 						<li>
-							<a href="#"><i class="fa fa-table fa-fw"></i> 管理2<span class="fa arrow"></span></a>
+							<a href=""><i class="fa fa-table fa-fw"></i> 管理2<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#pasture_form">管理2-1</a></li>
+								<li><a href="/pasture_form">管理2-1</a></li>
                                 <li><a href="#field_form">管理2-2</a></li>
                                 <li><a href="#cesspool_form">管理2-3</a></li>
                                 <li><a href="#machinery_form">管理2-4</a></li>
@@ -114,7 +165,77 @@
 
 		</nav>
 
-		<div id="page-wrapper"></div>
+		<div id="page-wrapper">
+            <form action="/userInfo2" method="post" enctype=multipart/form-data class="form-inline"style="width:50% ;float:right; text-align:center">
+                <div class="form-group">
+                    <label for="inputfile">文件导入学生或教师信息</label>
+                    <input type="file" id="inputfile" name="file">
+                </div>
+                <button type="submit" class="btn btn-default">提交</button>
+                    {% if error %}
+                                <h1 style="color:#ff2c33">{{ error }}!</h1>
+                    {% endif %}
+
+            </form>
+        <input type="button" value="下载表单" onclick="javascrtpt:window.location.href='/download/example.xlsx'">
+
+
+            <form role="form" action='/userInfo1' method='post' class="form-inline"style="width:50% ;float:left; text-align:center">
+                <div class="form-group">
+                    <label for="name">选择列表</label>
+                    <select class="form-control" name="identity" style = "width:200px">
+                        <option  value="student">学生</option>
+                        <option  value="teacher">教师</option>
+                        <option  value="admin">管理</option>
+                        <option  value="all">所有</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">确认</button>
+            </form>
+
+
+
+        <form action='/userInfo3' method='post' >
+            <div id="div1"></div>
+
+        </form>
+
+
+
+
+{#		<?php#}
+{#		foreach($rows as $row){#}
+{#		?>#}
+{##}
+{#		<tr>#}
+{#			<td>#}
+{#				<?php echo $row['user_id']; ?>#}
+{#			</td>#}
+{#			<td>#}
+{#				<?php echo $row['user_nickname']; ?>#}
+{#			</td>#}
+{#			<td>#}
+{#				<?php echo $row['user_name']; ?>#}
+{#			</td>#}
+{#			<td>#}
+{#				<?php echo $row['user_password']; ?>#}
+{#			</td>#}
+{#			<td>#}
+{#				<?php echo $row['user_email']; ?>#}
+{#			</td>#}
+{#			<!-- <td>#}
+{#				<button type="button" class="btn btn-primary btn-lg " onclick="Delete()">删除用户</button>#}
+{#				<button type="button" class="btn btn-primary btn-lg ">修改信息</button>#}
+{#			</td> -->#}
+{#		</tr>#}
+{#		<?php#}
+{#		}#}
+{#		?>#}
+
+
+
+
+        </div>
 
 	</div>
 
@@ -129,11 +250,14 @@
     </script> -->
 
 
+
+
 	<script src="static/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/lib/bootstrap-daterangepicker/js/daterangepicker.js"></script>
     <script src="static/lib/bootstrap-select/js/bootstrap-select.js"></script>
     <script src="static/lib/bootstrap-select/js/defaults-zh_CN.min.js"></script>
 	<script src="static/lib/metisMenu/js/metisMenu.min.js"></script>
 	<script src="static/js/sts-admin.js"></script>
+
 </body>
 </html>

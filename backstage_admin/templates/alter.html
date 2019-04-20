@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+<h1>修改{{ username }}信息</h1>
+
+<form action="/alter/{{ username }}" method="POST">
+    <input type="text"  placeholder="请输入更改后的账号" value="USERNAME" name="username">
+    <br>
+    <input type="text"  placeholder="请输入更改后的姓名" value="NAME" name="name">
+    <br>
+    <input type="text"  placeholder="请输入更改后的性别" value="SEX" name="sex">
+    <br>
+    <input type="text"  placeholder="请输入更改后的班级" value="CLASS" name="class">
+    <br>
+    <input type="text"  placeholder="请输入更改后的入学日期" value="DATA" name="data">
+    <br>
+    <input type="text"  placeholder="请输入更改后的年级" value="GRADE" name="grade">
+    <br>
+    <input type="text"  placeholder="请输入更改后的课题选择状态" value="STATUS" name="status">
+    <br>
+    <input type="text"  placeholder="请输入更改后的照片地址" value="IMAGE" name="image">
+    <br>
+    <input type="text"  placeholder="请输入更改后的年龄" value="AGE" name="age">
+    <br>
+    <input type="text"  placeholder="请输入更改后的主修课程" value="MAJOR" name="major">
+    <br>
+    <input type="text"  placeholder="请输入更改后的院系" value="DEPARTMENT" name="department">
+    <br>
+<button type="submit" name="upload">提交</button>
+    <button type="submit" name="mahai">maihai</button>
+</form>
+</body>
+</html>

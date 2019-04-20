@@ -1,9 +1,8 @@
-from flask import Flask,render_template,request
-import pymysql
+from flask import Flask,render_template,request,url_for,redirect,session
 from flask_script import Manager
 from app.logIn import loginBlue
 from app.index import indexBlue
-from app.choose import chooseBlue
+from app.alter import alterBlue
 from app.userInfo import userInfoBlue
 from app.studentInfo import studentInfoBlue
 from app.teacherInfo import teacherInfoBlue
@@ -16,21 +15,25 @@ from app.cSubjectInfo import cSubjectInfoBlue
 from app.labelInfo import labelInfoBlue
 from app.complaintInfo import complaintBlue
 from app.scoreInfo import scoreInfoBlue
-
-
+import os
+from flask import send_from_directory
+from datetime import timedelta
 
 app = Flask(__name__)
+#设置12位的密钥
+app.config['SECRET_KEY'] = os.urandom(12)
+
 #注册蓝图
+dirpath = os.path.join(app.root_path, 'upload')
 app.register_blueprint(blueprint=loginBlue)
 app.register_blueprint(blueprint=indexBlue)
-app.register_blueprint(blueprint=chooseBlue)
+app.register_blueprint(blueprint=alterBlue)
 #注册修改数据页面的蓝图
 app.register_blueprint(blueprint=userInfoBlue)
 app.register_blueprint(blueprint=studentInfoBlue)
 app.register_blueprint(blueprint=teacherInfoBlue)
 app.register_blueprint(blueprint=cCourseInfoBlue)
 app.register_blueprint(blueprint=courseInfoBlue)
-
 app.register_blueprint(blueprint=noticeInfoBlue)
 app.register_blueprint(blueprint=roomInfoBlue)
 app.register_blueprint(blueprint=subjectInfoBlue)
@@ -39,13 +42,15 @@ app.register_blueprint(blueprint=labelInfoBlue)
 app.register_blueprint(blueprint=complaintBlue)
 app.register_blueprint(blueprint=scoreInfoBlue)
 
-
+#创建代理manage
 manager=Manager(app=app)
 
-
+#用app提供文件下载
+@app.route("/download/<path:filename>")
+def downloader(filename):
+    return send_from_directory(dirpath, filename, as_attachment=True)
 
 if __name__ == '__main__':
     manager.run()
-    app.jinja_env.auto_reload = True
 
     debug = True
