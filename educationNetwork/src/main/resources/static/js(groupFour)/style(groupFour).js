@@ -4,11 +4,12 @@ window.onload=function(){
     for(var i=0;i<objs.length;i++){
         objs[i].id="p"+i;
         var grade=document.getElementById("p"+i).innerHTML;
+        grade=parseInt(grade+0.5);
         if(grade>=95){
             document.getElementById("p"+i).className="round A";
             document.getElementById("p"+i).innerHTML="A+";
         }
-        else if(grade>=90&&grade<=94){
+        else if(grade>=89&&grade<=94){
             document.getElementById("p"+i).className="round A";
             document.getElementById("p"+i).innerHTML="A";
         }
