@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zytnb</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="courseSelect">
+<div class="container">
+    <form action="" class="query">
+        <input type="text" placeholder="请输入课程号或课程名称或教学班名称查询！" class="query-input">
+        <input type="submit" value="查询" class="query-btn">
+        <input type="reset" value="重置" class="reset-btn">
+    </form>
+    <div class="selected-conditions-container">
+        <div class="selected-const-text">已选条件：</div>
+        <ul class="selected-conditions">
+            <li class="selected-item"><span class="selected-item-question">有无余量</span>:<span class="selected-item-answer">有</span><span class="deselect-cross"></span></li>
+            <li class="selected-item"><span class="selected-item-question">是否重修</span>:<span class="selected-item-answer">否</span><span class="deselect-cross"></span></li>
+        </ul>
+    </div>
+    <table class="condition-container" id="conditionTable">
+        <colgroup>
+            <col class="condition-name">
+            <col class="condition-values">
+        </colgroup>
+        <!--<tr>-->
+        <!--<td>年级：</td>-->
+        <!--<td><span class="condition-value-item">2022</span><span class="condition-value-item">2021</span><span class="condition-value-item">2020</span><span class="condition-value-item">2019</span></td>-->
+        <!--</tr>-->
+    </table>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
