@@ -1,4 +1,4 @@
-package com.example.demo.controller.Score_query;
+package com.example.demo.controller.Score_management_system;
 
 
 import com.example.demo.domain.GpaEntity;
@@ -7,9 +7,7 @@ import com.example.demo.service.Choose_courseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,4 +32,5 @@ public class Score_query {
     public List<GpaEntity> gpatest(){
         return choose_courseService.Gpa_query("2016001");
     }
+
 }
