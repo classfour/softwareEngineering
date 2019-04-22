@@ -30,7 +30,9 @@ html, body {
 /* 设置整个查询部分的容器 */
 .query-part {
     margin-top: 45px;
-    border: 1px solid black;
+    border: 1px solid #afccfa;
+    background-image: linear-gradient(to bottom, white, #f4fcff);
+    position: relative;
 }
 
 /* 设置整个输入查询及重置部分 */
@@ -75,6 +77,9 @@ form.query * {
 }
 
 @media (max-width: 768px) {
+    .course-container {
+        width: 100%;
+    }
     form.query {
         width: 100%;
         margin: 5px auto 0;
@@ -89,14 +94,13 @@ form.query * {
 }
 
 .selected-conditions-container {
-    width: 100%;
-    box-sizing: border-box;
     background-color: #fbf6d8;
     min-height: 48px;
     padding: 3px 0;
     margin-top: 15px;
     margin-bottom: 5px;
-    border: 1px solid #bdddfa;
+    border-top: 1px solid #afccfa;
+    border-bottom: 1px solid #afccfa;
 }
 
 .selected-conditions-container .selected-const-text {
@@ -177,8 +181,25 @@ col.condition-values {
     text-decoration: underline;
 }
 
+/* 改变选课详细信息的切换按钮的样式 */
+.toggle-visible {
+    width: 80px;
+    height: 20px;
+    margin: 0 auto;
+    border: 2px solid #73b3ff;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    text-align: center;
+    text-indent: 15px;
+    background: #cbe1fd url("../img/arrow_up.png") no-repeat 15px 3px;
+    background-size: 12px 12px;
+    cursor: pointer;
+}
+
+/* 设置版权与作者信息 */
 .course-footer {
     margin-top: 15px;
+    margin-bottom: 15px;
     text-align: center;
     font-size: 11px;
     color: #388e5a;
