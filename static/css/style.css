@@ -35,6 +35,17 @@ html, body {
     position: relative;
 }
 
+.query-part::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 2px);
+    height: 10px;
+    top: 100%;
+    left: -1px;
+    background-color: #cbe1fd;
+    border: 1px solid #afccfa;
+}
+
 /* 设置整个输入查询及重置部分 */
 form.query {
     width: 72%;
@@ -146,7 +157,13 @@ li.selected-item .deselect-cross {
 
 .condition-container {
     width: 90%;
+    display: block;
     margin: 0 auto;
+    overflow: hidden;
+}
+
+.condition-container.hide {
+    height: 0;
 }
 
 col.condition-name {
@@ -187,12 +204,13 @@ col.condition-values {
     height: 20px;
     margin: 0 auto;
     border: 2px solid #73b3ff;
+    border-bottom: none;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     text-align: center;
     text-indent: 15px;
-    background: #cbe1fd url("../img/arrow_up.png") no-repeat 15px 3px;
-    background-size: 12px 12px;
+    background: #cbe1fd url("../img/arrow.png") no-repeat 15px -15px;
+    background-size: 12px;
     cursor: pointer;
 }
 

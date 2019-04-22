@@ -53,3 +53,19 @@ window.onload = function () {
     }
     initTable();
 }
+
+let toggleBtn = document.getElementById('toggleBtn');
+let conditionTable = document.getElementById('conditionTable');
+
+// 收起课程查询详细信息，改变切换标志
+toggleBtn.onclick = () => {
+    if(conditionTable.className.indexOf("hide") != -1) {
+        conditionTable.className = "condition-container";
+        toggleBtn.style.backgroundPositionY = "-15px"
+        toggleBtn.innerText = "收起";
+    } else {
+        conditionTable.className += " hide";
+        toggleBtn.style.backgroundPositionY = "3px"
+        toggleBtn.innerText = "展开";
+    }
+}
