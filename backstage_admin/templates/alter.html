@@ -5,33 +5,33 @@
     <title>title</title>
 </head>
 <body>
-<h1>修改{{ username }}信息</h1>
+<h1>修改学生{{ username }}信息</h1>
 
 <form action="/alter/{{ username }}" method="POST">
-    <input type="text"  placeholder="请输入更改后的账号" value="USERNAME" name="username">
+
+    <input type="text"  placeholder="请输入更改后的姓名" value={{ name }} name="name">
     <br>
-    <input type="text"  placeholder="请输入更改后的姓名" value="NAME" name="name">
+    <input type="text"  placeholder="请输入更改后的性别" value={{ sex }} name="sex">
     <br>
-    <input type="text"  placeholder="请输入更改后的性别" value="SEX" name="sex">
+    <input type="text"  placeholder="请输入更改后的班级" value={{ Class }} name="Class">
     <br>
-    <input type="text"  placeholder="请输入更改后的班级" value="CLASS" name="class">
+    <input type="text"  placeholder="请输入更改后的入学日期" value={{ date }} name="date">
     <br>
-    <input type="text"  placeholder="请输入更改后的入学日期" value="DATA" name="data">
+    <input type="text"  placeholder="请输入更改后的年级" value= {{ grade }} name="grade">
     <br>
-    <input type="text"  placeholder="请输入更改后的年级" value="GRADE" name="grade">
+    <input type="text"  placeholder="请输入更改后的课题选择状态" value={{ status }} name="status">
     <br>
-    <input type="text"  placeholder="请输入更改后的课题选择状态" value="STATUS" name="status">
+    <input type="text"  placeholder="请输入更改后的照片地址" value={{ image }} name="image">
     <br>
-    <input type="text"  placeholder="请输入更改后的照片地址" value="IMAGE" name="image">
+    <input type="text"  placeholder="请输入更改后的年龄" value={{ age }} name="age">
     <br>
-    <input type="text"  placeholder="请输入更改后的年龄" value="AGE" name="age">
+    <input type="text"  placeholder="请输入更改后的主修课程" value={{ major }} name="major">
     <br>
-    <input type="text"  placeholder="请输入更改后的主修课程" value="MAJOR" name="major">
-    <br>
-    <input type="text"  placeholder="请输入更改后的院系" value="DEPARTMENT" name="department">
+    <input type="text"  placeholder="请输入更改后的院系" value={{ department }} name="department">
     <br>
 <button type="submit" name="upload">提交</button>
     <button type="submit" name="mahai">maihai</button>
+
 </form>
 </body>
 </html>

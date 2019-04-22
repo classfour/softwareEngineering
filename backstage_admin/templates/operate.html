@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>{{ dataS }}</p>
+<br>
+
+
+<form action="/operate" method="post">
+    <button type="submit" name="deleteStudent">删除这些学生</button>
+    <br>
+    <p>转专业</p>
+    <select name="alterMajor">
+     <option value="no">否</option>
+    <option value="计算机科学与技术">计算机科学与技术</option>
+    <option value="其他">其他</option>
+    </select>
+
+    <br>
+
+    <p>{{ dataT }}</p>
+    <br>
+    <button type="submit" name="deleteTeacher">删除这些教师</button>
+    <br>
+    <p>评职称</p>
+    <select name="alterTitle">
+     <option value="no">否</option>
+    <option value="教授">教授</option>
+    <option value="副教授">副教授</option>
+    <option value="讲师">讲师</option>
+    </select>
+<br><br><br><br><br>
+    <input name="password" type="password">输入密码以确认操作
+    <button name="ok" type="submit">确认操作</button>
+
+</form>
+{% if error %}
+        <h1 style="color:red">{{ error }}!</h1>
+    {% endif %}
+
+</body>
+</html>

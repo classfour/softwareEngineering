@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+<h1>修改教师{{ username }}信息</h1>
+
+<form action="/altert/{{ username }}" method="POST">
+
+    <input type="text"  placeholder="请输入更改后的姓名" value={{ name }} name="name">
+    <br>
+    <input type="text"  placeholder="请输入更改后的性别" value={{ sex }} name="sex">
+    <br>
+    <input type="text"  placeholder="请输入更改后的学院" value={{ department }} name="department">
+    <br>
+    <input type="text"  placeholder="请输入更改后的年龄" value={{ age }} name="age">
+    <br>
+    <input type="text"  placeholder="请输入更改后的教龄" value={{ workage }} name="workage">
+    <br>
+    <input type="text"  placeholder="请输入更改后的职称" value= {{ title }} name="title">
+    <br>
+    <input type="text"  placeholder="请输入更改后的工龄" value={{ workage }} name="workage">
+    <br>
+    <input type="text"  placeholder="请输入更改后的照片地址" value={{ image }} name="image">
+    <br>
+    <input type="text"  placeholder="请输入更改后的状态" value={{ status }} name="status">
+    <br>
+    <input type="text"  placeholder="请输入更改后的教授课程" name="major" value={{ major }} >
+    <br>
+
+<button type="submit" name="upload">提交</button>
+    <button type="submit" name="mahai">maihai</button>
+</form>
+</body>
+</html>

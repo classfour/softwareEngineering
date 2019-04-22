@@ -2,7 +2,7 @@ from app.__init__ import *
 from werkzeug.utils import secure_filename
 import time,os,xlrd,datetime
 from flask import json
-adminName=None
+
 
 
 basedir =os.path.abspath(os.path.dirname(__file__))
@@ -35,7 +35,7 @@ def updateSql(dict1):
         Class=str(dict1['班级'][i])
         #获取当前年份的9月1日作为学生的入学时间
         date=str(datetime.datetime.now().year)+"0901000000"
-        grade="-1"#为新生设置初值为-1
+        grade="0"#为新生设置初值为-1
         status="0"#为新生和新教师设置初值为0
         gpa="0"#为新生设置初值为0
         image=str(dict1['照片地址'][i])
@@ -50,35 +50,36 @@ def updateSql(dict1):
 
         if dict1['身份'][i]=="学生":
             level="0"
-            order2="insert into student values (\""+number+"\",\""+name+"\","+sex+",\""+Class+"\",\""+date+"\","+grade+","+status+","+gpa+",\""+image+"\","+age+",\""+major+"\",\""+department+"\");"
+            order2="insert into student values (\""+number+"\",\""+name+"\","+sex+",\""+Class+"\",\""+date+"\","\
+                   +grade+","+status+","+gpa+",\""+image+"\","+age+",\""+major+"\",\""+department+"\");"
 
         elif dict1['身份'][i] == "教师":
             level="1"
-            order2="insert into teacher values (\""+number+"\",\""+name+"\",\""+department+"\","+age+",\""+major+"\","+workage+","+sex+","+status+",\" \",\""+image+"\");"
+            order2="insert into teacher values (\""+number+"\",\""+name+"\",\""+department+"\","+age+",\""+major+"\","\
+                   +workage+","+sex+","+status+",\" \",\""+image+"\");"
             #可以教授的课程初始值为空
 
         Cur.execute(order2)
-        print(order2)
+        #print(order2)
 
         db.commit()
 
         order1="insert into user values(\""+number+"\",\""+number+"\","+level+");"
         Cur.execute(order1)
-        print(order1)
+        #print(order1)
         db.commit()
 
 
 
 
 def getdict(tuple1):
+    #print(tuple1)
 
     listFinal=[]
 
     listUserName = []
     listIdentity = []
     listName=[]
-
-
 
 
     for each in tuple1:
@@ -109,12 +110,17 @@ def getdict(tuple1):
         checkstr = None
         #管理员没有修改管理员信息的权限
         if not listIdentity[i]=='管理':
-            btnstr="<button name=\""+listUserName[i]+"\">更该信息</button>"
-            checkstr="<input type=\"checkbox\" name=\""+listUserName[i]+"on\"  />"
+            if listIdentity[i]=='教师':
+                btnstr="<a href=\"/altert/"+listUserName[i]+" \" name=\""+listUserName[i]+"\">更该教师信息</a>"
+            else:
+                btnstr="<a href=\"/alter/"+listUserName[i]+" \" name=\""+listUserName[i]+"\">更该学生信息</a>"
+                #print(btnstr)
+            checkstr="<input type=\"checkbox\" name=\""+listIdentity[i]+listUserName[i]+"\"  />"
 
 
 
-        listFinal.append({"姓名": listName[i],"用户名":listUserName[i],"身份":listIdentity[i],"选择":btnstr,"<button name=\"operate\">批量操作</button>":checkstr})
+        listFinal.append({"姓名": listName[i],"用户名":listUserName[i],"身份":listIdentity[i],"选择":btnstr,
+                          "<button>批量操作</button>":checkstr})
 
 
 
@@ -203,24 +209,38 @@ def userInfo3():
 #处理选择操作表单
     username=None
     if request.method=="POST":
-        LIST=list(request.form)
-        #print(list(request.form))
-        for each in LIST:
-            if request.form[each]=='':
-                username=each
-                break
+      #  print(list(request.form))
+
+        list1=list(request.form)
+        #print(list1)
+        if list1==[]:
+            return redirect(url_for("index_blue.hello_world",username=session['username']))
+        else:
+            #建立学生和教师列表来存储数据
+            listS=[]
+            listT=[]
+            #判断所选是否均为学生
+            for each in list1:
+                if each[:2]=="学生":
+                    listS.append(each[2:])
+                else:
+                    listT.append(each[2:])
+    #print(listS,listT)
+    session["listS"]=listS
+    session["listT"]=listT
 
 
-    if username=='operate':#表示点击的是批量操作按钮
-        return "批量操作页面"
 
 
-    return redirect(url_for("alter_blue.alter",username=username))
+    return redirect(url_for("alter_blue.operate"))
 
+#退出登陆
 @userInfoBlue.route('/log_out')
 def log_out():
-    request.session.delete()
-    pass
+    session.pop("username")
+    session.pop("password")
+    return redirect(url_for('login_blue.log_in'))
+
 
 @userInfoBlue.route('/userInfo/<string:username>',methods=['POST','GET'])
 def userInfo(username):

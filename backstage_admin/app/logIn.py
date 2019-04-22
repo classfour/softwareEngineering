@@ -31,8 +31,8 @@ def log_in():
 			session['username']=username
 			session['password']=password
 			error="跳转页面"
-			adminName=username
-			print(adminName)
+			#adminName=username
+			#print(adminName)
 			return redirect(url_for("index_blue.hello_world",username=username))
 
 

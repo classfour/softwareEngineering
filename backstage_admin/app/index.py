@@ -5,6 +5,15 @@ import os
 adminName=None
 indexBlue=Blueprint('index_blue',__name__)
 
+
+
+@indexBlue.route('/')
+def index():
+    if "username" in list(session.keys()):
+        return redirect(url_for("index_blue.hello_world",username=session['username']))
+    else:
+        return redirect(url_for('login_blue.log_in'))
+
 @indexBlue.route('/<string:username>')
 def hello_world(username):
 
@@ -14,9 +23,13 @@ def hello_world(username):
 
     #若session过期则自动跳转至登陆界面
     if "username" in list(session.keys()):
+        order = "select *from user;"
+        Cur.execute(order)
+        data = Cur.fetchall()
         return render_template("index.html",error=None,data_1=json.dumps(getdict(data),ensure_ascii=False),username=username)
     else:
         return redirect(url_for('login_blue.log_in'))
+
 
 @indexBlue.route("/download/<path:filename>")
 def download(filename):
