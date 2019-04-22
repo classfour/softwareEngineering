@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    background-color: #f3f3f3 !important;
+    background-color: #f0f0f0 !important;
 }
 
 /* 设置含有“自主选课”的头部 */
@@ -212,6 +212,41 @@ col.condition-values {
     background: #cbe1fd url("../img/arrow.png") no-repeat 15px -15px;
     background-size: 12px;
     cursor: pointer;
+}
+
+/* 侧边栏 */
+.course-info-container {
+    position: fixed;
+    width: 672px;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+
+.toggle-panel {
+    float: left;
+    width: 36px;
+    padding: 240px 8px 0 12px;
+    height: 100%;
+    background-color: #fd9b00;
+    color: rgba(255, 255, 255, .75);
+    font-size: 12px;
+}
+
+.toggle-panel .badge {
+    height: 21px;
+    line-height: 1.33;
+    background-color: white;
+    color: #fd9b00;
+    text-align: left;
+    margin-left: -4px;
+}
+
+.course-info {
+    float: left;
+    width: calc(100% - 36px);
+    height: 100%;
+    background-color: #f0f0f0;
 }
 
 /* 设置版权与作者信息 */
