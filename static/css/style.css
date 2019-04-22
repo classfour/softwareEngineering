@@ -1,50 +1,91 @@
-.container {
-    width: 98%;
-    height: 90%;
-    margin: 12px auto 0;
-    border: 1px solid #bdddfa;
+html, body {
+    height: 100%;
+    background-color: #f3f3f3 !important;
 }
 
+/* 设置含有“自主选课”的头部 */
+.course-header {
+    width: 100%;
+    height: 45px;
+    font-size: 18px;
+    line-height: 45px;
+    text-indent: 100px;
+    font-weight: 100;
+    color: #fff;
+    background: linear-gradient(to right, #2e54a7, #2ba5d2);
+}
+
+/* 设置整个选课部分的容器 */
+.course-container {
+    background-color: white;
+    width: 92%;
+    margin: 12px auto;
+    overflow: hidden;
+}
+
+.container {
+    width: 96%;
+}
+
+/* 设置整个查询部分的容器 */
+.query-part {
+    margin-top: 45px;
+    border: 1px solid black;
+}
+
+/* 设置整个输入查询及重置部分 */
 form.query {
-    width: 66%;
+    width: 72%;
     margin: 5px auto 0;
+    font-size: 12px;
 }
 
 form.query * {
-    margin-left: -5px;
-    box-sizing: border-box;
+    float: left;
     outline: none;
 }
 
 .query-input {
-    width: 80%;
+    width: 70%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     padding: 5px;
-    font-size: 16px;
     background-color: #f2f2f2;
 }
 
 .query-input:focus {
-    background-color: white;
+    background-color: #e9f8ff;
+}
+
+.form-btn {
+    padding: 6px 15px;
+    border: 1px solid #aaa;
 }
 
 .query-btn {
-    width: 65px;
-    padding: 6px 10px;
-    border: 1px solid #aaa;
     background-color: #337ab6;
     color: white;
 }
 
 .reset-btn {
-    width: 65px;
-    padding: 6px 10px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    border: 1px solid #aaa;
     border-left: none;
     background-color: white;
+}
+
+@media (max-width: 768px) {
+    form.query {
+        width: 100%;
+        margin: 5px auto 0;
+        font-size: 10px;
+    }
+    .query-input {
+        width: 68%;
+    }
+    .form-btn {
+        padding: 6px 8px;
+    }
 }
 
 .selected-conditions-container {
@@ -134,4 +175,15 @@ col.condition-values {
 
 .condition-container .condition-value-item:hover {
     text-decoration: underline;
+}
+
+.course-footer {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 11px;
+    color: #388e5a;
+}
+
+.course-footer span {
+    margin-right: 50px;
 }

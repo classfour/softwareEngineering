@@ -1,36 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <title>zytnb</title>
-    <link rel="stylesheet" href="css/normalize.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自主选课</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body id="courseSelect">
-<div class="container">
-    <form action="" class="query">
-        <input type="text" placeholder="请输入课程号或课程名称或教学班名称查询！" class="query-input">
-        <input type="submit" value="查询" class="query-btn">
-        <input type="reset" value="重置" class="reset-btn">
-    </form>
-    <div class="selected-conditions-container">
-        <div class="selected-const-text">已选条件：</div>
-        <ul class="selected-conditions">
-            <li class="selected-item"><span class="selected-item-question">有无余量</span>:<span class="selected-item-answer">有</span><span class="deselect-cross"></span></li>
-            <li class="selected-item"><span class="selected-item-question">是否重修</span>:<span class="selected-item-answer">否</span><span class="deselect-cross"></span></li>
-        </ul>
+<header class="course-header">自主选课</header>
+<div class="course-container">
+    <div class="query-part container">
+        <form action="" class="query row">
+            <input type="text" class="query-input" placeholder="请输入课程号或课程名称或教学班名称查询！" >
+            <input type="submit" value="查询" class="query-btn form-btn">
+            <input type="reset" value="重置" class="reset-btn form-btn">
+        </form>
+        <div class="selected-conditions-container">
+            <div class="selected-const-text">已选条件：</div>
+            <ul class="selected-conditions">
+                <li class="selected-item"><span class="selected-item-question">有无余量</span>:<span class="selected-item-answer">有</span><span class="deselect-cross"></span></li>
+                <li class="selected-item"><span class="selected-item-question">是否重修</span>:<span class="selected-item-answer">否</span><span class="deselect-cross"></span></li>
+            </ul>
+        </div>
+        <table class="condition-container" id="conditionTable">
+            <colgroup>
+                <col class="condition-name">
+                <col class="condition-values">
+            </colgroup>
+            <!--<tr>-->
+            <!--<td>年级：</td>-->
+            <!--<td><span class="condition-value-item">2022</span><span class="condition-value-item">2021</span><span class="condition-value-item">2020</span><span class="condition-value-item">2019</span></td>-->
+            <!--</tr>-->
+        </table>
     </div>
-    <table class="condition-container" id="conditionTable">
-        <colgroup>
-            <col class="condition-name">
-            <col class="condition-values">
-        </colgroup>
-        <!--<tr>-->
-        <!--<td>年级：</td>-->
-        <!--<td><span class="condition-value-item">2022</span><span class="condition-value-item">2021</span><span class="condition-value-item">2020</span><span class="condition-value-item">2019</span></td>-->
-        <!--</tr>-->
-    </table>
+    <div class="result-part container">
+        dsfasdf
+    </div>
 </div>
+<footer class="course-footer">
+    <span class="copyright">版权所有© Copyright 1958-2019 北京化工大学</span>
+    <span class="address">北京化工大学昌平校区计科1604</span>
+</footer>
 <script src="js/main.js"></script>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
 </body>
 </html>
