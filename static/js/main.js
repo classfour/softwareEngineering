@@ -52,20 +52,27 @@ window.onload = function () {
         table.innerHTML += tableText;
     }
     initTable();
+
 }
 
-let toggleBtn = document.getElementById('toggleBtn');
-let conditionTable = document.getElementById('conditionTable');
-
-// 收起课程查询详细信息，改变切换标志
-toggleBtn.onclick = () => {
-    if(conditionTable.className.indexOf("hide") != -1) {
-        conditionTable.className = "condition-container";
-        toggleBtn.style.backgroundPositionY = "-15px"
+// 点击收起或展开按钮切换课程选择详情页面的展示状态
+let toggleBtn = $('#toggleBtn');
+let conditionTable = $('#conditionTable');
+toggleBtn.click(() => {
+    if(conditionTable.hasClass('hide')) {
+        toggleBtn.css('background-position-y', '-15px');
         toggleBtn.innerText = "收起";
     } else {
-        conditionTable.className += " hide";
-        toggleBtn.style.backgroundPositionY = "3px"
+        toggleBtn.css('background-position-y', '3px');
         toggleBtn.innerText = "展开";
     }
-}
+    conditionTable.toggleClass('hide');
+})
+
+// 点击显示或隐藏侧边栏
+let toggleArrow = $('.toggle-arrow');
+let courseInfo = $('.course-info-container');
+toggleArrow.click(() => {
+    toggleArrow.css('background-position-x', courseInfo.hasClass('hide-aside') ? '-30px' : '4px');
+    courseInfo.toggleClass('hide-aside');
+})

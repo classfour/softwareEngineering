@@ -223,14 +223,27 @@ col.condition-values {
     right: 0;
 }
 
+.course-info-container.hide-aside {
+    left: calc(100% - 36px);
+}
+
 .toggle-panel {
     float: left;
     width: 36px;
-    padding: 240px 8px 0 12px;
+    padding: 0 12px;
     height: 100%;
     background-color: #fd9b00;
     color: rgba(255, 255, 255, .75);
     font-size: 12px;
+}
+
+.toggle-arrow {
+    width: 30px;
+    height: 18px;
+    margin: 23px 0 200px -12px;
+    background: url("../img/horizontal_arrow.png") no-repeat 4px;
+    background-size: 60px;
+    cursor: pointer;
 }
 
 .toggle-panel .badge {
