@@ -262,6 +262,54 @@ col.condition-values {
     background-color: #f0f0f0;
 }
 
+/* 显示空闲周数的表格 */
+.free-time-table {
+    margin: 8px auto;
+}
+
+.free-time-table th, .free-time-table td{
+    width: 76px;
+    height: 18px;
+    font-size: 11px;
+    font-weight: 400;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.free {
+    background-color: #5cb85c;
+}
+
+td.course-info-description {
+    text-align: left;
+}
+
+.course-info-description span::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 15px;
+    margin: 2px 5px 0 25px;
+}
+
+.course-info-description span {
+    vertical-align: top;
+    font-size: 11px;
+    padding-right: 35px;
+}
+
+.course-info-description span:first-child::before {
+    background-color: #5cb85c;
+}
+
+.course-info-description span:last-child::before {
+    background-color: #d9534f;
+}
+
+.course-info-description span:nth-child(2)::before {
+    background-color: #f0ad4e;
+}
+
 /* 设置版权与作者信息 */
 .course-footer {
     margin-top: 15px;
