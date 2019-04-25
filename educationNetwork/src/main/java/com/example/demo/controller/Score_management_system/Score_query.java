@@ -33,4 +33,6 @@ public class Score_query {
         return choose_courseService.Gpa_query("2016001");
     }
 
+
+
 }
