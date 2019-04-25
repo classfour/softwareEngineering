@@ -1,4 +1,3 @@
-
 window.onload=function(){
     var objs=document.getElementsByTagName("span");
     for(var i=0;i<objs.length;i++){
@@ -54,4 +53,43 @@ window.onload=function(){
             document.getElementById("p"+i).innerHTML="F";
         }
     }
+    //蔡秉岐的js样式
+    //为所有成绩明细编写动态ID
+    var score_detail=document.getElementsByTagName("p");
+    for(var i=0;i<score_detail.length;i++) {
+        score_detail[i].id = "detail" + i;
+    }
+    //为查询button编写动态ID
+    var button_id=document.getElementById("p").getElementsByTagName("button");
+    for(var i=0;i<button_id.length;i++)
+    {
+        button_id[i].id="button"+i;
+    }
+}
+//动态获取成绩放到模态框中
+function show_score_detail(id) {
+    var num=id[id.length-1];
+    num=parseInt(num);
+    var num0=num*7;
+    var num1=num*7+1;
+    var num2=num*7+2;
+    var num3=num*7+3;
+    var num4=num*7+4;
+    var num5=num*7+5;
+    var num6=num*7+6;
+    var start_flag="detail"+num0;
+    var start_flag1="detail"+num1;
+    var start_flag2="detail"+num2;
+    var start_flag3="detail"+num3;
+    var start_flag4="detail"+num4;
+    var start_flag5="detail"+num5;
+    var start_flag6="detail"+num6;
+    document.getElementById("normal_score").innerHTML=document.getElementById(start_flag).innerHTML;
+    document.getElementById("normal_score_rate").innerHTML=document.getElementById(start_flag1).innerHTML;
+    document.getElementById("mid_score").innerHTML=document.getElementById(start_flag2).innerHTML;
+    document.getElementById("mid_score_rate").innerHTML=document.getElementById(start_flag3).innerHTML;
+    document.getElementById("final_score").innerHTML=document.getElementById(start_flag4).innerHTML;
+    document.getElementById("final_score_rate").innerHTML=document.getElementById(start_flag5).innerHTML;
+    document.getElementById("total_score").innerHTML=document.getElementById(start_flag6).innerHTML;
+    document.getElementById("myModal").style.display="block";
 }

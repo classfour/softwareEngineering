@@ -185,3 +185,16 @@ table.table{
 .table td, .table th {
     vertical-align: middle;
 }
+/*蔡秉岐css的样式*/
+.modal.fade{
+    position: absolute;
+    top: 30%;
+    margin-left: 20%;
+    z-index: 1000000;
+}
+p{
+    visibility: hidden;
+    margin: 0;
+    float: left;
+    width: 0;
+}
