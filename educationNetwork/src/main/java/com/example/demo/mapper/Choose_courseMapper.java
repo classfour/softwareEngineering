@@ -3,6 +3,7 @@ package com.example.demo.mapper;
 import com.example.demo.domain.GpaEntity;
 import com.example.demo.domain.ScoreEntity;
 import com.example.demo.domain.Score_excel;
+import com.example.demo.domain.StudentScore;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -18,4 +19,7 @@ public interface Choose_courseMapper {
 
     @Update("update choose_course set score=#{Score}, gpa=#{gpa} where student_number=#{student_number} and course_number=#{coursenumber}")
     public void setScore(Score_excel score_excel);
+
+    @Select("select student.number,student.name,student.class,course.name,choose_course.score,choose_course.gpa from choose_course,student,course where choose_course.course_number=course.number and choose_course.student_number=student.number and choose_course.course_number=#{coursenumber}")
+    public List<StudentScore> studentScore_query(String coursenumber);
 }
