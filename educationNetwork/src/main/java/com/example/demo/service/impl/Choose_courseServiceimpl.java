@@ -22,6 +22,11 @@ public class Choose_courseServiceimpl implements Choose_courseService {
     }
 
     @Override
+    public List<ScoreEntity> Score_query_course(String student_number,String course_name){
+        return choose_courseMapper.score_query_course(student_number,course_name);
+    }
+
+    @Override
     public List<GpaEntity> Gpa_query(String student_number){
         return choose_courseMapper.gpa_query(student_number);
     }

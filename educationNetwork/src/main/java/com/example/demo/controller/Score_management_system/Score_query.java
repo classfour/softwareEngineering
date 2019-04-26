@@ -24,6 +24,7 @@ public class Score_query {
         model.addAttribute("model",choose_courseService.Score_query("2016001"));
         return "index(groupFour)/score_query_test";
     }
+
     @RequestMapping(value = "/score_query_json",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> sore_query_echart(){
