@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>成绩查询</title>
     <script src="js(groupFour)/echarts.min.js"></script>
+    <script src="js(groupFour)/jquery-3.4.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
@@ -135,8 +136,7 @@
             // 基于准备好的dom，初始化echarts实例
             var myChart = echarts.init(document.getElementById('main'));
 
-            // 指定图表的配置项和数据
-            var option = {
+            myChart.setOption({
                 title: {
                     text: '成绩直方图'
                 },
@@ -145,18 +145,38 @@
                     data:['分数']
                 },
                 xAxis: {
-                    data: ["高等数学","大学英语","大学物理","金工实习"]
+                    data: []
                 },
                 yAxis: {},
                 series: [{
-                    name: '销量',
+                    name: '分数',
                     type: 'bar',
-                    data: [parseInt(document.getElementById("p1").innerHTML), 80, 70, 60]
+                    data: []
                 }]
-            };
-
-            // 使用刚指定的配置项和数据显示图表。
-            myChart.setOption(option);
+            });
+            $.ajax({
+                type:"get",
+                async:false,
+                url:"score_query_json",
+                data:{},
+                dataTye:"json",
+                success:function (result) {
+                    // alert(result.score);
+                    myChart.setOption({
+                        xAxis: {
+                            data:result.course_name
+                        },
+                        series: {
+                            name:'分数',
+                            type: 'bar',
+                            data:result.score
+                        }
+                    });
+                },
+                error:function () {
+                    alert("图表请求数据失败!");
+                }
+            })
         </script>
     </div>
 </body>
