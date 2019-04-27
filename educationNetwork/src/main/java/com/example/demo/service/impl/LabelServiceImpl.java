@@ -13,6 +13,9 @@ public class LabelServiceImpl implements LabelService {
 
     public String getSubjectNumber(String name) {
         Label label = labelMapper.select(name);
+//        System.out.println(label.getId());
+//        System.out.println(label.getCourseNumber());
+//        System.out.println(label.getName());
         return label.getCourseNumber();
     }
 }

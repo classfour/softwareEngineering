@@ -35,4 +35,12 @@ public class Label {
     public void setCourseNumber(String courseNumber) {
         this.courseNumber = courseNumber;
     }
+
+//    public String getCourse_number() {
+//        return course_number;
+//    }
+//
+//    public void setCourse_number(String course_number) {
+//        this.course_number = course_number;
+//    }
 }
