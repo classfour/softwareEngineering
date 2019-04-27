@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd61b85c-b694-4a29-b809-67713720bc73" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/Score_query.java" beforeDir="false" afterPath="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/Score_query.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/GPA_query.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/test_xzc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/GPA_query.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/test_xzc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/educationNetwork/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/educationNetwork/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_query_test.html" beforeDir="false" afterPath="$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_query_test.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/educationNetwork/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,112 +39,61 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/Score_query.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="26" column="46" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="46" />
+            <state relative-caret-position="-326">
+              <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1088#1096#0" expanded="true" />
-                <element signature="e#1146#1154#0" expanded="true" />
-                <element signature="e#1199#1214#0" expanded="true" />
+                <element signature="e#1710#1711#0" expanded="true" />
+                <element signature="e#1774#1775#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/studentScore_query.java">
+        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/GPA_query.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            <state relative-caret-position="206">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/test_xzc.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="21" selection-end-column="20" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_query_test.html">
+        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/GPA_query.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="161" column="31" lean-forward="true" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
+            <state relative-caret-position="358">
+              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
               <folding>
                 <element signature="n#style#0;n#h1#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/Score_upload.java">
+        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_query.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="190">
+              <caret line="91" column="11" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="49" />
               <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/success.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/application.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_upload.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/DemoApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/static/js(groupFour)/style(groupFour).js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2375">
-              <caret line="95" selection-start-line="95" selection-end-line="95" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/service/Choose_courseService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -194,9 +146,17 @@
         <option value="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/service/impl/Choose_courseServiceimpl.java" />
         <option value="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/domain/StudentScore.java" />
         <option value="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/studentScore_query.java" />
-        <option value="$PROJECT_DIR$/educationNetwork/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/Score_query.java" />
         <option value="$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_query_test.html" />
+        <option value="$PROJECT_DIR$/educationNetwork/.mvn/wrapper/maven-wrapper.properties" />
+        <option value="$PROJECT_DIR$/educationNetwork/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/educationNetwork/src/main/resources/static/js(groupFour)/test.js" />
+        <option value="$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/test.html" />
+        <option value="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/GPA_query.java" />
+        <option value="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/test.java" />
+        <option value="$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/test_xzc.java" />
+        <option value="$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/test_xzc.html" />
+        <option value="$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/GPA_query.html" />
       </list>
     </option>
   </component>
@@ -226,8 +186,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
-    <option name="width" value="1346" />
-    <option name="height" value="688" />
+    <option name="width" value="1347" />
+    <option name="height" value="689" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -238,6 +198,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -249,12 +211,6 @@
               <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
               <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
               <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
-              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
@@ -288,69 +244,6 @@
               <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
-              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
-              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
-              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
-              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
-              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="Score_management_system" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
-              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -361,16 +254,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
-              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
-              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css(groupFour)" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
@@ -401,12 +284,85 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="index(groupFour)" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
+              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
+              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
+              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
+              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
+              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
+              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
+              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="test-classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
+              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="test-classes" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="softwareEngineering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="softwareEngineering" type="462c0819:PsiDirectoryNode" />
+              <item name="educationNetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="test-classes" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,15 +373,16 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556217786576" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556361043556" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/educationNetwork/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
@@ -487,16 +444,18 @@
       <workItem from="1556156960761" duration="8589000" />
       <workItem from="1556197976252" duration="16917000" />
       <workItem from="1556286892480" duration="1102000" />
+      <workItem from="1556351185541" duration="7508000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117237000" />
+    <option name="totallyTimeSpent" value="124745000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27382752" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2774799" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -505,9 +464,9 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.097269624" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4977307" visible="true" weight="0.33788395" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.097269624" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4977307" visible="true" weight="0.3371105" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -518,7 +477,7 @@
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50226927" side_tool="true" weight="0.3890785" />
       <window_info anchor="bottom" id="Spring" order="12" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.32935154" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -531,6 +490,42 @@
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" />
       <window_info anchor="right" id="Bean Validation" order="10" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2774799" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.097269624" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977307" visible="true" weight="0.3371105" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50226927" side_tool="true" weight="0.3890785" />
+      <window_info anchor="bottom" id="Spring" order="12" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.3286119" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Maven" order="5" weight="0.32980332" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" />
+      <window_info anchor="right" id="Bean Validation" order="10" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -550,9 +545,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/mapper/Scoure_queryMapper.java" />
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/service.java" />
-    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/static/js(groupFour)/echarts.min.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/domain/Course.java" />
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/domain/Choose_course.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi/3.9/poi-3.9.jar!/org/apache/poi/ss/usermodel/Cell.class">
@@ -611,16 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/mapper/Choose_courseMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="23" column="70" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/static/css(groupFour)/top.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
@@ -671,23 +653,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/compiler.xml" />
-    <entry file="jar://D:/program/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/LinkedHashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16150">
-          <caret line="684" column="25" selection-start-line="684" selection-start-column="25" selection-end-line="684" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jrt://D:/program/Java/jdk-9.0.4!/jdk.javadoc/com/sun/tools/doclets/internal/toolkit/resources/jquery/jquery-1.10.2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206275">
-          <caret line="8263" column="4" selection-start-line="8263" selection-start-column="4" selection-end-line="8263" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://D:/program/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/LinkedHashMap.java" />
+    <entry file="jrt://D:/program/Java/jdk-9.0.4!/jdk.javadoc/com/sun/tools/doclets/internal/toolkit/resources/jquery/jquery-1.10.2.js" />
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/static/js(groupFour)/jquery-1.6.1.min.js" />
+    <entry file="file://$PROJECT_DIR$/educationNetwork/.idea/encodings.xml" />
+    <entry file="file://$PROJECT_DIR$/educationNetwork/.idea/compiler.xml" />
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/studentScore_query.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="171">
           <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -697,7 +670,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/Score_upload.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
+        <state relative-caret-position="209">
           <caret line="30" selection-start-line="30" selection-end-line="30" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -705,9 +678,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_upload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/service/Choose_courseService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
+        <state relative-caret-position="95">
           <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -715,96 +695,178 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/static/js(groupFour)/jquery-1.6.1.min.js" />
-    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/static/js(groupFour)/style(groupFour).js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="95" selection-start-line="95" selection-end-line="95" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/DemoApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="152">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/educationNetwork/.idea/encodings.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/educationNetwork/.idea/compiler.xml">
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/mapper/Choose_courseMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        <state relative-caret-position="304">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_query.html">
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/test/java/com/example/demo/DemoApplicationTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="67" column="67" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="67" />
+        <state relative-caret-position="114">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/.mvn/wrapper/MavenWrapperDownloader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
-            <element signature="n#style#0;n#h1#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#4629#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/.mvn/wrapper/maven-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/success.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_upload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        <state relative-caret-position="152">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/static/js(groupFour)/jquery-3.4.0.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
+        <state relative-caret-position="38">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_query_test.html">
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/static/js(groupFour)/style(groupFour).js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="164" column="39" lean-forward="true" selection-start-line="164" selection-start-column="39" selection-end-line="164" selection-end-column="39" />
+        <state relative-caret-position="401">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/static/js(groupFour)/echarts.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2907" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/static/js(groupFour)/test.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
           <folding>
-            <element signature="n#style#0;n#h1#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#4482#4489#1" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/Score_query.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+        <state relative-caret-position="-326">
+          <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1010#1018#0" expanded="true" />
-            <element signature="e#1068#1076#0" expanded="true" />
-            <element signature="e#1121#1136#0" expanded="true" />
+            <element signature="e#1710#1711#0" expanded="true" />
+            <element signature="e#1774#1775#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/application.properties">
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+        <state relative-caret-position="133">
+          <caret line="7" column="60" lean-forward="true" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/test_xzc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_query_test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="52" selection-start-line="5" selection-start-column="4" selection-end-line="6" selection-end-column="61" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/java/com/example/demo/controller/Score_management_system/GPA_query.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_query_test_test.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/test_xzc.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="21" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/score_query.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="91" column="11" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="49" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/educationNetwork/src/main/resources/templates/index(groupFour)/GPA_query.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -848,7 +910,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>9</last-edited>
+          <last-edited>11</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -865,6 +927,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
