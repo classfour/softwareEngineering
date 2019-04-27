@@ -11,11 +11,11 @@ import java.util.List;
 
 public interface Choose_courseMapper {
     //查询学号为student_number的同学的课程成绩
-    @Select("select course.name,choose_course.score,choose_course.gpa from choose_course,course where choose_course.student_number=#{student_number} and choose_course.course_number=course.number")
+    @Select("select course.name,choose_course.score,choose_course.gpa,choose_course.time from choose_course,course where choose_course.student_number=#{student_number} and choose_course.course_number=course.number")
     public List<ScoreEntity> score_query(String student_number);
 
     //查询学号为student_number的同学所选的课程中课程名中含有course_name字段的课程成绩(好像不让函数重载，一重载启动的时候就报错......)
-    @Select("select course.name,choose_course.score,choose_course.gpa from choose_course,course where choose_course.student_number=#{student_number} and choose_course.course_number=course.number and course.name like #{course_name}")
+    @Select("select course.name,choose_course.score,choose_course.gpa,choose_course.time from choose_course,course where choose_course.student_number=#{student_number} and choose_course.course_number=course.number and course.name like #{course_name}")
     public List<ScoreEntity> score_query_course(String student_number,String course_name);
 
     //查询学号为student_number的GPA

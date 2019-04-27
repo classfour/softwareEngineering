@@ -1,5 +1,8 @@
 package com.example.demo.domain;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
+
 public class StudentScore {
     public StudentScore(String studennumber, String studentname, String studentclass, String coursename, String score_tmp,double gpa) {
         this.studennumber = studennumber;
@@ -7,7 +10,7 @@ public class StudentScore {
         this.studentclass = studentclass;
         this.coursename = coursename;
         this.score_tmp = score_tmp;
-        Score=new ScoreEntity(coursename,score_tmp,gpa);
+        Score=new ScoreEntity(coursename,score_tmp,gpa,"2016-2017-1");
     }
 
     //学生学号

@@ -1,11 +1,15 @@
 package com.example.demo.domain;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 //成绩实体
 public class ScoreEntity {
-    public ScoreEntity(String coursename,String score,double gpa){
+    public ScoreEntity(String coursename,String score,double gpa,String study_year){
         this.coursename=coursename;
         this.score_tmp=score;
         this.gpa=gpa;
+        this.study_year=study_year;
         handle();
     }
 
@@ -54,6 +58,9 @@ public class ScoreEntity {
 
     //课程gpa
     private double gpa;
+
+    //课程修读学年
+    private String study_year;
 
     //平时成绩查询接口
     public double getScoreUsual(){
@@ -132,5 +139,13 @@ public class ScoreEntity {
 
     public void setGpa(double gpa) {
         this.gpa = gpa;
+    }
+
+    public String getStudy_year() {
+        return study_year;
+    }
+
+    public void setStudy_year(String study_year) {
+        this.study_year = study_year;
     }
 }
