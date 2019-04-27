@@ -59,7 +59,7 @@ public class ScoreEntity {
     //课程gpa
     private double gpa;
 
-    //课程修读学年
+    //课程修读学年和学期，如2017-2018-1表示该课程在2017-2018学年第1学期修完
     private String study_year;
 
     //平时成绩查询接口
