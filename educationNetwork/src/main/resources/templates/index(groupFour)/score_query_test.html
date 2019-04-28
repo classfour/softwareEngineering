@@ -176,7 +176,13 @@
                         series: {
                             name:'分数',
                             type: 'bar',
-                            data:result.score
+                            data:result.score,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'inside'
+                                }
+                            }
                         }
                     });
                 },

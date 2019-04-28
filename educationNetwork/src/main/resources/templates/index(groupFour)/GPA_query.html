@@ -56,7 +56,7 @@
         var option = {
 
             title: {
-                text: '                     GPA学期变动情况'
+                text: 'GPA学期变动情况'
             },
             tooltip: {},
             legend: {
@@ -64,20 +64,52 @@
             },
             xAxis: {
                 type: 'category',
-                data: ['2016-2017-1', '2016-2017-2', '2017-2018-1', '2017-2018-2', '2018-2019-1', '2018-2019-2', '2019-2020-1']
-
+                data: []
             },
             yAxis: {
                 type: 'value'
             },
             series: [{
-                data: [3.0, 3.2, 3.4, 2.0, 4.1, 3.9, 3.8],
-                type: 'line'
+                name:'GPA',
+                type: 'line',
+                data: [],
+                itemStyle : {
+                    normal: {
+                        label : {
+                            show: true
+                        }
+                    }
+                }
             }]
         };
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
+
+        $.ajax({
+            type:"get",
+            async:false,
+            url:"/GPA_query_json",
+            data:{},
+            dataTye:"json",
+            success:function (result) {
+                // alert(result.score);
+                myChart.setOption({
+                    xAxis: {
+                        data:result.study_year
+                    },
+                    series: {
+                        name:'GPA',
+                        type: 'line',
+                        data:result.GPA
+                    }
+                });
+            },
+            error:function () {
+                alert("图表请求数据失败!");
+            }
+        })
+
     </script>
 
 </div>

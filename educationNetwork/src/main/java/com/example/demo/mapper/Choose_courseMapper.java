@@ -18,8 +18,8 @@ public interface Choose_courseMapper {
     @Select("select course.name,choose_course.score,choose_course.gpa,choose_course.time from choose_course,course where choose_course.student_number=#{student_number} and choose_course.course_number=course.number and course.name like #{course_name}")
     public List<ScoreEntity> score_query_course(String student_number,String course_name);
 
-    //查询学号为student_number的GPA
-    @Select("select choose_course.gpa,course.credits from choose_course,course where choose_course.student_number=#{student_number} and choose_course.course_number=course.number")
+    //查询学号为student_number的所选所有课程的GPA情况
+    @Select("select choose_course.gpa,course.credits,choose_course.time from choose_course,course where choose_course.student_number=#{student_number} and choose_course.course_number=course.number")
     public List<GpaEntity> gpa_query(String student_number);
 
     //导入学生成绩
