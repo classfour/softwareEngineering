@@ -2,44 +2,171 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>批量处理</title>
+	<link href="static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script type="text/javascript">
+        var data={{ dataS|tojson }}
+        var jsonArray = JSON.parse(data);//把json数据转换为JavaScript对象
+		var headArray = [];
+
+
+		var data1={{ dataT|tojson }}
+        var jsonArray1 = JSON.parse(data1);//把json数据转换为JavaScript对象
+		var headArray2 = [];
+
+        function parseHead(oneRow) {
+                    for ( var i in oneRow) {
+                        headArray[headArray.length] = i;
+                    }
+           }//把数据保存到数组中
+        function appendTable() {
+                          parseHead(jsonArray[0]);
+                          var div = document.getElementById("div1");
+                          var table = document.createElement("table");
+						  div.appendChild(table);//创建表
+								table.className='table';
+							var thead = document.createElement("thead");
+                          var tr1 = document.createElement("tr");
+                          for ( var count = 0; count < headArray.length; count++) {
+                                    var td = document.createElement("th");
+                                    td.innerHTML = headArray[count];
+                                    tr1.appendChild(td);
+                           }
+						   thead.appendChild(tr1);
+                           table.appendChild(thead);//创建表头
+						   var tbody = document.createElement("tbody");
+                          for ( var tableRowNo = 0; tableRowNo < jsonArray.length; tableRowNo++) {
+                                    var tr = document.createElement("tr");//创建行
+                                    for ( var headCount = 0; headCount < headArray.length; headCount++) {
+                                            var cell = document.createElement("td");
+                                            cell.innerHTML = jsonArray[tableRowNo][headArray[headCount]];
+                                            tr.appendChild(cell);//创建列
+                                    }
+									tbody.appendChild(tr);
+
+                         }
+						 table.appendChild(tbody);
+        }
+        function parseHead2(oneRow) {
+                    for ( var i in oneRow) {
+                        headArray2[headArray2.length] = i;
+                    }
+           }//把数据保存到数组中
+        function appendTable2() {
+
+                          parseHead2(jsonArray1[0]);
+                          var div = document.getElementById("div2");
+                          var table = document.createElement("table");
+						  div.appendChild(table);//创建表
+								table.className='table';
+							var thead = document.createElement("thead");
+                          var tr1 = document.createElement("tr");
+                          for ( var count = 0; count < headArray2.length; count++) {
+                                    var td = document.createElement("th");
+                                    td.innerHTML = headArray2[count];
+                                    tr1.appendChild(td);
+                           }
+						   thead.appendChild(tr1);
+                           table.appendChild(thead);//创建表头
+						   var tbody = document.createElement("tbody");
+                          for ( var tableRowNo = 0; tableRowNo < jsonArray1.length; tableRowNo++) {
+                                    var tr = document.createElement("tr");//创建行
+                                    for ( var headCount = 0; headCount < headArray2.length; headCount++) {
+                                            var cell = document.createElement("td");
+                                            cell.innerHTML = jsonArray1[tableRowNo][headArray2[headCount]];
+                                            tr.appendChild(cell);//创建列
+                                    }
+									tbody.appendChild(tr);
+
+                         }
+						 table.appendChild(tbody);
+        }
+		function appendTableall(){
+			if(data == "\"未选择学生\""){
+
+			} else {
+				appendTable();
+			}
+			if(data1 == "\"未选择教师\""){
+
+			} else {
+				appendTable2();
+			}
+		}
+</script>
 </head>
-<body>
-<p>{{ dataS }}</p>
+<body onload="appendTableall();">
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+			<!-- student-->
+			<div style = "width:48%;float:left">
+				<div id="div1"></div>
+				<br>
+				<div id="div2"></div>
+			</div>
+			<!-- teacher -->
+
+			<!-- operate -->
+			<div style="width:50%;float:right;margin-left:10px">
+
+			<form action="/operate" method="post">
+				<div class="form-group">
+					<label for="inputPassword" class="col-sm-2 control-label">输入密码以确认操作</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="inputPassword"
+							   placeholder="请输入密码" name="password">
+					</div>
+				</div>
+				{% if error %}
+					<div style="padding:150px 20px 0px 20px;">
+						<h4 style="color:red">{{ error }}!</h4>
+					</div>
+
+				{% endif %}
+				<br><br><br><br>
+				<div style="margin: 0 auto">
+					<button type="submit" class="btn btn-success" name="deleteStudent" >删除这些学生</button>
+					<button type="submit" class="btn btn-success" name="deleteTeacher" >删除这些教师</button>
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="name">转专业</label>
+					<select class="form-control" name="alterMajor">
+						<option value="no">否</option>
+						<option value="计算机科学与技术">计算机科学与技术</option>
+						<option value="其他">其他</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="name">评职称</label>
+					<select class="form-control" name="alterTitle">
+						<option value="no">否</option>
+						<option value="教授">教授</option>
+						<option value="副教授">副教授</option>
+						<option value="讲师">讲师</option>
+					</select>
+				</div>
+
+
+
+				<div class="form-group" style = "padding-top:80px;float:right">
+					<button type="submit" class="btn btn-info" name="ok">确认操作</button>
+				</div>
+
+
+			</form>
+
+			</div>
+			</div>
+		</div>
+	</div>
+
+
+
 <br>
 
-
-<form action="/operate" method="post">
-    <button type="submit" name="deleteStudent">删除这些学生</button>
-    <br>
-    <p>转专业</p>
-    <select name="alterMajor">
-     <option value="no">否</option>
-    <option value="计算机科学与技术">计算机科学与技术</option>
-    <option value="其他">其他</option>
-    </select>
-
-    <br>
-
-    <p>{{ dataT }}</p>
-    <br>
-    <button type="submit" name="deleteTeacher">删除这些教师</button>
-    <br>
-    <p>评职称</p>
-    <select name="alterTitle">
-     <option value="no">否</option>
-    <option value="教授">教授</option>
-    <option value="副教授">副教授</option>
-    <option value="讲师">讲师</option>
-    </select>
-<br><br><br><br><br>
-    <input name="password" type="password">输入密码以确认操作
-    <button name="ok" type="submit">确认操作</button>
-
-</form>
-{% if error %}
-        <h1 style="color:red">{{ error }}!</h1>
-    {% endif %}
 
 </body>
 </html>

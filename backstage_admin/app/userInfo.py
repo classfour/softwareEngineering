@@ -120,7 +120,7 @@ def getdict(tuple1):
 
 
         listFinal.append({"姓名": listName[i],"用户名":listUserName[i],"身份":listIdentity[i],"选择":btnstr,
-                          "<button>批量操作</button>":checkstr})
+                          "<button class=\"btn btn-link\">批量操作</button>":checkstr})
 
 
 
@@ -164,13 +164,13 @@ def userInfo2():
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
     f = request.files['file']
+
     # 从表单的file字段获取文件，file为该表单的name值
     if f and allowed_file(f.filename): # 判断是否是允许上传的文件类型
         fname = secure_filename(f.filename)
        # print (fname)
        # print(type(f))
-        ext = fname.rsplit('.',1)[1] # 获取文件后缀
-        unix_time = int(time.time())
+
         new_filename = fname
         f.save(os.path.join(file_dir,new_filename)) #保存文件到upload目录
 
@@ -179,6 +179,9 @@ def userInfo2():
         path=path_now+"\\app\\upload\\"+fname
         readbook = xlrd.open_workbook(path)
         sheet = readbook.sheet_by_index(0)  # 读取sheet1
+
+
+
 
         #处理从前端接受的数据
         dictfile = {}

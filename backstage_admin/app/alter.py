@@ -1,4 +1,5 @@
 from app.__init__ import *
+from flask import json
 
 def judgeSex(sex):
     if type(sex)==type("sex"):
@@ -289,5 +290,7 @@ def operate():
             return redirect(url_for("userInfo_blue.userInfo",username=session["username"]))
         else:
             error="密码输入不正确,无法操作"
+        print(dataT,dataS)
 
-    return render_template("operate.html", dataS=dataS,dataT=dataT,error=error)
+    return render_template("operate.html", dataS=json.dumps(dataS, ensure_ascii=False),dataT=json.dumps(dataT,
+                                                                                                        ensure_ascii=False),error=error)

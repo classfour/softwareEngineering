@@ -22,11 +22,11 @@ def hello_world(username):
     #print(username)
 
     #若session过期则自动跳转至登陆界面
-    if "username" in list(session.keys()):
+    if "username" in list(session.keys()) :
         order = "select *from user;"
         Cur.execute(order)
         data = Cur.fetchall()
-        return render_template("index.html",error=None,data_1=json.dumps(getdict(data),ensure_ascii=False),username=username)
+        return render_template("index.html",error=None,data_1=json.dumps(getdict(data),ensure_ascii=False),username=session['username'])
     else:
         return redirect(url_for('login_blue.log_in'))
 

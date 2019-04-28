@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布消息</title>
+	<link href="static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="static/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript">
+		function today(){//构建方法
+			var today=new Date();//new 出当前时间
+			var h=today.getFullYear();//获取年
+			var m=today.getMonth()+1;//获取月
+			var d=today.getDate();//获取日
+			var H = today.getHours();//获取时
+			var M = today.getMinutes();//获取分
+			var S = today.getSeconds();//获取秒
+			if(m<10){
+				m = "0"+m;
+			}
+			if(d<10){
+				d = "0"+d;
+			}
+			return h+"-"+m+"-"+d; //返回 年-月-日 时:分:秒
+		}
+		function fun(){
+			document.getElementById("lastname").value = today();//将获取到的 年-月-日 时:分:秒 赋给input文本输入框
+		}
+
+	</script>
+</head>
+<body onload="fun();">
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column" style="margin:20px">
+			<form method="post" action="/add_notice">
+				<div class="form-group">
+					<label for="firstname" class="col-sm-2 control-label">填写标题</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="firstname" name="title"
+							   placeholder="请输入名字">
+					</div>
+				</div>
+				<br><br><br>
+				<div class="form-group" >
+					<label for="lastname" class="col-sm-2 control-label">选择发布时间</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" id="lastname"
+							   name="date" value="">
+					</div>
+				</div>
+				<br><br>
+
+					<div class="form-group">
+						<label for="name">填写内容</label>
+						<textarea class="form-control" rows="5" name="content"></textarea>
+					</div>
+
+				<button type="submit" class="btn btn-default" style="float:right">提交</button>
+			</form>
+
+
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

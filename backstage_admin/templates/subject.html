@@ -36,7 +36,7 @@
         td,th {
             border: 1px solid #ddd;
             padding: 6px 6px 6px 12px;
-            color: #1b1272;
+            color: #4f6b72;
             text-align: center;
         }
         th {
@@ -45,29 +45,32 @@
         }
     </style>
 <script type="text/javascript">
-        var data={{ data_1|tojson }}
-          var jsonArray = JSON.parse(data);//把json数据转换为JavaScript对象
-		  var headArray = [];
+      	var data={{ dataSubject|tojson }}
+        var jsonArray = JSON.parse(data);//把json数据转换为JavaScript对象
+		var headArray = [];
 
-          function parseHead(oneRow) {
-                        for ( var i in oneRow) {
-                                headArray[headArray.length] = i;
-                         }
-            }//把数据保存到数组中
-            function appendTable() {
-                          parseHead(jsonArray[0]);
+        function parseHead(oneRow) {
+            for ( var i in oneRow) {
+                headArray[headArray.length] = i;
+            }
+        }//把数据保存到数组中
+        function appendTable() {
+                         parseHead(jsonArray[0]);
                           var div = document.getElementById("div1");
                           var table = document.createElement("table");
 						  div.appendChild(table);//创建表
 								table.className='table';
 								table.id='idData';
-                          var thead = document.createElement("tr");
+							var thead = document.createElement("thead");
+                          var tr1 = document.createElement("tr");
                           for ( var count = 0; count < headArray.length; count++) {
                                     var td = document.createElement("th");
                                     td.innerHTML = headArray[count];
-                                    thead.appendChild(td);
+                                    tr1.appendChild(td);
                            }
+						   thead.appendChild(tr1);
                            table.appendChild(thead);//创建表头
+						   var tbody = document.createElement("tbody");
                           for ( var tableRowNo = 0; tableRowNo < jsonArray.length; tableRowNo++) {
                                     var tr = document.createElement("tr");//创建行
                                     for ( var headCount = 0; headCount < headArray.length; headCount++) {
@@ -75,12 +78,13 @@
                                             cell.innerHTML = jsonArray[tableRowNo][headArray[headCount]];
                                             tr.appendChild(cell);//创建列
                                     }
-                                    table.appendChild(tr);
+									tbody.appendChild(tr);
+
                          }
+						 table.appendChild(tbody);
 
 
         }
-
 
 		function goPage(pno,psize){
 			var itable = document.getElementById("idData");
@@ -125,14 +129,11 @@
 			document.getElementById("ycy666").innerHTML = tempStr;
 		}
 
-
-
-
 </script>
 
 </head>
 
-<body onload="appendTable(jsonArray);goPage(1,8);" data-type="generalComponents">
+<body onload="appendTable(jsonArray);goPage(1,7)"  data-type="generalComponents">
 	<div id="wrapper">
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation" style="margin-bottom: 0">
@@ -218,44 +219,34 @@
 		</nav>
 
 		<div id="page-wrapper">
-            <form action="/userInfo2" method="post" enctype=multipart/form-data class="form-inline"style="width:50% ;float:right; text-align:center">
-                <div class="form-group">
-                    <label for="inputfile">文件导入学生或教师信息</label>
-                    <input type="file" id="inputfile" name="file">
-                </div>
-                <button type="submit" class="btn btn-default">提交</button>
-                    {% if error %}
-                                <h1 style="color:#ff2c33">{{ error }}!</h1>
-                    {% endif %}
 
-            </form>
+			   <form action="/insertSubject" method="post" enctype=multipart/form-data class="form-inline"style="width:85% ;float:right;margin-right:30% text-align:center;border-bottom:1px solid #C0C0C0">
+					<div class="form-group">
+						<label for="inputfile">文件导入课题信息</label>
+						<input type="file" id="inputfile" name="file1">
+					</div>
+					<button type="submit" class="btn btn-default">提交</button>
+						{% if error %}
+									<h1 style="color:#ff2c33">{{ error }}!</h1>
+						{% endif %}
 
+				</form>
 
-
-            <form role="form" action='/userInfo1' method='post' class="form-inline"style="width:50% ;float:left; text-align:center">
-                <div class="form-group">
-                    <label for="name">选择列表</label>
-                    <select class="form-control" name="identity" style = "width:200px">
-                        <option  value="all">所有</option>
-                        <option  value="student">学生</option>
-                        <option  value="teacher">教师</option>
-                        <option  value="admin">管理</option>
-
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-default">确认</button>
-            </form>
-
-		<!--  用户信息 -->
-        <form action='/userInfo3' method='post' >
-            <div id="div1" style = "margin-top:100px"></div>
-        {# 加载用户信息 #}
-        </form>
-		<!--  分页 -->
-		<div id="ycy666"></div>
-
-				<input type="button" value="下载表单" onclick="javascrtpt:window.location.href='/download/example.xlsx'">
-        </div>
+			<div style="height:51px;border-bottom:1px solid #C0C0C0">
+				<input type="button" value="下载表单" class="btn btn-default" onclick="javascrtpt:window.location.href='/download/subject.xlsx'">
+			</div>
+			<!--  用户信息 -->
+			<form action="/subject" method="post">
+				<div id="div1">
+				<label style="margin-left:5px;">操作：</label>
+					<button name="shifton" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">设置为可选</button>
+					<button name="shiftoff" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">设置为不可选</button>
+					<button name="delete" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">删除</button>
+				</div>
+			</form>
+			<!--  分页 -->
+			<div id="ycy666"></div>
+		</div>
 
 	</div>
 

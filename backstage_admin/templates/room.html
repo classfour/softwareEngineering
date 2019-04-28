@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理教室表</title>
+        <style>
+        table {
+            width: 900px;
+            padding: 0 ;
+            margin: 20 auto;
+            border-collapse: collapse;
+        }
+        td,th {
+            border: 1px solid #ddd;
+            padding: 6px 6px 6px 12px;
+            color: #4f6b72;
+            text-align: center;
+        }
+        th {
+            background: #d3d3d3;
+
+        }
+    </style>
+    <script type="text/javascript">
+        var data={{ roomData|tojson }}
+          var jsonArray = JSON.parse(data);
+		  var headArray = [];
+
+          function parseHead(oneRow) {
+                        for ( var i in oneRow) {
+                                headArray[headArray.length] = i;
+                         }
+            }
+            function appendTable() {
+                          parseHead(jsonArray[0]);
+                          var div = document.getElementById("div1");
+                          var table = document.createElement("table");
+                          var thead = document.createElement("tr");
+                          for ( var count = 0; count < headArray.length; count++) {
+                                    var td = document.createElement("th");
+                                    td.innerHTML = headArray[count];
+                                    thead.appendChild(td);
+                           }
+                           table.appendChild(thead);
+                          for ( var tableRowNo = 0; tableRowNo < jsonArray.length; tableRowNo++) {
+                                    var tr = document.createElement("tr");
+                                    for ( var headCount = 0; headCount < headArray.length; headCount++) {
+                                            var cell = document.createElement("td");
+                                            cell.innerHTML = jsonArray[tableRowNo][headArray[headCount]];
+                                            tr.appendChild(cell);
+                                    }
+                                    table.appendChild(tr);
+                         }
+                          div.appendChild(table);
+
+        }
+
+</script>
+</head>
+<body onload="appendTable(jsonArray);">
+{{ roomData }}
+<div id="div1">
+
+</div>
+</body>
+</html>

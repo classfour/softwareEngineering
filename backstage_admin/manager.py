@@ -4,8 +4,6 @@ from app.logIn import loginBlue
 from app.index import indexBlue
 from app.alter import alterBlue
 from app.userInfo import userInfoBlue
-from app.studentInfo import studentInfoBlue
-from app.teacherInfo import teacherInfoBlue
 from app.courseInfo import courseInfoBlue
 from app.cCourseInfo import cCourseInfoBlue
 from app.noticeInfo import noticeInfoBlue
@@ -15,8 +13,9 @@ from app.cSubjectInfo import cSubjectInfoBlue
 from app.labelInfo import labelInfoBlue
 from app.complaintInfo import complaintBlue
 from app.scoreInfo import scoreInfoBlue
+from app.check import checkBlue
 import os
-from flask import send_from_directory
+from flask import send_from_directory,json
 from datetime import timedelta
 
 app = Flask(__name__)
@@ -30,8 +29,6 @@ app.register_blueprint(blueprint=indexBlue)
 app.register_blueprint(blueprint=alterBlue)
 #注册修改数据页面的蓝图
 app.register_blueprint(blueprint=userInfoBlue)
-app.register_blueprint(blueprint=studentInfoBlue)
-app.register_blueprint(blueprint=teacherInfoBlue)
 app.register_blueprint(blueprint=cCourseInfoBlue)
 app.register_blueprint(blueprint=courseInfoBlue)
 app.register_blueprint(blueprint=noticeInfoBlue)
@@ -41,6 +38,7 @@ app.register_blueprint(blueprint=cSubjectInfoBlue)
 app.register_blueprint(blueprint=labelInfoBlue)
 app.register_blueprint(blueprint=complaintBlue)
 app.register_blueprint(blueprint=scoreInfoBlue)
+app.register_blueprint(blueprint=checkBlue)
 
 #创建代理manage
 manager=Manager(app=app)
