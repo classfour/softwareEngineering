@@ -20,14 +20,14 @@ public class Score_query {
     private Choose_courseService choose_courseService;
 
     @RequestMapping("/score_query")
-    public String sore_query(ModelMap model){
+    public String score_query(ModelMap model){
         model.addAttribute("model",choose_courseService.Score_query("2016001"));
         return "index(groupFour)/score_query_test";
     }
 
     @RequestMapping(value = "/score_query_json",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> sore_query_echart(){
+    public Map<String,Object> score_query_echart(){
         List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
         List<Double> score=new ArrayList<Double>();
         List<String> course_name=new ArrayList<String>();
