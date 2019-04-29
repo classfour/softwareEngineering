@@ -4,8 +4,8 @@ import javax.xml.crypto.Data;
 import java.util.Date;
 
 public class StudentScore {
-    public StudentScore(String studennumber, String studentname, String studentclass, String coursename, String score_tmp,double gpa) {
-        this.studennumber = studennumber;
+    public StudentScore(String studentnumber, String studentname, String studentclass, String coursename, String score_tmp,double gpa) {
+        this.studentnumber = studentnumber;
         this.studentname = studentname;
         this.studentclass = studentclass;
         this.coursename = coursename;
@@ -14,7 +14,7 @@ public class StudentScore {
     }
 
     //学生学号
-    private String studennumber;
+    private String studentnumber;
 
     //学生姓名
     private String studentname;
@@ -32,7 +32,11 @@ public class StudentScore {
     private ScoreEntity Score;
 
     public String getStudentnumber() {
+<<<<<<< HEAD
         return studennumber;
+=======
+        return studentnumber;
+>>>>>>> c3beddc4190bc413692288a73f7face801eb7ae5
     }
 
     public String getStudentname() {

@@ -54,6 +54,7 @@ public class GPA_query {
         }
 
         double sum,credit;
+        double SUM=0,CREDIT=0;//全年总学分*绩点之和，学分之和
         DecimalFormat df = new DecimalFormat("#.00");
         for(String s:study_year_list){
             ArrayList<GpaEntity> element=mp.get(s);
@@ -63,9 +64,13 @@ public class GPA_query {
                 credit+=e.getCredit();
                 sum+=e.getCredit()*e.getGpa();
             }
+            SUM+=sum;
+            CREDIT+=credit;
             sum=sum/credit;
             GPA.add(df.format(sum));
         }
+
+        ans.put("total",df.format(SUM/CREDIT));
         ans.put("study_year",study_year_list);
         ans.put("GPA",GPA);
         return ans;

@@ -1,9 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.domain.GpaEntity;
-import com.example.demo.domain.ScoreEntity;
-import com.example.demo.domain.Score_excel;
-import com.example.demo.domain.StudentScore;
+import com.example.demo.domain.*;
 import com.example.demo.mapper.Choose_courseMapper;
 import com.example.demo.service.Choose_courseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +36,21 @@ public class Choose_courseServiceimpl implements Choose_courseService {
     @Override
     public List<StudentScore> studentScore_Query(String coursenumber){
         return choose_courseMapper.studentScore_query(coursenumber);
+    }
+    //成绩排名查询
+    @Override
+//    public List<ScoreRank> Score_rank( String coursenumber)
+//    {
+//        return choose_courseMapper.Score_rank(coursenumber);
+//    }
+    public List<ScoreRank> Score_rank(String coursenumber)
+    {
+        return choose_courseMapper.Score_rank(coursenumber);
+    }
+    //该生所修课程查询
+    @Override
+    public List<GetStudentCourseNumber> Student_Course_Number(String student_number)
+    {
+        return choose_courseMapper.Student_Course_Number(student_number);
     }
 }

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>GPA查询</title>
-    <script src="js(groupFour)/echarts.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css(groupFour)/top.css">
+    <script src="/js(groupFour)/echarts.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
 </head>
 <body class="default">
 <div class="top">
@@ -63,7 +63,7 @@
                 data:['GPA']
             },
             xAxis: {
-                type: 'category',
+                boundaryGap: false,
                 data: []
             },
             yAxis: {
@@ -72,14 +72,7 @@
             series: [{
                 name:'GPA',
                 type: 'line',
-                data: [],
-                itemStyle : {
-                    normal: {
-                        label : {
-                            show: true
-                        }
-                    }
-                }
+                data: []
             }]
         };
 
@@ -93,7 +86,12 @@
             data:{},
             dataTye:"json",
             success:function (result) {
-                // alert(result.score);
+                var lst=[];
+                var mark=[];
+                for(var i=0;i<result.GPA.length;i++){
+                    lst.push({value:result.GPA[i],coord:[i,result.GPA[i]]});
+                }
+                mark.push({yAxis:result.total,name:'平均GPA'});
                 myChart.setOption({
                     xAxis: {
                         data:result.study_year
@@ -101,7 +99,13 @@
                     series: {
                         name:'GPA',
                         type: 'line',
-                        data:result.GPA
+                        data:result.GPA,
+                        markPoint: {
+                            data: lst
+                        },
+                        markLine: {
+                            data:mark
+                        }
                     }
                 });
             },
