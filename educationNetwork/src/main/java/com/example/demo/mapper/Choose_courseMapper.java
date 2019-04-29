@@ -1,9 +1,6 @@
 package com.example.demo.mapper;
 
-import com.example.demo.domain.GpaEntity;
-import com.example.demo.domain.ScoreEntity;
-import com.example.demo.domain.Score_excel;
-import com.example.demo.domain.StudentScore;
+import com.example.demo.domain.*;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -29,4 +26,11 @@ public interface Choose_courseMapper {
     //查询选了课程号为coursenumber的所有学生的成绩及学生信息
     @Select("select student.number,student.name,student.class,course.name,choose_course.score,choose_course.gpa from choose_course,student,course where choose_course.course_number=course.number and choose_course.student_number=student.number and choose_course.course_number=#{coursenumber}")
     public List<StudentScore> studentScore_query(String coursenumber);
+    //蔡秉岐部分
+    //查询单科课程成绩sql语句
+    @Select("select course.name,course.number,choose_course.score,choose_course.student_number,choose_course.gpa,choose_course.time from choose_course,course where choose_course.course_number=course.number and choose_course.course_number=#{coursenumber}")
+    public List<ScoreRank> Score_rank(String coursenumber);
+    //查询该生所修课程
+    @Select("select choose_course.course_number,choose_course.student_number from choose_course where choose_course.student_number=#{student_number}")
+    public List<GetStudentCourseNumber> Student_Course_Number(String student_number);
 }

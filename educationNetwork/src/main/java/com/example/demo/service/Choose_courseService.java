@@ -1,9 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.GpaEntity;
-import com.example.demo.domain.ScoreEntity;
-import com.example.demo.domain.Score_excel;
-import com.example.demo.domain.StudentScore;
+import com.example.demo.domain.*;
 
 import java.util.List;
 
@@ -17,4 +14,8 @@ public interface Choose_courseService {
     public void SetScore(Score_excel score_excel);
 
     public List<StudentScore> studentScore_Query(String coursenumber);
+    //成绩排名查询
+    public List<ScoreRank> Score_rank(String coursenumber);
+    //该生所修课程的课程号
+    public List<GetStudentCourseNumber> Student_Course_Number(String student_number);
 }
