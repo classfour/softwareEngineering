@@ -145,7 +145,7 @@
                             <label for="institute" class="col-lg-2 control-label">院系</label>
                             <div class="col-lg-10">
                                 <select class="form-control" id="institute" onchange="function majors(institute) {
-                                    if(institute === '信息学院') document.getElementById('major').innerHTML = '<option><option>计算机科学与技术</option>'
+                                    if(institute === '信息学院') document.getElementById('major').innerHTML = '<option></option><option>计算机科学与技术</option>'
                                     if(institute === '理学院') document.getElementById('major').innerHTML = '<option></option><option>数学</option>'
                                 }
                                 majors(this.value)">
