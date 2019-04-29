@@ -20,10 +20,6 @@ public class Score_query {
     private Choose_courseService choose_courseService;
 
     @RequestMapping("/score_query")
-<<<<<<< HEAD
-    public String score_query(ModelMap model){
-        model.addAttribute("model",choose_courseService.Score_query("2016001"));
-=======
     public String score_query(@RequestParam(value = "study_year",defaultValue = "all") String study_year,ModelMap model){
         boolean f=false;
         if(study_year.equals("all")){
@@ -44,21 +40,16 @@ public class Score_query {
             model.addAttribute("select",new Study_year(study_year));
             model.addAttribute("model",new_lst);
         }
->>>>>>> c3beddc4190bc413692288a73f7face801eb7ae5
         return "index(groupFour)/score_query_test";
     }
 
     @RequestMapping(value = "/score_query_json/{study_year}",method = RequestMethod.GET)
     @ResponseBody
-<<<<<<< HEAD
-    public Map<String,Object> score_query_echart(){
-=======
     public Map<String,Object> score_query_echart(@PathVariable("study_year") String study_year){
         boolean f=false;
         if(study_year.equals("all")){
             f=true;
         }
->>>>>>> c3beddc4190bc413692288a73f7face801eb7ae5
         List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
         List<Double> score=new ArrayList<Double>();
         List<String> course_name=new ArrayList<String>();

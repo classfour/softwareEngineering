@@ -31,13 +31,7 @@ public class StudentScore {
     //学生成绩实体(之前已经写好，包含了学生基本课程成绩)
     private ScoreEntity Score;
 
-    public String getStudentnumber() {
-<<<<<<< HEAD
-        return studennumber;
-=======
-        return studentnumber;
->>>>>>> c3beddc4190bc413692288a73f7face801eb7ae5
-    }
+    public String getStudentnumber() { return studentnumber; }
 
     public String getStudentname() {
         return studentname;
