@@ -5,12 +5,14 @@
     <title>成绩查询</title>
     <script src="/js(groupFour)/echarts.min.js"></script>
     <script src="/js(groupFour)/jquery-3.4.0.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
+    <script src="/js(groupFour)/popper.min.js"></script>
+    <script src="/js(groupFour)/bootstrap.min.js"></script>
     <script src="/js(groupFour)/style(groupFour).js"></script>
+    <script src="/js(groupFour)/bootstrap-select.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/bootstrap-select.min.css">
 </head>
 <body class="default">
     <div class="top">
@@ -57,9 +59,26 @@
         </form>
         <div class="card">
             <div class="cardblock">
-                <h5 style="display: inline-block">成绩列表</h5>
-                <form action="/score_query/score_export" method="post" style="display: inline-block;float:right;">
-                    <button class="btn btn-outline-primary center" style="float: right" type="submit">
+                <h5>成绩列表</h5>
+                <form action="/score_query" method="post" style="width: 400px;height: 38px;float: left;margin-top: 10px;">
+                    <select id="select" class="form-control" name="study_year" style="width: 230px;float: left">
+                        <option value="all">全部</option>
+                        <option value="2016-2017-1">2016-2017学年第1学期</option>
+                        <option value="2016-2017-2">2016-2017学年第2学期</option>
+                        <option value="2017-2018-1">2017-2018学年第1学期</option>
+                        <option value="2017-2018-2">2017-2018学年第2学期</option>
+                        <option value="2018-2019-1">2018-2019学年第1学期</option>
+                        <option value="2018-2019-2">2018-2019学年第2学期</option>
+                        <option value="2019-2020-1">2019-2020学年第1学期</option>
+                        <option value="2019-2020-2">2019-2020学年第2学期</option>
+                        <option th:text="${select.getStudy_year()}" style="display: none"></option>
+                    </select>
+                    <button class="btn btn-outline-primary center" type="submit" style="margin-left: 30px;">
+                        确认
+                    </button>
+                </form>
+                <form action="/score_query/score_export" method="post" style="display: inline-block;float:right;margin-bottom: 10px;margin-top: 10px;">
+                    <button class="btn btn-outline-primary center" type="submit">
                         导出成绩
                     </button>
                 </form>
@@ -142,7 +161,7 @@
         <script type="text/javascript">
             // 基于准备好的dom，初始化echarts实例
             var myChart = echarts.init(document.getElementById('main'));
-
+            var path=GetSelect();
             myChart.setOption({
                 title: {
                     text: '成绩直方图'
@@ -164,11 +183,11 @@
             $.ajax({
                 type:"get",
                 async:false,
-                url:"/score_query_json",
+                url:"/score_query_json/"+path,
                 data:{},
                 dataTye:"json",
+
                 success:function (result) {
-                    // alert(result.score);
                     myChart.setOption({
                         xAxis: {
                             data:result.course_name

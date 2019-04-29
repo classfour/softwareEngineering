@@ -1,5 +1,5 @@
 window.onload=function(){
-    var objs=document.getElementsByTagName("span");
+    var objs=document.getElementById("p").getElementsByTagName("span");
     for(var i=0;i<objs.length;i++){
         objs[i].id="p"+i;
         var grade=document.getElementById("p"+i).innerHTML;
@@ -53,6 +53,13 @@ window.onload=function(){
             document.getElementById("p"+i).innerHTML="F";
         }
     }
+    objs=document.getElementById("select");
+    var s=document.getElementById("select")[9].text;
+    for(var i=0;i<8;i++){
+        if(s==objs[i].value){
+            objs[i].selected=true;
+        }
+    }
     //蔡秉岐的js样式
     //为所有成绩明细编写动态ID
     var score_detail=document.getElementsByTagName("p");
@@ -92,4 +99,10 @@ function show_score_detail(id) {
     document.getElementById("final_score_rate").innerHTML=document.getElementById(start_flag5).innerHTML;
     document.getElementById("total_score").innerHTML=document.getElementById(start_flag6).innerHTML;
     document.getElementById("myModal").style.display="block";
+}
+
+function GetSelect() {
+    var myselect=document.getElementById("select");
+    var value=myselect.options[9].text;
+    return value;
 }

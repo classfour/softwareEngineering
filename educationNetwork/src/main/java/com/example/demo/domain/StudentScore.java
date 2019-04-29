@@ -4,8 +4,8 @@ import javax.xml.crypto.Data;
 import java.util.Date;
 
 public class StudentScore {
-    public StudentScore(String studennumber, String studentname, String studentclass, String coursename, String score_tmp,double gpa) {
-        this.studennumber = studennumber;
+    public StudentScore(String studentnumber, String studentname, String studentclass, String coursename, String score_tmp,double gpa) {
+        this.studentnumber = studentnumber;
         this.studentname = studentname;
         this.studentclass = studentclass;
         this.coursename = coursename;
@@ -14,7 +14,7 @@ public class StudentScore {
     }
 
     //学生学号
-    private String studennumber;
+    private String studentnumber;
 
     //学生姓名
     private String studentname;
@@ -31,8 +31,8 @@ public class StudentScore {
     //学生成绩实体(之前已经写好，包含了学生基本课程成绩)
     private ScoreEntity Score;
 
-    public String getStudennumber() {
-        return studennumber;
+    public String getStudentnumber() {
+        return studentnumber;
     }
 
     public String getStudentname() {
@@ -45,5 +45,9 @@ public class StudentScore {
 
     public String getCoursename() {
         return coursename;
+    }
+
+    public ScoreEntity getScore() {
+        return Score;
     }
 }

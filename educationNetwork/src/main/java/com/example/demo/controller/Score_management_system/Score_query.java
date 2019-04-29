@@ -1,8 +1,8 @@
 package com.example.demo.controller.Score_management_system;
 
-
 import com.example.demo.domain.GpaEntity;
 import com.example.demo.domain.ScoreEntity;
+import com.example.demo.domain.Study_year;
 import com.example.demo.service.Choose_courseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,21 +20,51 @@ public class Score_query {
     private Choose_courseService choose_courseService;
 
     @RequestMapping("/score_query")
-    public String sore_query(ModelMap model){
-        model.addAttribute("model",choose_courseService.Score_query("2016001"));
+    public String score_query(@RequestParam(value = "study_year",defaultValue = "all") String study_year,ModelMap model){
+        boolean f=false;
+        if(study_year.equals("all")){
+            f=true;
+        }
+        List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
+        if(f){
+            model.addAttribute("select",new Study_year(study_year));
+            model.addAttribute("model",lst);
+        }
+        else{
+            List<ScoreEntity> new_lst=new ArrayList<ScoreEntity>();
+            for(ScoreEntity e:lst){
+                if(e.getStudy_year().equals(study_year)){
+                    new_lst.add(e);
+                }
+            }
+            model.addAttribute("select",new Study_year(study_year));
+            model.addAttribute("model",new_lst);
+        }
         return "index(groupFour)/score_query_test";
     }
 
-    @RequestMapping(value = "/score_query_json",method = RequestMethod.GET)
+    @RequestMapping(value = "/score_query_json/{study_year}",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> sore_query_echart(){
+    public Map<String,Object> score_query_echart(@PathVariable("study_year") String study_year){
+        boolean f=false;
+        if(study_year.equals("all")){
+            f=true;
+        }
         List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
         List<Double> score=new ArrayList<Double>();
         List<String> course_name=new ArrayList<String>();
         Map<String,Object> mp=new HashMap<String,Object>();
         for(int i=0;i<lst.size();i++){
-            score.add(lst.get(i).getTotal());
-            course_name.add(lst.get(i).getCoursename());
+            if(f){
+                score.add(lst.get(i).getTotal());
+                course_name.add(lst.get(i).getCoursename());
+            }
+            else{
+                if(lst.get(i).getStudy_year().equals(study_year)){
+                    score.add(lst.get(i).getTotal());
+                    course_name.add(lst.get(i).getCoursename());
+                }
+            }
         }
         mp.put("course_name",course_name);
         mp.put("score",score);
