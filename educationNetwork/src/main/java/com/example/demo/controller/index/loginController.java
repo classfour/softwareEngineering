@@ -33,6 +33,7 @@ public class loginController {
         User user = userService.select(username, password);
 //        System.out.println(user.getUsername());
         if(user == null) {
+            //重定向
             return "redirect:/login";
         }else{
             cookiesService.setCookies("username", username);
