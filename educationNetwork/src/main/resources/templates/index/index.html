@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -16,6 +16,7 @@
         <span>
             <i class="iconfont icon-diannao" style="font-size: 30px;vertical-align: middle"></i>
             计科1604教务管理系统
+            <span th:text="用户名+${username}"></span>
         </span>
         <span class="float-right">
             <img class="rounded-circle" src="images/buct.jpg" alt="" width="40px" height="40px" >
