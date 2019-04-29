@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 
 import com.example.demo.domain.GraduationSubject;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -15,4 +16,8 @@ public interface GraduationSubjectMapper {
     public GraduationSubject select(String serialnumber);
     @Update("update graduation_subject set number=#{number} where serialnumber=#{serialnumber}")
     public boolean updateNumber(int number, String serialnumber);
+    @Insert("insert into graduation_subject values(#{serialnumber}, #{name}, #{introduce}, #{status}, #{max}, #{teacherNumber}, #{number}, #{maxNumber})")
+    public boolean insert(GraduationSubject graduationSubject);
+    @Update("update graduation_subject set name=#{name}, introduce = #{introduce} where serialnumber = #{serialnumber}")
+    public boolean updateContent(String name, String introduce, String serialnumber);
 }

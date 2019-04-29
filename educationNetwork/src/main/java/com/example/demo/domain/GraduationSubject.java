@@ -16,11 +16,11 @@ public class GraduationSubject {
 
     private int max;//课题最大容量
 
-    private String teacher_number;//教师编号
+    private String teacherNumber;//教师编号
 
     private int number;//已选人数
 
-    private int max_number;//课题最大可选人数
+    private int maxNumber;//课题最大可选人数
 
     public String getSerialnumber() {
         return serialnumber;
@@ -62,27 +62,28 @@ public class GraduationSubject {
         this.max = max;
     }
 
-    public String getTeacher_number() {
-        return teacher_number;
-    }
-
-    public void setTeacher_number(String teacher_number) {
-        this.teacher_number = teacher_number;
-    }
-
     public int getNumber() {
         return number;
+    }
+
+    public String getTeacherNumber() {
+        return teacherNumber;
+    }
+
+    public void setTeacherNumber(String teacherNumber) {
+        this.teacherNumber = teacherNumber;
+    }
+
+    public int getMaxNumber() {
+        return maxNumber;
+    }
+
+    public void setMaxNumber(int maxNumber) {
+        this.maxNumber = maxNumber;
     }
 
     public void setNumber(int number) {
         this.number = number;
     }
 
-    public int getMax_number() {
-        return max_number;
-    }
-
-    public void setMax_number(int max_number) {
-        this.max_number = max_number;
-    }
 }

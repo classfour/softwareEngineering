@@ -1,9 +1,12 @@
 package com.example.demo.controller.graduationDesign;
 
 import com.example.demo.domain.ChooseSubject;
+import com.example.demo.domain.GraduationSubject;
 import com.example.demo.domain.Label;
 import com.example.demo.service.ChooseSubjectService;
+import com.example.demo.service.GraduationSubjectService;
 import com.example.demo.service.LabelService;
+import com.example.demo.service.SubjectResultsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,10 @@ public class apiController {
     LabelService labelService;
     @Autowired
     ChooseSubjectService chooseSubjectService;
+    @Autowired
+    GraduationSubjectService graduationSubjectService;
+    @Autowired
+    SubjectResultsService subjectResultsService;
 
     /**
     * @Description: 根据查询标签返回对应的课题
@@ -47,5 +54,41 @@ public class apiController {
     @GetMapping("selectChoose")
     public int selectChoose(String courseNumber) {
         return chooseSubjectService.selectChoose(courseNumber);
+    }
+
+    @PostMapping("insertSubject")
+    public boolean insertSubject(GraduationSubject graduationSubject) {
+        System.out.println(graduationSubject.getTeacherNumber());
+        graduationSubject.setStatus(0);
+        graduationSubject.setMax(3);
+        graduationSubject.setMaxNumber(10);
+        graduationSubject.setNumber(0);
+//        return true;
+        return graduationSubjectService.insertSubject(graduationSubject);
+    }
+
+    @PostMapping("updateContent")
+    public boolean updateContent(String name, String introduce, String serialnumber){
+        return graduationSubjectService.updateContent(name, introduce, serialnumber);
+    }
+
+    @PostMapping("updateResult")
+    public boolean updateResults(int result, String studentNumber) {
+        return subjectResultsService.updateResult(result, studentNumber);
+    }
+
+    @PostMapping("submit")
+    public boolean submit(String title, String content, String studentNumber) {
+        return subjectResultsService.submit(title, content, studentNumber);
+    }
+
+    @GetMapping("selectResult")
+    public int selectResult(String studentNumber) {
+        return subjectResultsService.selectResult(studentNumber);
+    }
+
+    @PostMapping("appeal")
+    public boolean appeal(int status, String studentNumber) {
+        return subjectResultsService.updateStatus(status, studentNumber);
     }
 }
