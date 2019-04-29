@@ -106,3 +106,34 @@ function GetSelect() {
     var value=myselect.options[9].text;
     return value;
 }
+function Gets(path) {
+    var s;
+    if(path=="all"){
+        s="全部成绩";
+    }
+    else if(path=="2016-2017-1"){
+        s="2016-2017学年第1学期成绩";
+    }
+    else if(path=="2016-2017-2"){
+        s="2016-2017学年第2学期成绩";
+    }
+    else if(path=="2017-2018-1"){
+        s="2017-2018学年第1学期成绩";
+    }
+    else if(path=="2017-2018-2"){
+        s="2017-2018学年第2学期成绩";
+    }
+    else if(path=="2018-2019-1"){
+        s="2018-2019学年第1学期成绩";
+    }
+    else if(path=="2018-2019-2"){
+        s="2018-2019学年第2学期成绩";
+    }
+    else if(path=="2019-2020-1"){
+        s="2019-2020学年第1学期成绩";
+    }
+    else if(path="2019-2020-2"){
+        s="2019-2020学年第2学期成绩";
+    }
+    return s;
+}
