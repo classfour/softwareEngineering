@@ -91,4 +91,9 @@ public class apiController {
     public boolean appeal(int status, String studentNumber) {
         return subjectResultsService.updateStatus(status, studentNumber);
     }
+
+    @GetMapping("getAllLabel")
+    public Label[] getAlllabel() {
+        return labelService.getAllLabel();
+    }
 }

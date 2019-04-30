@@ -1,0 +1,51 @@
+body{
+    background-color: #fafafa;
+}
+
+/*标题样式*/
+.title{
+    font:normal 24px/45px "microsoft YaHei";
+    color: #1069a4;
+}
+.border{
+    border: 5px solid black;
+}
+.loginTitle{
+    display: block;
+    margin-bottom: 30px;
+    margin-left: -10px;
+    /*margin: 15px 10px;*/
+    font-weight: bold;
+    color: black
+}
+
+.output-information{
+    padding:10px 50px;
+    background-color: rgba(255, 255, 255, .7);
+}
+
+.table-Sub,tr
+    {
+        border:1px solid darkgray;
+    }
+
+    table
+    {
+        width:100%;
+    }
+
+    th
+    {
+        background-color:lightgray;
+        color:white;
+        height:40px;
+        text-align:center;
+        vertical-align:0px auto;
+    }
+    tr{
+        height:40px;
+    }
+    td{
+        text-align:center;
+        vertical-align:0px auto;
+    }

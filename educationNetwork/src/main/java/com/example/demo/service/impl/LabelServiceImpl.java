@@ -27,6 +27,11 @@ public class LabelServiceImpl implements LabelService {
         return nameArray;
     }
 
+    @Override
+    public Label[] getAllLabel() {
+        return labelMapper.getAllLabel();
+    }
+
 
     /**
      * @Description: 求两个数组的交集，修改在第一数组中

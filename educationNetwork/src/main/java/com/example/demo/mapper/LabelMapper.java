@@ -11,4 +11,6 @@ import org.apache.ibatis.annotations.Select;
 public interface LabelMapper {
     @Select("select * from label where name = #{name}")
     public Label select(String name);
+    @Select("select * from label")
+    public Label[] getAllLabel();
 }

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:text-align="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/detailSub-teacher.css">
+    <link rel="stylesheet" href="/css/iconfont/iconfont.css">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <title>查看毕业设计课题</title>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row title">
+        <div class="col-md-5 offset-md-1 col-sm-12 mt-5">
+            <i class="icon-diannao iconfont ml-sm-2" style="font-size: 30px;vertical-align: middle"></i>
+            课题详情
+        </div>
+    </div>
+            <div class="left">
+                <form id="SubChange-teacher"  action="" method="">
+                    <label-edit>
+                        <input type="submit" id="edit2" class="button button-submit" style = "visibility:hidden" value="提交"/>
+                        <input type="button" class="button" id="edit" value="修改"/>
+                    </label-edit>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">
+                        <i class="iconfont icon-diannao">课题编号</i>
+                    </span>
+                    <input id = "id" type="text" class="form-control"
+                           disabled="true" value="课题编号">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">
+                        <i class="iconfont icon-diannao">课题名称</i>
+                    </span>
+                    <input id = "name" type="text" class="form-control"
+                           disabled="true" value="课题编号">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">
+                        <i class="iconfont icon-diannao">可选人数</i>
+                    </span>
+                    <input id = "number" type="text" class="form-control"
+                           disabled="true" value="课题编号">
+                    <span class="input-group-text">
+                        <i class="iconfont icon-diannao">已选人数</i>
+                    </span>
+                    <input id = "max_number" type="text" class="form-control"
+                           disabled="true" value="课题编号">
+                </div>
+                <div class="input-group mt-2">
+                    <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-diannao" >研究方向</i>
+                            </span>
+
+                        <select id="mark" disabled="true">
+                            <option value="1">Atyrtury</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="4">D</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group mt-2">
+                    <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-diannao">课题介绍</i>
+                            </span>
+                        <textarea id="introduce" rows="13" cols="200" disabled="true"></textarea>
+                    </div>
+                </div>
+                    <script>
+                        var statu = 0;
+                        var edit = document.getElementById('edit');
+                        edit.onclick =function(){
+                            if(statu == 0){
+                                edit.value= '取消';
+                                document.getElementById("edit2").style.visibility="visible";
+                                document.getElementById("mark").disabled = "";
+                                document.getElementById("number").disabled = "";
+                                document.getElementById("name").disabled = "";
+                                document.getElementById("max_number").disabled = "";
+                                document.getElementById("introduce").disabled = "";
+                                statu = 1;
+                            }else{
+                                edit.value= '修改';
+                                document.getElementById("edit2").style.visibility="hidden";
+                                document.getElementById("mark").disabled = "true";
+                                document.getElementById("number").disabled = "true";
+                                document.getElementById("name").disabled = "true";
+                                document.getElementById("max_number").disabled = "true";
+                                document.getElementById("introduce").disabled = "true";
+                                statu = 0;
+                            }
+                        }
+                    </script>
+                </form>
+            </div>
+            <div class="right">
+                <form action="" method="">
+                    <table>
+                        <i class="icon-diannao iconfont ml-sm-2" style="font-size: 30px;vertical-align: middle"></i>选择该题目的学生
+                        <tr>
+                            <th>选中</th>
+                            <th>姓名</th>
+                            <th>学号</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="" value="" /></td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>状态</td>
+                            <td><a href="">评阅</a></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="" value="" /></td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>状态</td>
+                            <td><a href="">接受</a>&nbsp;<a href="">拒绝</a> </td>
+                        </tr>
+    <!--                    <tr th:each="">-->
+    <!--                        <td th:text="">学号</td>-->
+    <!--                        <td th:text="">姓名</td>-->
+    <!--                        <td th:text=""><a href="">学生信息</a></td>-->
+    <!--                        <td th:text=""><a href="">详细信息</a></td>-->
+    <!--                    </tr>-->
+                    </table>
+                    <div style="padding: 10px"></div>
+                    <div align="left" style="float:left">
+                        <input type="submit" id="" class="button" value="一键拒绝">                    </div>
+                    <div align="right">
+                        <input type="submit" id="" class="button" value="一键接受">
+                    </div>
+                </form>
+            </div>
+</div>
+
+
+
+</body>
+</html>

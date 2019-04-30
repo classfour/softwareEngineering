@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/showSub-teacher.css">
+    <link rel="stylesheet" href="/css/iconfont/iconfont.css">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <title>查看毕业设计课题</title>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row title">
+        <div class="col-md-5 offset-md-1 col-sm-12 mt-5">
+            <i class="icon-diannao iconfont ml-sm-2" style="font-size: 30px;vertical-align: middle"></i>
+            我的课题
+        </div>
+    </div>
+    <div class="" style="margin-top: 20px;">
+        <div class="output-information">
+            <table class="table-Sub">
+                    <th>课题编号</th>
+                    <th>课题名称</th>
+                    <th>已选人数</th>
+                    <th>最大容量</th>
+                    <th>当前状态</th>
+                    <th>学生信息</th>
+                    <th>更多操作</th>
+                <tr>
+                    <td>课题编号</td>
+                    <td>课题名称</td>
+                    <td>已选人数</td>
+                    <td>最大容量</td>
+                    <td>当前状态</td>
+                    <td><a href="">学生信息</a></td>
+                    <td><a href="">详细信息</a></td>
+                </tr>
+                <tr>
+                    <td>课题编号</td>
+                    <td>课题名称</td>
+                    <td>已选人数</td>
+                    <td>最大容量</td>
+                    <td>当前状态</td>
+                    <td><a href="">学生信息</a></td>
+                    <td><a href="">详细信息</a></td>
+                </tr>
+                <tr th:each="graduationSubjects: ${graduationSubjects}">
+                    <td th:text="${graduationSubjects.getSerialnumber()}">课题编号</td>
+                    <td th:text="${graduationSubjects.getName()}">课题名字</td>
+                    <td th:text="${graduationSubjects.getNumber()}">已选人数</td>
+                    <td th:text="${graduationSubjects.getMax_number()}">最大容量</td>
+                    <td th:text="">当前状态</td>
+                    <td th:text="${}"><a href="">学生信息</a></td>
+                    <td th:text="${}"><a href="">详细信息</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

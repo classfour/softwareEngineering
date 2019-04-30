@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/declare.css">
+    <link rel="stylesheet" href="/css/iconfont/iconfont.css">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <title>申请毕业设计课题</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row title">
+        <div class="col-md-5 offset-md-1 col-sm-12 mt-5">
+            <i class="icon-diannao iconfont ml-sm-2" style="font-size: 30px;vertical-align: middle"></i>
+            毕设课题申请
+        </div>
+    </div>
+    <div class="" style="margin-top: 10px;">
+            <div class="input-information">
+                <form action="/graduationDesign/subjectSubmit" method="post">
+                    <div class="input-group">
+                        <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-diannao"><strong>课题名称</strong></i>
+                            </span>
+                            <input id = "id" type="text" class="form-control" name="name">
+                        </div>
+                    </div>
+
+                    <div class="input-group mt-2">
+                        <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-diannao">课题编号</i>
+                            </span>
+                            <input id = "name" type="text" class="form-control" name="labelNumber">
+                        </div>
+                    </div>
+
+                    <div class="input-group mt-2">
+                        <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-diannao">选择方向</i>
+                            </span>
+                            <select id="mark" name="type">
+                                <option th:each="val : ${label}" th:attr="value=${val.id}">
+                                    <span th:text="${val.name}"></span>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group mt-2">
+                        <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-diannao"><strong>课题介绍</strong></i>
+                            </span>
+                            <textarea id="introduce" rows="13" cols="200" name="introduce"></textarea>
+
+                            <!--                            <input id = "introduce" type="text" class="form-control" cols = "100px" >-->
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-sm mt-2 w-100">提交</button>
+                </form>
+            </div>
+        </div>
+</div>
+
+
+</body>
+</html>
