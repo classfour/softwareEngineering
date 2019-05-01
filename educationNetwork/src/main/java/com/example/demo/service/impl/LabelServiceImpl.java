@@ -32,6 +32,16 @@ public class LabelServiceImpl implements LabelService {
         return labelMapper.getAllLabel();
     }
 
+    @Override
+    public boolean updateLabel(String courseNumber, int id) {
+        return labelMapper.update(courseNumber, id);
+    }
+
+    @Override
+    public Label selectById(int id) {
+        return labelMapper.selectById(id);
+    }
+
 
     /**
      * @Description: 求两个数组的交集，修改在第一数组中

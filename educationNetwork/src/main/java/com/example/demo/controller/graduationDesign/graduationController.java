@@ -24,6 +24,11 @@ public class graduationController {
     @Autowired
     private CookiesService cookiesService;
 
+    @GetMapping("checkResult")
+    public String checkResult() {
+        return "graduationDesign/checkResult";
+    }
+
     @PostMapping("subjectSubmit")
     public String subjectSubmit(String name, String labelNumber, String type, String introduce) {
 //        System.out.println(name);
@@ -41,6 +46,8 @@ public class graduationController {
         String username = cookiesService.getCookies("username");
         graduationSubject.setTeacherNumber(username);
         graduationSubjectService.insertSubject(graduationSubject);
+        Label label = labelService.selectById(Integer.parseInt(type));
+        labelService.updateLabel(label.getCourseNumber()+","+labelNumber,label.getId());
         return "redirect:/graduationDesign/declare";
     }
 
