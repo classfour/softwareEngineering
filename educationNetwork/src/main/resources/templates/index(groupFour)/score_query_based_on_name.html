@@ -60,7 +60,7 @@
         <div class="card">
             <div class="cardblock">
                 <h5>成绩列表</h5>
-                <form action="/score_query" method="post" style="width: 400px;height: 38px;float: left;margin-top: 10px;">
+                <form action="/score_query/search_course" method="post" style="width: 400px;height: 38px;float: left;margin-top: 10px;">
                     <select id="select" class="form-control" name="study_year" style="width: 230px;float: left">
                         <option value="all">全部</option>
                         <option value="2016-2017-1">2016-2017学年第1学期</option>
@@ -87,14 +87,7 @@
                         <tr>
                             <th>课程名称</th>
                             <th>修读时间</th>
-                            <th>
-                                <a href="/score_sort_up">
-                                    <img style="width: 25px;height: 25px;" src="/images(groupFour)/up.png">
-                                </a>课程成绩
-                                <a href="/score_sort_down">
-                                    <img style="width: 25px;height: 25px;" src="/images(groupFour)/down.png">
-                                </a>
-                            </th>
+                            <th>课程成绩</th>
                             <th>课程绩点</th>
                             <th>字母制成绩</th>
                             <th>查看成绩明细</th>
