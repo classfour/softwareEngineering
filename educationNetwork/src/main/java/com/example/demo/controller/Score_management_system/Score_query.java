@@ -1,24 +1,31 @@
 package com.example.demo.controller.Score_management_system;
 
-import com.example.demo.domain.GpaEntity;
-import com.example.demo.domain.ScoreEntity;
-import com.example.demo.domain.Study_year;
+import com.example.demo.domain.*;
 import com.example.demo.service.Choose_courseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class Score_query {
     @Autowired
     private Choose_courseService choose_courseService;
 
+    private int status=0;//0随机显示，1升序显示，2降序显示
+    @RequestMapping("/score_sort_up")
+    public String score_sort_up(){
+        status=1;
+        return "redirect:/score_query";
+    }
+
+    @RequestMapping("/score_sort_down")
+    public String score_sort_down(){
+        status=2;
+        return "redirect:/score_query";
+    }
 
     @RequestMapping("/score_query")
     public String score_query(@RequestParam(value = "study_year",defaultValue = "all") String study_year,ModelMap model){
@@ -28,6 +35,12 @@ public class Score_query {
         }
         List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
         if(f){
+            if(status==1){
+                Collections.sort(lst,new Score_sort_up());
+            }
+            else if(status==2){
+                Collections.sort(lst,new Score_sort_down());
+            }
             model.addAttribute("select",new Study_year(study_year));
             model.addAttribute("model",lst);
         }
@@ -37,6 +50,12 @@ public class Score_query {
                 if(e.getStudy_year().equals(study_year)){
                     new_lst.add(e);
                 }
+            }
+            if(status==1){
+                Collections.sort(new_lst,new Score_sort_up());
+            }
+            else if(status==2){
+                Collections.sort(new_lst,new Score_sort_down());
             }
             model.addAttribute("select",new Study_year(study_year));
             model.addAttribute("model",new_lst);
