@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>成绩排名查询</title>
-    <script src="js(groupFour)/echarts.min.js"></script>
+    <script src="/js(groupFour)/echarts.min.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css(groupFour)/top.css">
-    <script src="js(groupFour)/style(groupFour).js"></script>
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
+    <script src="/js(groupFour)/style(groupFour).js"></script>
 </head>
 <body class="default">
 <div class="top">
     <ul class="default">
         <li>
-            <img class="left" src="images(groupFour)/computer.png">
+            <img class="left" src="/images(groupFour)/computer.png">
             <h1 style="font-size: 32px;"><a class="left" href="#">教务管理系统</a></h1>
         </li>
     </ul>
@@ -23,30 +23,30 @@
 <div class="orghead">
     <div class="container">
         <div class="title">
-            <img class="title" src="images(groupFour)/grade.png">
+            <img class="title" src="/images(groupFour)/grade.png">
             <h1 class="title">成绩管理子系统</h1>
         </div>
         <div class="orgnav">
             <a href="#" class="pagehead-tabs-item">
-                <img class="label" src="images(groupFour)/score_figure.png">基本成绩查询
+                <img class="label" src="/images(groupFour)/score_figure.png">基本成绩查询
             </a>
         </div>
         <div class="orgnav">
             <a href="#" class="pagehead-tabs-item">
-                <img class="label" src="images(groupFour)/GPA_figure.png">GPA查询
+                <img class="label" src="/images(groupFour)/GPA_figure.png">GPA查询
             </a>
         </div>
         <div class="orgnav">
             <a href="#" class="pagehead-tabs-item selected">
-                <img class="label" src="images(groupFour)/rank.png">成绩排名查询
+                <img class="label" src="/images(groupFour)/rank.png">成绩排名查询
             </a>
         </div>
     </div>
 </div>
 <div class="container">
-    <form class="search" action="#">
+    <form class="search"  action="/score_rank/singlerank" method="post">
         <div class="form-group" style="float: left">
-            <input type="text" class="form-control" placeholder="输入要查询的课程名">
+            <input type="text" class="form-control" placeholder="输入要查询的课程名" name="single_score">
         </div>
         <div class="float-right">
             <button class="btn btn-outline-primary center" type="submit">
@@ -57,6 +57,23 @@
     <div class="card">
         <div class="cardblock">
             <h5>成绩列表</h5>
+            <form action="#" method="post" style="width: 400px;height: 38px;float: left;margin-top: 10px;">
+                <select id="select" class="form-control" name="study_year" style="width: 230px;float: left">
+                    <option value="all">全部</option>
+                    <option value="2016-2017-1">2016-2017学年第1学期</option>
+                    <option value="2016-2017-2">2016-2017学年第2学期</option>
+                    <option value="2017-2018-1">2017-2018学年第1学期</option>
+                    <option value="2017-2018-2">2017-2018学年第2学期</option>
+                    <option value="2018-2019-1">2018-2019学年第1学期</option>
+                    <option value="2018-2019-2">2018-2019学年第2学期</option>
+                    <option value="2019-2020-1">2019-2020学年第1学期</option>
+                    <option value="2019-2020-2">2019-2020学年第2学期</option>
+                    <option th:text="${select.getStudy_year()}" style="display: none"></option>
+                </select>
+                <button class="btn btn-outline-primary center" type="submit" style="margin-left: 30px;">
+                    确认
+                </button>
+            </form>
             <div class="table-responsive">
                 <table id="p" class="table">
                     <tr>

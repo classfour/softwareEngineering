@@ -47,3 +47,4 @@ public class Score_query_Based_On_course_name {
         return "/index(groupFour)/score_query_based_on_name";
     }
 }
+    
