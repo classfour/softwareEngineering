@@ -18,4 +18,6 @@ public interface Choose_courseService {
     public List<ScoreRank> Score_rank(String coursenumber);
     //该生所修课程的课程号
     public List<GetStudentCourseNumber> Student_Course_Number(String student_number);
+    //单科成绩模糊查询
+    public List<ScoreRank> Score_single_rank(String coursenumber);
 }

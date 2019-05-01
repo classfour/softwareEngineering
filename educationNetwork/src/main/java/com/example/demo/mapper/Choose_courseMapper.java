@@ -33,4 +33,7 @@ public interface Choose_courseMapper {
     //查询该生所修课程
     @Select("select choose_course.course_number,choose_course.student_number from choose_course where choose_course.student_number=#{student_number}")
     public List<GetStudentCourseNumber> Student_Course_Number(String student_number);
+    //单科成绩模糊查询
+    @Select("select course.name,choose_course.course_number,choose_course.score,choose_course.student_number,choose_course.gpa,choose_course.time from choose_course,course where  choose_course.course_number=course.number and course.name like #{course_name}")
+    public List<ScoreRank> Score_single_rank(String course_name);
 }
