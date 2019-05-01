@@ -39,7 +39,7 @@ public class Choose_courseServiceimpl implements Choose_courseService {
     }
     //成绩排名查询
     @Override
-    public List<ScoreRank> Score_rank(String coursenumber)
+    public List<ScoreAll> Score_All(String coursenumber)
     {
         return choose_courseMapper.Score_rank(coursenumber);
     }
@@ -51,7 +51,7 @@ public class Choose_courseServiceimpl implements Choose_courseService {
     }
     //单科成绩模糊查询
     @Override
-    public List<ScoreRank> Score_single_rank(String coursenumber)
+    public List<ScoreAll> Score_single_rank(String coursenumber)
     {
         return choose_courseMapper.Score_single_rank(coursenumber);
     }

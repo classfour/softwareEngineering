@@ -3,10 +3,13 @@ package com.example.demo.domain;
 public class EachSubjectRank {
     private String coursename;
     private int rank;
-    public EachSubjectRank(String coursename,int rank)
+    private String study_year;
+
+    public EachSubjectRank(String coursename,int rank,String study_year)
     {
         this.coursename=coursename;
         this.rank=rank;
+        this.study_year=study_year;
     }
     public String getCoursename()
     {
@@ -23,5 +26,9 @@ public class EachSubjectRank {
     public void setRank(int r)
     {
         this.rank=r;
+    }
+
+    public String getStudy_year() {
+        return study_year;
     }
 }

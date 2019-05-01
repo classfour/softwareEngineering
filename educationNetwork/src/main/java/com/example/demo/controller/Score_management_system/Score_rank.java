@@ -15,28 +15,33 @@ public class Score_rank {
     @Autowired
     private Choose_courseService choose_courseService;
     @RequestMapping("/score_rank")//这里也应该获取登录者的学号做形参输入
-    public String score_rank(ModelMap model){
-
+    public String score_rank(@RequestParam(value = "study_year",defaultValue = "all") String study_year,ModelMap model){
+        boolean f=false;
+        if(study_year.equals("all")){
+            f=true;
+        }
         List<GetStudentCourseNumber> allcourse=testcourse();
         List<EachSubjectRank> show_rank=new ArrayList<EachSubjectRank>();
         for(int i=0;i<allcourse.size();i++)
         {
-
-            EachSubjectRank temp=test(allcourse.get(i).getCoursenumber());
-            show_rank.add(temp);
+            if(f||allcourse.get(i).getStudy_year().equals(study_year)){
+                EachSubjectRank temp= Get_subject_rank(allcourse.get(i).getCoursenumber());
+                show_rank.add(temp);
+            }
         }
 //        return show_rank;
+        model.addAttribute("select",new Study_year(study_year));
         model.addAttribute("model",show_rank);
         return "index(groupFour)/score_rank_test";
     }
     @ResponseBody
     @GetMapping("/testrank")
-    //test中应该传入学号做参数
-    public EachSubjectRank test(String coursenumber){
-        List<ScoreRank> sort_list=choose_courseService.Score_rank(coursenumber);
-        Collections.sort(sort_list, new Comparator<ScoreRank>() {
+    //Get_subject_rank中应该传入学号做参数
+    public EachSubjectRank Get_subject_rank(String coursenumber){
+        List<ScoreAll> sort_list=choose_courseService.Score_All(coursenumber);
+        Collections.sort(sort_list, new Comparator<ScoreAll>() {
             @Override
-            public int compare(ScoreRank h1, ScoreRank h2) {
+            public int compare(ScoreAll h1, ScoreAll h2) {
                 double temp=h2.getStu_total() - h1.getStu_total();
                 return (int)temp;
             }
@@ -45,7 +50,7 @@ public class Score_rank {
         {
             if(sort_list.get(i).getStu_num().equals("2016001"))//此处应该传入登录者的学号
             {
-                EachSubjectRank e=new EachSubjectRank(sort_list.get(i).getCoursename(),i+1);
+                EachSubjectRank e=new EachSubjectRank(sort_list.get(i).getCoursename(),i+1,sort_list.get(i).getStudy_year());
                 return e;
             }
         }

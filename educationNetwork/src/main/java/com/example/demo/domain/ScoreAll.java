@@ -1,8 +1,8 @@
 package com.example.demo.domain;
 import java.util.*;
 //新建实体性成绩
-public class ScoreRank{
-    public ScoreRank(String coursename,String coursenum,String score,String student_num,double gpa,String study_year){
+public class ScoreAll {
+    public ScoreAll(String coursename, String coursenum, String score, String student_num, double gpa, String study_year){
         this.coursename=coursename;
         this.stu_num=student_num;
         this.coursenum=coursenum;
@@ -36,5 +36,13 @@ public class ScoreRank{
     public String getStu_num()
     {
         return stu_num;
+    }
+
+    public String getStudy_year() {
+        return study_year;
+    }
+
+    public String getCoursenum() {
+        return coursenum;
     }
 }

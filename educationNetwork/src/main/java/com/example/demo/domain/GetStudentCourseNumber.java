@@ -3,10 +3,13 @@ package com.example.demo.domain;
 public class GetStudentCourseNumber {
     private String stu_num;
     private String coursenumber;
-    public GetStudentCourseNumber(String coursenumber,String stu_num)
+    private String study_year;
+
+    public GetStudentCourseNumber(String coursenumber,String stu_num,String study_year)
     {
         this.stu_num=stu_num;
         this.coursenumber=coursenumber;
+        this.study_year=study_year;
     }
     public String getStu_num()
     {
@@ -23,5 +26,9 @@ public class GetStudentCourseNumber {
     public void setCoursenumber(String cn)
     {
         coursenumber=cn;
+    }
+
+    public String getStudy_year() {
+        return study_year;
     }
 }

@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>成绩排名查询</title>
     <script src="/js(groupFour)/echarts.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
+    <script src="/js(groupFour)/jquery-3.4.0.min.js"></script>
+    <script src="/js(groupFour)/popper.min.js"></script>
+    <script src="/js(groupFour)/bootstrap.min.js"></script>
     <script src="/js(groupFour)/style(groupFour).js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
 </head>
 <body class="default">
 <div class="top">
@@ -78,10 +79,12 @@
                 <table id="p" class="table">
                     <tr>
                         <th>课程名称</th>
+                        <th>修读时间</th>
                         <th>课程排名</th>
                     </tr>
                     <tr th:each="e:${model}">
                         <td th:text="${e.getCoursename()}"></td>
+                        <td th:text="${e.getStudy_year()}"></td>
                         <td th:text="${e.getRank()}"></td>
                     </tr>
                 </table>
