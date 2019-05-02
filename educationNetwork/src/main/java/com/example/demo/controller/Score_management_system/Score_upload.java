@@ -24,12 +24,12 @@ public class Score_upload {
     @Autowired
     private Choose_courseService choose_courseService;
 
-    @RequestMapping("/uploadtest")
+    @RequestMapping("/tscore_query/import_score")
     public String score_upload(){
-        return "index(groupFour)/score_upload";
+        return "index(groupFour)/tscore_query_ScoreImport";
     }
 
-    @RequestMapping(value = "/upload",method = RequestMethod.POST)
+    @RequestMapping(value = "/upload_score",method = RequestMethod.POST)
     public String uploadScore(@RequestParam MultipartFile file) throws IOException {
         if(file==null)
             return "index(groupFour)/error";
@@ -65,6 +65,6 @@ public class Score_upload {
                 choose_courseService.SetScore(excel);
             }
         }
-        return "index(groupFour)/success";
+        return "redirect:/tscore_query/import_score";
     }
 }

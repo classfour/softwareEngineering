@@ -32,7 +32,7 @@ public class Score_rank {
 //        return show_rank;
         model.addAttribute("select",new Study_year(study_year));
         model.addAttribute("model",show_rank);
-        return "index(groupFour)/score_rank_test";
+        return "index(groupFour)/score_rank";
     }
     @ResponseBody
     @GetMapping("/testrank")

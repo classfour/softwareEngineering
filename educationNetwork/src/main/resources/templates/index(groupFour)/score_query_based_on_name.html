@@ -35,19 +35,19 @@
                 </a>
             </div>
             <div class="orgnav">
-                <a href="#" class="pagehead-tabs-item">
+                <a href="/GPA_query" class="pagehead-tabs-item">
                     <img class="label" src="/images(groupFour)/GPA_figure.png">GPA查询
                 </a>
             </div>
             <div class="orgnav">
-                <a href="#" class="pagehead-tabs-item">
+                <a href="/score_rank" class="pagehead-tabs-item">
                     <img class="label" src="/images(groupFour)/rank.png">成绩排名查询
                 </a>
             </div>
         </div>
     </div>
     <div class="container">
-        <form class="search" action="/score_query/search_course" method="post" target="_blank">
+        <form class="search" action="/score_query/search_course" method="post">
             <div class="form-group" style="float: left">
                 <input name="course_name" type="text" class="form-control" placeholder="输入要查询的课程名" required="required">
             </div>
@@ -78,6 +78,9 @@
                     </button>
                 </form>
                 <form action="/score_query/score_export" method="post" style="display: inline-block;float:right;margin-bottom: 10px;margin-top: 10px;">
+                    <select name="study_year" style="width: 0px;height: 0px;display: none" >
+                        <option th:text="${select.getStudy_year()}" style="display: none"></option>
+                    </select>
                     <button class="btn btn-outline-primary center" type="submit">
                         导出成绩
                     </button>
@@ -157,135 +160,6 @@
                 </div>
             </div>
         </div>
-        <div id="main_bar" class="card echart"></div>
-        <script type="text/javascript">
-            // 基于准备好的dom，初始化echarts实例
-            var myChart = echarts.init(document.getElementById('main_bar'));
-            var path=GetSelect();
-            myChart.setOption({
-                title: {
-                    text: '成绩直方图'
-                },
-                tooltip: {},
-                legend: {
-                    data:['分数']
-                },
-                xAxis: {
-                    data: []
-                },
-                yAxis: {},
-                series: [{
-                    name: '分数',
-                    type: 'bar',
-                    data: []
-                }]
-            });
-            $.ajax({
-                type:"get",
-                async:false,
-                url:"/score_query_json/"+path,
-                data:{},
-                dataTye:"json",
-
-                success:function (result) {
-                    myChart.setOption({
-                        xAxis: {
-                            data:result.course_name
-                        },
-                        series: {
-                            name:'分数',
-                            type: 'bar',
-                            data:result.score,
-                            label: {
-                                normal: {
-                                    show: true,
-                                    position: 'inside'
-                                }
-                            }
-                        }
-                    });
-                },
-                error:function () {
-                    alert("图表请求数据失败!");
-                }
-            })
-        </script>
-
-
-        <div id="main_pie" class="card echart"></div>
-        <script type="text/javascript">
-            var myChart1 = echarts.init(document.getElementById('main_pie'));
-            var path=GetSelect();
-            var s=Gets(path);
-            myChart1.setOption({
-                title : {
-                    text: '成绩区间分布图',
-                    subtext:s,
-                    x:'center'
-                },
-                tooltip : {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b} : {c} ({d}%)"
-                },
-                legend: {
-                    orient: 'vertical',
-                    left: 'left',
-                    data: []
-                },
-                series : [
-                    {
-                        name: '成绩区间分布',
-                        type: 'pie',
-                        radius : '55%',
-                        center: ['50%', '60%'],
-                        data:[]
-                    }
-                ]
-            });
-            $.ajax({
-                type:"get",
-                async:"false",
-                url:"/score_query_pie_json/"+path,
-                data:{},
-                dataType:"json",
-                success:function (result) {
-                    var data=[];
-                    var ls=["90-100分","80-89分","70-79分","60-69分","<60分"];
-                    for(var i=0;i<result.cnt.length;i++){
-                        if(result.cnt[i]!=0){
-                            data.push({value:result.cnt[i],name:ls[i]});
-                        }
-                    }
-                    myChart1.setOption({
-                        legend: {
-                            orient: 'vertical',
-                            left: 'left',
-                            data:ls
-                        },
-                        series:[
-                            {
-                                name: '成绩区间分布',
-                                type: 'pie',
-                                radius : '70%',
-                                center: ['50%', '60%'],
-                                data:data
-                            }
-                        ],
-                        itemStyle: {
-                            emphasis: {
-                                shadowBlur: 10,
-                                shadowOffsetX: 0,
-                                shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            }
-                        }
-                    });
-                },
-                error:function () {
-                    alert("图表请求数据失败!");
-                }
-            });
-        </script>
-
     </div>
 </body>
 </html>

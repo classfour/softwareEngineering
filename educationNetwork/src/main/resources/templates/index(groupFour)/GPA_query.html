@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>GPA查询</title>
     <script src="/js(groupFour)/echarts.min.js"></script>
+    <script src="/js(groupFour)/jquery-3.4.0.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/css(groupFour)/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
 </head>
@@ -23,28 +25,23 @@
             <h1 class="title">成绩管理子系统</h1>
         </div>
         <div class="orgnav">
-            <a href="#" class="pagehead-tabs-item ">
+            <a href="/score_query" class="pagehead-tabs-item ">
                 <img class="label" src="images(groupFour)/score_figure.png">基本成绩查询
             </a>
         </div>
         <div class="orgnav">
-            <a href="#" class="pagehead-tabs-item selected">
+            <a href="/GPA_query" class="pagehead-tabs-item selected">
                 <img class="label" src="images(groupFour)/GPA_figure.png">GPA查询
             </a>
         </div>
         <div class="orgnav">
-            <a href="#" class="pagehead-tabs-item">
+            <a href="/score_rank" class="pagehead-tabs-item">
                 <img class="label" src="images(groupFour)/rank.png">成绩排名查询
             </a>
         </div>
     </div>
 </div>
 
-<!-- 引入 echarts.js -->
-<script src="js(groupFour)/echarts.min.js"></script>
-<script src="js(groupFour)/jquery-3.4.0.min.js"></script>
-
-<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div class="container">
     <div id="main" style="width: 1000px;height:600px;"class="card echart"></div>
 

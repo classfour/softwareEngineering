@@ -29,12 +29,12 @@
             <h1 class="title">成绩管理子系统-教师端</h1>
         </div>
         <div class="orgnav">
-            <a href="/tscore_query" class="pagehead-tabs-item selected">
+            <a href="/tscore_query" class="pagehead-tabs-item">
                 <img class="label" src="/images(groupFour)/score_figure.png">学生成绩查询
             </a>
         </div>
         <div class="orgnav">
-            <a href="/tscore_query/analysis" class="pagehead-tabs-item">
+            <a href="/tscore_query/analysis" class="pagehead-tabs-item selected">
                 <img class="label" src="/images(groupFour)/pie.png">学生成绩总览
             </a>
         </div>
@@ -46,16 +46,6 @@
     </div>
 </div>
 <div class="container">
-    <form class="search" action="/tscore_query/search_course" method="post">
-        <div class="form-group" style="float: left">
-            <input name="course_number" type="text" class="form-control" placeholder="输入要查询的学生信息" required="required">
-        </div>
-        <div class="float-right">
-            <button class="btn btn-outline-primary center" type="submit">
-                查询
-            </button>
-        </div>
-    </form>
     <div class="card">
         <div class="cardblock">
             <h5>成绩列表</h5>
@@ -75,43 +65,82 @@
                     导出成绩
                 </button>
             </form>
-
-            <div class="table-responsive">
-
-                <table id="p" class="table">
-                    <tr>
-                        <th>学生学号</th>
-                        <th>学生姓名</th>
-                        <th>平时成绩</th>
-                        <th>平时占比</th>
-                        <th>期中成绩</th>
-                        <th>期中占比</th>
-                        <th>期末成绩</th>
-                        <th>期末占比</th>
-                        <th>总成绩</th>
-                        <th>操作</th>
-                    </tr>
-                    <tr th:each="e:${model}">
-                        <td th:text="${e.getStudentnumber()}"></td>
-                        <td th:text="${e.getStudentname()}"></td>
-                        <td th:text="${e.getScore().getScoreUsual()}"></td>
-                        <td th:text="${e.getScore().getScoreUsualRate()}"></td>
-                        <td th:text="${e.getScore().getScoreMid()}"></td>
-                        <td th:text="${e.getScore().getScoreMidRate()}"></td>
-                        <td th:text="${e.getScore().getScoreFinal()}"></td>
-                        <td th:text="${e.getScore().getScoreFinalRate()}"></td>
-                        <td th:text="${e.getScore().getTotal()}"></td>
-                        <td>
-                            <button class="btn btn-outline-primary center" type="button"  data-toggle="modal" data-target="#myModal" onclick="edit_score(this.id)">
-                                修改
-                            </button>
-                        </td>
-                    </tr>
-                </table>
-
-            </div>
         </div>
     </div>
+    <div id="main_pie" class="card echart"></div>
+    <script type="text/javascript">
+        var myChart1 = echarts.init(document.getElementById('main_pie'));
+        var course=get_select_course();
+
+        myChart1.setOption({
+            title : {
+                text: '成绩区间分布图',
+                subtext:course,
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: []
+            },
+            series : [
+                {
+                    name: '成绩区间分布',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[]
+                }
+            ]
+        });
+        $.ajax({
+            type:"get",
+            async:"false",
+            url:"/tscore_query/analysis_json/"+course,
+            data:{},
+            dataType:"json",
+            success:function (result) {
+                var data=[];
+                var ls=["90-100分","80-89分","70-79分","60-69分","<60分"];
+                for(var i=0;i<result.cnt.length;i++){
+                    if(result.cnt[i]!=0){
+                        data.push({value:result.cnt[i],name:ls[i]});
+                    }
+                }
+                myChart1.setOption({
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data:ls
+                    },
+                    series:[
+                        {
+                            name: '成绩区间分布',
+                            type: 'pie',
+                            radius : '70%',
+                            center: ['50%', '60%'],
+                            data:data
+                        }
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                });
+            },
+            error:function () {
+                alert("图表请求数据失败!");
+            }
+        });
+    </script>
+
 </div>
 </body>
 </html>

@@ -22,7 +22,7 @@ public class Score_single_rank {
         List<EachSubjectRank> get_single_rank=Get_subject_rank(s,study_year);
         model.addAttribute("model",get_single_rank);
         model.addAttribute("select",new Study_year(study_year));
-        return "/index(groupFour)/score_rank_test";
+        return "/index(groupFour)/score_rank";
     }
     @ResponseBody
     @GetMapping("/test/singlerank")

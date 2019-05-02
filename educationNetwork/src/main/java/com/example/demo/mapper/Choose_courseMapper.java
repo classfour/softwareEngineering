@@ -36,4 +36,8 @@ public interface Choose_courseMapper {
     //单科成绩模糊查询
     @Select("select course.name,choose_course.course_number,choose_course.score,choose_course.student_number,choose_course.gpa,choose_course.time from choose_course,course where  choose_course.course_number=course.number and course.name like #{course_name}")
     public List<ScoreAll> Score_single_rank(String course_name);
+
+    //查询id为teacher_number所教授的所有课程信息
+    @Select("select course.number,course.name from course where course.teacher_number=#{teacher_number}")
+    public List<Course_imformation> Course_query(String teacher_number);
 }

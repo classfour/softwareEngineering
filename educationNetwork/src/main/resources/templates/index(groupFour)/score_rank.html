@@ -28,17 +28,17 @@
             <h1 class="title">成绩管理子系统</h1>
         </div>
         <div class="orgnav">
-            <a href="#" class="pagehead-tabs-item">
+            <a href="/score_query" class="pagehead-tabs-item">
                 <img class="label" src="/images(groupFour)/score_figure.png">基本成绩查询
             </a>
         </div>
         <div class="orgnav">
-            <a href="#" class="pagehead-tabs-item">
+            <a href="/GPA_query" class="pagehead-tabs-item">
                 <img class="label" src="/images(groupFour)/GPA_figure.png">GPA查询
             </a>
         </div>
         <div class="orgnav">
-            <a href="#" class="pagehead-tabs-item selected">
+            <a href="/score_rank" class="pagehead-tabs-item selected">
                 <img class="label" src="/images(groupFour)/rank.png">成绩排名查询
             </a>
         </div>
@@ -88,34 +88,9 @@
                         <td th:text="${e.getRank()}"></td>
                     </tr>
                 </table>
-                <!--<div id="main" class="card echart"></div>-->
-                <!--<script type="text/javascript">-->
-                <!--// 基于准备好的dom，初始化echarts实例-->
-                <!--var myChart = echarts.init(document.getElementById('main'));-->
-
-                <!--// 指定图表的配置项和数据-->
-                <!--var option = {-->
-                <!--title: {-->
-                <!--text: '成绩直方图'-->
-                <!--},-->
-                <!--tooltip: {},-->
-                <!--legend: {-->
-                <!--data:['分数']-->
-                <!--},-->
-                <!--xAxis: {-->
-                <!--data: ["高等数学","大学英语","大学物理","金工实习"]-->
-                <!--},-->
-                <!--yAxis: {},-->
-                <!--series: [{-->
-                <!--name: '销量',-->
-                <!--type: 'bar',-->
-                <!--data: [90, 80, 70, 60]-->
-                <!--}]-->
-                <!--};-->
-
-                <!--// 使用刚指定的配置项和数据显示图表。-->
-                <!--myChart.setOption(option);-->
-                <!--</script>-->
-                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

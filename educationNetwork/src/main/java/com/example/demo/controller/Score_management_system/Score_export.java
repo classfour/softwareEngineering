@@ -10,12 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,9 +27,20 @@ public class Score_export {
     private Choose_courseService choose_courseService;
 
     @RequestMapping(value = "/score_query/score_export",method = RequestMethod.POST)
-    public void score_export(HttpServletResponse response)throws IOException {
+    public void score_export(@RequestParam("study_year") String study_year, HttpServletResponse response)throws IOException {
         List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
-        File file=new File("score.xlsx");
+
+        if(!study_year.equals("all")){
+            List<ScoreEntity> new_lst=new ArrayList<ScoreEntity>();
+            for(ScoreEntity e:lst){
+                if(e.getStudy_year().equals(study_year)){
+                    new_lst.add(e);
+                }
+            }
+            lst=new_lst;
+        }
+
+        File file=new File("score"+"("+study_year+")"+".xlsx");
         Workbook workbook=new XSSFWorkbook();
         CellStyle cellStyle=getColumnTopStyle(workbook);
         Sheet sheet=workbook.createSheet("课程成绩");

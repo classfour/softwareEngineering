@@ -55,4 +55,9 @@ public class Choose_courseServiceimpl implements Choose_courseService {
     {
         return choose_courseMapper.Score_single_rank(coursenumber);
     }
+
+    @Override
+    public List<Course_imformation> Course_query(String teacher_number){
+        return choose_courseMapper.Course_query(teacher_number);
+    }
 }

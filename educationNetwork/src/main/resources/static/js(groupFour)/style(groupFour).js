@@ -53,13 +53,17 @@ window.onload=function(){
             document.getElementById("p"+i).innerHTML="F";
         }
     }
+
+
     objs=document.getElementById("select");
     var s=document.getElementById("select")[9].text;
     for(var i=0;i<8;i++){
         if(s==objs[i].value){
             objs[i].selected=true;
+            break;
         }
     }
+
     //蔡秉岐的js样式
     //为所有成绩明细编写动态ID
     var score_detail=document.getElementsByTagName("p");

@@ -15,6 +15,7 @@ public class Score_query {
     private Choose_courseService choose_courseService;
 
     private int status=0;//0随机显示，1升序显示，2降序显示
+
     @RequestMapping("/score_sort_up")
     public String score_sort_up(){
         status=1;
@@ -60,7 +61,7 @@ public class Score_query {
             model.addAttribute("select",new Study_year(study_year));
             model.addAttribute("model",new_lst);
         }
-        return "index(groupFour)/score_query_test";
+        return "/index(groupFour)/score_query";
     }
 
     @RequestMapping(value = "/score_query_json/{study_year}",method = RequestMethod.GET)
