@@ -23,4 +23,15 @@ public class ChooseSubjectServiceImpl implements ChooseSubjectService {
         ChooseSubject[] chooseArray =  chooseSubjectMapper.select(courseNumber);
         return chooseArray.length;
     }
+
+    @Override
+    public String[] selectStudent(String courseNumber) {
+        ChooseSubject[] chooseSubjects = chooseSubjectMapper.select(courseNumber);
+        String[] student = new String[chooseSubjects.length];
+        for(int i = 0; i < chooseSubjects.length; i++) {
+            student[i] = chooseSubjects[i].getStudentNumber();
+        }
+
+        return student;
+    }
 }

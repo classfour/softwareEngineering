@@ -13,8 +13,18 @@ public class SubjectResults {
 
     private int status;
 
+    private String evaluate;
+
     public String getStudentNumber() {
         return studentNumber;
+    }
+
+    public String getEvaluate() {
+        return evaluate;
+    }
+
+    public void setEvaluate(String evaluate) {
+        this.evaluate = evaluate;
     }
 
     public void setStudentNumber(String studentNumber) {

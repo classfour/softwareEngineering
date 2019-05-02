@@ -25,4 +25,14 @@ public class GraduationSubjectServiceImpl implements GraduationSubjectService {
     public boolean updateContent(String name, String introduce, String serialnumber) {
         return graduationSubjectMapper.updateContent(name, introduce, serialnumber);
     }
+
+    @Override
+    public GraduationSubject selectByNumber(String teacherNumber) {
+        return graduationSubjectMapper.selectByNumber(teacherNumber);
+    }
+
+    @Override
+    public boolean updateNumber(int number, String serialnumber) {
+        return graduationSubjectMapper.updateNumber(number, serialnumber);
+    }
 }

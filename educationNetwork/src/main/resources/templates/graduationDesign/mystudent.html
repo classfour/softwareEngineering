@@ -29,39 +29,42 @@
                 <th>课题</th>
                 <th>状态</th>
                 <th>成绩</th>
-                <th>联系电话</th>
-                <th>附件/链接</th>
+<!--                <th>联系电话</th>-->
+<!--                <th>附件/链接</th>-->
                 <th>更多操作</th>
-                <tr>
-                    <td>学号</td>
-                    <td>名称</td>
-                    <td>课题</td>
-                    <td>未知</td>
-                    <td>10</td>
-                    <td>13263229999</td>
-                    <td><a href="">下载.jar</a> </td>
-                    <td><a href="">详细信息</a></td>
+                <tr th:each="val,state : ${result}">
+                    <td th:text="${val.studentNumber}"></td>
+                    <td th:text="${name[state.index]}"></td>
+<!--                    <td th:text="${state.index}"></td>-->
+                    <td th:text="${val.courseNumber}"></td>
+                    <td th:if="${val.status}==0">正常</td>
+                    <td th:if="${val.status}==1">申诉</td>
+                    <td th:text="${val.result}"></td>
+<!--                    <td>13263229999</td>-->
+<!--                    <td><a href="">下载.jar</a> </td>-->
+<!--                    <a href=""></a>-->
+                    <td><a th:href="@{/graduationDesign/appraise(studentNumber=${val.studentNumber})}">详细信息</a></td>
                 </tr>
-                <tr>
-                    <td>学号</td>
-                    <td>名称</td>
-                    <td>课题</td>
-                    <td>未知</td>
-                    <td>10</td>
-                    <td>13263229999</td>
-                    <td><a href="">下载.jar</a> </td>
-                    <td><a href="">详细信息</a></td>
-                </tr>
-                <tr th:each="graduationSubjects: ${graduationSubjects}">
-                    <td th:text="${graduationSubjects.getSerialnumber()}">学号</td>
-                    <td th:text="${graduationSubjects.getName()}">姓名</td>
-                    <td th:text="${graduationSubjects.getNumber()}">课题</td>
-                    <td><a href="">下载.jar</a> </td>
-                    <td th:text="${graduationSubjects.getMax_number()}">状态</td>
-                    <td th:text="">成绩</td>
-                    <td th:text="${}">联系电话</td>
-                    <td th:text="${}"><a href="">操作</a></td>
-                </tr>
+<!--                <tr>-->
+<!--                    <td>学号</td>-->
+<!--                    <td>名称</td>-->
+<!--                    <td>课题</td>-->
+<!--                    <td>未知</td>-->
+<!--                    <td>10</td>-->
+<!--                    <td>13263229999</td>-->
+<!--&lt;!&ndash;                    <td><a href="">下载.jar</a> </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <td><a href="">详细信息</a></td>&ndash;&gt;-->
+<!--                </tr>-->
+<!--                <tr th:each="graduationSubjects: ${graduationSubjects}">-->
+<!--                    <td th:text="${graduationSubjects.getSerialnumber()}">学号</td>-->
+<!--                    <td th:text="${graduationSubjects.getName()}">姓名</td>-->
+<!--                    <td th:text="${graduationSubjects.getNumber()}">课题</td>-->
+<!--                    <td><a href="">下载.jar</a> </td>-->
+<!--                    <td th:text="${graduationSubjects.getMax_number()}">状态</td>-->
+<!--                    <td th:text="">成绩</td>-->
+<!--                    <td th:text="${}">联系电话</td>-->
+<!--                    <td th:text="${}"><a href="">操作</a></td>-->
+<!--                </tr>-->
             </table>
         </div>
     </div>

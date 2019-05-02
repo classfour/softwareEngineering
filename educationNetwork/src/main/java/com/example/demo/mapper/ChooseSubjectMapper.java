@@ -14,6 +14,6 @@ public interface ChooseSubjectMapper {
     @Insert("insert into choose_subject(student_number, course_number) values(#{studentNumber}, #{courseNumber})")
     public boolean insert(ChooseSubject chooseSubject);
 //    @Delete("delete from choose_subject where ")
-    @Select("select * from choose_subject where course_number=#{courseNumber}")
+    @Select("select * from choose_subject where course_number=#{courseNumber} and status=1")
     public ChooseSubject[] select(String courseNumber);
 }

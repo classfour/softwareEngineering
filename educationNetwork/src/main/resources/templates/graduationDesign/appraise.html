@@ -28,38 +28,38 @@
                 <span class="input-group-text">
                     <i class="iconfont icon-diannao"><strong>姓名</strong></i>
                 </span>
-                <p type="text" class="form-control">lcp</p>
+                <p type="text" class="form-control" th:text="${student.name}"></p>
                 <span class="input-group-text">
                     <i class="iconfont icon-diannao">学号</i>
                 </span>
-                <p type="text" class="form-control">9999</p>
+                <p type="text" class="form-control" th:text="${student.number}"></p>
                 <span class="input-group-text">
                     <i class="iconfont icon-diannao">班级</i>
                 </span>
-                <p type="text" class="form-control">1604</p>
-                <span class="input-group-text">
-                    <i class="iconfont icon-diannao">电话</i>
-                </span>
-                <p type="text" class="form-control">9999</p>
+                <p type="text" class="form-control" th:text="${student.team}"></p>
+<!--                <span class="input-group-text">-->
+<!--                    <i class="iconfont icon-diannao">电话</i>-->
+<!--                </span>-->
+<!--                <p type="text" class="form-control">9999</p>-->
             </div>
 
             <div class="input-group mt-2">
                 <span class="input-group-text">
                     <i class="iconfont icon-diannao"><strong>课题</strong></i>
                 </span>
-                <p type="text" class="form-control">9999</p>
+                <p type="text" class="form-control" th:text="${subject.name}"></p>
                 <span class="input-group-text">
                     <i class="iconfont icon-diannao">课号</i>
                 </span>
-                <p type="text" class="form-control">9999</p>
+                <p type="text" class="form-control" th:text="${subject.serialnumber}"></p>
                 <span class="input-group-text">
                     <i class="iconfont icon-diannao">方向</i>
                 </span>
-                <p type="text" class="form-control">9999</p>
-                <span class="input-group-text">
-                    <i class="iconfont icon-diannao">导师</i>
-                </span>
-                <p type="text" class="form-control">9999</p>
+                <p type="text" class="form-control" th:text="${label}"></p>
+<!--                <span class="input-group-text">-->
+<!--                    <i class="iconfont icon-diannao">导师</i>-->
+<!--                </span>-->
+<!--                <p type="text" class="form-control">fuck</p>-->
             </div>
 
         </div>
@@ -75,12 +75,12 @@
                     <span class="input-group-text">
                         <i class="iconfont"><strong><a href="">Download下载附件</a></strong></i>
                     </span>
-                    <span class="input-group-text">
-                        <i class="iconfont icon-diannao">最后提交时间</i>
-                    </span>
-                    <span class="input-group-text">
-                        <i class="iconfont">&nbsp;2019.04.28 20:31:36</i>
-                    </span>
+<!--                    <span class="input-group-text">-->
+<!--                        <i class="iconfont icon-diannao">最后提交时间</i>-->
+<!--                    </span>-->
+<!--                    <span class="input-group-text">-->
+<!--                        <i class="iconfont">&nbsp;2019.04.28 20:31:36</i>-->
+<!--                    </span>-->
                 </div>
                 <form action="">
                     <div class="input-group mt-2">
@@ -88,60 +88,27 @@
                                 <span class="input-group-text">
                                     <i class="iconfont icon-diannao">导师评语</i>
                                 </span>
-                            <textarea class="textarea" id="words" ></textarea>
+                            <textarea class="textarea" id="words" th:text="${result.evaluate}"></textarea>
                         </div>
                     </div>
                     <div class="input-group mt-2">
                         <span class="input-group-text">
                             <i class="iconfont icon-diannao">成绩评定</i>
                         </span>
-                        <input id = "grade" class="input">
+                        <input id = "grade" class="input" th:attr="value=${result.result}">
                         <label-edit>
-                            <button class="button button-submit">提交</button>
+                            <button class="btn btn-primary">提交</button>
                         </label-edit>
                     </div>
 
                 </form>
             </div>
             <div class = "right">
-                <i class="iconfont icon-diannao"><strong>您的建议</strong></i>
+                <strong th:text="${result.title}"></strong>
                 <hr/>
                 <form action="">
-                    <textarea id="memo" class="textarea1"></textarea>
-                    <label-edit2>
-                        <button class="button button-submit2" style="text-align: right">发送</button>
-                    </label-edit2>
+                    <textarea id="memo" class="textarea1" disabled="true" th:text="${result.content}"></textarea>
                 </form>
-<!--                <input type="button" value="发送" onclick="saveStorage('memo')" />-->
-<!--                <input type="button" value="清理" onclick="clearStorage('msg')" />-->
-<!--                <p id="msg"></p>-->
-<!--                <script type="text/javascript">-->
-<!--                    function saveStorage(id) {-->
-<!--                        var data = document.getElementById(id).value;-->
-<!--                        var time = new Date().getTime();-->
-<!--                        localStorage.setItem(time,data);-->
-<!--                        console.log("数据已保存");-->
-<!--                        loadStorage('msg');-->
-<!--                    }-->
-<!--                    function loadStorage(id) {-->
-<!--                        var result = '<table border="1">';-->
-<!--                        for(var i = 0; i < localStorage.length; i++) {-->
-<!--                            var kes = localStorage.key(i);-->
-<!--                            var value = localStorage.getItem(kes);-->
-<!--                            var date = new Date();-->
-<!--                            date.setTime(kes);-->
-<!--                            var datestr = date.toGMTString();-->
-<!--                            result += '<tr><td>' + value + '</td><td>' + datestr + '</td></tr>'-->
-<!--                        }-->
-<!--                        result += '</table>';-->
-<!--                        var target = document.getElementById(id);-->
-<!--                        target.innerHTML = result;-->
-<!--                    }-->
-<!--                    function clearStorage() {-->
-<!--                        localStorage.clear();-->
-<!--                        console.log("清除完毕");-->
-<!--                    }-->
-<!--                </script>-->
             </div>
         </div>
 </div>

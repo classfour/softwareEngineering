@@ -7,4 +7,5 @@ public interface LabelService {
     public Label[] getAllLabel();
     public boolean updateLabel(String courseNumber ,int id);
     public Label selectById(int id);
+    public Label selectBySubject(String serialnumber);
 }

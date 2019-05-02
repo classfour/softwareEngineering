@@ -18,6 +18,8 @@ public interface GraduationSubjectMapper {
     public boolean updateNumber(int number, String serialnumber);
     @Insert("insert into graduation_subject values(#{serialnumber}, #{name}, #{introduce}, #{status}, #{max}, #{teacherNumber}, #{number}, #{maxNumber})")
     public boolean insert(GraduationSubject graduationSubject);
-    @Update("update graduation_subject set name=#{name}, introduce = #{introduce} where serialnumber = #{serialnumber}")
+    @Update("update graduation_subject set name=#{name}, status=0, introduce = #{introduce} where serialnumber = #{serialnumber}")
     public boolean updateContent(String name, String introduce, String serialnumber);
+    @Select("select * from graduation_subject where teacher_number=#{teacherNumber}")
+    public GraduationSubject selectByNumber(String teacherNumbner);
 }

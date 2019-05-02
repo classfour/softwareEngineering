@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.domain.SubjectResults;
 import com.example.demo.mapper.SubjectResultsMapper;
 import com.example.demo.service.SubjectResultsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,30 @@ public class SubjectResultsServiceImpl implements SubjectResultsService {
     }
 
     @Override
+    public SubjectResults selectByStudent(String studentNumber) {
+        return subjectResultsMapper.selectByStudent(studentNumber);
+    }
+
+    @Override
     public boolean updateStatus(int status, String studentNumber) {
         return subjectResultsMapper.updateStauts(status, studentNumber);
+    }
+
+    @Override
+    public boolean insert(String studentNumber, String courseNumber) {
+        SubjectResults subjectResults = new SubjectResults();
+        subjectResults.setCourseNumber(courseNumber);
+        subjectResults.setStudentNumber(studentNumber);
+        subjectResults.setContent("");
+        subjectResults.setResult(0);
+        subjectResults.setStatus(0);
+        subjectResults.setTitle("");
+        subjectResults.setEvaluate("");
+        return subjectResultsMapper.insertResults(subjectResults);
+    }
+
+    @Override
+    public SubjectResults[] selectBySerialnumber(String serialnumber) {
+        return subjectResultsMapper.selectBySerialnumber(serialnumber);
     }
 }

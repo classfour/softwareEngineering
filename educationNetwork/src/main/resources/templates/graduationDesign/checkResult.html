@@ -23,19 +23,19 @@
     </span>
 </header>
 <main id="main">
-    <form action="" class="form form-inline">
+    <form action="/graduationDesign/findResult" method="post" class="form form-inline">
         <label>学年</label>
-        <select class="form-control" id="sel1" style="width: 25%;">
-            <option>2022-2023</option>
-            <option>2022-2023</option>
-            <option>2022-2023</option>
-            <option>2022-2023</option>
+        <select name="year" class="form-control" id="sel1" style="width: 25%;">
+            <option value="2020-2021">2020-2021</option>
+            <option value="2019-2020">2019-2020</option>
+            <option value="2018-2019">2018-2019</option>
+            <option value="2017-2018">2017-2018</option>
         </select>
         <label>学期</label>
-        <select class="form-control" id="sel2" style="width: 25%;">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+        <select name="term" class="form-control" id="sel2" style="width: 25%;">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
         </select>
         <button type="submit" class="btn btn-primary" style="margin-left: 20px">Submit</button>
     </form>
@@ -56,18 +56,18 @@
         </thead>
         <tbody>
         <tr>
-            <th>2018-2019</th>
-            <th>1</th>
-            <th>人工智能</th>
-            <th>2016014372</th>
-            <th>klx</th>
-            <th>信息科学与技术学院</th>
-            <th>大四</th>
-            <th>计算机科学与技术</th>
-            <th>90</th>
-            <th>
+            <td th:if="${year}" th:text="${year}">2018-2019</td>
+            <td th:if="${term}" th:text="${term}">1</td>
+            <td th:if="${subject}" th:text="${subject.name}">人工智能</td>
+            <td th:if="${subject}" th:text="${student.number}">2016014372</td>
+            <td th:if="${student}" th:text="${student.name}">klx</td>
+            <td th:if="${student}" th:text="${student.departments}">信息科学与技术学院</td>
+            <td th:if="${student}">大四</td>
+            <td th:if="${student}" th:text="${student.major}">计算机科学与技术</td>
+            <td th:if="${result}" th:text="${result.result}">90</td>
+            <td th:if="${student}">
                 <button type="button" class="btn btn-primary btn-sm">申诉</button>
-            </th>
+            </td>
         </tr>
         </tbody>
     </table>
