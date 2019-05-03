@@ -34,4 +34,14 @@ public class ChooseSubjectServiceImpl implements ChooseSubjectService {
 
         return student;
     }
+
+    @Override
+    public ChooseSubject[] selectByStudent(String studentNumber) {
+        return chooseSubjectMapper.selectByStudent(studentNumber);
+    }
+
+    @Override
+    public boolean delete(String courseNumber, String studentNumber) {
+        return chooseSubjectMapper.delete(courseNumber, studentNumber);
+    }
 }

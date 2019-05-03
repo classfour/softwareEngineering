@@ -7,8 +7,27 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/checkResult.css">
     <link rel="stylesheet" href="/css/iconfont/iconfont.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script>
+        function complain(courseNumber) {
+            $.ajax({
+                async:false,
+                data:{
+                    courseNumber:courseNumber
+                },
+                type:"post",
+                url:"http://localhost:8080/graduationDesign/complain",
+                success:function (data) {
+                    if(data) {
+                        alert("成功提交申诉")
+                    }else{
+                        alert("提交申诉失败")
+                    }
+                }
+            })
+        }
+    </script>
     <title>Document</title>
 </head>
 <body>
@@ -19,7 +38,7 @@
             <!--            <span th:text="用户名+${username}"></span>-->
         </span>
     <span class="float-right">
-        <img class="rounded-circle" src="images/buct.jpg" alt="" width="40px" height="40px" >
+        <img class="rounded-circle" src="/images/buct.jpg" alt="" width="40px" height="40px" >
     </span>
 </header>
 <main id="main">
@@ -66,7 +85,7 @@
             <td th:if="${student}" th:text="${student.major}">计算机科学与技术</td>
             <td th:if="${result}" th:text="${result.result}">90</td>
             <td th:if="${student}">
-                <button type="button" class="btn btn-primary btn-sm">申诉</button>
+                <button th:onclick="complain([[${subject.serialnumber}]])" type="button" class="btn btn-primary btn-sm">申诉</button>
             </td>
         </tr>
         </tbody>

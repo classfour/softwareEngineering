@@ -9,111 +9,108 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/appraise.css">
     <link rel="stylesheet" href="/css/iconfont/iconfont.css">
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="http://localhost:8080/js/bootstrap.min.js"></script>
+    <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
     <title>查看毕业设计课题</title>
 </head>
 <body>
-
-<div class="container-fluid">
-    <div class="row title">
-        <div class="col-md-5 offset-md-1 col-sm-12 mt-5">
-            <i class="icon-diannao iconfont ml-sm-2" style="font-size: 30px;vertical-align: middle"></i>
-            学生<a></a>的进度与详情
-        </div>
-    </div>
-    <div class="" style="margin-top: 10px;">
-        <div class="output-information"><i class="iconfont icon-diannao">学生基本信息</i>
-            <div class="input-group mt-2">
-                <span class="input-group-text">
-                    <i class="iconfont icon-diannao"><strong>姓名</strong></i>
-                </span>
-                <p type="text" class="form-control" th:text="${student.name}"></p>
-                <span class="input-group-text">
-                    <i class="iconfont icon-diannao">学号</i>
-                </span>
-                <p type="text" class="form-control" th:text="${student.number}"></p>
-                <span class="input-group-text">
-                    <i class="iconfont icon-diannao">班级</i>
-                </span>
-                <p type="text" class="form-control" th:text="${student.team}"></p>
-<!--                <span class="input-group-text">-->
-<!--                    <i class="iconfont icon-diannao">电话</i>-->
-<!--                </span>-->
-<!--                <p type="text" class="form-control">9999</p>-->
+    <div class="container-fluid">
+        <div class="row title">
+            <div class="col-md-5 offset-md-1 col-sm-12 mt-5">
+                <i class="icon-diannao iconfont ml-sm-2" style="font-size: 30px;vertical-align: middle"></i>
+                学生<a></a>的进度与详情
             </div>
-
-            <div class="input-group mt-2">
-                <span class="input-group-text">
-                    <i class="iconfont icon-diannao"><strong>课题</strong></i>
-                </span>
-                <p type="text" class="form-control" th:text="${subject.name}"></p>
-                <span class="input-group-text">
-                    <i class="iconfont icon-diannao">课号</i>
-                </span>
-                <p type="text" class="form-control" th:text="${subject.serialnumber}"></p>
-                <span class="input-group-text">
-                    <i class="iconfont icon-diannao">方向</i>
-                </span>
-                <p type="text" class="form-control" th:text="${label}"></p>
-<!--                <span class="input-group-text">-->
-<!--                    <i class="iconfont icon-diannao">导师</i>-->
-<!--                </span>-->
-<!--                <p type="text" class="form-control">fuck</p>-->
-            </div>
-
         </div>
-        <div class="output-information-sub">
-            <div class="left">
-                <i class="iconfont icon-diannao"><strong>毕业设计查看与评定</strong></i>
-                <hr/>
-<!--                <span class="input-group">&nbsp;</span>-->
+        <div class="" style="margin-top: 10px;">
+            <div class="output-information"><i class="iconfont icon-diannao">学生基本信息</i>
                 <div class="input-group mt-2">
                     <span class="input-group-text">
-                        <i class="iconfont icon-diannao">学生材料</i>
+                        <i class="iconfont icon-diannao"><strong>姓名</strong></i>
                     </span>
+                    <p type="text" class="form-control" th:text="${student.name}"></p>
                     <span class="input-group-text">
-                        <i class="iconfont"><strong><a href="">Download下载附件</a></strong></i>
+                        <i class="iconfont icon-diannao">学号</i>
                     </span>
-<!--                    <span class="input-group-text">-->
-<!--                        <i class="iconfont icon-diannao">最后提交时间</i>-->
-<!--                    </span>-->
-<!--                    <span class="input-group-text">-->
-<!--                        <i class="iconfont">&nbsp;2019.04.28 20:31:36</i>-->
-<!--                    </span>-->
+                    <p type="text" class="form-control" th:text="${student.number}"></p>
+                    <span class="input-group-text">
+                        <i class="iconfont icon-diannao">班级</i>
+                    </span>
+                    <p type="text" class="form-control" th:text="${student.team}"></p>
+    <!--                <span class="input-group-text">-->
+    <!--                    <i class="iconfont icon-diannao">电话</i>-->
+    <!--                </span>-->
+    <!--                <p type="text" class="form-control">9999</p>-->
                 </div>
-                <form action="">
-                    <div class="input-group mt-2">
-                        <div class="input-group-prepend w-100">
-                                <span class="input-group-text">
-                                    <i class="iconfont icon-diannao">导师评语</i>
-                                </span>
-                            <textarea class="textarea" id="words" th:text="${result.evaluate}"></textarea>
-                        </div>
-                    </div>
+
+                <div class="input-group mt-2">
+                    <span class="input-group-text">
+                        <i class="iconfont icon-diannao"><strong>课题</strong></i>
+                    </span>
+                    <p type="text" class="form-control" th:text="${subject.name}"></p>
+                    <span class="input-group-text">
+                        <i class="iconfont icon-diannao">课号</i>
+                    </span>
+                    <p type="text" class="form-control" th:text="${subject.serialnumber}"></p>
+                    <span class="input-group-text">
+                        <i class="iconfont icon-diannao">方向</i>
+                    </span>
+                    <p type="text" class="form-control" th:text="${label}"></p>
+    <!--                <span class="input-group-text">-->
+    <!--                    <i class="iconfont icon-diannao">导师</i>-->
+    <!--                </span>-->
+    <!--                <p type="text" class="form-control">fuck</p>-->
+                </div>
+
+            </div>
+            <div class="output-information-sub">
+                <div class="left">
+                    <i class="iconfont icon-diannao"><strong>毕业设计查看与评定</strong></i>
+                    <hr/>
+    <!--                <span class="input-group">&nbsp;</span>-->
                     <div class="input-group mt-2">
                         <span class="input-group-text">
-                            <i class="iconfont icon-diannao">成绩评定</i>
+                            <i class="iconfont icon-diannao">学生材料</i>
                         </span>
-                        <input id = "grade" class="input" th:attr="value=${result.result}">
-                        <label-edit>
-                            <button class="btn btn-primary">提交</button>
-                        </label-edit>
+                        <span class="input-group-text">
+                            <i class="iconfont"><strong><a href="">Download下载附件</a></strong></i>
+                        </span>
+    <!--                    <span class="input-group-text">-->
+    <!--                        <i class="iconfont icon-diannao">最后提交时间</i>-->
+    <!--                    </span>-->
+    <!--                    <span class="input-group-text">-->
+    <!--                        <i class="iconfont">&nbsp;2019.04.28 20:31:36</i>-->
+    <!--                    </span>-->
                     </div>
+                    <form action="">
+                        <div class="input-group mt-2">
+                            <div class="input-group-prepend w-100">
+                                    <span class="input-group-text">
+                                        <i class="iconfont icon-diannao">导师评语</i>
+                                    </span>
+                                <textarea class="textarea" id="words" th:text="${result.evaluate}"></textarea>
+                            </div>
+                        </div>
+                        <div class="input-group mt-2">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-diannao">成绩评定</i>
+                            </span>
+                            <input id = "grade" class="input" th:attr="value=${result.result}">
+                            <label-edit>
+                                <button class="btn btn-primary">提交</button>
+                            </label-edit>
+                        </div>
 
-                </form>
-            </div>
-            <div class = "right">
-                <strong th:text="${result.title}"></strong>
-                <hr/>
-                <form action="">
-                    <textarea id="memo" class="textarea1" disabled="true" th:text="${result.content}"></textarea>
-                </form>
+                    </form>
+                </div>
+                <div class = "right">
+                    <strong th:text="${result.title}"></strong>
+                    <hr/>
+                    <form action="">
+                        <textarea id="memo" class="textarea1" disabled="true" th:text="${result.content}"></textarea>
+                    </form>
+                </div>
             </div>
         </div>
-</div>
-
-
-
+    </div>
 </body>
 </html>

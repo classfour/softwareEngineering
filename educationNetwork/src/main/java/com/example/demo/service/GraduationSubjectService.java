@@ -8,4 +8,6 @@ public interface GraduationSubjectService {
     public boolean updateContent(String name, String introduce, String serialnumber);
     public GraduationSubject selectByNumber(String teacherNumber);
     public boolean updateNumber(int number, String serialnumber);
+    public GraduationSubject[] selectAll();
+    public boolean updateNwoNumber(int nowNumber, String serialnumber);
 }

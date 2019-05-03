@@ -22,6 +22,18 @@ public class GraduationSubject {
 
     private int maxNumber;//课题最大可选人数
 
+    private int nowNumber;
+
+    private String teacher;
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
+    }
+
     public String getSerialnumber() {
         return serialnumber;
     }
@@ -44,6 +56,14 @@ public class GraduationSubject {
 
     public void setIntroduce(String introduce) {
         this.introduce = introduce;
+    }
+
+    public int getNowNumber() {
+        return nowNumber;
+    }
+
+    public void setNowNumber(int nowNumber) {
+        this.nowNumber = nowNumber;
     }
 
     public int getStatus() {

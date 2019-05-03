@@ -14,4 +14,9 @@ public class StudentServiceImpl implements StudentService {
     public Student selectStudent(String number) {
         return studentMapper.select(number);
     }
+
+    @Override
+    public boolean updateStatus(int status, String number) {
+        return studentMapper.updateStatus(status, number);
+    }
 }

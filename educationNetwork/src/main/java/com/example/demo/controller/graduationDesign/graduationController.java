@@ -15,6 +15,7 @@ import org.thymeleaf.util.StringUtils;
 
 import javax.jws.WebParam;
 import javax.security.auth.Subject;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class graduationController {
     private StudentService studentService;
     @Autowired
     private SubjectResultsService subjectResultsService;
+    @Autowired
+    private TeacherService teacherService;
 
     @GetMapping("checkResult")
     public String checkResult(Model model) {
@@ -43,6 +46,7 @@ public class graduationController {
 //        model.addAttribute("student", "");
         return "graduationDesign/checkResult";
     }
+
 
     @PostMapping("findResult")
     public String findResult(String year, String term, Model model) {
@@ -55,6 +59,9 @@ public class graduationController {
         String username = cookiesService.getCookies("username");
         System.out.println(username);
         SubjectResults subjectResults = subjectResultsService.selectByStudent(username);
+        if(subjectResults==null) {
+            return "graduationDesign/checkResult";
+        }
         System.out.println(subjectResults.getCourseNumber());
         GraduationSubject graduationSubject = graduationSubjectService.getSubject(subjectResults.getCourseNumber());
         Student student = studentService.selectStudent(username);
@@ -88,11 +95,137 @@ public class graduationController {
         return "redirect:/graduationDesign/declare";
     }
 
+    @ResponseBody
+    @PostMapping("complain")
+    public boolean complain(String courseNumber) {
+        String studentNumber = cookiesService.getCookies("username");
+        return subjectResultsService.updateStatus(1,studentNumber);
+    }
+
+    @PostMapping("contentSubmit")
+    public String contetnSubmit(String title, String content) {
+        String studentNumber = cookiesService.getCookies("username");
+        subjectResultsService.submit(title, content, studentNumber);
+        return "redirect:/graduationDesign/content";
+    }
+
+    @GetMapping("content")
+    public String content(Model model) {
+        String studentNumber = cookiesService.getCookies("username");
+        SubjectResults subjectResults = subjectResultsService.selectByStudent(studentNumber);
+        model.addAttribute("result", subjectResults);
+        return "graduationDesign/content";
+    }
+
+    @ResponseBody
+    @PostMapping("labelChoose")
+    public GraduationSubject[] labelChoose(String chooseDepartment, String chooseLabel,boolean remain) {
+//        System.out.println(StringUtils.join(number, ","));
+        System.out.println(remain);
+        String labelStr;
+        GraduationSubject[] graduationSubjects = graduationSubjectService.selectAll();
+        List<String> allLabel = new ArrayList<String>();
+        for(GraduationSubject subject:graduationSubjects) {
+            if(remain) {
+                if(subject.getNowNumber()<subject.getMaxNumber() && subject.getNumber() < subject.getMax()) {
+                    allLabel.add(subject.getSerialnumber());
+                }
+            }else{
+                allLabel.add(subject.getSerialnumber());
+            }
+        }
+        String[] number = allLabel.toArray(new String[allLabel.size()]);
+        labelStr = StringUtils.join(number, ",");
+//        System.out.println("name="+name);
+        if(!chooseLabel.equals("")) {
+            String[] label = labelService.getSubjectNumber(chooseLabel, number);
+            number = null;
+            number = (String[])label.clone();
+        }
+
+        if(!chooseDepartment.equals("")) {
+            String[] label = labelService.selectByDepartment(chooseDepartment, number);
+            number = null;
+            number = (String[])label.clone();
+        }
+
+        labelStr = StringUtils.join(number, ",");
+        List<GraduationSubject> graduationSubjectsArray = new ArrayList<GraduationSubject>();
+        for(String value:number) {
+            GraduationSubject graduationSubject = graduationSubjectService.getSubject(value);
+            graduationSubject.setTeacher(teacherService.selectByNumber(graduationSubject.getTeacherNumber()).getName());
+            graduationSubjectsArray.add(graduationSubject);
+            System.out.println("hello"+graduationSubject.getTeacher());
+        }
+        GraduationSubject[] newSubjects = graduationSubjectsArray.toArray(new GraduationSubject[graduationSubjectsArray.size()]);
+        return newSubjects;
+    }
+
+    @ResponseBody
+    @PostMapping("chooseSubject")
+    public boolean chooseSubject(String serialnumber) {
+        System.out.println(serialnumber);
+        String studentNumber = cookiesService.getCookies("username");
+        GraduationSubject graduationSubject = graduationSubjectService.getSubject(serialnumber);
+        if(graduationSubject.getMax() == graduationSubject.getNumber() || graduationSubject.getMaxNumber() == graduationSubject.getNowNumber()) {
+            return false;
+        }
+        ChooseSubject chooseSubject = new ChooseSubject();
+        chooseSubject.setStudentNumber(studentNumber);
+        chooseSubject.setCourseNumber(serialnumber);
+        chooseSubjectService.insertChoose(chooseSubject);
+        return graduationSubjectService.updateNwoNumber(graduationSubject.getNowNumber()+1, serialnumber);
+    }
+
+    @ResponseBody
+    @PostMapping("exit")
+    public boolean exit(String serialnumber) {
+        String studentNumber = cookiesService.getCookies("username");
+        GraduationSubject graduationSubject = graduationSubjectService.getSubject(serialnumber);
+        graduationSubjectService.updateNwoNumber(graduationSubject.getNowNumber()-1, serialnumber);
+        return chooseSubjectService.delete(serialnumber, studentNumber);
+    }
+
+    @GetMapping("selectSubject")
+    public String selectSubject(Model model) {
+        String studentNumber = cookiesService.getCookies("username");
+        SubjectResults subjectResults = subjectResultsService.selectByStudent(studentNumber);
+        if(subjectResults!=null) {
+            model.addAttribute("confirm", subjectResults.getCourseNumber());
+        }
+        System.out.println(studentNumber);
+        ChooseSubject[] chooseSubjects = chooseSubjectService.selectByStudent(studentNumber);
+        List<GraduationSubject> alreadyChoose = new ArrayList<GraduationSubject>();
+        for(ChooseSubject choose:chooseSubjects) {
+            System.out.println(choose.getCourseNumber());
+            GraduationSubject temp = graduationSubjectService.getSubject(choose.getCourseNumber());
+            temp.setTeacher(teacherService.selectByNumber(temp.getTeacherNumber()).getName());
+            alreadyChoose.add(temp);
+        }
+        GraduationSubject[] chooseArray = alreadyChoose.toArray(new GraduationSubject[alreadyChoose.size()]);
+        model.addAttribute("choose", chooseArray);
+        GraduationSubject[] graduationSubjects = graduationSubjectService.selectAll();
+        model.addAttribute("subjects", graduationSubjects);
+        List<String> teachers = new ArrayList<String>();
+        for(GraduationSubject subject:graduationSubjects) {
+            String name = teacherService.selectByNumber(subject.getTeacherNumber()).getName();
+            teachers.add(name);
+        }
+        String[] name = teachers.toArray(new String[teachers.size()]);
+        Label[] labels = labelService.getAllLabel();
+        model.addAttribute("labels", labels);
+        model.addAttribute("name", name);
+        return "graduationDesign/selectSubject";
+    }
+
+
+
     @GetMapping("chooseStudent")
     public String chooseStudent(String studentNumber, String serialnumber) {
         subjectResultsService.insert(studentNumber, serialnumber);
         int number = graduationSubjectService.getSubject(serialnumber).getNumber();
         int max = graduationSubjectService.getSubject(serialnumber).getMax();
+        studentService.updateStatus(1, studentNumber);
         if(number<max) {
            graduationSubjectService.updateNumber(number+1, serialnumber);
         }
@@ -142,6 +275,8 @@ public class graduationController {
     public String mystudent(Model model) {
         String number = cookiesService.getCookies("username");
         GraduationSubject subject = graduationSubjectService.selectByNumber(number);
+        if(subject==null)
+            return "graduationDesign/mystudent";
         SubjectResults[] subjectResults = subjectResultsService.selectBySerialnumber(subject.getSerialnumber());
         model.addAttribute("result", subjectResults);
         List<String> list = new ArrayList<String>();
@@ -180,9 +315,14 @@ public class graduationController {
     @GetMapping("detail")
     public String detail(Model model) {
         String number = cookiesService.getCookies("username");
-        System.out.println(number);
+//        System.out.println(number);
         GraduationSubject graduationSubject = graduationSubjectService.selectByNumber(number);
 //        System.out.println("awefaefw"+graduationSubject.getSerialnumber());
+        if(graduationSubject==null){
+//            System.out.println("awejfoawjeiajfeajwefioj");
+            return "redirect:/login";
+        }
+
         model.addAttribute("teacherNumber", number);
         model.addAttribute("subject", graduationSubject);
         Label label = labelService.selectBySubject(graduationSubject.getSerialnumber());
@@ -194,14 +334,12 @@ public class graduationController {
         String[] studentNumber = chooseSubjectService.selectStudent(graduationSubject.getSerialnumber());
         ArrayList<Student> students = new ArrayList<Student>();
         for(String val:studentNumber) {
-            students.add(studentService.selectStudent(val));
+            Student student = studentService.selectStudent(val);
+            if(student.getStatus()==0)
+                students.add(student);
         }
         Student[] newArray=students.toArray(new Student[students.size()]);
         model.addAttribute("students", newArray);
         return "graduationDesign/Subdetail-teacher";
-    }
-    @GetMapping("subject")
-    public String subject() {
-        return "graduationDesign/showSubject";
     }
 }

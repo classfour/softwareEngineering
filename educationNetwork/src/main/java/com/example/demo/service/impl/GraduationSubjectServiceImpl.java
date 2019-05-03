@@ -6,6 +6,9 @@ import com.example.demo.service.GraduationSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class GraduationSubjectServiceImpl implements GraduationSubjectService {
     @Autowired
@@ -35,4 +38,15 @@ public class GraduationSubjectServiceImpl implements GraduationSubjectService {
     public boolean updateNumber(int number, String serialnumber) {
         return graduationSubjectMapper.updateNumber(number, serialnumber);
     }
+
+    @Override
+    public GraduationSubject[] selectAll() {
+        return graduationSubjectMapper.selectAll();
+    }
+
+    @Override
+    public boolean updateNwoNumber(int nowNumber, String serialnumber) {
+        return graduationSubjectMapper.updateNowNumber(nowNumber, serialnumber);
+    }
+
 }

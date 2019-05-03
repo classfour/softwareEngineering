@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/declare.css">
+    <link rel="stylesheet" href="/css/iconfont/iconfont.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <title>申请毕业设计课题</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row title">
+        <div class="col-md-5 offset-md-1 col-sm-12 mt-5">
+            <i class="icon-diannao iconfont ml-sm-2" style="font-size: 30px;vertical-align: middle"></i>
+            毕设课题内容提交
+        </div>
+    </div>
+    <div class="" style="margin-top: 10px;">
+        <div class="input-information">
+            <form action="/graduationDesign/contentSubmit" method="post">
+                <div class="input-group mt-2">
+                    <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-diannao">标题</i>
+                            </span>
+                        <input id = "name" type="text" class="form-control" name="title" th:attr="value=${result.title}">
+                    </div>
+                </div>
+
+                <div class="input-group mt-2">
+                    <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-diannao"><strong>内容</strong></i>
+                            </span>
+                        <textarea id="introduce" rows="13" cols="200" name="content" th:text="${result.content}"></textarea>
+
+                        <!--                            <input id = "introduce" type="text" class="form-control" cols = "100px" >-->
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-sm mt-2 w-100">提交</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
