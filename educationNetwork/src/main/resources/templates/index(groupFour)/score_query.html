@@ -7,12 +7,16 @@
     <script src="/js(groupFour)/jquery-3.4.0.min.js"></script>
     <script src="/js(groupFour)/popper.min.js"></script>
     <script src="/js(groupFour)/bootstrap.min.js"></script>
-    <script src="/js(groupFour)/style(groupFour).js"></script>
     <script src="/js(groupFour)/bootstrap-select.min.js"></script>
+    <script src="/js(groupFour)/sweetalert2.min.js"></script>
+    <script src="/js(groupFour)/style(groupFour).js"></script>
+    <script src="/js(groupFour)/promise.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
     <link rel="stylesheet" type="text/css" href="/css(groupFour)/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css(groupFour)/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/sweetalert2.min.css">
+
 </head>
 <body class="default">
     <div class="top">
@@ -109,61 +113,21 @@
                             <td th:text="${e.getGpa()}"></td>
                             <td><span th:text="${e.getTotal()}"></span></td>
                             <td>
-                                <button class="btn btn-outline-primary center" type="button"  data-toggle="modal" data-target="#myModal" onclick="show_score_detail(this.id)">
+                                <button class="btn btn-outline-primary center" type="button"  onclick="show_score_detail(this.id)">
                                 查询
                                 </button>
                             </td>
-                            <p th:text="${e.getScoreUsual()}"></p>
-                            <p th:text="${e.getScoreUsualRate()}"></p>
-                            <p th:text="${e.getScoreMid()}"></p>
-                            <p th:text="${e.getScoreMidRate()}"></p>
-                            <p th:text="${e.getScoreFinal()}"></p>
-                            <p th:text="${e.getScoreFinalRate()}"></p>
-                            <p th:text="${e.getTotal()}"></p>
+                            <td style="display: none"><p style="display: none;" th:text="${e.getScoreUsual()}"></p></td>
+                            <td style="display: none"><p style="display: none;" th:text="${e.getScoreUsualRate()}"></p></td>
+                            <td style="display: none"><p style="display: none;" th:text="${e.getScoreMid()}"></p></td>
+                            <td style="display: none"><p style="display: none;" th:text="${e.getScoreMidRate()}"></p></td>
+                            <td style="display: none"><p style="display: none;" th:text="${e.getScoreFinal()}"></p></td>
+                            <td style="display: none"><p style="display: none;" th:text="${e.getScoreFinalRate()}"></p></td>
+                            <td style="display: none"><p style="display: none;" th:text="${e.getTotal()}"></p></td>
                         </tr>
+
                     </table>
-                    <!-- 模态框 -->
-                    <div class="modal fade" id="myModal" style="width: 850px;">
-                        <div class="modal-dialog modal-lg" style="width: 850px;">
-                            <div class="modal-content" >
 
-                                <!-- 模态框头部 -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">成绩明细</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- 模态框主体 -->
-                                <div class="modal-body">
-                                    .<table>
-                                    <tr>
-                                        <th>平时成绩</th>
-                                        <th>平时成绩占比</th>
-                                        <th>期中成绩</th>
-                                        <th>期中成绩占比</th>
-                                        <th>期末成绩</th>
-                                        <th>期末成绩占比</th>
-                                        <th>总成绩</th>
-                                    </tr>
-                                    <tr>
-                                        <td id="normal_score"></td>
-                                        <td id="normal_score_rate"></td>
-                                        <td id="mid_score"></td>
-                                        <td id="mid_score_rate"></td>
-                                        <td id="final_score"></td>
-                                        <td id="final_score_rate"></td>
-                                        <td id="total_score"></td>
-                                    </tr>
-                                </table>
-                                </div>
-
-                                <!-- 模态框底部 -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">关闭</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

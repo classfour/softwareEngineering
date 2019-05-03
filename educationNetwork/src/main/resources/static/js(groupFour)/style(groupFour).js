@@ -64,45 +64,58 @@ window.onload=function(){
         }
     }
 
-    //蔡秉岐的js样式
-    //为所有成绩明细编写动态ID
-    var score_detail=document.getElementsByTagName("p");
-    for(var i=0;i<score_detail.length;i++) {
-        score_detail[i].id = "detail" + i;
+    //为p标签动态添加id
+    objs=document.getElementById("p").getElementsByTagName("p");
+    for(var i=0;i<objs.length;i++){
+        objs[i].id="detail"+i;
     }
+
+    //蔡秉岐的js样式
     //为查询button编写动态ID
     var button_id=document.getElementById("p").getElementsByTagName("button");
     for(var i=0;i<button_id.length;i++)
     {
         button_id[i].id="button"+i;
     }
+
 }
-//动态获取成绩放到模态框中
+
 function show_score_detail(id) {
-    var num=id[id.length-1];
-    num=parseInt(num);
-    var num0=num*7;
-    var num1=num*7+1;
-    var num2=num*7+2;
-    var num3=num*7+3;
-    var num4=num*7+4;
-    var num5=num*7+5;
-    var num6=num*7+6;
-    var start_flag="detail"+num0;
-    var start_flag1="detail"+num1;
-    var start_flag2="detail"+num2;
-    var start_flag3="detail"+num3;
-    var start_flag4="detail"+num4;
-    var start_flag5="detail"+num5;
-    var start_flag6="detail"+num6;
-    document.getElementById("normal_score").innerHTML=document.getElementById(start_flag).innerHTML;
-    document.getElementById("normal_score_rate").innerHTML=document.getElementById(start_flag1).innerHTML;
-    document.getElementById("mid_score").innerHTML=document.getElementById(start_flag2).innerHTML;
-    document.getElementById("mid_score_rate").innerHTML=document.getElementById(start_flag3).innerHTML;
-    document.getElementById("final_score").innerHTML=document.getElementById(start_flag4).innerHTML;
-    document.getElementById("final_score_rate").innerHTML=document.getElementById(start_flag5).innerHTML;
-    document.getElementById("total_score").innerHTML=document.getElementById(start_flag6).innerHTML;
-    document.getElementById("myModal").style.display="block";
+    var num=0;
+
+    //分割出buttonid的数字部分,便于看出是第几个button
+    for(var i=0;i<id.length;i++){
+        if(id[i]>='0'&&id[i]<='9'){
+            num=num*10+(parseInt)(id[i]-'0');
+        }
+    }
+    var ret=num*7;
+    var s=[];
+    for(var i=0;i<7;i++){
+        s.push(document.getElementById("detail"+(ret+i)).innerHTML);
+    }
+    swal({
+        title: '<h4>成绩明细</h4>',
+        showCloseButton: true,
+        html:'<table class="table">' +
+            '<tr>' +
+            '<th>平时成绩</th>' +
+            '<th>平时成绩占比</th>'+
+            '</tr>' +
+            '<tr><td>'+s[0]+'</td><td>'+s[1]+'%'+'</td></tr>'+
+            '<tr>' +
+            '<th>期中成绩</th>' +
+            '<th>期中成绩占比</th>'+
+            '</tr>' +
+            '<tr><td>'+s[2]+'</td><td>'+s[3]+'%'+'</td></tr>'+
+            '<tr>' +
+            '<th>期末成绩</th>' +
+            '<th>期末成绩占比</th>'+
+            '</tr>' +
+            '<tr><td>'+s[4]+'</td><td>'+s[5]+'%'+'</td></tr>'+
+            '</table>'+
+            '<h4>总评成绩'+s[6]+'</h4>',
+    })
 }
 
 function GetSelect() {
@@ -110,6 +123,8 @@ function GetSelect() {
     var value=myselect.options[9].text;
     return value;
 }
+
+
 function Gets(path) {
     var s;
     if(path=="all"){
