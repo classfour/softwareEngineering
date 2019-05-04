@@ -22,4 +22,6 @@ public interface Choose_courseService {
     public List<ScoreAll> Score_single_rank(String coursenumber);
 
     public List<Course_imformation> Course_query(String teacher_number);
+
+    public List<String> student_number_query(String course_number);
 }

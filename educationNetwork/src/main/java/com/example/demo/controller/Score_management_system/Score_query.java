@@ -16,14 +16,18 @@ public class Score_query {
 
     private int status=0;//0随机显示，1升序显示，2降序显示
 
-    @RequestMapping("/score_sort_up")
-    public String score_sort_up(){
+    private String lst_study_year=null;
+
+    @RequestMapping("/score_sort_up/{study_year}")
+    public String score_sort_up(@PathVariable("study_year")String study_year){
+        lst_study_year=study_year;
         status=1;
         return "redirect:/score_query";
     }
 
-    @RequestMapping("/score_sort_down")
-    public String score_sort_down(){
+    @RequestMapping("/score_sort_down/{study_year}")
+    public String score_sort_down(@PathVariable("study_year")String study_year){
+        lst_study_year=study_year;
         status=2;
         return "redirect:/score_query";
     }
@@ -31,6 +35,11 @@ public class Score_query {
     @RequestMapping("/score_query")
     public String score_query(@RequestParam(value = "study_year",defaultValue = "all") String study_year,ModelMap model){
         boolean f=false;
+        if(lst_study_year!=null){
+            study_year=lst_study_year;
+            lst_study_year=null;
+        }
+
         if(study_year.equals("all")){
             f=true;
         }

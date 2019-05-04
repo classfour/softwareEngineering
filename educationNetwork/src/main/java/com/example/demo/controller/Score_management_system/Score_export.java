@@ -86,7 +86,7 @@ public class Score_export {
     // CellStyle.BORDER_DASHED      虚线边线
     // CellStyle.BORDER_HAIR        小圆点虚线边线
     // CellStyle.BORDER_THICK       粗边线
-    public CellStyle getColumnTopStyle(Workbook workbook){
+    public static CellStyle getColumnTopStyle(Workbook workbook){
         CellStyle cellStyle=workbook.createCellStyle();
         cellStyle.setBorderTop(CellStyle.BORDER_THIN);
         cellStyle.setBorderBottom(CellStyle.BORDER_THIN);

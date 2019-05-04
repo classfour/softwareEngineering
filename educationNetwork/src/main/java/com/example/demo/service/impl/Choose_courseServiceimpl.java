@@ -60,4 +60,9 @@ public class Choose_courseServiceimpl implements Choose_courseService {
     public List<Course_imformation> Course_query(String teacher_number){
         return choose_courseMapper.Course_query(teacher_number);
     }
+
+    @Override
+    public List<String> student_number_query(String course_number){
+        return choose_courseMapper.student_number_query(course_number);
+    }
 }
