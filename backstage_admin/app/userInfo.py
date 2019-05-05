@@ -27,6 +27,7 @@ def getOrder(chosenType):
 
 def updateSql(dict1):
     for i in range(len(dict1['身份'])):
+        number=dict1['用户名'][i]
         if not type(dict1['用户名'][i])==type("example"):
             number=str(int(dict1['用户名'][i]))
 
@@ -42,7 +43,7 @@ def updateSql(dict1):
         age=str(int(dict1['年龄'][i]))
         major=str(dict1['专业/职称'][i])
 
-        if not dict1['教龄'][i]=='':
+        if not dict1['教龄'][i]=='' and dict1["身份"][i]=="教师":
             workage=str(int(dict1['教龄'][i]))
         department=str(dict1['院系'][i])
 
@@ -76,7 +77,6 @@ def getdict(tuple1):
     #print(tuple1)
 
     listFinal=[]
-
     listUserName = []
     listIdentity = []
     listName=[]
@@ -138,6 +138,7 @@ userInfoBlue=Blueprint('userInfo_blue',__name__)
 @userInfoBlue.route('/userInfo1',methods=['POST'])
 #处理查询表单
 def userInfo1():
+    session['route'] +="uI1"
     #print(request.form)
 
 
@@ -152,7 +153,7 @@ def userInfo1():
    # print(getdict(data))
     #print(session.get['username'])
     if "username" in list(session.keys()):
-        return render_template('index.html',data_1=json.dumps(getdict(data), ensure_ascii=False))
+        return render_template('index.html',data_1=json.dumps(getdict(data), ensure_ascii=False),username=session['username'])
     else:
         return redirect(url_for('login_blue.log_in'))
 
@@ -160,6 +161,7 @@ def userInfo1():
 @userInfoBlue.route('/userInfo2',methods=['POST','GET'])
 #处理文件提交表单
 def userInfo2():
+    session['route'] += "uI2"
     file_dir = os.path.join(basedir, 'upload')
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
@@ -181,8 +183,6 @@ def userInfo2():
         sheet = readbook.sheet_by_index(0)  # 读取sheet1
 
 
-
-
         #处理从前端接受的数据
         dictfile = {}
         for j in range(sheet.ncols):
@@ -195,14 +195,22 @@ def userInfo2():
             # print(head)
             dictfile[head] = list1
        # print(dictfile)
-        updateSql(dictfile)
+
+        session['error'] = None
+        try:
+            updateSql(dictfile)
+        except Exception:
+
+
+            session['error']="请按照要求填写文件"
+
 
         error ="文件上传"
     else:
         error="请选择.xlsx或.xls文件"
 
     if "username" in list(session.keys()):
-        return render_template('index.html',data_1=json.dumps(getdict(data), ensure_ascii=False))
+        return redirect(url_for("index_blue.hello_world",username=session['username']))
     else:
         return redirect(url_for('login_blue.log_in'))
 
@@ -210,7 +218,9 @@ def userInfo2():
 @userInfoBlue.route('/userInfo3',methods=['POST','GET'])
 def userInfo3():
 #处理选择操作表单
+    session['route'] +="uI3"
     username=None
+
     if request.method=="POST":
       #  print(list(request.form))
 
@@ -234,7 +244,6 @@ def userInfo3():
 
 
 
-
     return redirect(url_for("alter_blue.operate"))
 
 #退出登陆
@@ -247,6 +256,7 @@ def log_out():
 
 @userInfoBlue.route('/userInfo/<string:username>',methods=['POST','GET'])
 def userInfo(username):
+    session['route'] += "uIn"
     error=None
     return redirect(url_for("index_blue.hello_world",username=username))
     #return render_template('index.html',data_1=json.dumps(getdict(data), ensure_ascii=False),error=error)

@@ -21,6 +21,7 @@ def toStatus(status):
 subjectInfoBlue=Blueprint('subjectInfo_blue',__name__)
 @subjectInfoBlue.route('/subject',methods=['POST','GET'])
 def subjectInfo():
+    session['route']+="sub"
 
     if request.method=="POST":
         #print(request.form)
@@ -64,12 +65,17 @@ def subjectInfo():
 
         checkstr = "<input type=\"checkbox\" name=\"select" + each[0]  + "\"  />"
 
-        dataS.append({"批量操作":checkstr,"课题编号":each[0],"课题名称":each[1],"课程介绍":each[2],"是否开启":toStatus(each[3]),"教师可选人数":
+        astr="<a href=\"alters/"+each[0]+"\">"+each[0]+"</a>"
+
+        dataS.append({"批量操作":checkstr,"课题编号":astr,"课题名称":each[1],"课程介绍":each[2],"是否开启":toStatus(each[3]),"教师可选人数":
                       each[4],"教师编号":"<a href=\"altert/"+each[5]+"\">"+each[5]+"</a>","已选该课题人数":each[6],"可选最大人数":each[7]})
 
+    #print(session['route'][-6:-3])
+    if not session['route'][-6:-3]=="adS":
+        session['error']=None
 
-
-    return render_template("subject.html",dataSubject=json.dumps(dataS,ensure_ascii=False),username=session['username'])
+    return render_template("subject.html",dataSubject=json.dumps(dataS,ensure_ascii=False),
+                           username=session['username'],ERROR=session['error'])
 
 basedir =os.path.abspath(os.path.dirname(__file__))
 ALLOWED_EXTENSIONS=set(['xlsx','xls'])
@@ -78,6 +84,8 @@ def allowed_file(filename):
 
 @subjectInfoBlue.route('/insertSubject',methods=['POST','GET'])
 def insertSubject():
+    session['route']+="adS"
+
     file_dir = os.path.join(basedir, 'upload')
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
@@ -109,19 +117,22 @@ def insertSubject():
             dictfile[head] = list1
         print(dictfile)
 
-        for i in range(sheet.nrows-1):
+        session['error']=None
+        try:
+            for i in range(sheet.nrows-1):
 
-            if not type(dictfile['教师编号'][i]) == type("example"):
-                dictfile['教师编号'][i] = str(int(dictfile['教师编号'][i]))
-            if not type(dictfile['课程编号'][i]) == type("example"):
-                dictfile['课程编号'][i]= str(int(dictfile['课程编号'][i]))
+                if not type(dictfile['教师编号'][i]) == type("example"):
+                    dictfile['教师编号'][i] = str(int(dictfile['教师编号'][i]))
+                if not type(dictfile['课程编号'][i]) == type("example"):
+                    dictfile['课程编号'][i]= str(int(dictfile['课程编号'][i]))
 
 
-
-            orderInsert = "insert into graduation_subject (serialnumber,name, introduce,status,max,teacher_number,number,max_number) values (\""\
-                          +dictfile['课程编号'][i]+"\",\""+ dictfile["课题名称"][i]+"\",\""+dictfile["课题介绍"][i]+"\","+"0,"+str(int(dictfile["教师最多选择人数"][i]))+\
-                          ",\""+dictfile['教师编号'][i]+"\","+"0,"+str(int(dictfile["最多选择人数"][i]))+");"
-            Cur.execute(orderInsert)
-            db.commit()
+                orderInsert = "insert into graduation_subject (serialnumber,name, introduce,status,max,teacher_number,number,max_number) values (\""\
+                              +dictfile['课程编号'][i]+"\",\""+ dictfile["课题名称"][i]+"\",\""+dictfile["课题介绍"][i]+"\","+"0,"+str(int(dictfile["教师最多选择人数"][i]))+\
+                              ",\""+dictfile['教师编号'][i]+"\","+"0,"+str(int(dictfile["最多选择人数"][i]))+");"
+                Cur.execute(orderInsert)
+                db.commit()
+        except Exception:
+            session['error']="请正确填写文件信息"
 
     return redirect(url_for("subjectInfo_blue.subjectInfo"))

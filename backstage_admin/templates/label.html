@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+         var data={{ dataL|tojson }}
+          var jsonArray = JSON.parse(data);//把json数据转换为JavaScript对象
+		  var headArray = [];
+
+          function parseHead(oneRow) {
+                        for ( var i in oneRow) {
+                                headArray[headArray.length] = i;
+                         }
+            }//把数据保存到数组中
+            function appendTable() {
+                         parseHead(jsonArray[0]);
+                          var div = document.getElementById("div1");
+                          var table = document.createElement("table");
+						  div.appendChild(table);//创建表
+								table.className='table';
+								table.id='idData';
+							var thead = document.createElement("thead");
+                          var tr1 = document.createElement("tr");
+                          for ( var count = 0; count < headArray.length; count++) {
+                                    var td = document.createElement("th");
+                                    td.innerHTML = headArray[count];
+                                    tr1.appendChild(td);
+                           }
+						   thead.appendChild(tr1);
+                           table.appendChild(thead);//创建表头
+						   var tbody = document.createElement("tbody");
+                          for ( var tableRowNo = 0; tableRowNo < jsonArray.length; tableRowNo++) {
+                                    var tr = document.createElement("tr");//创建行
+                                    for ( var headCount = 0; headCount < headArray.length; headCount++) {
+                                            var cell = document.createElement("td");
+                                            cell.innerHTML = jsonArray[tableRowNo][headArray[headCount]];
+                                            tr.appendChild(cell);//创建列
+                                    }
+									tbody.appendChild(tr);
+
+                         }
+						 table.appendChild(tbody);
+
+
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>标签表操作</title>
+</head>
+<body onload="appendTable(jsonArray)">
+<form action="/label" method="post">
+    <button name="all" type="submit">查看全部</button>
+    <div id="div1">
+
+    </div>
+</form>
+
+<form action="newlabel" method="post">
+    <input name="labelname" type="text" placeholder="输入要添加的标签名" required="required">
+    <button type="submit" name="add">确认添加</button>
+
+</form>
+
+</body>
+</html>

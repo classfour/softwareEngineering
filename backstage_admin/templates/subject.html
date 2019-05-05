@@ -208,7 +208,7 @@
 							<ul class="nav nav-second-level">
 								<li><a href="/notice" >通知管理</a></li>
                                 <li><a href="/room" >教室管理</a></li>
-
+                                <li><a href="/check" >数据冲突修复</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -229,6 +229,9 @@
 						{% if error %}
 									<h1 style="color:#ff2c33">{{ error }}!</h1>
 						{% endif %}
+                    {% if ERROR %}
+                                <h1 style="color:#ff2c33">{{ ERROR }}!</h1>
+                    {% endif %}
 
 				</form>
 

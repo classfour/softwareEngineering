@@ -1,5 +1,6 @@
 from app.__init__ import *
 from flask import json
+from app.subjectInfo import toStatus
 
 def judgeSex(sex):
     if type(sex)==type("sex"):
@@ -294,3 +295,56 @@ def operate():
 
     return render_template("operate.html", dataS=json.dumps(dataS, ensure_ascii=False),dataT=json.dumps(dataT,
                                                                                                         ensure_ascii=False),error=error)
+#修改课题信息
+@alterBlue.route('/alters/<string:subjectname>',methods=['POST','GET'])
+def alters(subjectname):
+    order="select * from graduation_subject where serialnumber=\""+subjectname+"\";"
+    Cur.execute(order)
+    data=Cur.fetchall()[0]
+    if request.method=="POST":
+        print(request.form)
+        listForm=list(request.form)
+        if "upload" in listForm:
+            orderD="delete from graduation_subject where serialnumber=\""+subjectname+"\";"
+            Cur.execute(orderD)
+            db.commit()
+            orderI="insert into graduation_subject values(\""+subjectname+"\",\""+request.form.get('name')+"\",\""+\
+                   request.form.get('introduce')+"\",\""+request.form.get('status')+"\",\""+request.form.get('max')+\
+                   "\",\""+request.form.get('teacher_number')+"\",\""+request.form.get('number')+\
+                   "\",\""+request.form.get('max_number')+"\");"
+            Cur.execute(orderI)
+            db.commit()
+        return redirect(url_for('userInfo_blue.userInfo',username=session['username']))
+
+
+    return render_template("alters.html",serialnumber=data[0],name=data[1],introduce=data[2],status=data[3],
+                           max=data[4],teacher_number=data[5],number=data[6],max_number=data[7],username=data[0])
+
+#修改课程信息
+@alterBlue.route('/alterc/<string:coursenumber>',methods=['POST','GET'])
+def alterc(coursenumber):
+    order="select * from course where number=\""+coursenumber+"\";"
+    Cur.execute(order)
+    data=Cur.fetchall()[0]
+    if request.method=="POST":
+        print(request.form)
+        listForm=list(request.form)
+        if "upload" in listForm:
+            orderD="delete from course where number=\""+coursenumber+"\";"
+            Cur.execute(orderD)
+            db.commit()
+            orderI="insert into course values(\""+coursenumber+"\",\""+request.form.get('name')+"\",\""+\
+                   request.form.get('department')+"\",\""+request.form.get('status')+"\",0,\""+request.form.get('max_number')+\
+                   "\",\""+request.form.get('location')+"\",\""+request.form.get('teacher_number')+\
+                   "\",\""+request.form.get('introduce')+"\","+request.form.get('type')+","+request.form.get('credits')+",\""+data[11]+"\","\
+                   +request.form.get('time')+","+request.form.get('begin')+",\""+request.form.get('day')+"\","+request.form.get('grade')+\
+                   ",\""+request.form.get('specialty')+"\");"
+            #print(orderI)
+            Cur.execute(orderI)
+            db.commit()
+        return redirect(url_for('userInfo_blue.userInfo',username=session['username']))
+
+
+    return render_template("alterc.html",number=data[0],name=data[1],department=data[2],status=data[3],
+                           max_number=data[5],location=data[6],teacher_number=data[7],introduce=data[8],type=data[9],credits=data[10],
+                           time=data[12],begin=data[13],day=data[14],grade=data[15],specialty=data[16])

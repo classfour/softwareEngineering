@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更改课题信息</title>
+</head>
+<body>
+<h1>修改编号为{{ serialnumber }}的课题信息</h1>
+<form action="/alters/{{ serialnumber }}" method="POST">
+
+
+    <input type="text"  placeholder="请输入更改后的课题名" value={{ name }} name="name">
+    <br>
+    <input type="text"  placeholder="请输入更改后的课题介绍" value={{ introduce }} name="introduce">
+    <br>
+    <input type="text"  placeholder="请输入更改后的开课状态" value={{ status }} name="status">
+    <br>
+    <input type="text"  placeholder="请输入更改后的最大可选人数" value={{ max }} name="max">
+    <br>
+    <input type="text"  placeholder="请输入更改后的教师工号" value= {{ teacher_number }} name="teacher_number">
+    <br>
+    <input type="text"  placeholder="请输入更改后的可选人数" value={{ number }} name="number">
+    <br>
+    <input type="text"  placeholder="请输入更改后的照片地址" value={{ max_number }} name="max_number">
+    <br>
+
+
+<button type="submit" name="upload">提交</button>
+    <button type="submit" name="back">back</button>
+</form>
+</body>
+</html>

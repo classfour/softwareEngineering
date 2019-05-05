@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更改课程信息</title>
+</head>
+<body>
+<h1>修改编号为{{ number }}的课程信息</h1>
+<form action="/alterc/{{ number }}" method="POST">
+
+
+    <br>
+    <input type="text"  placeholder="请输入更改后的课程名" value={{ name }} name="name">
+    <br>
+    <input type="text"  placeholder="请输入更改后的开课院系" value={{ department }} name="department">
+    <br>
+    <input type="text"  placeholder="请输入更改后的课程介绍" value={{ introduce }} name="introduce">
+    <br>
+    <input type="text"  placeholder="请输入更改后的开课状态" value={{ status }} name="status">
+    <br>
+    <input type="text"  placeholder="请输入是否为实验课" value={{ type }} name="type">
+    <br>
+    <input type="text"  placeholder="请输入更改后的学分" value={{ credits }} name="credits">
+    <br>
+    <input type="text"  placeholder="请输入更改后的学时" value={{ time }} name="time">
+    <br>
+    <input type="text"  placeholder="请输入更改后的起始周" value={{ begin }} name="begin">
+    <br>
+    <input type="text"  placeholder="请输入更改后的上课时间" value={{ day }} name="day">
+    <br>
+    <input type="text"  placeholder="请输入更改后的上课地点" value={{ location }} name="location">
+    <br>
+    <input type="text"  placeholder="请输入更改后的年级" value={{ grade }} name="grade">
+    <br>
+    <input type="text"  placeholder="请输入更改后的最大可选人数" value={{ max_number }} name="max_number">
+    <br>
+    <input type="text"  placeholder="请输入更改后的教师工号" value= {{ teacher_number }} name="teacher_number">
+    <br>
+    <input type="text"  placeholder="请输入更改后的专业" value={{ specialty }} name="specialty">
+    <br>
+
+
+<button type="submit" name="upload">提交</button>
+    <button type="submit" name="back">back</button>
+</form>
+</body>
+</html>

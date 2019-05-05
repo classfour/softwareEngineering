@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <link rel="shortcut icon" href="static/pics/logo2.ico">
 
-<title>后台管理</title>
+<title>课程管理</title>
 
 <!-- jQuery Version 1.11.1 -->
 <script src="static/lib/jquery/jquery.min.js"></script>
@@ -27,20 +27,34 @@
 <link href="static/lib/bootstrap-daterangepicker/css/daterangepicker.css" rel="stylesheet">
 
 <style>
+        table {
+            width: 900px;
+            padding: 0 ;
+            margin: 20 auto;
+            border-collapse: collapse;
+        }
+        td,th {
+            border: 1px solid #ddd;
+            padding: 6px 6px 6px 12px;
+            color: #4f6b72;
+            text-align: center;
+        }
+        th {
+            background: #d3d3d3;
 
+        }
     </style>
 <script type="text/javascript">
+      	var data={{ dataCourse|tojson }}
+        var jsonArray = JSON.parse(data);//把json数据转换为JavaScript对象
+		var headArray = [];
 
-		 var data={{ data_1|tojson }}
-          var jsonArray = JSON.parse(data);//把json数据转换为JavaScript对象
-		  var headArray = [];
-
-          function parseHead(oneRow) {
-                        for ( var i in oneRow) {
-                                headArray[headArray.length] = i;
-                         }
-            }//把数据保存到数组中
-            function appendTable() {
+        function parseHead(oneRow) {
+            for ( var i in oneRow) {
+                headArray[headArray.length] = i;
+            }
+        }//把数据保存到数组中
+        function appendTable() {
                          parseHead(jsonArray[0]);
                           var div = document.getElementById("div1");
                           var table = document.createElement("table");
@@ -71,7 +85,6 @@
 
 
         }
-
 
 		function goPage(pno,psize){
 			var itable = document.getElementById("idData");
@@ -116,19 +129,16 @@
 			document.getElementById("ycy666").innerHTML = tempStr;
 		}
 
-
-
-
 </script>
 
 </head>
 
-<body onload="appendTable(jsonArray);goPage(1,8);" data-type="generalComponents">
+<body onload="appendTable(jsonArray);goPage(1,7)"  data-type="generalComponents">
 	<div id="wrapper">
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation" style="margin-bottom: 0">
 			<div class="navbar-header"></div>
-            <a  id="toplogoa" class="navbar-brand" href="/">
+            <a  id="toplogoa" class="navbar-brand" href="index.html">
                 <img id="toplogo" src="static/pics/logo.png"   alt="logo">
             </a>
             <div class="navbar-header">
@@ -139,7 +149,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
 				</button>
-                <a class="navbar-brand" href="/">后台管理系统</a>
+                <a class="navbar-brand" href="index.html">后台管理系统</a>
 			</div>
 
 			<ul class="nav navbar-top-links navbar-right">
@@ -213,19 +223,33 @@
 
 		<div id="page-wrapper">
 
-            <div class="container">
-				<button type="button" class="btn btn-default"onclick="javascrtpt:window.location.href='/add_notice'"
-                        style="float:right;margin-right:60px;">发布新消息</button>
+			   <form action="/insertCourse" method="post" enctype=multipart/form-data class="form-inline"style="width:85% ;float:right;margin-right:30% text-align:center;border-bottom:1px solid #C0C0C0">
+					<div class="form-group">
+						<label for="inputfile">文件导入课题信息</label>
+						<input type="file" id="inputfile" name="file1">
+					</div>
+					<button type="submit" class="btn btn-default">提交</button>
+
+                    {% if ERROR %}
+                                <h1 style="color:#ff2c33">{{ ERROR }}!</h1>
+                    {% endif %}
+
+				</form>
+
+			<div style="height:51px;border-bottom:1px solid #C0C0C0">
+				<input type="button" value="下载表单" class="btn btn-default" onclick="javascrtpt:window.location.href='/download/course.xlsx'">
 			</div>
-			<form method="post" action="/notice">
-				<div id="div1"></div>
+			<!--  用户信息 -->
+			<form action="/course" method="post">
+				<div id="div1">
+				<label style="margin-left:5px;">操作：</label>
+					<button name="shifton" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">设置为可选</button>
+					<button name="shiftoff" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">设置为不可选</button>
+					<button name="delete" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">删除</button>
+				</div>
 			</form>
+			<!--  分页 -->
 			<div id="ycy666"></div>
-
-
-
-
-
 		</div>
 
 	</div>

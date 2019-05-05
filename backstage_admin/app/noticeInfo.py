@@ -6,7 +6,7 @@ def toJson(tuple1):
     listFinal=[]
     for each in tuple1:
         checkstr="<input type=\"checkbox\" name=\""+str(each[0])+"\"  />"
-        titlestr = "<a href=\"/altern/" + str(each[0]) + " \""  + ">"+each[1]+"</a>"
+        titlestr = "<a href=\"/shownotice/" + str(each[0]) + " \""  + ">"+each[1]+"</a>"
 
         if each[4]==0:
             upstr="<button class=\"btn btn-default\" name=\"shiftu"+str(each[0])+"\">置顶</button>"
@@ -99,3 +99,9 @@ def noticeInsert():
             return redirect(url_for("noticeInfo_blue.notice", username=session['username']))
         return render_template("add_notice.html")
 
+@noticeInfoBlue.route('/shownotice/<string:number>',methods=['POST','GET'])
+def shownotice(number):
+    order="select * from notice where id="+number+";"
+    Cur.execute(order)
+    data=Cur.fetchone()
+    return render_template("shownotice.html",title=data[1],content=data[2],time=data[3])

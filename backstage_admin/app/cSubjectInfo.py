@@ -10,7 +10,7 @@ def cSubjectInfo():
 
     if request.method=="POST":
         listForm=list(request.form)
-        print(listForm)
+        #print(listForm)
         if "delete" in listForm and len(listForm)>1:
             orderD="delete from subject_results where student_number in("
 
@@ -19,7 +19,7 @@ def cSubjectInfo():
                 if each[:6]=="select":
                     orderD+="\""+each[6:]+"\","
             orderD=orderD[:-1]+");"
-            Cur.execute()
+            Cur.execute(orderD)
             db.commit()
         else:
             for each in listForm:
@@ -27,7 +27,7 @@ def cSubjectInfo():
                     order1="select serialnumber from graduation_subject where teacher_number=\""+each[6:]+"\";"
                     Cur.execute(order1)
                     serialnumber=Cur.fetchall()
-                    print(serialnumber)
+                    #print(serialnumber)
                     order="select * from subject_results where course_number in ("
                     for each in serialnumber:
                         order+="\""+each[0]+"\","
@@ -50,6 +50,6 @@ def cSubjectInfo():
         listR.append({"<button class=\"btn btn-default\" name=\"delete\">批量删除</button>":checkstr,
                       "学生学号":"<a href=\"alter/"+each[0]+"\">"+each[0]+"</a>","课题号":each[1],"教师编号":"<button name=\"choose"+teacher_number+"\">"+teacher_number+"</button>",
                       "提交标题":each[2],"提交内容":each[3],"成绩":each[4],"是否被申诉":toStatus(each[5])})
-        print(listR)
+        #print(listR)
 
     return render_template("select_subject.html",dataR=json.dumps(listR,ensure_ascii=False))

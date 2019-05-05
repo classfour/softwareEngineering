@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if ERROR %}
+    <h1 style="color:#ff2c33">{{ ERROR }}!</h1>
+{% endif %}
+<br>
+
+{{ dataUser }}
+<form method="post" action="/checkUser">
+<button type="submit">检测用户冲突</button>
+</form>
+{{ dataSubject }}
+
+<form method="post" action="/checkSubject">
+    <button type="submit">检测课题冲突</button>
+</form>
+</body>
+</html>

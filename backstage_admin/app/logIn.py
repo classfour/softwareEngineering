@@ -30,11 +30,15 @@ def log_in():
 			current_app.permanent_session_lifetime=timedelta(minutes=15)
 			session['username']=username
 			session['password']=password
-			error="跳转页面"
+			session['infoU']=[]
+			session['infoS'] = []
+			session['error']=None#程序错误信息
+			session['route']="log"#记录前端访问路径，每三个字符表示一个
+
+			#error="跳转页面"
 			#adminName=username
 			#print(adminName)
 			return redirect(url_for("index_blue.hello_world",username=username))
-
 
 
 	#在数据库中查找用户的密码匹配
