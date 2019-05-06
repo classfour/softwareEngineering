@@ -57,8 +57,9 @@ public class Score_upload {
         Sheet sheet=web.getSheetAt(0);
         String cell[]=new String[8];
         Cell tmp;
-
-        Check check=new Check("1");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+        Check check=new Check(user_name);
+//        Check check=new Check("1");
 
         for(int i=1;i<=sheet.getLastRowNum();i++){
             Row row=sheet.getRow(i);

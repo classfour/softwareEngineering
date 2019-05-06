@@ -57,12 +57,16 @@ public class TScore_query {
     @RequestMapping("/teacher_course_query")
     @ResponseBody
     public List<Course_imformation> Course_query(){
-        return choose_courseService.Course_query("1");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+//        return choose_courseService.Course_query("1");
+        return choose_courseService.Course_query(user_name);
     }
 
     @RequestMapping("/tscore_query")
     public String tscore_query(@RequestParam(value = "course_name",defaultValue = "empty")String course_name,ModelMap model){
-        List<Course_imformation> Course_list=choose_courseService.Course_query("1");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+//        List<Course_imformation> Course_list=choose_courseService.Course_query("1");
+        List<Course_imformation> Course_list=choose_courseService.Course_query(user_name);
         String Courseid=new String();
 
         if(lst_coursename!=null){

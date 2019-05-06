@@ -27,7 +27,9 @@ public class TScore_query_analysis {
     private CookiesService cookiesService;//新加获取cookie
     @RequestMapping("/tscore_query/analysis")
     public String tscore_query(@RequestParam(value = "course_name",defaultValue = "empty")String course_name, ModelMap model) {
-        List<Course_imformation> Course_list = choose_courseService.Course_query("1");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+//        List<Course_imformation> Course_list = choose_courseService.Course_query("1");
+        List<Course_imformation> Course_list = choose_courseService.Course_query(user_name);
         String Courseid = new String();
         if (course_name.equals("empty")) {
             if (!Course_list.isEmpty()) {
@@ -51,7 +53,9 @@ public class TScore_query_analysis {
     @RequestMapping("/tscore_query/analysis_json/{course_name}")
     @ResponseBody
     public Map<String,Object> tscore_query_analysic(@PathVariable("course_name")String course_name){
-        List<Course_imformation> Course_list=choose_courseService.Course_query("1");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+//        List<Course_imformation> Course_list=choose_courseService.Course_query("1");
+        List<Course_imformation> Course_list=choose_courseService.Course_query(user_name);
         String Course_id=new String();
         for(Course_imformation e:Course_list){
             if(e.getCourse_name().equals(course_name)){

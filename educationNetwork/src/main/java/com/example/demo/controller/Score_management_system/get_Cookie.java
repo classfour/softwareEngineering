@@ -32,7 +32,11 @@ public class get_Cookie {
             System.out.println(user_name);
             System.out.println(pwd);
             System.out.println("yes");
-            return "redirect:/score_query";
+
+            if(username.equals("2016001"))
+                return "redirect:/score_query";
+            else
+                return "redirect:/tscore_query";
         }
         System.out.println("no");
         return "redirect:/login";

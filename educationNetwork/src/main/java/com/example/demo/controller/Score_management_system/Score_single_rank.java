@@ -66,7 +66,10 @@ public class Score_single_rank {
             List<ScoreAll> lst=mp.get(e.getCoursenum());
             for(int i=0;i<lst.size();i++){
                 data=lst.get(i);
-                if(data.getStu_num().equals("2016001")){
+                String user_name=cookiesService.getCookies("username");//新加cookie
+//                if(data.getStu_num().equals("2016001"))
+                    if(data.getStu_num().equals(user_name))
+                {
                     ans.add(new EachSubjectRank(data.getCoursename(),i+1,data.getStudy_year()));
                     break;
                 }
