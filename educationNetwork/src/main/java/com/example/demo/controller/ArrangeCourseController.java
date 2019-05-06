@@ -26,9 +26,13 @@ public class ArrangeCourseController {
     public Object getAllCoursesBySpecialty(HttpServletRequest httpServletRequest) {
         String specialty = httpServletRequest.getParameter("specialty");
         System.out.println(specialty);
-        List<String> courses = arrangeCourseService.getUnarrangedCoursesBySpecialty(specialty);
+        String gradeString = httpServletRequest.getParameter("grade");
+        int grade = 2018 - Integer.parseInt(gradeString);
+        System.out.println(gradeString);
+        System.out.println(grade);
+        List<String> courses = arrangeCourseService.getUnarrangedCoursesBySpecialty(specialty, grade);
         Map<String, Object> mp = new HashMap<>();
-        String occupation = arrangeCourseService.getArrangedCoursesOccupation(specialty);
+        String occupation = arrangeCourseService.getArrangedCoursesOccupation(specialty, grade);
         mp.put("courses", courses);
         mp.put("occupation", occupation);
         return mp;

@@ -16,8 +16,8 @@ public class ArrangeCourseServiceImpl implements ArrangeCourseService {
     private ArrangeCourseMapper arrangeCourseMapper;
 
     @Override
-    public List<String> getUnarrangedCoursesBySpecialty(String specialty) {
-        return arrangeCourseMapper.getUnarrangedCoursesBySpecialty(specialty);
+    public List<String> getUnarrangedCoursesBySpecialty(String specialty, int grade) {
+        return arrangeCourseMapper.getUnarrangedCoursesBySpecialty(specialty, grade);
     }
 
     @Override
@@ -132,8 +132,8 @@ public class ArrangeCourseServiceImpl implements ArrangeCourseService {
     }
 
     @Override
-    public String getArrangedCoursesOccupation(String specialty) {
-        List<String> occupations = arrangeCourseMapper.getArrangedCoursesOccupation(specialty);
+    public String getArrangedCoursesOccupation(String specialty, int grade) {
+        List<String> occupations = arrangeCourseMapper.getArrangedCoursesOccupation(specialty, grade);
         StringBuilder[] occupation = {new StringBuilder("0000000000000"), new StringBuilder("0000000000000"), new StringBuilder("0000000000000"), new StringBuilder("0000000000000"), new StringBuilder("0000000000000"), new StringBuilder("0000000000000"), new StringBuilder("0000000000000")};
 
         for (String s : occupations) {

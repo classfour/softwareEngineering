@@ -10,12 +10,12 @@ import java.util.List;
 public interface ArrangeCourseMapper {
 
     //    获得这个专业没有排的所有的课
-    @Select("select name from course where status = 0 and specialty =  #{specialty}")
-    List<String> getUnarrangedCoursesBySpecialty(String specialty);
+    @Select("select name from course where status = 0 and specialty =  #{specialty} and grade=#{grade}")
+    List<String> getUnarrangedCoursesBySpecialty(String specialty, int grade);
 
     //获得此专业已经排的课所有时间
-    @Select("select occupation from course where status=1 and specialty=#{specialty}")
-    List<String> getArrangedCoursesOccupation(String specialty);
+    @Select("select occupation from course where status=1 and specialty=#{specialty} and grade=#{grade}")
+    List<String> getArrangedCoursesOccupation(String specialty, int grade);
 
     //    获得排课所需要的老师的所有信息
     @Select("select name,enable_teach_courses,occupation from teacher")
