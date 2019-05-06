@@ -8,13 +8,113 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function courses(major) {
+            if(major!=''){
+                $.post(
+                    "arrangeCourse/getcoursesbyspecialty",
+                    {"specialty":major},
+                    function(response){
+                        var text = '<option></option>';
+                        for(var course in response.courses) {
+                            text += '<option>' + response.courses[course] + '</option>';
+                        }
+                        document.getElementById('course').innerHTML = text;
+                    },
+                    "json"
+                )
+            }
+        }
+    </script>
 
-    <script src="js/informationcheck.js"></script>
-    <script src="js/informationsubmit.js"></script>
-    <script src="js/timetable.js"></script>
+    <script type="text/javascript">
+        function teachers(course) {
+            if(course!=''){
+                $.post(
+                    "arrangeCourse/getteachersinfoteachcourse",
+                    {"course":course},
+                    function(response){
+                        var text = '<option></option>';
+                        for(var teacher in response.teachers) {
+                            text += '<option>' + response.teachers[teacher] + '</option>';
+                        }
+                        document.getElementById('teacher').innerHTML = text;
+                    },
+                    "json"
+                )
+            }
+        }
+    </script>
+
+    <script type="text/javascript">function informationcheck() {
+        var course = document.getElementById('course').value;
+        var teachern = document.getElementById('teacher').value;
+        if(teacher!=''){
+            //查询，返回，重新填写课程表
+            if(course!=''){
+                $.post(
+                    "arrangeCourse/getteachersinfoteachcourse",
+                    {"course":course},
+                    function(response){
+                        for(var teacher in response.occupations) {
+                            var teachername = response.teachers[teacher];
+                            if(teachern === teachername){
+                            //    alert(response.teachers[teacher] + response.occupations[teacher]);
+                                var day = 1;
+                                var classes = 1;
+                                tmp = response.occupations[teacher];
+                                tabletext = '';
+                                tabletext += '<thead><tr><th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr></thead>'
+                                tabletext += '<tbody><tr><th>' + classes + '</th>';
+                                tmp1 = ''
+                                for(var i=0;i<13;i++) {
+                                    for(var j=i;j<=96;j+=14){
+                                        tmp1+=tmp[j];
+                                    }
+                                    tmp1 += ';';
+                                }
+                                for(var k in tmp1) {
+                                    day++;
+                                    if(tmp1[k]==';') {
+                                        day = 0;
+                                        classes++;
+                                        if(classes < 14)
+                                            tabletext += '</tr><th>' + classes + '</th>';
+                                        else
+                                            tabletext += '</tr>';
+                                    }else if(tmp1[k]=='0'){
+                                        tabletext += '<th>' + '</th>';
+                                    }else if(tmp1[k]=='1') {
+                                        tabletext += '<th bgcolor="#ea2d2d">' + teachername +'</th>';
+                                    }
+                                }
+                                tabletext += '</tbody>';
+                                document.getElementById('timetable').innerHTML = tabletext;
+                            }
+
+                        }
+                    },
+                    "json"
+                )
+            }
+        }
+
+    }
+    </script>
+
+    <script type="text/javascript">function informationsubmit() {
+        var major = document.getElementById('major').value;
+        var course = document.getElementById('course').value;
+        var teacher = document.getElementById('teacher').value;
+        var week = document.getElementById('week').value;
+        var classes = document.getElementById('classes').value;
+        //提交给后台
+        alert('success');
+    }
+    </script>
 </head>
 <body>
-<div class="container" style="width:100%";>
+<div class="container" style="width:100%" ;>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h2>排课系统</h2>
@@ -44,7 +144,15 @@
                         <div class="row">
                             <label for="institute" class="col-lg-2 control-label">院系</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="institute" placeholder="请输入院系">
+                                <select class="form-control" id="institute" onchange="function majors(institute) {
+                                    if(institute === '信息学院') document.getElementById('major').innerHTML = '<option></option><option>计算机科学与技术</option>'
+                                    if(institute === '理学院') document.getElementById('major').innerHTML = '<option></option><option>数学</option>'
+                                }
+                                majors(this.value)">
+                                    <option></option>
+                                    <option>信息学院</option>
+                                    <option>理学院</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -54,7 +162,9 @@
                         <div class="row">
                             <label for="major" class="col-lg-2 control-label">专业</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="major" placeholder="请输入专业">
+                                <select class="form-control" id="major" onchange="courses(this.value)">
+                                <option></option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -67,7 +177,9 @@
                         <div class="row">
                             <label for="course" class="col-lg-2 control-label">课程</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="course" placeholder="请输入课程">
+                                <select class="form-control" id="course" onchange="teachers(this.value)">
+                                    <option></option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -77,7 +189,8 @@
                         <div class="row">
                             <label for="teacher" class="col-lg-2 control-label">教师</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="teacher" placeholder="请输入教师">
+                                <select class="form-control" id="teacher" onchange="informationcheck()">
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -89,9 +202,9 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <div class="row">
-                            <label for="week" class="col-lg-2 control-label">周次</label>
+                            <label for="day" class="col-lg-2 control-label">星期</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="week" placeholder="请输入周次(示例1-16)">
+                                <input type="text" class="form-control" id="day" placeholder="请输入星期">
                             </div>
                         </div>
                     </div>
@@ -130,7 +243,21 @@
         </div>
         <div class="panel-body">
             <table class="table table-bordered" id="timetable">
-
+                <script>
+                    var tabletext = '';
+                    tabletext += '<thead><tr><th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr></thead>'
+                    tabletext += '<tbody>';
+                    for (var i = 1; i <= 13; i++) {
+                        tabletext += '<tr>';
+                        tabletext += '<th>' + i + '</th>';
+                        for (var j = 1; j <= 7; j++) {
+                            tabletext += '<th></th>'
+                        }
+                        tabletext += '</tr>';
+                    }
+                    tabletext += '</tbody>';
+                    document.getElementById('timetable').innerHTML += tabletext;
+                </script>
             </table>
         </div>
     </div>
