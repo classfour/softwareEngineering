@@ -4,6 +4,7 @@ import com.example.demo.domain.Course_imformation;
 import com.example.demo.domain.Score_excel;
 import com.example.demo.domain.StudentScore;
 import com.example.demo.service.Choose_courseService;
+import com.example.demo.service.CookiesService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.format.CellFormatType;
 import org.apache.poi.ss.usermodel.Cell;
@@ -26,7 +27,8 @@ import java.util.*;
 public class Score_upload {
     @Autowired
     private Choose_courseService choose_courseService;
-
+    @Autowired
+    private CookiesService cookiesService;//新加获取cookie
     @RequestMapping("/tscore_query/import_score")
     public String score_upload(){
         return "index(groupFour)/tscore_query_ScoreImport";

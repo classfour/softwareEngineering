@@ -3,6 +3,7 @@ package com.example.demo.controller.Score_management_system;
 import com.example.demo.domain.EachSubjectRank;
 import com.example.demo.domain.ScoreAll;
 import com.example.demo.domain.Study_year;
+import com.example.demo.service.CookiesService;
 import org.springframework.stereotype.Controller;
 import com.example.demo.service.Choose_courseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import java.util.*;
 public class Score_single_rank {
     @Autowired
     private Choose_courseService choose_courseService;
+    @Autowired
+    private CookiesService cookiesService;//新加获取cookie
     @RequestMapping(value = "/score_rank/singlerank",method = RequestMethod.POST)
     public String Search_single_rank(@RequestParam(value = "single_score",defaultValue = "") String course_name,@RequestParam(value = "study_year",defaultValue = "all")String study_year, ModelMap model){
         String s=new String();

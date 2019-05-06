@@ -4,6 +4,7 @@ package com.example.demo.controller.Score_management_system;
 import com.example.demo.domain.GpaEntity;
 import com.example.demo.domain.ScoreEntity;
 import com.example.demo.service.Choose_courseService;
+import com.example.demo.service.CookiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,7 +17,8 @@ import java.util.*;
 public class GPA_query {
     @Autowired
     private Choose_courseService choose_courseService;
-
+    @Autowired
+    private CookiesService cookiesService;//新加获取cookie
     @RequestMapping("/GPA_query")
     public String gpa_query(){
         return "/index(groupFour)/GPA_query";
@@ -26,7 +28,9 @@ public class GPA_query {
     @ResponseBody
 //    按照课程修读年份整理学生的GPA
     public Map<String,Object> gpa_query_json(){
-        List<GpaEntity> lst=choose_courseService.Gpa_query("2016001");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+        List<GpaEntity> lst=choose_courseService.Gpa_query(user_name);
+//        List<GpaEntity> lst=choose_courseService.Gpa_query("2016001");
         Map<String,ArrayList<GpaEntity>> mp=new HashMap<String,ArrayList<GpaEntity>>();
         List<String> study_year_list=new ArrayList<String>();
         List<String> GPA=new ArrayList<String>();//为了显示末尾0，用String类型

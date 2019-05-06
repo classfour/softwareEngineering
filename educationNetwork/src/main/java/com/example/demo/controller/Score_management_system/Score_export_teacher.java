@@ -4,6 +4,7 @@ import com.example.demo.domain.Course_imformation;
 import com.example.demo.domain.ScoreEntity;
 import com.example.demo.domain.StudentScore;
 import com.example.demo.service.Choose_courseService;
+import com.example.demo.service.CookiesService;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -28,7 +29,8 @@ import static com.example.demo.controller.Score_management_system.Score_export.g
 public class Score_export_teacher {
     @Autowired
     private Choose_courseService choose_courseService;
-
+    @Autowired
+    private CookiesService cookiesService;//新加获取cookie
     @RequestMapping(value = "/tscore_query/score_export",method = RequestMethod.POST)
     public void score_export_teacher(@RequestParam("course_name") String course_name, HttpServletResponse response) throws IOException {
         List<Course_imformation> lst=choose_courseService.Course_query("1");

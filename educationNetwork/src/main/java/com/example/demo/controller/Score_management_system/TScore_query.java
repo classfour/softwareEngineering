@@ -6,6 +6,7 @@ import com.example.demo.domain.Course_name;
 import com.example.demo.domain.StudentScore;
 import com.example.demo.domain.Study_year;
 import com.example.demo.service.Choose_courseService;
+import com.example.demo.service.CookiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,7 +23,8 @@ public class TScore_query {
     private Choose_courseService choose_courseService;
     private int status=0;//0乱序,1学号升序,2学号降序,3总成绩升序,4总成绩降序
     private String lst_coursename=null;
-
+    @Autowired
+    private CookiesService cookiesService;//新加获取cookie
     @RequestMapping("/tscore_query/studentnumber_sort_up/{course_name}")
     public String studentnumber_sort_up(@PathVariable("course_name")String course_name){
         lst_coursename=course_name;

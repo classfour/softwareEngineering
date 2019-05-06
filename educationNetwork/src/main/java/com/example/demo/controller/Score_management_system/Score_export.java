@@ -2,6 +2,7 @@ package com.example.demo.controller.Score_management_system;
 
 import com.example.demo.domain.ScoreEntity;
 import com.example.demo.service.Choose_courseService;
+import com.example.demo.service.CookiesService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -25,10 +26,13 @@ import java.util.List;
 public class Score_export {
     @Autowired
     private Choose_courseService choose_courseService;
-
+    @Autowired
+    private CookiesService cookiesService;//新加获取cookie
     @RequestMapping(value = "/score_query/score_export",method = RequestMethod.POST)
     public void score_export(@RequestParam("study_year") String study_year, HttpServletResponse response)throws IOException {
-        List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+        List<ScoreEntity> lst=choose_courseService.Score_query(user_name);
+//        List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
 
         if(!study_year.equals("all")){
             List<ScoreEntity> new_lst=new ArrayList<ScoreEntity>();

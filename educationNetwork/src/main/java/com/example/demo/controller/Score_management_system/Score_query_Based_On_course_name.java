@@ -3,6 +3,7 @@ package com.example.demo.controller.Score_management_system;
 import com.example.demo.domain.ScoreEntity;
 import com.example.demo.domain.Study_year;
 import com.example.demo.service.Choose_courseService;
+import com.example.demo.service.CookiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,7 +19,8 @@ import java.util.List;
 public class Score_query_Based_On_course_name {
     @Autowired
     private Choose_courseService choose_courseService;
-
+    @Autowired
+    private CookiesService cookiesService;//新加获取cookie
     @RequestMapping(value = "/score_query/search_course",method = RequestMethod.POST)
     public String Search_course(@RequestParam(value = "course_name",defaultValue = "") String course_name, @RequestParam(value = "study_year",defaultValue = "all") String study_year,ModelMap model){
         boolean f=false;
@@ -27,7 +29,9 @@ public class Score_query_Based_On_course_name {
         }
         String s=new String();
         s="%"+course_name+"%";
-        List<ScoreEntity> lst=choose_courseService.Score_query_course("2016001",s);
+        String user_name=cookiesService.getCookies("username");//新加cookie
+        List<ScoreEntity> lst=choose_courseService.Score_query_course(user_name,s);
+//        List<ScoreEntity> lst=choose_courseService.Score_query_course("2016001",s);
         if(!f){
             List<ScoreEntity> new_lst=new ArrayList<ScoreEntity>();
             for(ScoreEntity e:lst){

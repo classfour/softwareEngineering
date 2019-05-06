@@ -2,6 +2,7 @@ package com.example.demo.controller.Score_management_system;
 
 import com.example.demo.domain.*;
 import com.example.demo.service.Choose_courseService;
+import com.example.demo.service.CookiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,7 +18,8 @@ public class Score_query {
     private int status=0;//0随机显示，1升序显示，2降序显示
 
     private String lst_study_year=null;
-
+    @Autowired
+    private CookiesService cookiesService;//新加获取cookie
     @RequestMapping("/score_sort_up/{study_year}")
     public String score_sort_up(@PathVariable("study_year")String study_year){
         lst_study_year=study_year;
@@ -43,7 +45,9 @@ public class Score_query {
         if(study_year.equals("all")){
             f=true;
         }
-        List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+        List<ScoreEntity> lst=choose_courseService.Score_query(user_name);
+//        List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
         if(f){
             if(status==1){
                 Collections.sort(lst,new Score_sort_up());
@@ -80,7 +84,9 @@ public class Score_query {
         if(study_year.equals("all")){
             f=true;
         }
-        List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+        List<ScoreEntity> lst=choose_courseService.Score_query(user_name);
+//        List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
         List<Double> score=new ArrayList<Double>();
         List<String> course_name=new ArrayList<String>();
         Map<String,Object> mp=new HashMap<String,Object>();
@@ -110,7 +116,9 @@ public class Score_query {
             f=true;
         }
         Map<String,Object> mp=new HashMap<String,Object>();
-        List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+        List<ScoreEntity> lst=choose_courseService.Score_query(user_name);
+//        List<ScoreEntity> lst=choose_courseService.Score_query("2016001");
         List<Integer> arr=new ArrayList<Integer>();
         int[] cnt=new int[5];
         for(ScoreEntity e:lst){
@@ -151,13 +159,17 @@ public class Score_query {
     @ResponseBody
     @GetMapping("/test")
     public List<ScoreEntity> test(){
-        return choose_courseService.Score_query("2016001");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+        return choose_courseService.Score_query(user_name);
+//        return choose_courseService.Score_query("2016001");
     }
 
     @ResponseBody
     @GetMapping("/gpatest")
     public List<GpaEntity> gpatest(){
-        return choose_courseService.Gpa_query("2016001");
+        String user_name=cookiesService.getCookies("username");//新加cookie
+        return choose_courseService.Gpa_query(user_name);
+//        return choose_courseService.Gpa_query("2016001");
     }
 
 

@@ -4,6 +4,7 @@ import com.example.demo.domain.Course_imformation;
 import com.example.demo.domain.Course_name;
 import com.example.demo.domain.StudentScore;
 import com.example.demo.service.Choose_courseService;
+import com.example.demo.service.CookiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,7 +23,8 @@ import java.util.Map;
 public class TScore_query_analysis {
     @Autowired
     private Choose_courseService choose_courseService;
-
+    @Autowired
+    private CookiesService cookiesService;//新加获取cookie
     @RequestMapping("/tscore_query/analysis")
     public String tscore_query(@RequestParam(value = "course_name",defaultValue = "empty")String course_name, ModelMap model) {
         List<Course_imformation> Course_list = choose_courseService.Course_query("1");
