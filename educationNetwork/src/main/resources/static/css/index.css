@@ -17,3 +17,7 @@ body{
 li{
     margin-left: 10px;
 }
+.content{
+    background-color: white;
+    height: 100px;
+}

@@ -195,15 +195,18 @@ public class graduationController {
         }
         System.out.println(studentNumber);
         ChooseSubject[] chooseSubjects = chooseSubjectService.selectByStudent(studentNumber);
-        List<GraduationSubject> alreadyChoose = new ArrayList<GraduationSubject>();
-        for(ChooseSubject choose:chooseSubjects) {
-            System.out.println(choose.getCourseNumber());
-            GraduationSubject temp = graduationSubjectService.getSubject(choose.getCourseNumber());
-            temp.setTeacher(teacherService.selectByNumber(temp.getTeacherNumber()).getName());
-            alreadyChoose.add(temp);
+        if(chooseSubjects != null) {
+            System.out.println(chooseSubjects);
+            List<GraduationSubject> alreadyChoose = new ArrayList<GraduationSubject>();
+            for(ChooseSubject choose:chooseSubjects) {
+                System.out.println(choose.getCourseNumber());
+                GraduationSubject temp = graduationSubjectService.getSubject(choose.getCourseNumber());
+                temp.setTeacher(teacherService.selectByNumber(temp.getTeacherNumber()).getName());
+                alreadyChoose.add(temp);
+            }
+            GraduationSubject[] chooseArray = alreadyChoose.toArray(new GraduationSubject[alreadyChoose.size()]);
+            model.addAttribute("choose", chooseArray);
         }
-        GraduationSubject[] chooseArray = alreadyChoose.toArray(new GraduationSubject[alreadyChoose.size()]);
-        model.addAttribute("choose", chooseArray);
         GraduationSubject[] graduationSubjects = graduationSubjectService.selectAll();
         model.addAttribute("subjects", graduationSubjects);
         List<String> teachers = new ArrayList<String>();
