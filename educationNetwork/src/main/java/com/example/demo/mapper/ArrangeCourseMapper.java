@@ -45,8 +45,16 @@ public interface ArrangeCourseMapper {
     @Update("update classroom set occupied=#{occupied} where class_number=#{classNumber}")
     boolean updateClassroomOccupied(String occupied, String classNumber);
 
+    //更新老师空闲时间
+    @Update("update teacher set occupation=#{occupation} where name=#{teachername}")
+    boolean updateTeacherOccupation(String occupation, String teachername);
+
+
     //    获得教室的占用情况
     @Select("select occupied from classroom where class_number=#{classNumber}")
     String getClassroomOccupied(String classNumber);
 
+    //    获得老师的时间
+    @Select("select occupation from teacher where name=#{teachername}")
+    String getTeacherOccupied(String teachername);
 }

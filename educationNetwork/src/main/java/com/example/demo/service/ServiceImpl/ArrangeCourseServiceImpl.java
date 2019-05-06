@@ -101,6 +101,22 @@ public class ArrangeCourseServiceImpl implements ArrangeCourseService {
     }
 
     @Override
+    public boolean updateTeacherOccupied(String week, String occupied, String teacherName) {
+        //所选择的教室的占用情况
+        String occ = arrangeCourseMapper.getTeacherOccupied(teacherName);
+        String[] detail = occupied.split("-");
+        int weekInt = Integer.parseInt(week);
+        int start = Integer.parseInt(detail[0]);
+        int end = Integer.parseInt(detail[1]);
+        StringBuilder stringBuilder = new StringBuilder(occ);
+        for (int i = start; i <= end; i++) {
+            stringBuilder.setCharAt((weekInt - 1) * 14 + i - 1, '1');
+        }
+        String res = stringBuilder.toString();
+        return arrangeCourseMapper.updateTeacherOccupation(res, teacherName);
+    }
+
+    @Override
     public boolean updateCourse(String week, String detail, String teacherName, String class_number, String course) {
         String[] details = detail.split("-");
         int weekInt = Integer.parseInt(week);
@@ -137,5 +153,6 @@ public class ArrangeCourseServiceImpl implements ArrangeCourseService {
         }
         return res;
     }
+
 
 }

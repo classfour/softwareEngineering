@@ -25,6 +25,7 @@ public class ArrangeCourseController {
     @RequestMapping("getcoursesbyspecialty")
     public Object getAllCoursesBySpecialty(HttpServletRequest httpServletRequest) {
         String specialty = httpServletRequest.getParameter("specialty");
+        System.out.println(specialty);
         List<String> courses = arrangeCourseService.getUnarrangedCoursesBySpecialty(specialty);
         Map<String, Object> mp = new HashMap<>();
         String occupation = arrangeCourseService.getArrangedCoursesOccupation(specialty);
@@ -42,16 +43,19 @@ public class ArrangeCourseController {
 
     //    按课程最大量查找和教室占用情况查找可以使用的教室，并随机返回一个教室
     @RequestMapping(value = "availableclassroom", method = {RequestMethod.POST})
-    public Object getAvailableClassroom(@RequestBody ArrangeCourseTimeEntity arrangeCourseTimeEntity) {
-        String week = arrangeCourseTimeEntity.getWeek();
-        String detail = arrangeCourseTimeEntity.getDetail();
-        String course = arrangeCourseTimeEntity.getCourse();
+    public Object getAvailableClassroom(HttpServletRequest httpServletRequest) {
+        String week = httpServletRequest.getParameter("week");
+        String detail = httpServletRequest.getParameter("detail");
+        String course = httpServletRequest.getParameter("course");
+//        String week = arrangeCourseTimeEntity.getWeek();
+//        String detail = arrangeCourseTimeEntity.getDetail();
+//        String course = arrangeCourseTimeEntity.getCourse();
         String class_number = arrangeCourseService.getAvailableClassroom(course, week, detail);
         Map<String, Object> mp = new HashMap<>();
         if (class_number == null) {
-            mp.put("result", "fail");
+            mp.put("result1", "fail");
         } else {
-            mp.put("result", "success");
+            mp.put("result1", "success");
             mp.put("class_number", class_number);
         }
         return mp;
@@ -59,14 +63,26 @@ public class ArrangeCourseController {
 
     //    更新数据库，包括教室表和课程表
     @RequestMapping("updateAllInfo")
-    public Object updateAllInfo(@RequestBody ArrangeCourseAllInfo arrangeCourseAllInfo) {
-        String week = arrangeCourseAllInfo.getWeek();
-        String occupied = arrangeCourseAllInfo.getDetail();
-        String classNumber = arrangeCourseAllInfo.getClass_number();
-        String teacherName = arrangeCourseAllInfo.getTeacherName();
-        String course = arrangeCourseAllInfo.getCourse();
+    public Object updateAllInfo(HttpServletRequest httpServletRequest) {
+        String week = httpServletRequest.getParameter("week");
+        String occupied = httpServletRequest.getParameter("detail");
+        String classNumber = httpServletRequest.getParameter("classnumber");
+        String teacherName = httpServletRequest.getParameter("teachername");
+        String course = httpServletRequest.getParameter("course");
+//        String week = arrangeCourseAllInfo.getWeek();
+//        String occupied = arrangeCourseAllInfo.getDetail();
+//        String classNumber = arrangeCourseAllInfo.getClass_number();
+//        String teacherName = arrangeCourseAllInfo.getTeacherName();
+//        String course = arrangeCourseAllInfo.getCourse();
         boolean updateClassroomResult = arrangeCourseService.updateClassroomOccupied(week, occupied, classNumber);
         boolean updateCourseResult = arrangeCourseService.updateCourse(week, occupied, teacherName, classNumber, course);
-        return null;
+        boolean updateTeacherResult = arrangeCourseService.updateTeacherOccupied(week, occupied, teacherName);
+        Map<String, Object> mp = new HashMap<>();
+        if (updateClassroomResult && updateCourseResult && updateTeacherResult) {
+            mp.put("result1", "success");
+        } else {
+            mp.put("result1", "fail");
+        }
+        return mp;
     }
 }

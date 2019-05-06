@@ -19,4 +19,6 @@ public interface ArrangeCourseService {
     boolean updateCourse(String week, String detail, String teacherName, String class_number, String course);
 
     String getArrangedCoursesOccupation(String specialty);
+
+    boolean updateTeacherOccupied(String week, String occupied, String teacherName);
 }
