@@ -48,7 +48,7 @@ def notice():
                 #print(each[:5])
                 if each[:5]=="shift":
                     id=each[6:]
-                    print(id)
+                    #print(id)
                     operation=each[5]#第五位代表操作，u为置顶，d为取消置顶
                     if operation=='u':
                         #先将所有置0，再将其置为1
@@ -88,12 +88,12 @@ def noticeInsert():
     else:
         #发布通知
         if request.method=="POST":
-            print(request.form)
+            #print(request.form)
             title=request.form.get("title")
             date=request.form.get("date")
             content=request.form.get("content")
             orderInsert="insert into notice (title,content,time,status)values (\""+title+"\",\""+content+"\",\""+date+"\",0);"
-            print(orderInsert)
+            #print(orderInsert)
             Cur.execute(orderInsert)
             db.commit()
             return redirect(url_for("noticeInfo_blue.notice", username=session['username']))

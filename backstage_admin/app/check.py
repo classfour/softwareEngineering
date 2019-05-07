@@ -100,3 +100,8 @@ def checkSubject():#检测课题表的冲突
 
     #print(session['infoS'])
     return redirect(url_for("check_blue.check"))
+
+@checkBlue.route("/checkCourse",methods=["POST","GET"])
+def checkCourse():
+    session['conflictC']=[]
+    order="select "

@@ -94,7 +94,7 @@ def allowed_file(filename):
 
 @courseInfoBlue.route('/insertCourse',methods=['POST','GET'])
 def insertCourse():
-    session['route']+="adS"
+    session['route']+="adC"
 
     file_dir = os.path.join(basedir, 'upload')
     if not os.path.exists(file_dir):
@@ -129,18 +129,22 @@ def insertCourse():
 
         session['error']=None
         try:
+
             for i in range(sheet.nrows-1):
                 #print(i)
+                #print(dictfile['专业'][i])
                 order="insert into course values (\""+toStr(dictfile['课程号'][i])+"\",\""+dictfile['课程名'][i]+"\",\""+\
                             dictfile['开设院系'][i]+"\",0,0,"+toStr(dictfile['可选人数'][i])+",\""+dictfile['上课地点'][i]+"\",\""+toStr(dictfile['教师工号'][i])\
                             +"\",\""+dictfile['课程介绍'][i]+"\","+str(toStatus(dictfile['是否为实验课'][i]))+","+toStr(dictfile['学分'][i])+",\"0000000\","+toStr(dictfile['学时'][i])\
-                            +","+toStr(dictfile['起始周'][i])+",\""+dictfile['上课时间'][i]+"\",\""+toGrade(dictfile['年级'][i])+"\",\""\
-                            +dictfile['专业'][i]+"\");"
+                            +","+toStr(dictfile['开始周'][i])+",\""+toStr(dictfile['上课时间'][i])+"\",\""+toGrade(dictfile['年级'][i])+"\",\""+\
+                  str(dictfile['专业'][i])+"\");"
 
-                #print(order)
+            #print(order)
                 Cur.execute(order)
                 db.commit()
         except Exception:
             session['error']="请正确填写文件信息"
+    else:
+        session['error']="请选择正确的文件类型"
 
     return redirect(url_for("courseInfo_blue.course"))

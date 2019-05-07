@@ -2,36 +2,81 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>title</title>
+    <title>修改学生信息</title>
+    <!-- jQuery Version 1.11.1 -->
+<script src="static/lib/jquery/jquery.min.js"></script>
+<script src="static/lib/jquery.cookie/jquery.cookie.js"></script>
+<!-- Bootstrap Core CSS -->
+<link href="static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="static/lib/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="static/lib/metisMenu/css/metisMenu.css" rel="stylesheet">
+
+<!--  Fonts -->
+<link href="static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!--  CSS -->
+<link href="static/css/sts-admin.css" rel="stylesheet">
+<link href="static/lib/bootstrap-daterangepicker/css/daterangepicker.css" rel="stylesheet">
+
+<script>
+            function initradio(radioName,radioValue){
+                var radioObjects = document.getElementsByName(radioName);
+
+                for(var i = 0;i < radioObjects.length;i++){
+                    if(radioObjects[i].value == radioValue){
+                        radioObjects[i].checked =  'checked';
+                    }
+                }
+            }
+        </script>
 </head>
 <body>
-<h1>修改学生{{ username }}信息</h1>
+ <table width="1000" border="0" align="center">
+    <tr>
+    <td colspan="2" style="background-color:#00FFFF;">
+    <h1 align="center">学生信息</h1>
+    </td>
+    </tr>
 
-<form action="/alter/{{ username }}" method="POST">
+    <tr>
+    <td style="background-color:#E8E8E8 ;width:100px;vertical-align:top;">
+    学生照片<br>
+    </td>
+    <td style="background-color:#eeeeee;height:200px;width:400px;vertical-align:top;">
+    <form action="/alter/{{ username }}" method="POST">
 
-    <input type="text"  placeholder="请输入更改后的姓名" value={{ name }} name="name">
+    学生姓名:<input type="text"  placeholder="请输入更改后的姓名" value={{ name }} name="name">
     <br>
-    <input type="text"  placeholder="请输入更改后的性别" value={{ sex }} name="sex">
+    学生性别:<input type="radio" name="sex" value="1">男  <input type="radio" name="sex" value="0">女
+        <script>
+            initradio('sex',{{ sex }});
+        </script>
     <br>
-    <input type="text"  placeholder="请输入更改后的班级" value={{ Class }} name="Class">
+    学生班级:<input type="text"  placeholder="请输入更改后的班级" value={{ Class }} name="Class">
     <br>
-    <input type="text"  placeholder="请输入更改后的入学日期" value={{ date }} name="date">
+    入学日期:<input type="text"  placeholder="请输入更改后的入学日期" value={{ date }} name="date">
     <br>
-    <input type="text"  placeholder="请输入更改后的年级" value= {{ grade }} name="grade">
+    学生年级:<input type="text"  placeholder="请输入更改后的年级" value= {{ grade }} name="grade">
     <br>
-    <input type="text"  placeholder="请输入更改后的课题选择状态" value={{ status }} name="status">
+    课题选择:<input type="text"  placeholder="请输入更改后的课题选择状态" value={{ status }} name="status">
     <br>
-    <input type="text"  placeholder="请输入更改后的照片地址" value={{ image }} name="image">
+    修改照片:<input type="text"  placeholder="请输入更改后的照片地址" value={{ image }} name="image">
     <br>
-    <input type="text"  placeholder="请输入更改后的年龄" value={{ age }} name="age">
+    学生年龄:<input type="text"  placeholder="请输入更改后的年龄" value={{ age }} name="age">
     <br>
-    <input type="text"  placeholder="请输入更改后的主修课程" value={{ major }} name="major">
+    主修课程:<input type="text"  placeholder="请输入更改后的主修课程" value={{ major }} name="major">
     <br>
-    <input type="text"  placeholder="请输入更改后的院系" value={{ department }} name="department">
+    学生院系:<input type="text"  placeholder="请输入更改后的院系" value={{ department }} name="department">
     <br>
-<button type="submit" name="upload">提交</button>
-    <button type="submit" name="mahai">maihai</button>
+<button type="submit" name="upload" style="padding: 5px 5px;border-radius: 5px; background:#eeeeee; border: 1px  #555 solid; color: #333; ">提交</button>
+    <button type="submit" name="mahai" style="padding: 5px 5px;border-radius: 5px; background:#eeeeee; border: 1px  #555 solid; color: #333; ">返回</button>
 
 </form>
+    </td>
+    </tr>
+    </table>
+
+
 </body>
 </html>
