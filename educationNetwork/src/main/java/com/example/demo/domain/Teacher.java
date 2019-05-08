@@ -19,6 +19,16 @@ public class Teacher {
 
     private String enableTeachCourses;
 
+    private String ocupation;
+
+    public String getOcupation() {
+        return ocupation;
+    }
+
+    public void setOcupation(String ocupation) {
+        this.ocupation = ocupation;
+    }
+
     public String getNumber() {
         return number;
     }
