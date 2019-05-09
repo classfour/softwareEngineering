@@ -310,6 +310,13 @@ td.course-info-description {
     background-color: #f0ad4e;
 }
 
+/* 显示选中课程的信息 */
+ul.course-selected {
+    width: 500px;
+    height: 500px;
+    background-color: red;
+}
+
 /* 设置版权与作者信息 */
 .course-footer {
     margin-top: 15px;
