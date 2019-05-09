@@ -8,9 +8,13 @@ roomInfoBlue=Blueprint('roomInfo_blue',__name__)
 @roomInfoBlue.route('/room',methods=['POST','GET'])
 
 def room():
+    try:
+        session['route'] += "rom"
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
 
     if request.method=="POST":
-        print(request.form)
+        #print(request.form)
         listForm=list(request.form)
 
 
@@ -46,6 +50,7 @@ def room():
                       "教室编号":each[0],"教室容量":roomstr,"教室名称":each[3],"教室占用情况":
                 "<a href=\"/room/"+each[2]+"\">点击查看占用情况</a>"})
     #print(dataR)
+
     return render_template("room.html",username=session['username'],roomData=json.dumps(dataR,ensure_ascii=False))
 
 
@@ -57,6 +62,11 @@ def allowed_file(filename):
 
 @roomInfoBlue.route('/addroom',methods=['POST','GET'])
 def addroom():
+
+    try:
+        session['route'] += "adR"
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
 
     file_dir = os.path.join(basedir, 'upload')
     if not os.path.exists(file_dir):

@@ -198,7 +198,8 @@
 						<li><a href="#"><i class="glyphicon glyphicon-inbox"></i> 课题管理<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
                                 <li><a href="/subject">课题信息管理</a></li>
-                                <li><a href="/cSubject">课题选择信息管理</a></li>
+                                <li><a href="/choose_subject">学生课题选择信息管理</a></li>
+                                <li><a href="/cSubject">教师课题选择信息管理</a></li>
 
 
                             </ul>
@@ -248,8 +249,23 @@
                         <option  value="student">学生</option>
                         <option  value="teacher">教师</option>
                         <option  value="admin">管理</option>
-
                     </select>
+                    <label for="name">选择学院</label>
+                    <select class="form-control" name="department">
+                        <option value="all">所有</option>
+                        {% for k in department %}
+                            <option value={{ k }}>{{ k }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="name">选择专业</label>
+                    <select class="form-control" name="major">
+                        <option value="all">所有</option>
+                        {% for k in major %}
+                            <option value={{ k }}>{{ k }}</option>
+                        {% endfor %}
+                    </select>
+
                 </div>
                 <button type="submit" class="btn btn-default">确认</button>
             </form>
@@ -263,6 +279,7 @@
 		<div id="ycy666"></div>
 
 				<input type="button" value="下载表单" onclick="javascrtpt:window.location.href='../download/userExample.xlsx'">
+
         </div>
 
 	</div>

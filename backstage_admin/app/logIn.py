@@ -32,6 +32,7 @@ def log_in():
 			session['password']=password
 			session['infoU']=[]
 			session['infoS'] = []
+			session['infoC'] = []
 			session['error']=None#程序错误信息
 			session['route']="log"#记录前端访问路径，每三个字符表示一个
 

@@ -5,9 +5,16 @@ checkBlue=Blueprint('check_blue',__name__)
 
 @checkBlue.route("/check",methods=["POST","GET"])
 def check():
-    session['route']+="che"
+    try:
+        session['route']+="che"
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
+
+
     if "username" in list(session.keys()):
-        return render_template("check.html",dataUser=session['infoU'],dataSubject=session['infoS'],ERROR=session['error'])
+        return render_template("check.html",dataUser=session['infoU'],dataSubject=session['infoS']
+                               ,dataCourse=session['infoC'],ERROR=session['error'])
+
     else:
         return redirect(url_for('login_blue.log_in'))
 
@@ -87,6 +94,14 @@ def checkSubject():#检测课题表的冲突
     Cur.execute(orderU)
     dataU=Cur.fetchall()
 
+    order="select student_number from complaint;"
+    Cur.execute(order)
+    data1=Cur.fetchall()
+
+    order="select student_number from subject_results;"
+    Cur.execute(order)
+    data2=Cur.fetchall()
+
     #print(dataC,dataS,dataT,dataU)
     for each in dataC:
         if not each in dataS:
@@ -98,10 +113,30 @@ def checkSubject():#检测课题表的冲突
             message="请尽快在教师表中补充工号为"+each[0]+"的详细信息"
             session['infoS'].append(message)
 
+    for each in data1:
+        if not each in data2:
+            message="对于学生号为"+each[0]+"的学生，申诉表与课题选择表产生冲突"
+            session['infoS'].append(message)
+
     #print(session['infoS'])
     return redirect(url_for("check_blue.check"))
 
 @checkBlue.route("/checkCourse",methods=["POST","GET"])
 def checkCourse():
-    session['conflictC']=[]
-    order="select "
+    session['infoC']=[]
+    order="select number from course;"
+    Cur.execute(order)
+    data1=Cur.fetchall()
+
+    order="select course_number from choose_course;"
+    Cur.execute(order)
+    data2=Cur.fetchall()
+
+    #print(data1,data2)
+
+    for each in data2:
+        if not (each[0],) in data1:
+            message = "请尽快在课题表中补充课程号为" + each[0] + "的详细信息"
+            session['infoC'].append(message)
+
+    return redirect(url_for("check_blue.check"))

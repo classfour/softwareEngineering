@@ -96,6 +96,10 @@ alterBlue=Blueprint('alter_blue',__name__)
 #修改教师信息
 @alterBlue.route('/altert/<string:username>',methods=['POST','GET'])
 def altert(username):
+    try:
+        session['route'] += "alT"
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
 
     if request.method=="POST":
         #print(request.form)
@@ -135,16 +139,23 @@ def altert(username):
 #修改学生信息
 @alterBlue.route('/alter/<string:username>',methods=['POST','GET'])
 def alter(username):
+    try:
+        session['route'] += "alt"
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
 
     if request.method=="POST":
 
         #print(list(request.form))
         if "upload" in list(request.form):
+            order = "select gpa from student where number=\"" + username + "\";"
+            Cur.execute(order)
+            gpa = str(Cur.fetchone()[0])
             orderD = "delete from student where number =\"" + username + "\";"
             #print(orderD)
             Cur.execute(orderD)
             db.commit()
-            gpa=str(4.33)
+
 
             orderI = "insert into student values (\"" + username + "\",\"" + request.form.get(
                 "name") + "\"," + request.form.get("sex") \
@@ -183,6 +194,11 @@ def alter(username):
 
 @alterBlue.route('/operate',methods=['POST','GET'])
 def operate():
+    try:
+        session['route'] += "ope"
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
+
     error=None
     listMysqlS = ""
     for eachS in session['listS']:
@@ -288,16 +304,26 @@ def operate():
             else:
                 pass
 
+
+
             return redirect(url_for("userInfo_blue.userInfo",username=session["username"]))
         else:
             error="密码输入不正确,无法操作"
-        print(dataT,dataS)
+        #print(dataT,dataS)
 
-    return render_template("operate.html", dataS=json.dumps(dataS, ensure_ascii=False),dataT=json.dumps(dataT,
-                                                                                                        ensure_ascii=False),error=error)
+    if "username" in list(session.keys()):
+        return render_template("operate.html", dataS=json.dumps(dataS, ensure_ascii=False),major=session['major'],
+                               dataT=json.dumps(dataT,ensure_ascii=False),error=error)
+    else:
+        return redirect(url_for('login_blue.log_in'))
+
 #修改课题信息
 @alterBlue.route('/alters/<string:subjectname>',methods=['POST','GET'])
 def alters(subjectname):
+    try:
+        session['route'] += "alS"
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
     order="select * from graduation_subject where serialnumber=\""+subjectname+"\";"
     Cur.execute(order)
     data=Cur.fetchall()[0]
@@ -314,7 +340,7 @@ def alters(subjectname):
                    "\",\""+request.form.get('max_number')+"\");"
             Cur.execute(orderI)
             db.commit()
-        return redirect(url_for('userInfo_blue.userInfo',username=session['username']))
+        return redirect(url_for('subjectInfo_blue.subjectInfo'))
 
 
     return render_template("alters.html",serialnumber=data[0],name=data[1],introduce=data[2],status=data[3],
@@ -323,6 +349,11 @@ def alters(subjectname):
 #修改课程信息
 @alterBlue.route('/alterc/<string:coursenumber>',methods=['POST','GET'])
 def alterc(coursenumber):
+    try:
+        session['route'] += "alC"
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
+
     order="select * from course where number=\""+coursenumber+"\";"
     Cur.execute(order)
     data=Cur.fetchall()[0]
@@ -342,9 +373,12 @@ def alterc(coursenumber):
             #print(orderI)
             Cur.execute(orderI)
             db.commit()
-        return redirect(url_for('userInfo_blue.userInfo',username=session['username']))
+        return redirect(url_for('courseInfo_blue.course'))
 
+    if "username" in list(session.keys()):
 
-    return render_template("alterc.html",number=data[0],name=data[1],department=data[2],status=data[3],
+        return render_template("alterc.html",number=data[0],name=data[1],department=data[2],status=data[3],
                            max_number=data[5],location=data[6],teacher_number=data[7],introduce=data[8],type=data[9],credits=data[10],
                            time=data[12],begin=data[13],day=data[14],grade=data[15],specialty=data[16])
+    else:
+        return redirect(url_for('login_blue.log_in'))

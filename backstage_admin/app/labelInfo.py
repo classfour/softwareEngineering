@@ -33,34 +33,58 @@ def labelInfo():
 
 
         else:
-            for each in listForm:
-                #添加新课程到标签
-                if each[:5]=="addto":
-                    addCourse=request.form.get('add'+each[5:])
-                    order="select course_number from label where id="+each[5:]+";"
-                    Cur.execute(order)
-                    dataAdd=Cur.fetchone()[0]+"+"+addCourse
-                    if not addCourse=="no":
-                        order="update label set course_number=\""+dataAdd+"\" where id="+each[5:]+";"
-                        #print(order)
+            try:
+                for each in listForm:
+                    #添加新课程到标签
+                    if each[:5]=="addto":
+                        addCourse=request.form.get('add'+each[5:])
+                        order="select course_number from label where id="+each[5:]+";"
                         Cur.execute(order)
-                        db.commit()
+                        dataAdd=Cur.fetchone()[0]+"+"+addCourse
+                        if not addCourse=="no":
+                            order="update label set course_number=\""+dataAdd+"\" where id="+each[5:]+";"
+                            #print(order)
+                            Cur.execute(order)
+                            db.commit()
 
-                    order = "select * from label;"
-                    Cur.execute(order)
-                    data = Cur.fetchall()
-                    break
+                        order = "select * from label;"
+                        Cur.execute(order)
+                        data = Cur.fetchall()
+                        break
 
-                #选择查询操作
-                if each[:6]=="select":
-                    button=each[6:]
-                    data1=[]
-                    for each in data:
-                        course=each[2].split("+")
-                        if button in course:
-                            data1.append(each)
-                    data=data1
-                    break
+                    #选择查询或删除操作
+                    if each[:6]=="select":
+                        if request.form.get('operation')=="0":
+                            button=each[6:each.index("+")]
+                            data1=[]
+                            for each1 in data:
+                                course=each1[2].split("+")
+                                if button in course:
+                                    data1.append(each1)
+                            data=data1
+
+                        else:
+                            order="select course_number from label where id="+each[each.index("+")+1:]+";"
+                            #print(order)
+                            Cur.execute(order)
+                            data1=Cur.fetchone()[0].split("+")
+                            data1.remove(each[6:each.index("+")])
+                            str1=""
+                            for each1 in data1:
+                                str1+="+"+each1
+                            order="update label set course_number =\""+str1+"\" where id="+each[each.index("+")+1:]+";"
+                            #print(order)
+                            Cur.execute(order)
+                            db.commit()
+
+                            order = "select * from label;"
+                            Cur.execute(order)
+                            data = Cur.fetchall()
+                        break
+            except Exception:
+                return redirect(url_for("index_blue.hello_world",username=session['username'],ERROR="程序异常"))
+
+
 
 
 
@@ -75,7 +99,7 @@ def labelInfo():
                 order="select name from course where number =\""+eachCourse+"\";"
                 Cur.execute(order)
 
-                strCourse+="<button class=\"btn btn-default\" name=\"select"+eachCourse+"\">"+Cur.fetchone()[0]+"</button>  "
+                strCourse+="<button class=\"btn btn-default\" name=\"select"+eachCourse+"+"+str(each[0])+"\">"+Cur.fetchone()[0]+"</button>  "
 
                 strC+="\""+eachCourse+"\","
 

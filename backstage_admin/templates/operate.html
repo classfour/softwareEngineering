@@ -134,8 +134,9 @@
 					<label for="name">转专业</label>
 					<select class="form-control" name="alterMajor">
 						<option value="no">否</option>
-						<option value="计算机科学与技术">计算机科学与技术</option>
-						<option value="其他">其他</option>
+                        {% for k in major %}
+                            <option value={{ k }}>{{ k }}</option>
+                        {% endfor %}
 					</select>
 				</div>
 

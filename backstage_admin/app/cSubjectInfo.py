@@ -44,12 +44,16 @@ def cSubjectInfo():
         checkstr = "<input type=\"checkbox\" name=\"select" + str(each[0]) + "\"  />"
         orderS = "select teacher_number from graduation_subject where serialnumber=\"" + each[1] + "\";"
         Cur.execute(orderS)
+        try :
+            teacher_number=Cur.fetchall()[0][0]
 
-        teacher_number=Cur.fetchall()[0][0]
 
-        listR.append({"<button class=\"btn btn-default\" name=\"delete\">批量删除</button>":checkstr,
-                      "学生学号":"<a href=\"alter/"+each[0]+"\">"+each[0]+"</a>","课题号":each[1],"教师编号":"<button name=\"choose"+teacher_number+"\">"+teacher_number+"</button>",
-                      "提交标题":each[2],"提交内容":each[3],"成绩":each[4],"是否被申诉":toStatus(each[5])})
+            listR.append({"<button class=\"btn btn-default\" name=\"delete\">批量删除</button>":checkstr,
+                          "学生学号":"<a href=\"alter/"+each[0]+"\">"+each[0]+"</a>","课题号":each[1],"教师编号"
+                          :"<button name=\"choose"+teacher_number+"\">"+teacher_number+"</button>",
+                          "提交标题":each[2],"提交内容":each[3],"成绩":each[4],"是否被申诉":toStatus(each[5])})
+        except Exception:
+            break
         #print(listR)
 
-    return render_template("select_subject.html",dataR=json.dumps(listR,ensure_ascii=False))
+    return render_template("select_subject.html",dataR=json.dumps(listR,ensure_ascii=False),username=session['username'])

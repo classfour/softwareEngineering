@@ -30,43 +30,54 @@ courseInfoBlue=Blueprint('courseInfo_blue',__name__)
 @courseInfoBlue.route('/course',methods=['POST','GET'])
 def course():
     session['route']+="cou"
+    orderselect = "select * from course;"
 
     if request.method=="POST":
         #print(request.form)
         listForm=list(request.form)
+        operation=""
         orderD=""
 
         if "shifton" in listForm :
             order="update course set status=1 where number in ("
+            operation="piliang"
         elif "shiftoff" in listForm:
             order="update course set status=0 where number in ("
+            operation = "piliang"
         elif "delete" in listForm:
             orderD="delete from choose_course where course_number in ("
             order="delete from course where number in ("
+            operation = "piliang"
 
 
-        for each in listForm:
-            if each[:6]=="select":
-                order+="\""+each[6:]+"\","
-                orderD+="\""+each[6:]+"\","
+        if operation=="piliang":
+            for each in listForm:
+                if each[:6]=="select":
+                    order+="\""+each[6:]+"\","
+                    orderD+="\""+each[6:]+"\","
 
-        order=order[:-2]+"\");"
-        orderD=orderD[:-2]+"\");"
-        #print(order)
+            order=order[:-2]+"\");"
+            orderD=orderD[:-2]+"\");"
+            #print(order)
 
-        if len(listForm)>1:
-            if "delete" in listForm:
-                Cur.execute(orderD)
+            if len(listForm)>1:
+                if "delete" in listForm:
+                    Cur.execute(orderD)
+                    db.commit()
+
+
+                Cur.execute(order)
                 db.commit()
+        else:
+            for each in listForm:
+                if each[:10]=="department":
+                    orderselect="select * from course where departments=\""+each[10:]+"\";"
+                    break
 
 
-            Cur.execute(order)
-            db.commit()
 
 
-    order="select * from course;"
-
-    Cur.execute(order)
+    Cur.execute(orderselect)
     dataCourse=Cur.fetchall()
     dataS=[]
     for each in dataCourse:
@@ -75,17 +86,23 @@ def course():
 
         astr="<a href=\"alterc/"+each[0]+"\">"+each[0]+"</a>"
 
-        dataS.append({"批量操作":checkstr,"课程编号":astr,"课程名称":each[1],"开设学院":each[2],"是否开启":toStatus(each[3]),"可选人数":
+        departstr="<button name=\"department"+each[2]+"\">"+each[2]+"</button>"
+
+        dataS.append({"批量操作":checkstr,"课程编号":astr,"课程名称":each[1],"开设学院":departstr,"是否开启":toStatus(each[3]),"可选人数":
                       each[5],"已选该课题人数":each[4],"教师编号":"<a href=\"altert/"+each[7]+"\">"+each[7]+"</a>"
                       })
 
-    #print(session['route'][-6:-3])
-    if not session['route'][-6:-3]=="adC":
-        session['error']=None
-    #print(dataS)
+    if "username" in list(session.keys()):
+        #print(session['route'][-6:-3])
+        if not session['route'][-6:-3]=="adC":
+            session['error']=None
+        #print(dataS)
+        #只显示来自excel添加课程的错误信息
 
-    return render_template("course.html",dataCourse=json.dumps(dataS,ensure_ascii=False),
+        return render_template("course.html",dataCourse=json.dumps(dataS,ensure_ascii=False),
                            username=session['username'],ERROR=session['error'])
+    else:
+        return redirect(url_for('login_blue.log_in'))
 
 basedir =os.path.abspath(os.path.dirname(__file__))
 ALLOWED_EXTENSIONS=set(['xlsx','xls'])
@@ -128,11 +145,12 @@ def insertCourse():
         #print(dictfile)
 
         session['error']=None
-        try:
 
-            for i in range(sheet.nrows-1):
-                #print(i)
-                #print(dictfile['专业'][i])
+
+        for i in range(sheet.nrows-1):
+            #print(i)
+            #print(dictfile['专业'][i])
+            try:
                 order="insert into course values (\""+toStr(dictfile['课程号'][i])+"\",\""+dictfile['课程名'][i]+"\",\""+\
                             dictfile['开设院系'][i]+"\",0,0,"+toStr(dictfile['可选人数'][i])+",\""+dictfile['上课地点'][i]+"\",\""+toStr(dictfile['教师工号'][i])\
                             +"\",\""+dictfile['课程介绍'][i]+"\","+str(toStatus(dictfile['是否为实验课'][i]))+","+toStr(dictfile['学分'][i])+",\"0000000\","+toStr(dictfile['学时'][i])\
@@ -142,8 +160,15 @@ def insertCourse():
             #print(order)
                 Cur.execute(order)
                 db.commit()
-        except Exception:
-            session['error']="请正确填写文件信息"
+            except Exception:
+                str1="编号为"+toStr(dictfile['课程号'][i])+"与数据库有冲突,"
+                if session['error']==None:
+                    session['error']=str1
+                else:
+                    session['error']+=str1
+
+
+
     else:
         session['error']="请选择正确的文件类型"
 

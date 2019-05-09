@@ -179,27 +179,29 @@
 						</li>
 
 						<li>
-							<a href=""><i class="fa fa-table fa-fw"></i> 管理2<span class="fa arrow"></span></a>
+							<a href=""><i class="fa fa-table fa-fw"></i> 学生成绩管理<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="/pasture_form">管理2-1</a></li>
-                                <li><a href="#field_form">管理2-2</a></li>
-                                <li><a href="#cesspool_form">管理2-3</a></li>
-                                <li><a href="#machinery_form">管理2-4</a></li>
+								<li><a href="/score">查询课程成绩</a></li>
+                                <li><a href="/sSubject">查询课题成绩</a></li>
+
 
 							</ul>
 						</li>
 
 						<li><a href="#"><i class="glyphicon glyphicon-grain"></i>课程管理<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-                                <li><a href="/subject">课程信息管理</a></li>
-                                <li><a href="#soil_form"> 选课信息管理</a></li>
+                                <li><a href="/course">课程信息管理</a></li>
+                                <li><a href="/label">课程标签管理</a></li>
+                                <li><a href="/cCourse"> 选课信息管理</a></li>
 							</ul>
 						</li>
 
 						<li><a href="#"><i class="glyphicon glyphicon-inbox"></i> 课题管理<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
                                 <li><a href="/subject">课题信息管理</a></li>
-                                <li><a href="/cSubject">课题选择信息管理</a></li>
+                                <li><a href="/choose_subject">学生课题选择信息管理</a></li>
+                                <li><a href="/cSubject">教师课题选择信息管理</a></li>
+
 
                             </ul>
 						</li>
@@ -208,7 +210,9 @@
 							<ul class="nav nav-second-level">
 								<li><a href="/notice" >通知管理</a></li>
                                 <li><a href="/room" >教室管理</a></li>
+                                <li><a href="/complaint" >学生申诉管理</a></li>
                                 <li><a href="/check" >数据冲突修复</a></li>
+
 							</ul>
 						</li>
 					</ul>
@@ -245,6 +249,7 @@
 					<button name="shifton" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">设置为可选</button>
 					<button name="shiftoff" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">设置为不可选</button>
 					<button name="delete" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">删除</button>
+                    <button name="selectall" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">显示全部</button>
 				</div>
 			</form>
 			<!--  分页 -->

@@ -31,4 +31,4 @@ def cCourseInfo():
         dataC.append({"<button class=\"btn btn-default\" name=\"delete\">批量删除</button>":checkstr,
                       "学生编号":each[1],"课程编号":each[2],"成绩":each[3],"选课时间":each[4],"gpa":str(each[5])})
     #print(dataC)
-    return render_template("select_course.html",dataC=json.dumps(dataC,ensure_ascii=False))
+    return render_template("select_course.html",dataC=json.dumps(dataC,ensure_ascii=False),username=session['username'])

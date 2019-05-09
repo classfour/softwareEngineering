@@ -14,13 +14,15 @@ def allowed_file(filename):
 #根据查询选择生成相关数据库查询指令
 def getOrder(chosenType):
     if chosenType=='all':
-        order="select * from user;"
+        order="select * from user"
     elif chosenType=='student':
-        order="select * from user where level=0;"
+        order="select * from user where level=0"
     elif chosenType=='teacher':
-        order="select * from user where level=1;"
+        order="select * from user where level=1"
     else :
-        order="select * from user where level=2;"
+        order="select * from user where level=2"
+
+
 
     return order
 
@@ -60,49 +62,75 @@ def updateSql(dict1):
                    +workage+","+sex+","+status+",\" \",\""+image+"\");"
             #可以教授的课程初始值为空
 
-        Cur.execute(order2)
-        #print(order2)
+        else:
+            order2="to except"#用以触发下列异常
 
-        db.commit()
+        try:
+            Cur.execute(order2)
+            #print(order2)
 
-        order1="insert into user values(\""+number+"\",\""+number+"\","+level+");"
-        Cur.execute(order1)
-        #print(order1)
-        db.commit()
+            db.commit()
+
+            order1="insert into user values(\""+number+"\",\""+number+"\","+level+");"
+            Cur.execute(order1)
+            #print(order1)
+            db.commit()
+        except Exception:
+            str1="编号"+str(number)+"的"+str(dict1['身份'][i])+"与数据库产生冲突,"
+            if session['error']==None:
+                session['error']=str1
+            else:
+                session['error']+=str1
+            continue
 
 
 
 
-def getdict(tuple1):
+def getdict(tuple1,department,major):
     #print(tuple1)
 
     listFinal=[]
     listUserName = []
     listIdentity = []
     listName=[]
+    listDepartment=[]
 
 
     for each in tuple1:
-        listUserName.append(each[0])
+
         if each[2] == 0:
             sf = '学生'
-            order="select name from student where number ="+"\""+each[0]+"\";"
+            order="select name,departments,major from student where number ="+"\""+each[0]+"\";"
             Cur.execute(order)
-            name = Cur.fetchone()[0]
+            data1=Cur.fetchone()
+            name = data1[0]
+            Department=data1[1]
+            Major=data1[2]
+
 
 
         elif each[2] == 1:
             sf = '教师'
-            order = "select name from teacher where number =" + "\"" + each[0] + "\";"
+            order = "select name,departments from teacher where number =" + "\"" + each[0] + "\";"
             Cur.execute(order)
-            name = Cur.fetchone()[0]
+            data1 = Cur.fetchone()
+            name = data1[0]
+            Department = data1[1]
+
 
         else:
             sf = '管理'
             name="某管理"
 
-        listIdentity.append(sf)
-        listName.append(name)
+
+        if (sf=="管理" and department=="all" and major=="all") or (sf=="教师" and (department==Department or department=="all") and major=="all"
+        ) or(sf=="学生" and (department==Department or department=="all") and (Major==major or major=="all")):
+
+            listUserName.append(each[0])
+            listIdentity.append(sf)
+            listName.append(name)
+            listDepartment.append(Department)
+    #print(listName,listDepartment)
 
     for i in range(len(listUserName)):
 
@@ -120,7 +148,8 @@ def getdict(tuple1):
 
 
         listFinal.append({"姓名": listName[i],"用户名":listUserName[i],"身份":listIdentity[i],"选择":btnstr,
-                          "<button class=\"btn btn-link\">批量操作</button>":checkstr})
+                          "<button class=\"btn btn-link\">批量操作</button>":checkstr,"院系":listDepartment[i]})
+    #print(listFinal)
 
 
 
@@ -128,6 +157,8 @@ def getdict(tuple1):
 
 #默认查询全部
 chosenType="all"
+department="all"
+major="all"
 order=getOrder(chosenType)
 Cur.execute(order)
 data=Cur.fetchall()
@@ -142,18 +173,24 @@ def userInfo1():
     #print(request.form)
 
 
+
     #若前台提交数据，则更改查询内容
     if request.method=='POST':
+        #print(request.form)
         chosenType=request.form['identity']
+        department=request.form['department']
+        major=request.form['major']
 
-    order = getOrder(chosenType)
+    order=getOrder(chosenType)
     Cur.execute(order)
     data=Cur.fetchall()
     #print(data)
    # print(getdict(data))
     #print(session.get['username'])
     if "username" in list(session.keys()):
-        return render_template('index.html',data_1=json.dumps(getdict(data), ensure_ascii=False),username=session['username'])
+        #print(optstr)
+        return render_template('index.html',data_1=json.dumps(getdict(data,department,major), ensure_ascii=False),
+                               username=session['username'],department=session['department'],major=session['major'])
     else:
         return redirect(url_for('login_blue.log_in'))
 
@@ -197,12 +234,9 @@ def userInfo2():
        # print(dictfile)
 
         session['error'] = None
-        try:
-            updateSql(dictfile)
-        except Exception:
 
+        updateSql(dictfile)
 
-            session['error']="请按照要求填写文件"
 
 
         error ="文件上传"
@@ -241,7 +275,6 @@ def userInfo3():
     #print(listS,listT)
     session["listS"]=listS
     session["listT"]=listT
-
 
 
     return redirect(url_for("alter_blue.operate"))

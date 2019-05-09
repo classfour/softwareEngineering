@@ -1,8 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-    <script type="text/javascript">
-         var data={{ dataR|tojson }}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="static/pics/logo2.ico">
+
+<title>课题选择管理</title>
+
+<!-- jQuery Version 1.11.1 -->
+<script src="static/lib/jquery/jquery.min.js"></script>
+<script src="static/lib/jquery.cookie/jquery.cookie.js"></script>
+<!-- Bootstrap Core CSS -->
+<link href="static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="static/lib/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="static/lib/metisMenu/css/metisMenu.css" rel="stylesheet">
+
+<!--  Fonts -->
+<link href="static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!--  CSS -->
+<link href="static/css/sts-admin.css" rel="stylesheet">
+<link href="static/lib/bootstrap-daterangepicker/css/daterangepicker.css" rel="stylesheet">
+
+<style>
+
+    </style>
+<script type="text/javascript">
+
+		 var data={{ dataR|tojson }}
           var jsonArray = JSON.parse(data);//把json数据转换为JavaScript对象
 		  var headArray = [];
 
@@ -42,16 +71,170 @@
 
 
         }
-    </script>
-    <meta charset="UTF-8">
-    <title>课题选择表操作</title>
-</head>
-<body onload="appendTable(jsonArray)">
-<form action="/cSubject" method="post">
-    <div id="div1">
 
-    </div>
-</form>
+
+		function goPage(pno,psize){
+			var itable = document.getElementById("idData");
+			var num = itable.rows.length - 1;//表格所有行数(所有记录数)
+			console.log(num);//输出所有行数
+			var totalPage = 0;//总页数
+			var pageSize = psize;//每页显示行数
+			if(num/pageSize > parseInt(num/pageSize)){//totalPage为页数//总共分几页
+				totalPage=parseInt(num/pageSize)+1;
+			}else{
+				totalPage=parseInt(num/pageSize);
+			}
+			var currentPage = pno;//当前页数
+			var startRow = (currentPage - 1) * pageSize+1;//开始显示的行 1
+			var endRow = currentPage * pageSize;//结束显示的行  10
+			endRow = (endRow > num)? num : endRow;  //40
+			console.log(endRow);
+			for(var i=1;i<(num+1);i++){
+				var irow = itable.rows[i];
+				if(i>=startRow && i<=endRow){
+				  irow.style.display = "table-row";
+				}else{
+				  irow.style.display = "none";
+				}
+			}
+			var tempStr = "共"+num+"条记录 分"+totalPage+"页 当前第"+currentPage+"页";
+			tempStr = "<ul class=\"pager\"><li><a href=\"#\" onClick=\"goPage("+(1)+","+psize+")\">首页</a></li>";
+			if(currentPage>1){
+				tempStr += "<li><a href=\"#\" onClick=\"goPage("+(currentPage-1)+","+psize+")\">上一页</a></li>";
+			}else{
+				tempStr += "<li><a href=\"#\">上一页</a></li>";
+			}
+			tempStr +="共"+num+"条记录 分"+totalPage+"页 当前第"+currentPage+"页";
+			if(currentPage<totalPage){
+				tempStr += "<li><a href=\"#\" onClick=\"goPage("+(currentPage+1)+","+psize+")\">下一页</a></li>";
+				tempStr += "<li><a href=\"#\" onClick=\"goPage("+(totalPage)+","+psize+")\">尾页</a></li>";
+			}else{
+				tempStr += "<li><a href=\"#\">下一页</a></li>";
+				tempStr += "<li><a href=\"#\">尾页</a></li>";
+			 }
+
+			document.getElementById("ycy666").innerHTML = tempStr;
+		}
+
+
+
+
+</script>
+
+</head>
+
+<body onload="appendTable(jsonArray);goPage(1,8);" data-type="generalComponents">
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+			<div class="navbar-header"></div>
+            <a  id="toplogoa" class="navbar-brand" href="/">
+                <img id="toplogo" src="static/pics/logo.png"   alt="logo">
+            </a>
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+                <a class="navbar-brand" href="/">后台管理系统</a>
+			</div>
+
+			<ul class="nav navbar-top-links navbar-right">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	                    <i class="fa fa-user fa-fw"></i>
+	                    <input id="usernameBtn" type="button" name="fname" value={{ username }}></input>
+	                    <i class="fa fa-caret-down"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> 个人信息</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a></li>
+						<li class="divider"></li>
+					<li>
+					<a href="log_out"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+					</li>
+					</ul>
+				</li>
+
+			</ul>
+
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li>
+							<a href="/"><i class="glyphicon glyphicon-user"></i> 用户信息管理</a>
+						</li>
+
+						<li>
+							<a href=""><i class="fa fa-table fa-fw"></i> 学生成绩管理<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="/score">查询课程成绩</a></li>
+                                <li><a href="/sSubject">查询课题成绩</a></li>
+
+
+							</ul>
+						</li>
+
+						<li><a href="#"><i class="glyphicon glyphicon-grain"></i>课程管理<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+                                <li><a href="/course">课程信息管理</a></li>
+                                <li><a href="/label">课程标签管理</a></li>
+                                <li><a href="/cCourse"> 选课信息管理</a></li>
+							</ul>
+						</li>
+
+						<li><a href="#"><i class="glyphicon glyphicon-inbox"></i> 课题管理<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+                                <li><a href="/subject">课题信息管理</a></li>
+                                <li><a href="/choose_subject">学生课题选择信息管理</a></li>
+                                <li><a href="/cSubject">教师课题选择信息管理</a></li>
+
+
+                            </ul>
+						</li>
+
+						<li><a href="#"><i class="  fa fa-cog fa-fw"></i> 其他操作<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="/notice" >通知管理</a></li>
+                                <li><a href="/room" >教室管理</a></li>
+                                <li><a href="/complaint" >学生申诉管理</a></li>
+                                <li><a href="/check" >数据冲突修复</a></li>
+
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+		</nav>
+
+		<div id="page-wrapper">
+
+
+			<form method="post" action="/cSubject">
+				<div id="div1"></div>
+			</form>
+			<div id="ycy666"></div>
+
+
+
+
+
+		</div>
+
+	</div>
+
+
+	<script src="static/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/lib/bootstrap-daterangepicker/js/daterangepicker.js"></script>
+    <script src="static/lib/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="static/lib/bootstrap-select/js/defaults-zh_CN.min.js"></script>
+	<script src="static/lib/metisMenu/js/metisMenu.min.js"></script>
+	<script src="static/js/sts-admin.js"></script>
 
 </body>
 </html>
