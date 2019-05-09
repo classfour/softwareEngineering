@@ -90,7 +90,10 @@ window.onload = function () {
             let target = e.target; // 点击的具体元素
             let targetTr = target.parentNode.parentNode; // 产生点击元素的tr元素
             if(target.className.indexOf('selectable') !== -1) { // 选中到已选条件中
-                console.log('可选中');
+                if(conditionData.selectedConditions[targetTr.id].indexOf(target.innerText) === -1) {
+                    conditionData.selectedConditions[targetTr.id].push(target.innerText);
+                    addSelectedCondition(targetTr.id, target.innerText);
+                }
             } else if(target.className.indexOf('switchable') !== -1) { // 切换为当前院系的专业
                 conditionData.presentCollege = target.id;
                 changeCollege();
@@ -98,6 +101,12 @@ window.onload = function () {
         }
     }
     initTable();
+}
+
+let addSelectedCondition = (type, condition) => {
+    let conditionUl = document.getElementsByClassName('selected-conditions')[0];
+    let li = $(`<li class="selected-item"><span class="selected-item-question">${conditionData.name[type]}</span>:<span class="selected-item-answer">${condition}</span><span class="deselect-cross" data-type-name="${type}"></span></li>`)[0];
+    conditionUl.appendChild(li);
 }
 
 // 切换院系，改变所有当前显示的专业名称
@@ -131,4 +140,21 @@ let courseInfo = $('.course-info-container');
 toggleArrow.click(() => {
     toggleArrow.css('background-position-x', courseInfo.hasClass('hide-aside') ? '-30px' : '4px');
     courseInfo.toggleClass('hide-aside');
+})
+
+// 已选条件ul的点击事件，将点击叉号将某项删除
+let selectedConditionUl = $('.selected-conditions');
+selectedConditionUl.click((e) => {
+    let target = e.target;
+    let targetLi = target.parentNode;
+    // 点击叉号则删除该项
+    if(target.className.indexOf('deselect-cross') !== -1) {
+        let name = target.getAttribute('data-type-name');
+        let val = targetLi.children[1].innerText;
+        let pos = conditionData.selectedConditions[name].indexOf(val);
+        // 从conditionData中去掉
+        conditionData.selectedConditions[name].splice(pos, 1);
+        // 从页面上去除
+        targetLi.outerHTML = '';
+    }
 })
