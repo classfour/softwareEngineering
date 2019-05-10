@@ -217,6 +217,14 @@
 
 			<form method="post" action="/sSubject">
 				<div id="div1"></div>
+
+                选择专业<select class="form-control" name="major">
+                        <option value="all">所有</option>
+                        {% for k in major %}
+                            <option value={{ k }}>{{ k }}</option>
+                        {% endfor %}
+                    </select>
+                <button type="submit">查询</button>
 			</form>
 			<div id="ycy666"></div>
 

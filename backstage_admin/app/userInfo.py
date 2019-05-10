@@ -53,11 +53,15 @@ def updateSql(dict1):
 
         if dict1['身份'][i]=="学生":
             level="0"
+            orderOperation="insert into operation (people,type,content,time) values (\""+session['username']+"\",0,\""+"为学生"+number+"完成注册\","+"CURRENT_TIMESTAMP "+");"
+
             order2="insert into student values (\""+number+"\",\""+name+"\","+sex+",\""+Class+"\",\""+date+"\","\
                    +grade+","+status+","+gpa+",\""+image+"\","+age+",\""+major+"\",\""+department+"\");"
 
         elif dict1['身份'][i] == "教师":
             level="1"
+            orderOperation="insert into operation (people,type,content,time) values (\""+session['username']+"\",0,\""+"为教师"+number+"完成注册\","+"CURRENT_TIMESTAMP"+");"
+
             order2="insert into teacher values (\""+number+"\",\""+name+"\",\""+department+"\","+age+",\""+major+"\","\
                    +workage+","+sex+","+status+",\" \",\""+image+"\");"
             #可以教授的课程初始值为空
@@ -66,6 +70,9 @@ def updateSql(dict1):
             order2="to except"#用以触发下列异常
 
         try:
+            #print(orderOperation)
+            Cur.execute(orderOperation)
+            db.commit()
             Cur.execute(order2)
             #print(order2)
 
@@ -198,7 +205,12 @@ def userInfo1():
 @userInfoBlue.route('/userInfo2',methods=['POST','GET'])
 #处理文件提交表单
 def userInfo2():
-    session['route'] += "uI2"
+    try:
+        session['route'] += "uI2"
+        session['error']=None
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
+
     file_dir = os.path.join(basedir, 'upload')
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)

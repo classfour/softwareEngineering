@@ -38,6 +38,12 @@ def notice():
                 orderDelete="delete from notice where id in ("
                 for each in listForm:
                     if not each=="delete":
+
+                        orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                            'username'] + "\",0,\"" + "删除通知" + each + "\"," + "CURRENT_TIMESTAMP" + ");"
+                        Cur.execute(orderOperation)
+                        db.commit()
+
                         orderDelete+="\""+each+"\","
                 orderDelete=orderDelete[:-1]+");"
                 #print(orderDelete)
@@ -56,10 +62,18 @@ def notice():
                         orderShift = "update notice set status=1 where id=" + id + ";"
                         Cur.execute(orderShift1)
                         db.commit()
+                        orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                            'username'] + "\",0,\"" + "置顶通知" + id + "\"," + "CURRENT_TIMESTAMP" + ");"
+                        Cur.execute(orderOperation)
+                        db.commit()
 
                     elif operation=='d':
                         #将其置为0
                         orderShift="update notice set status=0 where id="+id+";"
+                        orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                            'username'] + "\",0,\"" + "取消置顶通知" + id + "\"," + "CURRENT_TIMESTAMP" + ");"
+                        Cur.execute(orderOperation)
+                        db.commit()
 
                     Cur.execute(orderShift)
                     db.commit()
@@ -96,6 +110,12 @@ def noticeInsert():
             #print(orderInsert)
             Cur.execute(orderInsert)
             db.commit()
+
+            orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                'username'] + "\",0,\"" + "发布新通知" + title + "\"," + "CURRENT_TIMESTAMP" + ");"
+            Cur.execute(orderOperation)
+            db.commit()
+
             return redirect(url_for("noticeInfo_blue.notice", username=session['username']))
         return render_template("add_notice.html")
 

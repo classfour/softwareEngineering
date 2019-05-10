@@ -50,8 +50,10 @@ def room():
                       "教室编号":each[0],"教室容量":roomstr,"教室名称":each[3],"教室占用情况":
                 "<a href=\"/room/"+each[2]+"\">点击查看占用情况</a>"})
     #print(dataR)
-
-    return render_template("room.html",username=session['username'],roomData=json.dumps(dataR,ensure_ascii=False))
+    if not session['route'][-6:-3] == "adR":
+        session['error'] = None
+        print(str(session['error']))
+    return render_template("room.html",username=session['username'],roomData=json.dumps(dataR,ensure_ascii=False),ERROR=session['error'])
 
 
 
@@ -68,6 +70,7 @@ def addroom():
     except Exception:
         return redirect(url_for('login_blue.log_in'))
 
+    session['error'] = None
     file_dir = os.path.join(basedir, 'upload')
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
@@ -103,11 +106,27 @@ def addroom():
             if not type(dictfile['教室编号'][i])==type("classroom"):
                 dictfile['教室编号'][i]=str(int(dictfile['教室编号'][i]))
 
-            capacity=int(dictfile['教室容量'][i])
-            order="insert into classroom values(\""+dictfile['教室编号'][i]+"\","+str(capacity)+",\"00000\",\""\
-                  +dictfile['教室名称'][i]+"\");"
-            Cur.execute(order)
-            db.commit()
+            try:
+                capacity=int(dictfile['教室容量'][i])
+                order="insert into classroom values(\""+dictfile['教室编号'][i]+"\","+str(capacity)+",\"00000\",\""\
+                      +str(dictfile['教室名称'][i])+"\");"
+                Cur.execute(order)
+                db.commit()
+
+                orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                    'username'] + "\",0,\"" + "添加教室" + dictfile['教室编号'][i] + "\"," + "CURRENT_TIMESTAMP" + ");"
+                Cur.execute(orderOperation)
+                db.commit()
+
+            except Exception:
+                str1 = "编号为" + dictfile['教室编号'][i] + "的教室与数据库有冲突,"
+                if session['error'] == None:
+                    session['error'] = str1
+                else:
+                    session['error'] += str1
+
+                continue
+
     return redirect(url_for("roomInfo_blue.room"))
 
 

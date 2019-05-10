@@ -18,6 +18,11 @@ def labelInfo():
             try:#跳过未选择而触发的异常
                 orderDelete = "delete from label where id in ("
                 for each in listForm:
+                    orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                        'username'] + "\",0,\"" + "删除标签" + each + "\"," + "CURRENT_TIMESTAMP" + ");"
+                    Cur.execute(orderOperation)
+                    db.commit()
+
                     if not each == "delete" and not each[:3]=="add":
                         orderDelete += "" + each + ","
                 orderDelete = orderDelete[:-1] + ");"
@@ -47,6 +52,11 @@ def labelInfo():
                             Cur.execute(order)
                             db.commit()
 
+                            orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                                'username'] + "\",0,\"" + "添加课程" + addCourse + "到标签"+each[5:]+"\"," + "CURRENT_TIMESTAMP" + ");"
+                            Cur.execute(orderOperation)
+                            db.commit()
+
                         order = "select * from label;"
                         Cur.execute(order)
                         data = Cur.fetchall()
@@ -72,6 +82,12 @@ def labelInfo():
                             str1=""
                             for each1 in data1:
                                 str1+="+"+each1
+
+                            orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                                'username'] + "\",0,\"" + "删除标签" + each[each.index("+")+1:] +"中的"+each[6:each.index("+")]+ "课程\"," + "CURRENT_TIMESTAMP" + ");"
+                            Cur.execute(orderOperation)
+                            db.commit()
+
                             order="update label set course_number =\""+str1+"\" where id="+each[each.index("+")+1:]+";"
                             #print(order)
                             Cur.execute(order)
@@ -83,9 +99,6 @@ def labelInfo():
                         break
             except Exception:
                 return redirect(url_for("index_blue.hello_world",username=session['username'],ERROR="程序异常"))
-
-
-
 
 
     for each in data:
@@ -117,7 +130,7 @@ def labelInfo():
         strCourse+=addStr
 
         dataL.append({"<button class=\"btn btn-default\" name=\"delete\">批量删除</button>":checkstr,"标签名":each[1],"课程":strCourse})
-    #print(dataL)
+    print(dataL)
     return render_template("label.html",dataL=json.dumps(dataL, ensure_ascii=False))
 
 @labelInfoBlue.route('/newlabel',methods=['POST','GET'])

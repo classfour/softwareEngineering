@@ -106,6 +106,10 @@ def altert(username):
         #print(list(request.form))
         if "upload" in list(request.form):
             #先删除再插入
+            order="select enable_teach_courses from teacher where number=\""+username+"\";"
+            Cur.execute(order)
+            major=Cur.fetchone()[0]
+
             orderD="delete from teacher where number =\""+username+"\";"
             Cur.execute(orderD)
             db.commit()
@@ -114,10 +118,15 @@ def altert(username):
             orderI = "insert into teacher values (\"" + username + "\",\"" + request.form.get("name") \
                      + "\",\"" + request.form.get("department") + "\"," + request.form.get("age") + ",\"" \
                      + request.form.get("title") + "\"," + request.form.get("workage") + "," + request.form.get("sex") \
-                     + "," + request.form.get("status") + ",\" "+request.form.get("major")+"\",\"" \
+                     + "," + request.form.get("status") + ",\" "+major+"\",\"" \
                      + request.form.get("image") + "\");"
             #print(orderI)
             Cur.execute(orderI)
+            db.commit()
+
+            orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                'username'] + "\",0,\"" + "更改教师" + username  +  "信息\"," + "CURRENT_TIMESTAMP" + ");"
+            Cur.execute(orderOperation)
             db.commit()
 
         return redirect(url_for('userInfo_blue.userInfo',username=session['username']))
@@ -126,14 +135,97 @@ def altert(username):
     #print("there")
     if "username" in list(session.keys()):
 
-        order="select *from teacher where number=\""+username+"\";"
+        order="select * from teacher where number=\""+username+"\";"
         Cur.execute(order)
         list1=list(Cur.fetchone())
         #print(list1)
+
+        course=list1[8].split("/")
+
+        order1="select number,name from course where number in (\"-1\","
+        order="select number,name from course where number not in (\"-1\","
+        for each in course:
+            if not each=="":
+                order+="\""+each+"\","
+                order1 += "\"" + each + "\","
+        order=order[:-1]+");"
+        order1 = order1[:-1] + ");"
+        Cur.execute(order1)
+        data1=Cur.fetchall()
+
+        str2=[]
+        for each in data1:
+            if not each=='':
+                str2.append(each[1])
+
+        #print(order)
+        Cur.execute(order)
+        data=Cur.fetchall()
+
+        enableStr=[]
+
+        courses=list1[8].split("/")
+        courseList=[]
+        for each in courses:
+
+            if not each =='':
+                try:
+                    order="select name from course where number=\""+each+"\";"
+                    Cur.execute(order)
+                    courseList.append(Cur.fetchone()[0])
+                except Exception:
+                    courseList=[]
+
+        for each in data:
+            enableStr.append(each[1])
+
+
+
         return render_template("altert.html",username=username,name=list1[1],department=list1[2],age=list1[3],title=list1[4],
-                               workage=list1[5],sex=list1[6],status=list1[7],major=list1[8],image=list1[9])
+                               workage=list1[5],sex=list1[6],status=list1[7],major=courseList,image=list1[9],enableStr=enableStr,
+                               str2=str2)
     else:
         return redirect(url_for('login_blue.log_in'))
+
+@alterBlue.route('/addto<string:username>',methods=['POST','GET'])
+def addto(username):
+    if request.method=="POST" and not request.form.get('addto'+username)=="no":
+        #print(request.form)
+        order="select enable_teach_courses from teacher where number=\""+username+"\";"
+        Cur.execute(order)
+        enable=Cur.fetchone()[0]
+
+        order="select number from course where name=\""+request.form.get('addto'+username)+"\";"
+        Cur.execute(order)
+        enable+=Cur.fetchone()[0]+"/"
+        #print(enable)
+
+        order="update teacher set enable_teach_courses=\""+enable+"\" where number=\""+username+"\";"
+        #print(order)
+        Cur.execute(order)
+        db.commit()
+
+    return redirect(url_for('alter_blue.altert',username=username))
+
+@alterBlue.route('/deletefrom<string:username>',methods=['POST','GET'])
+def deletefrom(username):
+    if request.method=="POST" and not request.form.get("deletefrom"+username)=="no":
+        order="select enable_teach_courses from teacher where number=\""+username+"\";"
+        Cur.execute(order)
+        courses=Cur.fetchone()[0].split("/")
+        coursename=request.form.get("deletefrom"+username)
+        order="select number from course where name=\""+coursename+"\";"
+        Cur.execute(order)
+
+        courses.remove(Cur.fetchone()[0])
+        enableStr=""
+        for each in courses:
+            if not each=="":
+                enableStr+=each+"/"
+        order="update teacher set enable_teach_courses=\""+enableStr +"\" where number =\""+ username+"\";"
+        Cur.execute(order)
+        db.commit()
+    return redirect(url_for('alter_blue.altert', username=username))
 
 
 #修改学生信息
@@ -167,6 +259,10 @@ def alter(username):
             #print(orderI)
             Cur.execute(orderI)
             db.commit()
+            orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                'username'] + "\",0,\"" + "更改学生" + username + "信息\"," + "CURRENT_TIMESTAMP" + ");"
+            Cur.execute(orderOperation)
+            db.commit()
 
 
         #print(error)
@@ -182,7 +278,6 @@ def alter(username):
         #print(order)
         list1=list(Cur.fetchone())
         #print(list1)
-
         #list1=list(Cur.fetchone())
 
         return render_template("alter.html",username=username,name=list1[1],sex=list1[2],Class=list1[3],date=list1[4],
@@ -191,7 +286,7 @@ def alter(username):
     else:
         return redirect(url_for('login_blue.log_in'))
 
-
+#批量操作
 @alterBlue.route('/operate',methods=['POST','GET'])
 def operate():
     try:
@@ -249,8 +344,14 @@ def operate():
                 if alterMajor=="no":#转专业操作
                     pass
                 else:
+
                     orderAM="update student set major=\""+alterMajor+"\" where number in ("
                     for eachS in session['listS']:
+                        orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                            'username'] + "\",0,\"" + "将学生" + eachS + "转到"+alterMajor+"专业\"," + "CURRENT_TIMESTAMP" + ");"
+                        Cur.execute(orderOperation)
+                        db.commit()
+
                         orderAM += "\"" + eachS + "\","
                     # 去掉最后的一个逗号
                     orderAM = orderAM[:-1] + ");"
@@ -265,6 +366,10 @@ def operate():
                     orderAT="update teacher set title=\""+alterTitle+"\" where number in ("
                     for eachT in session['listT']:
                         orderAT += "\"" + eachT + "\","
+                        orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                            'username'] + "\",0,\"" + "将教师" + eachT + "评为" + alterTitle+ "职称\"," + "CURRENT_TIMESTAMP" + ");"
+                        Cur.execute(orderOperation)
+                        db.commit()
                     # 去掉最后的一个逗号
                     orderAT = orderAT[:-1] + ");"
                     #print(orderAT)
@@ -340,6 +445,12 @@ def alters(subjectname):
                    "\",\""+request.form.get('max_number')+"\");"
             Cur.execute(orderI)
             db.commit()
+
+            orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                'username'] + "\",0,\"" + "更改课题" + subjectname + "信息\"," + "CURRENT_TIMESTAMP" + ");"
+            Cur.execute(orderOperation)
+            db.commit()
+
         return redirect(url_for('subjectInfo_blue.subjectInfo'))
 
 
@@ -373,6 +484,12 @@ def alterc(coursenumber):
             #print(orderI)
             Cur.execute(orderI)
             db.commit()
+
+            orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                'username'] + "\",0,\"" + "更改课程" + coursenumber + "信息\"," + "CURRENT_TIMESTAMP" + ");"
+            Cur.execute(orderOperation)
+            db.commit()
+
         return redirect(url_for('courseInfo_blue.course'))
 
     if "username" in list(session.keys()):

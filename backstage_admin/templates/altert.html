@@ -29,9 +29,15 @@
                     }
                 }
             }
+            function yangfan(){
+                var rr = {{ major }};
+                var a1 = document.getElementById("qwe");
+                a1.innerHTML = rr;
+                console.log(rr);
+            }
         </script>
 </head>
-<body>
+<body onload="yangfan();">
     <table width="1000" border="0" align="center">
     <tr>
     <td colspan="2" style="background-color:#00FFFF;">
@@ -46,38 +52,62 @@
     <td style="background-color:#eeeeee;height:200px;width:400px;vertical-align:top;">
     <form action="/altert/{{ username }}" method="POST">
 
-    教师姓名:<input type="text"  placeholder="请输入更改后的姓名" value={{ name }} name="name">
+    教师姓名:<input type="text"  placeholder="请输入更改后的姓名" value={{ name }} name="name" required="required">
     <br>
-    性别：<input type="radio" name="sex" value="1">男  <input type="radio" name="sex" value="0">女
+    性别：<input type="radio" name="sex" value="1" required="required">男  <input type="radio" name="sex" value="0" >女
         <script>
             initradio('sex',{{ sex }});
         </script>
     <br>
-    教师所属学院:<input type="text"  placeholder="请输入更改后的学院" value={{ department }} name="department">
+    教师所属学院:<input type="text"  placeholder="请输入更改后的学院" value={{ department }} name="department" required="required">
     <br>
-    教师年龄:<input type="text"  placeholder="请输入更改后的年龄" value={{ age }} name="age">
+    教师年龄:<input type="text"  placeholder="请输入更改后的年龄" value={{ age }} name="age" required="required">
     <br>
-    教师教龄:<input type="text"  placeholder="请输入更改后的教龄" value={{ workage }} name="workage">
+    教师教龄:<input type="text"  placeholder="请输入更改后的教龄" value={{ workage }} name="workage" required="required">
     <br>
-    教师职称:<input type="text"  placeholder="请输入更改后的职称" value= {{ title }} name="title">
+    教师职称:<input type="text"  placeholder="请输入更改后的职称" value= {{ title }} name="title" required="required">
     <br>
-    教师工龄:<input type="text"  placeholder="请输入更改后的工龄" value={{ workage }} name="workage">
+    照片地址:<input type="text"  placeholder="请输入更改后的照片地址" value={{ image }} name="image" required="required">
     <br>
-    照片地址:<input type="text"  placeholder="请输入更改后的照片地址" value={{ image }} name="image">
-    <br>
-    教师状态:<select name="status">
+    教师状态:<select name="status" required="required">
     <option value="0">休假</option>
     <option value="1">退休</option>
     <option value="2" selected>在职</option>
     </select>
     <br>
-    教授课程:<input type="text"  placeholder="请输入更改后的教授课程" name="major" value={{ major }} >
+        可教授课程{{ major }}
+
     <br>
 <button type="submit" name="upload" style="padding: 5px 5px;border-radius: 5px; background:#eeeeee; border: 1px  #555 solid; color: #333; ">提交</button>
     <button type="submit" name="mahai" style="padding: 5px 5px;border-radius: 5px; background:#eeeeee; border: 1px  #555 solid; color: #333; ">返回</button>
 </form>
+        <form method="post" action="/addto{{ username }}">
+        <select name="addto{{ username }}">
+                <option value="no" >选择添加课程</option>
+            {% for k in enableStr %}
+                <option value={{ k }}>{{ k }}</option>
+            {% endfor %}
+        </select>
+<button type="submit" >确认添加</button>
+
+
+
+        </form>
+
+    <form action="/deletefrom{{ username }}" method="post">
+        <select name="deletefrom{{ username }}">
+                <option value="no" >选择删除课程</option>
+            {% for k in str2 %}
+                <option value={{ k }}>{{ k }}</option>
+            {% endfor %}
+        </select>
+<button type="submit" >确认删除</button>
+    </form>
+
+
     </td>
     </tr>
     </table>
+
 </body>
 </html>

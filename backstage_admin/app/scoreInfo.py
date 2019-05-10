@@ -9,12 +9,19 @@ def scoreInfo():
     except Exception:
         return redirect(url_for('login_blue.log_in'))
 
+
+    major="all"
+    if request.method=="POST":
+        major=request.form.get('major')
+
     order="select distinct student_number from choose_course;"
+
+
     Cur.execute(order)
     studentData=Cur.fetchall()
     #print(studentData)
     for each in studentData:
-        print(each[0])
+        #print(each[0])
         sumcredits=0
         SUM=0
         order="select distinct course_number,gpa from choose_course where student_number=\""+each[0]+"\";"
@@ -35,15 +42,24 @@ def scoreInfo():
         Cur.execute(order)
         db.commit()
 
-        order="select number,name,gpa from student;"
+        order="select number,name,gpa,major from student;"
         Cur.execute(order)
         data=Cur.fetchall()
         dataS=[]
         for each in data:
-            dataS.append({"学生学号":each[0],"学生姓名":each[1],"学生绩点":str(each[2])})
+            if major=="all" or each[3]==major:
+                dataS.append({"学生学号":each[0],"学生姓名":each[1],"学生绩点":str(each[2]),"学生专业":each[3]})
         #print(dataS)
-    return render_template("score.html",dataS=json.dumps(dataS, ensure_ascii=False),username=session['username'])
 
+    order="select distinct major from student;"
+    Cur.execute(order)
+    data=Cur.fetchall()
+    Major=[]
+    for each in data:
+        Major.append(each[0])
+    return render_template("score.html",dataS=json.dumps(dataS, ensure_ascii=False),username=session['username'],major=Major)
+
+#实现查询课题信息
 @scoreInfoBlue.route('/sSubject',methods=['POST','GET'])
 def sSubject():
     try:
@@ -51,11 +67,23 @@ def sSubject():
     except Exception:
         return redirect(url_for('login_blue.log_in'))
 
-    order="select student.number,student.name,subject_results.title,subject_results.result from student inner join subject_results on " \
+    major="all"
+    if request.method=="POST":
+        major=request.form.get('major')
+
+    order="select student.number,student.name,subject_results.title,subject_results.result,student.major from student inner join subject_results on " \
           "student.number=subject_results.student_number;"
     Cur.execute(order)
     data=Cur.fetchall()
     dataS=[]
     for each in data:
-        dataS.append({"学生学号":each[0],"学生姓名":each[1],"课题标题":each[2],"课题成绩":each[3]})
-    return render_template("sSubject.html",dataS=json.dumps(dataS, ensure_ascii=False),username=session['username'])
+        if major=="all" or major==each[4]:
+            dataS.append({"学生学号":each[0],"学生姓名":each[1],"课题标题":each[2],"课题成绩":each[3],"学生专业":each[4]})
+
+    order = "select distinct major from student;"
+    Cur.execute(order)
+    data = Cur.fetchall()
+    Major = []
+    for each in data:
+        Major.append(each[0])
+    return render_template("sSubject.html",dataS=json.dumps(dataS, ensure_ascii=False),username=session['username'],major=Major)

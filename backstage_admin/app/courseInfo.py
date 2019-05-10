@@ -55,6 +55,10 @@ def course():
                 if each[:6]=="select":
                     order+="\""+each[6:]+"\","
                     orderD+="\""+each[6:]+"\","
+                    orderOperation = "insert into operation (people,type,content,time) values (\"" + session[
+                        'username'] + "\",0,\"" + "审核课程" + each[6:] + "\"," + "CURRENT_TIMESTAMP" + ");"
+                    Cur.execute(orderOperation)
+                    db.commit()
 
             order=order[:-2]+"\");"
             orderD=orderD[:-2]+"\");"
@@ -111,8 +115,11 @@ def allowed_file(filename):
 
 @courseInfoBlue.route('/insertCourse',methods=['POST','GET'])
 def insertCourse():
-    session['route']+="adC"
-
+    try:
+        session['route']+="adC"
+        session['error'] = None
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
     file_dir = os.path.join(basedir, 'upload')
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
