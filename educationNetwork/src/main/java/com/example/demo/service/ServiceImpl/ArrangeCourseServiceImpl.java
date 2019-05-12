@@ -128,7 +128,7 @@ public class ArrangeCourseServiceImpl implements ArrangeCourseService {
             stringBuilder.setCharAt(i - 1, '1');
         }
         String occupation = weekInt + "" + stringBuilder.toString();
-        return arrangeCourseMapper.updateCourse(teacherName + "", occupation, class_number, course);
+        return arrangeCourseMapper.updateCourse(teacherNumber, occupation, class_number, course);
     }
 
     @Override

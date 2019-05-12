@@ -39,7 +39,7 @@ public interface ArrangeCourseMapper {
 
     //    更新course中的所有信息
     @Update("update course set teacher_number=#{teacherNumber},occupation=#{occupation},status=1,location=#{class_number} where name =#{courseName}")
-    boolean updateCourse(String teacherNumber, String occupation, String class_number, String courseName);
+    boolean updateCourse(int teacherNumber, String occupation, String class_number, String courseName);
 
     //    更新教室的占用情况
     @Update("update classroom set occupied=#{occupied} where class_number=#{classNumber}")
