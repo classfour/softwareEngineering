@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排课系统</title>
+    <link rel="stylesheet" href="css/ssss.css">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function classroomcheck(){
+            var week = document.getElementById('day').value;
+            var detail = document.getElementById('classes').value;
+            var course = document.getElementById('course').value;
+            if(course!=''&&detail!=''&&week!=''){
+                $.post(
+                    "arrangeCourse/availableclassroom",
+                    {"week":week,"detail":detail,"course":course},
+                    function(response){
+                        if(response.result1!='success'){
+                            alert("无可用教师，请重新选择上课时间");
+                        }
+                        else{
+                            alert(response.class_number);
+                            document.getElementById('classroom').innerText = response.class_number;
+                        }
+                    },
+                    "json"
+                )
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function courses(major,grade) {
+            if(major!=''){
+                document.getElementById('course').innerHTML = '<option></option>';
+                document.getElementById('teacher').innerHTML = '<option></option>';
+                document.getElementById('classroom').innerHTML = '<h5></h5>';
+                $.post(
+                    "arrangeCourse/getcoursesbyspecialty",
+                    {"specialty":major,"grade":grade},
+                    function(response){
+                        var text = '<option></option>';
+                        for(var course in response.courses) {
+                            text += '<option>' + response.courses[course] + '</option>';
+                        }
+                        document.getElementById('course').innerHTML = text;
+
+                        var tmp = response.occupation;
+                        var tmp1 = '';
+
+                        for(var i=0;i<13;i++) {
+                            for(var j=i;j<=90;j+=13){
+                                tmp1 += tmp[j]
+                            }
+                            tmp1 += ';';
+                        }
+
+                        var tabletext = '';
+                        var day = 1;
+                        var classes = 1;
+                        tabletext += '<thead><tr><th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr></thead>'
+                        tabletext += '<tbody><tr><th>' + classes + '</th>';
+
+                        for(var k in tmp1) {
+                            day++;
+                            if(tmp1[k]==';') {
+                                day = 0;
+                                classes++;
+                                if(classes < 14)
+                                    tabletext += '</tr><th>' + classes + '</th>';
+                                else
+                                    tabletext += '</tr>';
+                            }else if(tmp1[k]=='0'){
+                                tabletext += '<th>' +"        "+ '</th>';
+                            }else if(tmp1[k]=='1') {
+                                // bgcolor="#ea2d2d"
+                                tabletext += '<th bgcolor="#ea2d2d">' + '</th>';
+                            }
+                        }
+                        tabletext += '</tbody>';
+                        document.getElementById('timetable').innerHTML = tabletext;
+                    },
+                    "json"
+                )
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function teachers(course) {
+            if(course!=''){
+                $.post(
+                    "arrangeCourse/getteachersinfoteachcourse",
+                    {"course":course},
+                    function(response){
+                        var text = '<option></option>';
+
+                        for(var teacher in response.teachers) {
+                            text += '<option>' + response.teachers[teacher] + '</option>';
+                        }
+                        document.getElementById('teacher').innerHTML = text;
+                    },
+                    "json"
+                )
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function informationcheck() {
+        var course = document.getElementById('course').value;
+        var teachern = document.getElementById('teacher').value;
+        var major = document.getElementById('major').value;
+        var grade = document.getElementById('grade').value;
+        if(teacher!=''){
+            //查询，返回，重新填写课程表
+            var tmp2 = '';
+            if(major!=''){
+                $.post(
+                    "arrangeCourse/getcoursesbyspecialty",
+                    {"specialty":major,"grade":grade},
+                    function(response){
+                        var tmp = response.occupation;
+                        for(var i=0;i<13;i++) {
+                            for(var j=i;j<=90;j+=13){
+                                tmp2 += tmp[j]
+                            }
+                            tmp2 += ';';
+                        }
+                    },
+                    "json"
+                )
+            }
+            if(course!=''){
+                $.post(
+                    "arrangeCourse/getteachersinfoteachcourse",
+                    {"course":course},
+                    function(response){
+                        for(var teacher in response.occupations) {
+                            var teachername = response.teachers[teacher];
+                            if(teachern === teachername){
+                                //    alert(response.teachers[teacher] + response.occupations[teacher]);
+                                var day = 1;
+                                var classes = 1;
+                                tmp = response.occupations[teacher];
+                                tabletext = '';
+
+                                tabletext += '<thead><tr><th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr></thead>'
+                                tabletext += '<tbody><tr><th>' + classes + '</th>';
+                                var tmp1 = '';
+                                for(var i=0;i<13;i++) {
+                                    for(var j=i;j<=96;j+=14){
+                                        tmp1+=tmp[j];
+                                    }
+                                    tmp1 += ';';
+                                }
+                                for(var k in tmp1) {
+                                    day++;
+                                    if(tmp1[k]==';') {
+                                        day = 0;
+                                        classes++;
+                                        if(classes < 14)
+                                            tabletext += '<tr><th>' + classes + '</th>';
+                                        else
+                                            tabletext += '</tr>';
+                                    }else if(tmp1[k]=='0'){
+                                        if(tmp2[k]=='1'){
+                                            tabletext += '<th bgcolor="#ea2d2d">' + '</th>';
+                                        }else{
+                                            tabletext += '<th>' +"        "+ '</th>';
+                                        }
+
+                                    }else if(tmp1[k]=='1') {
+                                        if(tmp2[k]=='1'){
+                                            tabletext += '<th bgcolor="#ea2d2d">' + "老师无空" +'</th>';
+                                        }
+                                        else{
+                                            tabletext += '<th>' + "老师无空" +'</th>';
+                                        }
+                                    }
+                                }
+                                tabletext += '</tbody>';
+                                document.getElementById('timetable').innerHTML = tabletext;
+                            }
+
+                        }
+                    },
+                    "json"
+                )
+            }
+        }
+
+    }
+    </script>
+
+    <script type="text/javascript">
+        function informationsubmit() {
+            var course = document.getElementById('course').value;
+            var teacher = document.getElementById('teacher').value;
+            var week = document.getElementById('day').value;
+            var detail = document.getElementById('classes').value;
+            var classroom = document.getElementById('classroom').innerText;
+            alert(classroom);
+            if(course!=''&&teacher!=''&&week!=''&&classroom!=''&&detail!=''){
+                $.post(
+                    "arrangeCourse/updateAllInfo",
+                    {"course":course,"detail":detail,"classnumber":classroom,"teachername":teacher, "week": week},
+                    function(response){
+                        if (response.result1 == "success") {
+                            alert("课程安排成功");
+                        }
+                        else{
+                            alert("排课失败");
+                        }
+                    },
+                    "json"
+                )
+            }
+    }
+    </script>
+</head>
+<body>
+<div class="container" style="width:100%" ;>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2>排课系统</h2>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="grade" class="col-lg-2 control-label">年级</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" id="grade">
+                                    <option>2018</option>
+                                    <option>2017</option>
+                                    <option>2016</option>
+                                    <option>2015</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="institute" class="col-lg-2 control-label">院系</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" id="institute" onchange="function majors(institute) {
+                                    if(institute === '信息科学与技术学院') document.getElementById('major').innerHTML = '<option></option><option>计算机科学与技术</option><option>自动化</option>'
+                                    if(institute === '机电工程学院') document.getElementById('major').innerHTML = '<option></option><option>机械制造及其自动化</option>';
+                                    if(institute === '材料科学与工程学院') document.getElementById('major').innerHTML = '<option></option><option>功能材料</option>';
+                                    document.getElementById('course').innerHTML = '<option></option>';
+                                    document.getElementById('teacher').innerHTML = '<option></option>';
+                                    document.getElementById('classroom').innerHTML = '<h5></h5>';
+                                }
+                                majors(this.value)">
+                                    <option></option>
+                                    <option>信息科学与技术学院</option>
+                                    <option>机电工程学院</option>
+                                    <option>材料科学与工程学院</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="major" class="col-lg-2 control-label">专业</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" id="major" onchange="courses(this.value,grade.value)">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="course" class="col-lg-2 control-label">课程</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" id="course" onchange="teachers(this.value)">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="teacher" class="col-lg-2 control-label">教师</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" id="teacher" onchange="informationcheck()">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="classroom" class="col-lg-2 control-label">教室</label>
+                            <div class="col-lg-10">
+                                <h5 class="form-control" id="classroom" contenteditable="false"></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="day" class="col-lg-2 control-label">星期</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="day" placeholder="请输入星期">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="classes" class="col-lg-2 control-label">节次</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="classes" placeholder="请输入节次(示例1-3)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2"></div>
+
+                <div class="col-lg-2">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-primary" onclick="classroomcheck()">查询教室</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-primary" onclick="informationsubmit()">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>课表详情</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered" id="timetable">
+                <script>
+                    var tabletext = '';
+                    tabletext += '<thead><tr><th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th></tr></thead>'
+                    tabletext += '<tbody>';
+                    for (var i = 1; i <= 13; i++) {
+                        tabletext += '<tr>';
+                        tabletext += '<th>' + i + '</th>';
+                        for (var j = 1; j <= 7; j++) {
+                            tabletext += '<th></th>'
+                        }
+                        tabletext += '</tr>';
+                    }
+                    tabletext += '</tbody>';
+                    document.getElementById('timetable').innerHTML += tabletext;
+                </script>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
