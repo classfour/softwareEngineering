@@ -51,67 +51,71 @@ public class chooseClassController {
         }
         model.addAttribute("contents",iuser.getUserByCardno());
         //选出学生选的课程的编号
-        List<String> courseNumber=cclass.getCounumByStunum(username);
-        List<Course> filter=new ArrayList<Course>();
-        for(String each:courseNumber){
-            System.out.println(each);
-            filter.add(iuser.getCourseByNumber(each));
-        }
-        model.addAttribute("filtercontents",filter);
-
-        //选出学生选课的时间表
-        List<String> time=new ArrayList<String>();
-//        String[] newlist=new String[]{"10000000000000","20000000000000","30000000000000","40000000000000","50000000000000","60000000000000","70000000000000"};
+//        List<String> courseNumber=cclass.getCounumByStunum(username);
+//        List<Course> filter=new ArrayList<Course>();
+//        for(String each:courseNumber){
+//            System.out.println(each);
+//            filter.add(iuser.getCourseByNumber(each));
+//        }
+//        model.addAttribute("filtercontents",filter);
 //
-//        List list = Arrays.asList("10000000000000","20000000000000","30000000000000","40000000000000","50000000000000","60000000000000","70000000000000");
-        time.add("10000000000000");
-        time.add("20000000000000");
-        time.add("30000000000000");
-        time.add("40000000000000");
-        time.add("50000000000000");
-        time.add("60000000000000");
-        time.add("70000000000000");
-
-//        time.addAll(list);
-        List<String> useroccupationlist=new ArrayList<String>();
-        for(String each:courseNumber){
-            String temp=iuser.getoccupation(each);
-            System.out.println(temp);
-            useroccupationlist.add(temp);
-        }
-        for(String each: useroccupationlist){
-            System.out.printf(each);
-            int day=each.charAt(0)-'0';
-            System.out.printf("zhouzhou-day");
-            System.out.println(day);
-            //time.get(day)  10000000000000
-            StringBuffer sourcestring=new StringBuffer(time.get(day-1));
-            System.out.println(sourcestring);
-            StringBuffer tempstring=new StringBuffer(each);
-            StringBuffer newstring=new StringBuffer("");
-            newstring.append(day);
-            for(int i=1;i<=13;i++){
-                newstring.append(Integer.parseInt(String.valueOf(sourcestring.charAt(i)))+Integer.parseInt(String.valueOf(tempstring.charAt(i))));
-            }
-            System.out.println(newstring);
-            time.remove(day-1);
-            time.add(day-1,newstring.toString());
-        }
-        Map<String,Integer> one=new LinkedHashMap<String,Integer>();
-        for(int i=1;i<=13;i++){
-//            String tempxinqi=time.get(i);
-            one.put(""+('A'+i-1),time.get(1).charAt(i)-'0');
-        }
-        Set<String> keys= one.keySet();
-        for(String key: keys){
-            int value= one.get(key);
-            System.out.println(key+"--"+value);
-        }
-        System.out.println(one.get("65"));
-        System.out.println(one);
-
-        model.addAttribute("occupationlist",one);
-        System.out.print(time.get(0));
+//        //选出学生选课的时间表
+//        List<String> time=new ArrayList<String>();
+////        String[] newlist=new String[]{"10000000000000","20000000000000","30000000000000","40000000000000","50000000000000","60000000000000","70000000000000"};
+////
+////        List list = Arrays.asList("10000000000000","20000000000000","30000000000000","40000000000000","50000000000000","60000000000000","70000000000000");
+//        time.add("10000000000000");
+//        time.add("20000000000000");
+//        time.add("30000000000000");
+//        time.add("40000000000000");
+//        time.add("50000000000000");
+//        time.add("60000000000000");
+//        time.add("70000000000000");
+//
+////        time.addAll(list);
+//        List<String> useroccupationlist=new ArrayList<String>();
+//        for(String each:courseNumber){
+//            System.out.println(each);
+//            String temp=iuser.getoccupation(each);
+//            System.out.println(temp);
+//            useroccupationlist.add(temp);
+//        }
+//        System.out.println("zhouzhoutest-----");
+//        for(String each:useroccupationlist)
+//        System.out.println(each);
+//        for(String each: useroccupationlist){
+//            System.out.printf(each);
+//            int day=each.charAt(0)-'0';
+//            System.out.printf("zhouzhou-day");
+//            System.out.println(day);
+//            //time.get(day)  100000000000001
+//            StringBuffer sourcestring=new StringBuffer(time.get(day-1));
+//            System.out.println(sourcestring);
+//            StringBuffer tempstring=new StringBuffer(each);
+//            StringBuffer newstring=new StringBuffer("");
+//            newstring.append(day);
+//            for(int i=1;i<=13;i++){
+//                newstring.append(Integer.parseInt(String.valueOf(sourcestring.charAt(i)))+Integer.parseInt(String.valueOf(tempstring.charAt(i))));
+//            }
+//            System.out.println(newstring);
+//            time.remove(day-1);
+//            time.add(day-1,newstring.toString());
+//        }
+//        Map<String,Integer> one=new LinkedHashMap<String,Integer>();
+//        for(int i=1;i<=13;i++){
+////            String tempxinqi=time.get(i);
+//            one.put(""+('A'+i-1),time.get(1).charAt(i)-'0');
+//        }
+//        Set<String> keys= one.keySet();
+//        for(String key: keys){
+//            int value= one.get(key);
+//            System.out.println(key+"--"+value);
+//        }
+//        System.out.println(one.get("65"));
+//        System.out.println(one);
+//
+//        model.addAttribute("occupationlist",one);
+//        System.out.print(time.get(0));
         return "/chooseClass/index";
     }
 

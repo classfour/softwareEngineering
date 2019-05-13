@@ -4,7 +4,7 @@ public class ChooseClass {
     private int id;
     private  String student_number;
     private  String course_number;
-    private  int score;
+    private  String score;
 
     public void setId(int id) {
         this.id = id;
@@ -18,7 +18,7 @@ public class ChooseClass {
         this.course_number = course_number;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 
@@ -41,7 +41,7 @@ public class ChooseClass {
         return course_number;
     }
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 
