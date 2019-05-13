@@ -1,28 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% if ERROR %}
-    <h1 style="color:#ff2c33">{{ ERROR }}!</h1>
-{% endif %}
-<br>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="static/pics/logo2.ico">
 
-{{ dataUser }}
-<form method="post" action="/checkUser">
-<button type="submit">检测用户冲突</button>
-</form>
-{{ dataSubject }}
+<title>后台管理</title>
+
+<!-- jQuery Version 1.11.1 -->
+<script src="static/lib/jquery/jquery.min.js"></script>
+<script src="static/lib/jquery.cookie/jquery.cookie.js"></script>
+<!-- Bootstrap Core CSS -->
+<link href="static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="static/lib/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="static/lib/metisMenu/css/metisMenu.css" rel="stylesheet">
+
+<!--  Fonts -->
+<link href="static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!--  CSS -->
+<link href="static/css/sts-admin.css" rel="stylesheet">
+<link href="static/lib/bootstrap-daterangepicker/css/daterangepicker.css" rel="stylesheet">
+
+<style>
+        table {
+            width: 900px;
+            padding: 0 ;
+            margin: 20 auto;
+            border-collapse: collapse;
+        }
+        td,th {
+            border: 1px solid #ddd;
+            padding: 6px 6px 6px 12px;
+            color: #1b1272;
+            text-align: center;
+        }
+        th {
+            background: #d3d3d3;
+
+        }
+    </style>
+<script type="text/javascript">
+
+</script>
+
+</head>
+
+<body onload="" data-type="generalComponents">
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+			<div class="navbar-header"></div>
+            <a  id="toplogoa" class="navbar-brand" href="index.html">
+                <img id="toplogo" src="static/pics/logo.png"   alt="logo">
+            </a>
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+                <a class="navbar-brand" href="index.html">后台管理系统</a>
+			</div>
+
+			<ul class="nav navbar-top-links navbar-right">
+                <li>
+                <form action="/search" method="post" style="display: block">
+
+                    <input type="text" name="text" required="required" style="border-radius: 6px;">
+                    <button type="submit" name="text" style="font-size: 16px;border-radius: 6px;">查询</button>
+                </form>
+                </li>
+
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	                    <i class="fa fa-user fa-fw"></i>
+	                    <input id="usernameBtn" type="button" name="fname" value={{ username }}></input>
+	                    <i class="fa fa-caret-down"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> 个人信息</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a></li>
+						<li class="divider"></li>
+					<li>
+					<a href="log_out"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+					</li>
+					</ul>
+				</li>
+
+			</ul>
+
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li>
+							<a href="/"><i class="glyphicon glyphicon-user"></i> 用户信息管理</a>
+						</li>
+
+						<li>
+							<a href=""><i class="fa fa-table fa-fw"></i> 学生成绩管理<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="/score">查询课程成绩</a></li>
+                                <li><a href="/sSubject">查询课题成绩</a></li>
+
+
+							</ul>
+						</li>
+
+						<li><a href="#"><i class="glyphicon glyphicon-grain"></i>课程管理<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+                                <li><a href="/course">课程信息管理</a></li>
+                                <li><a href="/label">课程标签管理</a></li>
+                                <li><a href="/cCourse"> 选课信息管理</a></li>
+							</ul>
+						</li>
+
+						<li><a href="#"><i class="glyphicon glyphicon-inbox"></i> 课题管理<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+                                <li><a href="/subject">课题信息管理</a></li>
+                                <li><a href="/choose_subject">学生课题选择信息管理</a></li>
+                                <li><a href="/cSubject">教师课题选择信息管理</a></li>
+
+
+                            </ul>
+						</li>
+
+						<li><a href="#"><i class="  fa fa-cog fa-fw"></i> 其他操作<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="/notice" >通知管理</a></li>
+                                <li><a href="/room" >教室管理</a></li>
+                                <li><a href="/complaint" >学生申诉管理</a></li>
+                                   <li><a href="/operation" >查看数据库操作</a></li>
+                                <li><a href="/check" >数据冲突修复</a></li>
+
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+		</nav>
+
+		<div id="page-wrapper">
+
+            {% if ERROR %}
+                <h1 style="color:#ff2c33">{{ ERROR }}!</h1>
+            {% endif %}
+            <br>
+
+<div style="margin: 20px;">
+    {% for k in dataUser %}
+            <p value={{ k }}>{{ k }}</p>
+        {% endfor %}
+    <form method="post" action="/checkUser">
+    <button type="submit" style="border-radius: 5px">检测用户冲突</button>
+    </form>
+</div>
+
+<div style="margin: 20px;">
+        {% for k in dataSubject %}
+            <p value={{ k }}>{{ k }}</p>
+        {% endfor %}
+
 
 <form method="post" action="/checkSubject">
-    <button type="submit">检测课题冲突</button>
+    <button type="submit" style="border-radius: 5px">检测课题冲突</button>
 </form>
-
-{{ dataCourse }}
+</div>
+        <div style="margin: 20px;">
+{% for k in dataCourse %}
+            <p value={{ k }}>{{ k }}</p>
+        {% endfor %}
 <form method="post" action="/checkCourse">
-    <button type="submit">检测课程冲突</button>
+    <button type="submit" style="border-radius: 5px">检测课程冲突</button>
 </form>
+        </div>
+        </div>
+
+	</div>
+
+
+	<script src="static/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/lib/bootstrap-daterangepicker/js/daterangepicker.js"></script>
+    <script src="static/lib/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="static/lib/bootstrap-select/js/defaults-zh_CN.min.js"></script>
+	<script src="static/lib/metisMenu/js/metisMenu.min.js"></script>
+	<script src="static/js/sts-admin.js"></script>
+
 </body>
 </html>

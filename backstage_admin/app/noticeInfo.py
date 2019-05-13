@@ -17,14 +17,14 @@ def toJson(tuple1):
 ,"是否置顶":upstr})
         #print(listFinal)
     return listFinal
-
-
 noticeInfoBlue=Blueprint('noticeInfo_blue',__name__)
 @noticeInfoBlue.route('/notice',methods=['POST','GET'])
 def notice():
     if not "username" in list(session.keys()) :
         return redirect(url_for('login_blue.log_in'))
     else:
+
+
 
 
         if request.method=="POST":

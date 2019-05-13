@@ -152,6 +152,14 @@
 			</div>
 
 			<ul class="nav navbar-top-links navbar-right">
+                <li>
+                <form action="/search" method="post" style="display: block">
+
+                    <input type="text" name="text" required="required" style="border-radius: 6px;">
+                    <button type="submit" name="text" style="font-size: 16px;border-radius: 6px;">查询</button>
+                </form>
+                </li>
+
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 	                    <i class="fa fa-user fa-fw"></i>
@@ -210,6 +218,7 @@
 								<li><a href="/notice" >通知管理</a></li>
                                 <li><a href="/room" >教室管理</a></li>
                                 <li><a href="/complaint" >学生申诉管理</a></li>
+                                   <li><a href="/operation" >查看数据库操作</a></li>
                                 <li><a href="/check" >数据冲突修复</a></li>
 
 							</ul>
@@ -229,7 +238,7 @@
 
 		<!--  用户信息 -->
 
-            <div id="div1" style = "margin-top:100px"></div>
+            <div id="div1" ></div>
         {# 加载用户信息 #}
 
 		<!--  分页 -->

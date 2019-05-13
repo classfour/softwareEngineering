@@ -140,7 +140,7 @@ def altert(username):
         list1=list(Cur.fetchone())
         #print(list1)
 
-        course=list1[8].split("/")
+        course=list1[8].split(";")
 
         order1="select number,name from course where number in (\"-1\","
         order="select number,name from course where number not in (\"-1\","
@@ -164,7 +164,8 @@ def altert(username):
 
         enableStr=[]
 
-        courses=list1[8].split("/")
+        courses=list1[8].split(";")
+        #print(course)
         courseList=[]
         for each in courses:
 
@@ -183,7 +184,7 @@ def altert(username):
 
         return render_template("altert.html",username=username,name=list1[1],department=list1[2],age=list1[3],title=list1[4],
                                workage=list1[5],sex=list1[6],status=list1[7],major=courseList,image=list1[9],enableStr=enableStr,
-                               str2=str2)
+                               str2=str2,ERROR=session['error'])
     else:
         return redirect(url_for('login_blue.log_in'))
 
@@ -195,15 +196,23 @@ def addto(username):
         Cur.execute(order)
         enable=Cur.fetchone()[0]
 
-        order="select number from course where name=\""+request.form.get('addto'+username)+"\";"
-        Cur.execute(order)
-        enable+=Cur.fetchone()[0]+"/"
-        #print(enable)
+        try:
+            order="select number from course where name=\""+request.form.get('addto'+username)+"\";"
+            Cur.execute(order)
+            str1=Cur.fetchone()[0]
+            #print(enable)
+            if enable==" ":
+                enable=str1
+            else:
+                enable+=";"+str1
+            #print(enable)
 
-        order="update teacher set enable_teach_courses=\""+enable+"\" where number=\""+username+"\";"
-        #print(order)
-        Cur.execute(order)
-        db.commit()
+            order="update teacher set enable_teach_courses=\""+enable+"\" where number=\""+username+"\";"
+            #print(order)
+            Cur.execute(order)
+            db.commit()
+        except Exception:
+            session['error']=request.form.get('addto'+username)+"添加失败"
 
     return redirect(url_for('alter_blue.altert',username=username))
 
@@ -212,19 +221,23 @@ def deletefrom(username):
     if request.method=="POST" and not request.form.get("deletefrom"+username)=="no":
         order="select enable_teach_courses from teacher where number=\""+username+"\";"
         Cur.execute(order)
-        courses=Cur.fetchone()[0].split("/")
+        courses=Cur.fetchone()[0].split(";")
         coursename=request.form.get("deletefrom"+username)
-        order="select number from course where name=\""+coursename+"\";"
-        Cur.execute(order)
+        try:
+            order="select number from course where name=\""+coursename+"\";"
+            Cur.execute(order)
 
-        courses.remove(Cur.fetchone()[0])
-        enableStr=""
-        for each in courses:
-            if not each=="":
-                enableStr+=each+"/"
-        order="update teacher set enable_teach_courses=\""+enableStr +"\" where number =\""+ username+"\";"
-        Cur.execute(order)
-        db.commit()
+            courses.remove(Cur.fetchone()[0])
+            enableStr=""
+            for each in courses:
+                if not each=="":
+                    enableStr+=each+";"
+            enableStr=enableStr[:-1]
+            order="update teacher set enable_teach_courses=\""+enableStr +"\" where number =\""+ username+"\";"
+            Cur.execute(order)
+            db.commit()
+        except Exception:
+            session['error']=coursename+"删除失败"
     return redirect(url_for('alter_blue.altert', username=username))
 
 
@@ -469,7 +482,7 @@ def alterc(coursenumber):
     Cur.execute(order)
     data=Cur.fetchall()[0]
     if request.method=="POST":
-        print(request.form)
+        #print(request.form)
         listForm=list(request.form)
         if "upload" in listForm:
             orderD="delete from course where number=\""+coursenumber+"\";"
@@ -480,7 +493,7 @@ def alterc(coursenumber):
                    "\",\""+request.form.get('location')+"\",\""+request.form.get('teacher_number')+\
                    "\",\""+request.form.get('introduce')+"\","+request.form.get('type')+","+request.form.get('credits')+",\""+data[11]+"\","\
                    +request.form.get('time')+","+request.form.get('begin')+",\""+request.form.get('day')+"\","+request.form.get('grade')+\
-                   ",\""+request.form.get('specialty')+"\");"
+                   ",\""+request.form.get('specialty')+"\","+str(data[-1])+");"
             #print(orderI)
             Cur.execute(orderI)
             db.commit()

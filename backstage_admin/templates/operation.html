@@ -27,25 +27,11 @@
 <link href="static/lib/bootstrap-daterangepicker/css/daterangepicker.css" rel="stylesheet">
 
 <style>
-        table {
-            width: 900px;
-            padding: 0 ;
-            margin: 20 auto;
-            border-collapse: collapse;
-        }
-        td,th {
-            border: 1px solid #ddd;
-            padding: 6px 6px 6px 12px;
-            color: #1b1272;
-            text-align: center;
-        }
-        th {
-            background: #d3d3d3;
 
-        }
     </style>
 <script type="text/javascript">
-        var data={{ dataC|tojson }}
+
+		 var data={{ dataOperation|tojson }}
           var jsonArray = JSON.parse(data);//把json数据转换为JavaScript对象
 		  var headArray = [];
 
@@ -55,19 +41,22 @@
                          }
             }//把数据保存到数组中
             function appendTable() {
-                          parseHead(jsonArray[0]);
+                         parseHead(jsonArray[0]);
                           var div = document.getElementById("div1");
                           var table = document.createElement("table");
 						  div.appendChild(table);//创建表
 								table.className='table';
 								table.id='idData';
-                          var thead = document.createElement("tr");
+							var thead = document.createElement("thead");
+                          var tr1 = document.createElement("tr");
                           for ( var count = 0; count < headArray.length; count++) {
                                     var td = document.createElement("th");
                                     td.innerHTML = headArray[count];
-                                    thead.appendChild(td);
+                                    tr1.appendChild(td);
                            }
+						   thead.appendChild(tr1);
                            table.appendChild(thead);//创建表头
+						   var tbody = document.createElement("tbody");
                           for ( var tableRowNo = 0; tableRowNo < jsonArray.length; tableRowNo++) {
                                     var tr = document.createElement("tr");//创建行
                                     for ( var headCount = 0; headCount < headArray.length; headCount++) {
@@ -75,8 +64,10 @@
                                             cell.innerHTML = jsonArray[tableRowNo][headArray[headCount]];
                                             tr.appendChild(cell);//创建列
                                     }
-                                    table.appendChild(tr);
+									tbody.appendChild(tr);
+
                          }
+						 table.appendChild(tbody);
 
 
         }
@@ -137,7 +128,7 @@
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation" style="margin-bottom: 0">
 			<div class="navbar-header"></div>
-            <a  id="toplogoa" class="navbar-brand" href="index.html">
+            <a  id="toplogoa" class="navbar-brand" href="/">
                 <img id="toplogo" src="static/pics/logo.png"   alt="logo">
             </a>
             <div class="navbar-header">
@@ -148,10 +139,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
 				</button>
-                <a class="navbar-brand" href="index.html">后台管理系统</a>
+                <a class="navbar-brand" href="/">后台管理系统</a>
 			</div>
 
-			<ul class="nav navbar-top-links navbar-right">
+        <ul class="nav navbar-top-links navbar-right">
                 <li>
                 <form action="/search" method="post" style="display: block">
 
@@ -177,7 +168,6 @@
 				</li>
 
 			</ul>
-
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
@@ -231,14 +221,21 @@
 		</nav>
 
 		<div id="page-wrapper">
-            <form action="/complaint" method="post">
-                <div id="div1">
 
-                </div>
-            </form>
-            <!--  分页 -->
-		<div id="ycy666"></div>
-        </div>
+            <div class="container">
+				<button type="button" class="btn btn-default"onclick="javascrtpt:window.location.href='/add_notice'"
+                        style="float:right;margin-right:60px;">发布新消息</button>
+			</div>
+			<form method="post" action="/operation">
+				<div id="div1"></div>
+			</form>
+			<div id="ycy666"></div>
+
+
+
+
+
+		</div>
 
 	</div>
 

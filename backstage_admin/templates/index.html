@@ -154,8 +154,9 @@
 			<ul class="nav navbar-top-links navbar-right">
                 <li>
                 <form action="/search" method="post" style="display: block">
-                    <input type="text" name="text" required="required">
-                    <button type="submit" name="text">查询</button>
+
+                    <input type="text" name="text" required="required" style="border-radius: 6px;">
+                    <button type="submit" name="text" style="font-size: 16px;border-radius: 6px;">查询</button>
                 </form>
                 </li>
 
@@ -217,6 +218,7 @@
 								<li><a href="/notice" >通知管理</a></li>
                                 <li><a href="/room" >教室管理</a></li>
                                 <li><a href="/complaint" >学生申诉管理</a></li>
+                                <li><a href="/operation" >查看数据库操作</a></li>
                                 <li><a href="/check" >数据冲突修复</a></li>
 
 							</ul>
@@ -229,7 +231,7 @@
 		</nav>
 
 		<div id="page-wrapper">
-            <form action="/userInfo2" method="post" enctype=multipart/form-data class="form-inline"style="width:50% ;float:right; text-align:center">
+            <form action="/userInfo2" method="post" enctype=multipart/form-data class="form-inline"style="width:30% ;float:right; text-align:center;">
                 <div class="form-group">
                     <label for="inputfile">文件导入学生或教师信息</label>
                     <input type="file" id="inputfile" name="file">
@@ -248,7 +250,7 @@
 
 
 
-            <form role="form" action='/userInfo1' method='post' class="form-inline"style="width:50% ;float:left; text-align:center">
+            <form role="form" action='/userInfo1' method='post' class="form-inline"style="width:70% ;float:left; text-align:center;height:49px;padding-top: 6px;">
                 <div class="form-group">
                     <label for="name">选择列表</label>
                     <select class="form-control" name="identity" style = "width:200px">

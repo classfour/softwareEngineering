@@ -31,6 +31,19 @@ courseInfoBlue=Blueprint('courseInfo_blue',__name__)
 def course():
     session['route']+="cou"
     orderselect = "select * from course;"
+    order1="select content from operation where type=1 order by time DESC ;"
+    Cur.execute(order1)
+    try:
+        operate=Cur.fetchone()[0]
+
+        if operate =="open":
+            operate="关闭学生课程选择"
+        else:
+            operate="打开学生课程选择"
+    except Exception:
+        operate="打开学生课程选择"
+
+
 
     if request.method=="POST":
         #print(request.form)
@@ -89,6 +102,7 @@ def course():
         checkstr = "<input type=\"checkbox\" name=\"select" + each[0]  + "\"  />"
 
         astr="<a href=\"alterc/"+each[0]+"\">"+each[0]+"</a>"
+        astr=each[0]
 
         departstr="<button name=\"department"+each[2]+"\">"+each[2]+"</button>"
 
@@ -104,7 +118,7 @@ def course():
         #只显示来自excel添加课程的错误信息
 
         return render_template("course.html",dataCourse=json.dumps(dataS,ensure_ascii=False),
-                           username=session['username'],ERROR=session['error'])
+                           username=session['username'],ERROR=session['error'],operate=operate)
     else:
         return redirect(url_for('login_blue.log_in'))
 

@@ -4,6 +4,11 @@ from flask import json
 labelInfoBlue=Blueprint('labelInfo_blue',__name__)
 @labelInfoBlue.route('/label',methods=['POST','GET'])
 def labelInfo():
+    try:
+        session['route'] += "lab"
+    except Exception:
+        return redirect(url_for('login_blue.log_in'))
+
     order = "select * from label;"
     Cur.execute(order)
     data = Cur.fetchall()
@@ -14,6 +19,7 @@ def labelInfo():
         listForm=list(request.form)
 
         if "delete" in listForm :
+            print("批量删除")
             # 批量删除操作
             try:#跳过未选择而触发的异常
                 orderDelete = "delete from label where id in ("
@@ -23,7 +29,7 @@ def labelInfo():
                     Cur.execute(orderOperation)
                     db.commit()
 
-                    if not each == "delete" and not each[:3]=="add":
+                    if not each == "delete" and not each[:3]=="add" and not each=="operation":
                         orderDelete += "" + each + ","
                 orderDelete = orderDelete[:-1] + ");"
                 #print(orderDelete)
@@ -130,7 +136,7 @@ def labelInfo():
         strCourse+=addStr
 
         dataL.append({"<button class=\"btn btn-default\" name=\"delete\">批量删除</button>":checkstr,"标签名":each[1],"课程":strCourse})
-    print(dataL)
+    #print(dataL)
     return render_template("label.html",dataL=json.dumps(dataL, ensure_ascii=False))
 
 @labelInfoBlue.route('/newlabel',methods=['POST','GET'])

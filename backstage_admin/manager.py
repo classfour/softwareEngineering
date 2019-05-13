@@ -14,6 +14,7 @@ from app.labelInfo import labelInfoBlue
 from app.complaintInfo import complaintBlue
 from app.scoreInfo import scoreInfoBlue
 from app.check import checkBlue
+from app.operation import operationInfoBlue
 import os
 from flask import send_from_directory,json
 from datetime import timedelta
@@ -39,6 +40,7 @@ app.register_blueprint(blueprint=labelInfoBlue)
 app.register_blueprint(blueprint=complaintBlue)
 app.register_blueprint(blueprint=scoreInfoBlue)
 app.register_blueprint(blueprint=checkBlue)
+app.register_blueprint(blueprint=operationInfoBlue)
 
 #创建代理manage
 manager=Manager(app=app)

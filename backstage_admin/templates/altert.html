@@ -103,6 +103,9 @@
         </select>
 <button type="submit" >确认删除</button>
     </form>
+    {% if ERROR %}
+        <h1 style="color:#ff2c33">{{ ERROR }}!</h1>
+    {% endif %}
 
 
     </td>

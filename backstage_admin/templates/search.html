@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+ a { text-decoration: none;}
+a:link { text-decoration: none;color: blue}
+ a:hover { text-decoration:none;color: red}
+
+a:visited{text-decoration: none;color: blue}
+
+    </style>
+    <script language="javascript">
+
+    </script>
 </head>
 <body>
-                    {% for k in dataSearch %}
+    <div style="margin: 30px">
+        {% for k in dataSearch %}
                             <a href="/new/{{ k }}">{{ k }}</a>
                         <br>
-                    {% endfor %}
+        {% endfor %}
+    </div>
 </body>
 </html>

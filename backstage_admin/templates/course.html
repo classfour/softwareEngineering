@@ -153,6 +153,14 @@
 			</div>
 
 			<ul class="nav navbar-top-links navbar-right">
+                <li>
+                <form action="/search" method="post" style="display: block">
+
+                    <input type="text" name="text" required="required" style="border-radius: 6px;">
+                    <button type="submit" name="text" style="font-size: 16px;border-radius: 6px;">查询</button>
+                </form>
+                </li>
+
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 	                    <i class="fa fa-user fa-fw"></i>
@@ -211,6 +219,7 @@
 								<li><a href="/notice" >通知管理</a></li>
                                 <li><a href="/room" >教室管理</a></li>
                                 <li><a href="/complaint" >学生申诉管理</a></li>
+                                   <li><a href="/operation" >查看数据库操作</a></li>
                                 <li><a href="/check" >数据冲突修复</a></li>
 
 							</ul>
@@ -241,15 +250,19 @@
 				<input type="button" value="下载表单" class="btn btn-default" onclick="javascrtpt:window.location.href='/download/course.xlsx'">
 			</div>
 			<!--  用户信息 -->
+        <div>
+            <div>
 			<form action="/course" method="post">
 				<div id="div1">
 				<label style="margin-left:5px;">操作：</label>
-					<button name="shifton" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">设置为可选</button>
-					<button name="shiftoff" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">设置为不可选</button>
-					<button name="delete" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">删除</button>
-                    <button name="selectall" class="btn btn-default btn-sm" style="margin-left:12%;margin-right:12%;margin-top:10px;margin-bottom:10px">查询全部</button>
+					<button name="shifton" class="btn btn-default btn-sm" style="margin-left:7%;margin-right:7%;margin-top:10px;margin-bottom:10px">设置为可选</button>
+					<button name="shiftoff" class="btn btn-default btn-sm" style="margin-left:7%;margin-right:7%;margin-top:10px;margin-bottom:10px">设置为不可选</button>
+					<button name="delete" class="btn btn-default btn-sm" style="margin-left:7%;margin-right:7%;margin-top:10px;margin-bottom:10px">删除</button>
+                    <button name="selectall" class="btn btn-default btn-sm" style="margin-left:7%;margin-right:7%;margin-top:10px;margin-bottom:10px">查询全部</button>
 				</div>
 			</form>
+                <a href="/{{ operate }}">{{ operate }}</a>
+            </div>
 			<!--  分页 -->
 			<div id="ycy666"></div>
 		</div>

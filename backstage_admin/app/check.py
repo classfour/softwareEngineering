@@ -13,7 +13,7 @@ def check():
 
     if "username" in list(session.keys()):
         return render_template("check.html",dataUser=session['infoU'],dataSubject=session['infoS']
-                               ,dataCourse=session['infoC'],ERROR=session['error'])
+                               ,dataCourse=session['infoC'],ERROR=session['error'],username=session['username'])
 
     else:
         return redirect(url_for('login_blue.log_in'))

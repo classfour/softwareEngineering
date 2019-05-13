@@ -27,6 +27,18 @@ def subjectInfo():
         return redirect(url_for('login_blue.log_in'))
     orderselect = "select * from graduation_subject;"#默认查询全部
 
+    order1 = "select content from operation where type=2 order by time DESC ;"
+    Cur.execute(order1)
+    try:
+        operate = Cur.fetchone()[0]
+
+        if operate == "open":
+            operate = "关闭学生课题选择"
+        else:
+            operate = "打开学生课题选择"
+    except Exception:
+        operate = "打开学生课题选择"
+
     if request.method=="POST":
         #print(request.form)
         listForm=list(request.form)
@@ -92,7 +104,7 @@ def subjectInfo():
             #只显示excel传入是的错误
 
         return render_template("subject.html",dataSubject=json.dumps(dataS,ensure_ascii=False),
-                           username=session['username'],ERROR=session['error'])
+                           username=session['username'],ERROR=session['error'],operate=operate)
     else:
         return redirect(url_for('login_blue.log_in'))
 
