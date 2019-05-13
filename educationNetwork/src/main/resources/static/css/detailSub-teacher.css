@@ -1,0 +1,109 @@
+body{
+    background-color: #fafafa;
+}
+
+/*标题样式*/
+.title{
+    font:normal 24px/45px "microsoft YaHei";
+    color: #1069a4;
+}
+.border{
+    border: 5px solid black;
+}
+.loginTitle{
+    display: block;
+    margin-bottom: 30px;
+    margin-left: -10px;
+    /*margin: 15px 10px;*/
+    font-weight: bold;
+    color: black
+}
+
+.output-information{
+    padding:20px 50px;
+    background-color: rgba(255, 255, 255, .7);
+}
+
+.left {
+    padding:10px 70px;
+    float: left;
+    width: 69%;
+    height: 800px;
+    /*margin-right: -500px;*/
+    background-color: rgba(255, 255, 255, .7);
+}
+.right {
+    padding:10px 20px;
+    float: right;
+    width: 400px;
+    height: 800px;
+    background-color: rgba(255, 255, 255, .7);
+}
+.table-Sub,tr
+{
+    border:1px solid darkgray;
+}
+
+table
+{
+    width:100%;
+}
+
+th
+{
+    background-color:lightgray;
+    color:white;
+    height:40px;
+    text-align:center;
+    vertical-align:0px auto;
+}
+tr{
+    height:40px;
+}
+td{
+    text-align:center;
+    vertical-align:0px auto;
+}
+label-edit {
+    font:normal 20px/25px "microsoft YaHei";
+    color: #1069a4;
+    display:block;
+    width:100%;
+    text-align:right;
+}
+
+label-edit2{
+    font:normal 20px/25px "microsoft YaHei";
+    color: #1069a4;
+    display:block;
+    width:100%;
+    text-align:right;
+}
+
+.button {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #999999;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 9px #5a6268;
+}
+
+.button:hover {background-color: black}
+
+.button:active {
+    background-color: #999999;
+    box-shadow: 0 5px #5a6268;
+    transform: translateY(4px);
+}
+
+.button-submit{
+    background-color: #5a6268;
+    box-shadow: 0 9px #999999;
+}

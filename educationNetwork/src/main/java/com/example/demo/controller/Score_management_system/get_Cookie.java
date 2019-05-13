@@ -16,11 +16,6 @@ public class get_Cookie {
     private User_Service user_service;
     @Autowired
     private CookiesService cookiesService;
-    @RequestMapping("/login")
-    public String Login()
-    {
-        return "/index(groupFour)/login";
-    }
     @RequestMapping("/test_user")
 //    @ResponseBody
     public String Test(@RequestParam ("username") String username,@RequestParam("pwd") String pwd){

@@ -1,5 +1,5 @@
 # 简介
-该项目为计科1604软件工程大作业，开发一个小型的教务系统。其中包括五个子系统，分别为后台管理子系统、毕业设计子系统、选课子系统、排课子系统。
+该项目为计科1604软件工程大作业，开发一个小型的教务系统。其中包括五个子系统，分别为后台管理子系统、毕业设计子系统、选课子系统、成绩管理子系统、排课子系统。
 
 # 分组情况
 每个子系统由一个小组负责，分组情况如下：  
@@ -38,10 +38,20 @@
 + [Jquery](http://www.runoob.com/jquery/jquery-tutorial.html)
 + [MVC模式](https://baike.baidu.com/item/MVC%E6%A1%86%E6%9E%B6/9241230?fr=aladdin&fromid=85990&fromtitle=MVC)
 
+<<<<<<< HEAD
 ## 第四组组员及简单分工
 - 前端：王子炎，邓德师,金任任
 - 后端：蔡秉岐,王子炎,金任任
 - 文档和ppt：邓德师,赵雄,王子炎,钱文鑫
 
 ## [个人写的一个spring boot后端的对应教程](https://github.com/cordercorder/springbootstudy/blob/master/README.md)
+=======
+# 推荐IDE
++ IntelliJ IDEA  
+[官网下载](https://www.jetbrains.com/idea/download/#section=windows)  
+百度网盘:https://pan.baidu.com/s/1ncn1UuoFG_BQjRSY1LUVlw  
+提取码：h3jd 
++ 可用学校邮箱申请学生[授权](https://sales.jetbrains.com/hc/zh-cn/articles/207154369-%E5%AD%A6%E7%94%9F%E6%8E%88%E6%9D%83%E7%94%B3%E8%AF%B7%E6%96%B9%E5%BC%8F),有效期一年.
+
+>>>>>>> groupFive
 

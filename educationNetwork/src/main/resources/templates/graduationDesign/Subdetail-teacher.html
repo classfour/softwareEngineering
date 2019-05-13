@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:text-align="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/detailSub-teacher.css">
+    <link rel="stylesheet" href="/css/iconfont/iconfont.css">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <title>查看毕业设计课题</title>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row title">
+        <div class="col-md-5 offset-md-1 col-sm-12 mt-5">
+            <i class="icon-diannao iconfont ml-sm-2" style="font-size: 30px;vertical-align: middle"></i>
+            课题详情
+        </div>
+    </div>
+            <div class="left">
+                <form id="SubChange-teacher"  action="/graduationDesign/subjectChange" method="post">
+                    <div style="text-align: right">
+                        <input type="submit" id="edit2" class="btn btn-primary" style = "visibility:hidden" value="提交"/>
+                        <input type="button" class="btn btn-primary" id="edit" value="修改"/>
+                    </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">
+                        课题编号
+                    </span>
+                    <input  id = "id" type="text" class="form-control"
+                              disabled="true"  th:attr="value=${subject.serialnumber}">
+                    <input name="serialnumber" type="text" class="form-control"
+                           th:attr="value=${subject.serialnumber}" hidden="hidden">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">
+                        课题名称
+                    </span>
+                    <input name="name" id = "name" type="text" class="form-control"
+                           disabled="true" th:attr="value=${subject.name}">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">
+                        可选人数
+                    </span>
+                    <input id = "number" type="text" class="form-control"
+                           disabled="true" th:attr="value=${subject.max}">
+                    <span class="input-group-text">
+                        已选人数
+                    </span>
+                    <input id = "max_number" type="text" class="form-control"
+                           disabled="true" th:attr="value=${subject.number}">
+                </div>
+                <div class="input-group mt-2">
+                    <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                研究方向
+                            </span>
+
+                        <select name="type" id="mark" disabled="true">
+                            <option th:if="${val.name} == ${label}" th:each="val : ${allLabels}" th:attr="value=${val.id}" th:text="${val.name}" selected="selected">
+                            </option>
+                            <option th:if="${val.name} != ${label}" th:each="val : ${allLabels}" th:attr="value=${val.id}" th:text="${val.name}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group mt-2">
+                    <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                课题介绍
+                            </span>
+                        <textarea name="introduce" id="introduce" rows="13" cols="200" disabled="true" th:text="${subject.introduce}">
+                        </textarea>
+                    </div>
+                </div>
+                    <script>
+                        var statu = 0;
+                        var edit = document.getElementById('edit');
+                        edit.onclick =function(){
+                            if(statu == 0){
+                                edit.value= '取消';
+                                document.getElementById("edit2").style.visibility="visible";
+                                document.getElementById("mark").disabled = "";
+                                document.getElementById("name").disabled = "";
+                                document.getElementById("introduce").disabled = "";
+                                statu = 1;
+                            }else{
+                                edit.value= '修改';
+                                document.getElementById("edit2").style.visibility="hidden";
+                                document.getElementById("mark").disabled = "true";
+                                document.getElementById("name").disabled = "true";
+                                document.getElementById("introduce").disabled = "true";
+                                statu = 0;
+                            }
+                        }
+                    </script>
+                </form>
+            </div>
+            <div class="right">
+                <form action="" method="">
+                    <table>
+                        <i class="icon-diannao iconfont ml-sm-2" style="font-size: 30px;vertical-align: middle"></i>选择该题目的学生
+                        <tr>
+                            <th>姓名</th>
+                            <th>学号</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr th:each="val : ${students}">
+                            <td th:text="${val.name}"></td>
+                            <td th:text="${val.number}"></td>
+                            <td th:if="${val.status}==0">可选</td>
+                            <td th:if="${subject.number}<${subject.max}"><a  th:href="@{/graduationDesign/chooseStudent(studentNumber=${val.number},serialnumber=${subject.serialnumber})}">选择</a></td>
+                            <td th:if="${subject.number}==${subject.max}">人数已满</td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+</div>
+
+
+
+</body>
+</html>

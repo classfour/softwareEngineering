@@ -1,0 +1,123 @@
+body{
+    background-color: #fafafa;
+}
+
+/*标题样式*/
+.title{
+    font:normal 24px/45px "microsoft YaHei";
+    color: #1069a4;
+}
+.border{
+    border: 5px solid black;
+}
+.loginTitle{
+    display: block;
+    margin-bottom: 30px;
+    margin-left: -10px;
+    /*margin: 15px 10px;*/
+    font-weight: bold;
+    color: black
+}
+
+.output-information{
+    padding:20px 100px;
+    height: 140px;
+    background-color: rgba(255, 255, 255, .7);
+    font-family: 微软雅黑;
+}
+.output-information-sub{
+    padding:20px 100px;
+    height: 760px;
+    background-color: rgba(255, 255, 255, .7);
+    font-family: 微软雅黑;
+}
+
+label-edit {
+    font:normal 20px/25px "microsoft YaHei";
+    color: #1069a4;
+    display:block;
+    width:52%;
+    text-align:right;
+}
+label-edit2 {
+    font:normal 20px/25px "microsoft YaHei";
+    color: #1069a4;
+    display:block;
+    width:100%;
+    text-align:right;
+}
+.button {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #999999;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px #5a6268;
+}
+
+.button:hover {background-color: #999999}
+
+.button:active {
+    background-color: black;
+    box-shadow: 0 5px #5a6268;
+    transform: translateY(4px);
+}
+
+.button-submit{
+    padding: 7px 30px;
+    alignment: right;
+    text-align: right;
+    background-color: #5a6268;
+    box-shadow: 0 9px #999999;
+}
+
+.button-submit2{
+    padding: 7px 30px;
+    alignment: right;
+    text-align: right;
+    background-color: #5a6268;
+    box-shadow: 0 9px #999999;
+}
+
+.left {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #909090;
+    padding:30px 55px;
+    float: left;
+    width: 65%;
+    height: 400px;
+    border-radius:3px;
+    /*margin-right: -500px;*/
+    background-color: rgba(255, 255, 255, .7);
+}
+.right {
+    border-radius:3px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #909090;
+    padding:10px 20px;
+    float: right;
+    width: 35%;
+    height: 400px;
+    background-color: rgba(255, 255, 255, .7);
+}
+
+.textarea{
+    width: 81%;
+    height: 200px;
+    border-radius:3px;
+}
+.textarea1{
+    width: 100%;
+    height: 270px;
+    border-radius:3px;
+}
+.input{
+    border-radius:4px;
+}
