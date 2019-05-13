@@ -19,7 +19,7 @@
                     {"week":week,"detail":detail,"course":course},
                     function(response){
                         if(response.result1!='success'){
-                            alert("无可用教师，请重新选择上课时间");
+                            alert("无可用教室，请重新选择上课时间");
                         }
                         else{
                             alert(response.class_number);
@@ -167,7 +167,7 @@
                                             tabletext += '</tr>';
                                     }else if(tmp1[k]=='0'){
                                         if(tmp2[k]=='1'){
-                                            tabletext += '<th bgcolor="#ea2d2d">' + '</th>';
+                                            tabletext += '<th bgcolor="#ea2d2d">'+"        " + '</th>';
                                         }else{
                                             tabletext += '<th>' +"        "+ '</th>';
                                         }

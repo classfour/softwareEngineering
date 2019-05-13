@@ -2,18 +2,18 @@ package com.example.demo.domain;
 
 public class ArrangeCourseAllInfo {
 
-    private String teacherName;
+    private String teacher_number;
     private String course;
     private String week;
     private String detail;
     private String class_number;
 
     public String getTeacherName() {
-        return teacherName;
+        return teacher_number;
     }
 
     public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
+        this.teacher_number = teacherName;
     }
 
     public String getCourse() {

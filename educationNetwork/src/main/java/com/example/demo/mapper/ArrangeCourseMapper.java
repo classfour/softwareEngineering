@@ -34,7 +34,7 @@ public interface ArrangeCourseMapper {
     int getTeacherNumberByName(String teacherName);
 
     //    获得排课需要的教室需要的信息
-    @Select("select class_number,occupied from classroom where capacity=#{courseMaxNumber}")
+    @Select("select class_number,occupied from classroom where capacity>=#{courseMaxNumber}")
     List<ArrangeCourseClassroomEntity> getAvailableClassroomsInfo(int courseMaxNumber);
 
     //    更新course中的所有信息

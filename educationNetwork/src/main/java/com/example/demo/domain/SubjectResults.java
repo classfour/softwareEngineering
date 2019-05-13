@@ -1,9 +1,9 @@
 package com.example.demo.domain;
 
 public class SubjectResults {
-    private String studentNumber;
+    private String student_number;
 
-    private String courseNumber;
+    private String course_number;
 
     private String title;
 
@@ -16,7 +16,7 @@ public class SubjectResults {
     private String evaluate;
 
     public String getStudentNumber() {
-        return studentNumber;
+        return student_number;
     }
 
     public String getEvaluate() {
@@ -28,15 +28,15 @@ public class SubjectResults {
     }
 
     public void setStudentNumber(String studentNumber) {
-        this.studentNumber = studentNumber;
+        this.student_number = studentNumber;
     }
 
     public String getCourseNumber() {
-        return courseNumber;
+        return course_number;
     }
 
     public void setCourseNumber(String courseNumber) {
-        this.courseNumber = courseNumber;
+        this.course_number = courseNumber;
     }
 
     public String getTitle() {

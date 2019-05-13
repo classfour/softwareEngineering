@@ -23,12 +23,14 @@ public class ArrangeCourseServiceImpl implements ArrangeCourseService {
     @Override
     public Map<String, Object> getTeachersInfoTeachCourse(String courseName) {
         List<ArrangeCourseTeacherEntity> allTeachersCourses = arrangeCourseMapper.getAllTeachersInfo();
+        System.out.println("whefiwejfiwjo"+allTeachersCourses.get(0).getName());
         List<String> getTeachers = new LinkedList<>();
         List<String> getTeachersOccupation = new LinkedList<>();
         int courseNumber = getCourseNumber(courseName);
         String courseNumberString = courseNumber + "";
         for (ArrangeCourseTeacherEntity i : allTeachersCourses) {
             String enable_teach_courses = i.getEnable_teach_courses();
+            System.out.println(enable_teach_courses);
             String[] s = enable_teach_courses.split(";");
             for (String c : s) {
                 if (c.equals(courseNumberString)) {

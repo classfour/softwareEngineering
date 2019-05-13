@@ -10,7 +10,7 @@ public class Label {
 
     private String name;//标签名
 
-    private String courseNumber;//下属课题编号
+    private String course_number;//下属课题编号
 
     public int getId() {
         return Id;
@@ -29,11 +29,11 @@ public class Label {
     }
 
     public String getCourseNumber() {
-        return courseNumber;
+        return course_number;
     }
 
     public void setCourseNumber(String courseNumber) {
-        this.courseNumber = courseNumber;
+        this.course_number = courseNumber;
     }
 
 //    public String getCourse_number() {

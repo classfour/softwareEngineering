@@ -16,13 +16,13 @@ public class GraduationSubject {
 
     private int max;//课题最大容量
 
-    private String teacherNumber;//教师编号
+    private String teacher_number;//教师编号
 
     private int number;//已选人数
 
-    private int maxNumber;//课题最大可选人数
+    private int max_number;//课题最大可选人数
 
-    private int nowNumber;
+    private int now_number;
 
     private String teacher;
 
@@ -59,11 +59,11 @@ public class GraduationSubject {
     }
 
     public int getNowNumber() {
-        return nowNumber;
+        return now_number;
     }
 
     public void setNowNumber(int nowNumber) {
-        this.nowNumber = nowNumber;
+        this.now_number = nowNumber;
     }
 
     public int getStatus() {
@@ -87,19 +87,19 @@ public class GraduationSubject {
     }
 
     public String getTeacherNumber() {
-        return teacherNumber;
+        return teacher_number;
     }
 
     public void setTeacherNumber(String teacherNumber) {
-        this.teacherNumber = teacherNumber;
+        this.teacher_number = teacherNumber;
     }
 
     public int getMaxNumber() {
-        return maxNumber;
+        return max_number;
     }
 
     public void setMaxNumber(int maxNumber) {
-        this.maxNumber = maxNumber;
+        this.max_number = maxNumber;
     }
 
     public void setNumber(int number) {

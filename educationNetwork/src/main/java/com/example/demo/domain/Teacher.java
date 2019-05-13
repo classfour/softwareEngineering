@@ -17,7 +17,7 @@ public class Teacher {
 
     private int status;
 
-    private String enableTeachCourses;
+    private String enable_teach_courses;
 
     private String ocupation;
 
@@ -94,10 +94,10 @@ public class Teacher {
     }
 
     public String getEnableTeachCourses() {
-        return enableTeachCourses;
+        return enable_teach_courses;
     }
 
     public void setEnableTeachCourses(String enableTeachCourses) {
-        this.enableTeachCourses = enableTeachCourses;
+        this.enable_teach_courses = enableTeachCourses;
     }
 }

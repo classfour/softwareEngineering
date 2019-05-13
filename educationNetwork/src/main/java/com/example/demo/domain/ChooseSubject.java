@@ -8,9 +8,9 @@ package com.example.demo.domain;
 public class ChooseSubject {
     private int id;
 
-    private String studentNumber;
+    private String student_number;
 
-    private String courseNumber;
+    private String course_number;
 
     private int status;
 
@@ -31,18 +31,18 @@ public class ChooseSubject {
     }
 
     public String getStudentNumber() {
-        return studentNumber;
+        return student_number;
     }
 
     public void setStudentNumber(String studentNumber) {
-        this.studentNumber = studentNumber;
+        this.student_number = studentNumber;
     }
 
     public String getCourseNumber() {
-        return courseNumber;
+        return course_number;
     }
 
     public void setCourseNumber(String courseNumber) {
-        this.courseNumber = courseNumber;
+        this.course_number = courseNumber;
     }
 }
