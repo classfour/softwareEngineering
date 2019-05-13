@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/iconfont/iconfont.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header class="header clearfix">
+        <span>
+            <i class="iconfont icon-diannao" style="font-size: 30px;vertical-align: middle"></i>
+            计科1604教务管理系统
+<!--            <span th:text="用户名+${username}"></span>-->
+        </span>
+        <span class="float-right">
+            <img class="rounded-circle" src="images/buct.jpg" alt="" width="40px" height="40px" >
+        </span>
+    </header>
+    <nav class="navbar navbar-expand-sm">
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
+                    报名申请
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                </div>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+                    信息维护
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
+                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
+                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
+                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
+                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
+                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
+                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop3" data-toggle="dropdown">
+                    选课
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/chooseClass/index">自主选课</a>
+<!--                    <a class="dropdown-item" href="#">自主选课</a>-->
+<!--                    <a class="dropdown-item" href="#">自主选课</a>-->
+<!--                    <a class="dropdown-item" href="#">自主选课</a>-->
+<!--                    <a class="dropdown-item" href="#">自主选课</a>-->
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop4" data-toggle="dropdown">
+                    信息查询
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">查询个人信息</a>
+                    <a class="dropdown-item" href="#">查询个人信息</a>
+                    <a class="dropdown-item" href="#">查询个人信息</a>
+                    <a class="dropdown-item" href="#">查询个人信息</a>
+                    <a class="dropdown-item" href="#">查询个人信息</a>
+                    <a class="dropdown-item" href="#">查询个人信息</a>
+                    <a class="dropdown-item" href="#">查询个人信息</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop5" data-toggle="dropdown">
+                    教学评价
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">学生评价</a>
+                    <a class="dropdown-item" href="#">学生评价</a>
+                    <a class="dropdown-item" href="#">学生评价</a>
+                    <a class="dropdown-item" href="#">学生评价</a>
+                    <a class="dropdown-item" href="#">学生评价</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop6" data-toggle="dropdown">
+                    毕业设计(论文)
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/graduationDesign/selectSubject" target="_blank">学生选题</a>
+                    <a class="dropdown-item" href="/graduationDesign/declare" target="_blank">申报课题</a>
+                    <a class="dropdown-item" href="/graduationDesign/mystudent" target="_blank">我的学生</a>
+                    <a class="dropdown-item" href="/graduationDesign/checkResult" target="_blank">成绩查看</a>
+                    <a class="dropdown-item" href="/graduationDesign/detail" target="_blank">修改课题/选择学生</a>
+                    <a class="dropdown-item" href="/graduationDesign/content" target="_blank">提交课设</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

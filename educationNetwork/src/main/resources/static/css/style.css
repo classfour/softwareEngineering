@@ -1,0 +1,331 @@
+html, body {
+    height: 100%;
+    background-color: #f0f0f0 !important;
+}
+
+/* 设置含有“自主选课”的头部 */
+.course-header {
+    width: 100%;
+    height: 45px;
+    font-size: 18px;
+    line-height: 45px;
+    text-indent: 100px;
+    font-weight: 100;
+    color: #fff;
+    background: linear-gradient(to right, #2e54a7, #2ba5d2);
+}
+
+/* 设置整个选课部分的容器 */
+.course-container {
+    background-color: white;
+    width: 92%;
+    margin: 12px auto;
+    overflow: hidden;
+}
+
+.container {
+    width: 96%;
+}
+
+/* 设置整个查询部分的容器 */
+.query-part {
+    margin-top: 45px;
+    border: 1px solid #afccfa;
+    background-image: linear-gradient(to bottom, white, #f4fcff);
+    position: relative;
+}
+
+.query-part::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 2px);
+    height: 10px;
+    top: 100%;
+    left: -1px;
+    background-color: #cbe1fd;
+    border: 1px solid #afccfa;
+}
+
+/* 设置整个输入查询及重置部分 */
+form.query {
+    width: 72%;
+    margin: 5px auto 0;
+    font-size: 12px;
+}
+
+form.query * {
+    float: left;
+    outline: none;
+}
+
+.query-input {
+    width: 70%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 5px;
+    background-color: #f2f2f2;
+}
+
+.query-input:focus {
+    background-color: #e9f8ff;
+}
+
+.form-btn {
+    padding: 6px 15px;
+    border: 1px solid #aaa;
+}
+
+.query-btn {
+    background-color: #337ab6;
+    color: white;
+}
+
+.reset-btn {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: none;
+    background-color: white;
+}
+
+@media (max-width: 768px) {
+    .course-container {
+        width: 100%;
+    }
+    form.query {
+        width: 100%;
+        margin: 5px auto 0;
+        font-size: 10px;
+    }
+    .query-input {
+        width: 68%;
+    }
+    .form-btn {
+        padding: 6px 8px;
+    }
+}
+
+.selected-conditions-container {
+    background-color: #fbf6d8;
+    min-height: 48px;
+    padding: 3px 0;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border-top: 1px solid #afccfa;
+    border-bottom: 1px solid #afccfa;
+}
+
+.selected-conditions-container .selected-const-text {
+    width: 17%;
+    box-sizing: border-box;
+    float: left;
+    text-align: right;
+    padding: 5px 30px 15px 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ul.selected-conditions {
+    width: 83%;
+    float: left;
+    padding-top: 5px;
+    padding-left: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul li.selected-item {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 15px;
+    color: #f60;
+    border: 1px solid #f60;
+    background-color: white;
+}
+
+li.selected-item .deselect-cross {
+    cursor: pointer;
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin-left: 5px;
+    margin-right: 2px;
+    background-image: url("../img/deselect_cross.png");
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.condition-container {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.condition-container.hide {
+    height: 0;
+}
+
+col.condition-name {
+    width: 13%;
+}
+
+col.condition-values {
+    width: 87%;
+}
+
+.condition-container td:nth-child(even) {
+    text-align: left;
+    padding-bottom: 15px;
+    font-size: 16px;
+    color: #2e54a7;
+}
+
+.condition-container td:nth-child(odd) {
+    text-align: right;
+    padding-right: 25px;
+    padding-bottom: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.condition-container .condition-value-item {
+    padding-right: 25px;
+    cursor: pointer;
+}
+
+.condition-container .condition-value-item:hover {
+    text-decoration: underline;
+}
+
+/* 改变选课详细信息的切换按钮的样式 */
+.toggle-visible {
+    width: 80px;
+    height: 20px;
+    margin: 0 auto;
+    border: 2px solid #73b3ff;
+    border-bottom: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    text-align: center;
+    text-indent: 15px;
+    background: #cbe1fd url("../img/arrow.png") no-repeat 15px -15px;
+    background-size: 12px;
+    cursor: pointer;
+}
+
+/* 侧边栏 */
+.course-info-container {
+    position: fixed;
+    width: 672px;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+
+.course-info-container.hide-aside {
+    left: calc(100% - 36px);
+}
+
+.toggle-panel {
+    float: left;
+    width: 36px;
+    padding: 0 12px;
+    height: 100%;
+    background-color: #fd9b00;
+    color: rgba(255, 255, 255, .75);
+    font-size: 12px;
+}
+
+.toggle-arrow {
+    width: 30px;
+    height: 18px;
+    margin: 23px 0 200px -12px;
+    background: url("../img/horizontal_arrow.png") no-repeat 4px;
+    background-size: 60px;
+    cursor: pointer;
+}
+
+.toggle-panel .badge {
+    height: 21px;
+    line-height: 1.33;
+    background-color: white;
+    color: #fd9b00;
+    text-align: left;
+    margin-left: -4px;
+}
+
+.course-info {
+    float: left;
+    width: calc(100% - 36px);
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+/* 显示空闲周数的表格 */
+.free-time-table {
+    margin: 8px auto;
+}
+
+.free-time-table th, .free-time-table td{
+    width: 76px;
+    height: 18px;
+    font-size: 11px;
+    font-weight: 400;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.free {
+    background-color: #5cb85c;
+}
+
+td.course-info-description {
+    text-align: left;
+}
+
+.course-info-description span::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 15px;
+    margin: 2px 5px 0 25px;
+}
+
+.course-info-description span {
+    vertical-align: top;
+    font-size: 11px;
+    padding-right: 35px;
+}
+
+.course-info-description span:first-child::before {
+    background-color: #5cb85c;
+}
+
+.course-info-description span:last-child::before {
+    background-color: #d9534f;
+}
+
+.course-info-description span:nth-child(2)::before {
+    background-color: #f0ad4e;
+}
+
+/* 显示选中课程的信息 */
+ul.course-selected {
+    width: 500px;
+    height: 500px;
+    background-color: red;
+}
+
+/* 设置版权与作者信息 */
+.course-footer {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 11px;
+    color: #388e5a;
+}
+
+.course-footer span {
+    margin-right: 50px;
+}

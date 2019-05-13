@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>自主选课</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body id="courseSelect">
+<header class="course-header">自主选课</header>
+<div class="course-container">
+    <div class="query-part container">
+        <form action="" class="query row">
+            <input type="text" class="query-input" placeholder="请输入课程号或课程名称或教学班名称查询！" >
+            <input type="submit" value="查询" class="query-btn form-btn">
+            <input type="reset" value="重置" class="reset-btn form-btn">
+        </form>
+        <div class="selected-conditions-container row">
+            <div class="selected-const-text">已选条件：</div>
+            <ul class="selected-conditions">
+                <li class="selected-item"><span class="selected-item-question">有无余量</span>:<span class="selected-item-answer">有</span><span class="deselect-cross"></span></li>
+                <li class="selected-item"><span class="selected-item-question">是否重修</span>:<span class="selected-item-answer">否</span><span class="deselect-cross"></span></li>
+            </ul>
+        </div>
+        <table class="condition-container" id="conditionTable">
+            <colgroup>
+                <col class="condition-name">
+                <col class="condition-values">
+            </colgroup>
+            <!--<tr>-->
+            <!--<td>年级：</td>-->
+            <!--<td><span class="condition-value-item">2022</span><span class="condition-value-item">2021</span><span class="condition-value-item">2020</span><span class="condition-value-item">2019</span></td>-->
+            <!--</tr>-->
+        </table>
+        <div class="toggle-visible" id="toggleBtn">收起</div>
+    </div>
+    <div class="result-part container">
+        <div class="modal-body">
+            <table class="table table-striped">
+        <thread>
+            <tr>
+                <th>课程编号</th>
+                <th>课程名称</th>
+                <th>选课状态</th>
+
+                <th>操作</th>
+
+            </tr>
+        </thread>
+
+        <tbody id="content">
+        <tr th:each="temp: ${contents}">
+
+            <td th:text="${temp.number}">1001</td>
+            <td th:text="${temp.name}">管理系统设计</td>
+            <td th:text="${temp.status}">简介</td>
+            <td>
+<!--                <a th:href="@{'/change/'+${temp.number}+'/'+${temp.status}}" th:if="${temp.status == 0 }" >选课</a>-->
+<!--                <a th:href="@{'/change/'+${temp.number}+'/'+${temp.status}}" th:if="${temp.status == 1 }" >退选</a>-->
+<!--                <button onclick="statusChange" th:if="${temp.status == 0 }">选课</button>-->
+                    <button th:if="${temp.status == 0 }" class="btn btn-default" th:onclick="statusChange([[${temp.number}]]);">选课</button>
+                    <button th:if="${temp.status == 1}" class="btn btn-default" th:onclick="statusChange([[${temp.number}]]);">退课</button>
+<!--                <a th:href="@{/change}" th:if="${temp.status == 0 }" >选课</a>-->
+<!--                <a th:href="@{/change}"  th:if="${temp.status == 1 }" >退选</a>-->
+
+            </td>
+
+        </tr>
+        </tbody>
+            </table>
+        </div>
+    </div>
+    <aside class="course-info-container hide-aside">
+        <div class="toggle-panel">
+            <div class="toggle-arrow"></div>
+            选课信息
+            <p style="margin-top: 20px; color: white;">已选</p>
+            <span class="badge">8</span>
+        </div>
+        <div class="course-info">
+            <table class="free-time-table">
+                <thead>
+                <tr>
+                    <th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>2</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>3</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>4</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>5</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>6</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>7</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>8</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>9</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>10</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>11</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>12</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>13</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="course-info-description">
+                        <span>空余周数=总周数</span>
+                        <span>空余周数>=(总周数/2)</span>
+                        <span>空余周数<(总周数/2)</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </aside>
+</div>
+<footer class="course-footer">
+    <span class="copyright">版权所有© Copyright 1958-2019 北京化工大学</span>
+    <span class="address">北京化工大学昌平校区计科1604</span>
+</footer>
+<script>
+    function statusChange(number) {
+
+        $.ajax({
+            async:false,
+            data:{
+                "number":number
+            },
+            type:"post",
+            url:"http://localhost:8080//statusChange",
+            success:function (data) {
+                if(data) {
+                    alert("退选成功")
+                }else{
+                    alert("退选失败")
+                }
+            }
+        })
+    }
+</script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+
+</html>
