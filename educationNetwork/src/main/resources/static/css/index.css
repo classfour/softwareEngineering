@@ -19,5 +19,9 @@ li{
 }
 .content{
     background-color: white;
-    height: 100px;
+    /*height: 100px;*/
+}
+.item{
+    font-size: 12px;
+    color: #7a7a7a;
 }

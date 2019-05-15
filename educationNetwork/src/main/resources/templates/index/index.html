@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/iconfont/iconfont.css">
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -129,19 +137,26 @@
     <main>
         <div>
             <div class="row" style="margin-top: 25px;">
-                <div class="col-md-4 content" style="border-style:solid;border-left-width: 20px;border-right-width: 10px;border-color: #fafafa">
-                    <div class="row" style="padding:10px 20px;">
+                <div class="col-md-4 ">
+                    <div class="row content" style="padding:10px 20px;border-style:solid;border-left-width: 20px;border-right-width: 10px;border-color: #fafafa">
                         <div class="col-md-3" style="line-height: 80px">
                             <img src="images/buct.jpg" width="80px" height="80px">
                         </div>
                         <div class="col-md-7">
-                            <strong>匡凌熙</strong>
+                            <strong style="display: block;">匡凌熙</strong>
+                            <span style="display: block;">身份：学生</span>
                             <span style="display: block;font-size: 10px;color: #7a7a7a;">信息科学与技术学院</span>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-12 content" style="height:200px;border-style: solid;border-color: #fafafa;border-right-width: 10px">
+                            <strong style="margin-left: 20px; display: block;">文件</strong>
+                            <hr>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-8" style="background-color: white;padding:10px 20px">
-                    <strogn style="margin-left: 20px">通知</strogn>
+                    <strong style="margin-left: 20px;display: block;">通知</strong>
                     <hr>
                     <ui>
                         <li style="height: 20px;line-height: 20px">
@@ -160,6 +175,31 @@
                             <span style="font-size: 10px;color: #7a7a7a;">这是第三条通知</span>
                         </li>
                     </ui>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-md-4 col-md-4 content" style="height:300px;border-style: solid;border-color: #fafafa;border-top-width: 10px;border-right-width: 10px">
+                    <strong style="margin-left: 20px;margin-top: 10px;;display: block;">消息</strong>
+                    <hr>
+                </div>
+                <div class="col-md-4 content" style="border-style: solid;border-color: #fafafa;border-top-width: 10px;border-right-width: 10px">
+                    <strong style="margin-left: 20px;margin-top: 10px;display: block;">成绩</strong>
+                    <hr>
+                    <div class="item">
+                        <span>2018-2019-1-专业必修-编译原理</span>
+                        <span style="float: right;">85</span>
+                        <hr>
+                    </div>
+                    <div class="item">
+                        <span>2018-2019-1-专业必修-编译原理</span>
+                        <span style="float: right;">85</span>
+                        <hr>
+                    </div>
+                    <div class="item">
+                        <span>2018-2019-1-专业必修-编译原理</span>
+                        <span style="float: right;">85</span>
+                        <hr>
+                    </div>
                 </div>
             </div>
         </div>
