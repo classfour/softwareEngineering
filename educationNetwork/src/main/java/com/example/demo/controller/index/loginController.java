@@ -1,7 +1,11 @@
 package com.example.demo.controller.index;
 
+import com.example.demo.domain.Student;
+import com.example.demo.domain.Teacher;
 import com.example.demo.domain.User;
 import com.example.demo.service.CookiesService;
+import com.example.demo.service.StudentService;
+import com.example.demo.service.TeacherService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,10 @@ public class loginController {
     CookiesService cookiesService;
     @Autowired
     UserService userService;
+    @Autowired
+    StudentService studentService;
+    @Autowired
+    TeacherService teacherService;
 
     @RequestMapping("login")
     public String login(String usernmae, String password) {
@@ -24,8 +32,22 @@ public class loginController {
     }
     @RequestMapping("home")
     public String index(Model model) {
-        String username = cookiesService.getCookies("username");
-        model.addAttribute("username", username);
+        String lv = cookiesService.getCookies("lv");
+        if(lv.equals("0")) {
+            Student student = studentService.selectStudent(cookiesService.getCookies("username"));
+            model.addAttribute("name", student.getName());
+            model.addAttribute("lv", "学生");
+            model.addAttribute("college", student.getDepartments());
+        }else if(lv.equals("1")){
+            Teacher teacher = teacherService.selectByNumber(cookiesService.getCookies("username"));
+            model.addAttribute("name", teacher.getName());
+            model.addAttribute("lv", "教师");
+            model.addAttribute("college", teacher.getDepartments());
+        }else{
+            model.addAttribute("name", "管理员");
+            model.addAttribute("lv", "管理员");
+            model.addAttribute("college", "-");
+        }
         return "index/index";
     }
     @RequestMapping("submit")
@@ -37,6 +59,7 @@ public class loginController {
             return "redirect:/login";
         }else{
             cookiesService.setCookies("username", username);
+            cookiesService.setCookies("lv", user.getLevel());
             return "redirect:/home";
         }
     }

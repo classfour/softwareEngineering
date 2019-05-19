@@ -75,19 +75,11 @@
                     选课
                 </a>
                 <div class="dropdown-menu">
-<<<<<<< HEAD
-                    <a class="dropdown-item" href="/chooseClass/index">自主选课</a>
-<!--                    <a class="dropdown-item" href="#">自主选课</a>-->
-<!--                    <a class="dropdown-item" href="#">自主选课</a>-->
-<!--                    <a class="dropdown-item" href="#">自主选课</a>-->
-<!--                    <a class="dropdown-item" href="#">自主选课</a>-->
-=======
                     <a class="dropdown-item" href="#">自主选课</a>
                     <a class="dropdown-item" href="#">自主选课</a>
                     <a class="dropdown-item" href="#">自主选课</a>
                     <a class="dropdown-item" href="#">自主选课</a>
                     <a class="dropdown-item" href="#">自主选课</a>
->>>>>>> groupFive
                 </div>
             </li>
 
@@ -125,10 +117,10 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/graduationDesign/selectSubject" target="_blank">学生选题</a>
-                    <a class="dropdown-item" href="/graduationDesign/declare" target="_blank">申报课题</a>
-                    <a class="dropdown-item" href="/graduationDesign/mystudent" target="_blank">我的学生</a>
+                    <a class="dropdown-item" href="/graduationDesign/declare" target="_blank" th:if="${lv=='教师'}">申报课题</a>
+                    <a class="dropdown-item" href="/graduationDesign/mystudent" target="_blank" th:if="${lv=='教师'}">我的学生</a>
                     <a class="dropdown-item" href="/graduationDesign/checkResult" target="_blank">成绩查看</a>
-                    <a class="dropdown-item" href="/graduationDesign/detail" target="_blank">修改课题/选择学生</a>
+                    <a class="dropdown-item" href="/graduationDesign/detail" target="_blank" th:if="${lv=='教师'}">修改课题/选择学生</a>
                     <a class="dropdown-item" href="/graduationDesign/content" target="_blank">提交课设</a>
                 </div>
             </li>
@@ -143,9 +135,9 @@
                             <img src="images/buct.jpg" width="80px" height="80px">
                         </div>
                         <div class="col-md-7">
-                            <strong style="display: block;">匡凌熙</strong>
-                            <span style="display: block;">身份：学生</span>
-                            <span style="display: block;font-size: 10px;color: #7a7a7a;">信息科学与技术学院</span>
+                            <strong style="display: block;" th:text="${name}"></strong>
+                            <span style="display: block;" th:text="${lv}"></span>
+                            <span style="display: block;font-size: 10px;color: #7a7a7a;" th:text="${college}"></span>
                         </div>
                     </div>
                     <div class="row" >
