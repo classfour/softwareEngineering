@@ -56,7 +56,9 @@ public class loginController {
 //        System.out.println(user.getUsername());
         if(user == null) {
             //重定向
-            return "redirect:/login";
+            model.addAttribute("msg", "用户名或密码错误");
+            model.addAttribute("url", "/login");
+            return "graduationDesign/error";
         }else{
             cookiesService.setCookies("username", username);
             cookiesService.setCookies("lv", user.getLevel());

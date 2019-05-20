@@ -113,6 +113,11 @@ public class graduationController {
     public String content(Model model) {
         String studentNumber = cookiesService.getCookies("username");
         SubjectResults subjectResults = subjectResultsService.selectByStudent(studentNumber);
+        if(subjectResults == null) {
+            model.addAttribute("msg", "您暂未选择任何课题");
+            model.addAttribute("url", "/index");
+            return "graduationDesign/error";
+        }
         model.addAttribute("result", subjectResults);
         return "graduationDesign/content";
     }
