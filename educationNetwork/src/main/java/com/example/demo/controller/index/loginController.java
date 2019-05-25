@@ -1,12 +1,10 @@
 package com.example.demo.controller.index;
 
+import com.example.demo.domain.Notice;
 import com.example.demo.domain.Student;
 import com.example.demo.domain.Teacher;
 import com.example.demo.domain.User;
-import com.example.demo.service.CookiesService;
-import com.example.demo.service.StudentService;
-import com.example.demo.service.TeacherService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +23,8 @@ public class loginController {
     StudentService studentService;
     @Autowired
     TeacherService teacherService;
+    @Autowired
+    NoticeService noticeService;
 
     @RequestMapping("login")
     public String login(String usernmae, String password) {
@@ -33,6 +33,7 @@ public class loginController {
     @RequestMapping("home")
     public String index(Model model) {
         String lv = cookiesService.getCookies("lv");
+        Notice[] notices = noticeService.getAllNotice();
         if(lv.equals("0")) {
             Student student = studentService.selectStudent(cookiesService.getCookies("username"));
             model.addAttribute("name", student.getName());
@@ -48,6 +49,8 @@ public class loginController {
             model.addAttribute("lv", "管理员");
             model.addAttribute("college", "-");
         }
+        model.addAttribute("notice", notices);
+//        System.out.println(notices[0].getContent());
         return "index/index";
     }
     @RequestMapping("submit")

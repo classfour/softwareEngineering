@@ -151,20 +151,17 @@
                     <strong style="margin-left: 20px;display: block;">通知</strong>
                     <hr>
                     <ui>
-                        <li style="height: 20px;line-height: 20px">
+                        <li th:if="${item.getStatus()==1}" style="height: 20px;line-height: 20px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis" th:each="item:${notice}">
                             <span style="color:red;font-size: 12px">【置顶】</span>
                             <strong style="font-size: 12px;">【通知】</strong>
-                            <span style="font-size: 10px;color: #7a7a7a;">这是第一条通知</span>
+                            <span style="font-size: 10px;color: #7a7a7a;" th:text="${item.getContent()}">这是第一条通知</span>
+<!--                            <span style="float: right;" th:text="${item.getTime()}"></span>-->
                         </li>
-                        <li style="height: 20px;line-height: 20px">
-                            <span style="color:red;font-size: 12px">【置顶】</span>
-                            <strong style="font-size: 12px;">【通知】</strong>
-                            <span style="font-size: 10px;color: #7a7a7a;">这是第二条通知</span>
-                        </li>
-                        <li style="height: 20px;line-height: 20px">
+                        <li th:if="${item.getStatus()==0}" style="height: 20px;line-height: 20px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis" th:each="item:${notice}">
 <!--                            <span style="color:red;font-size: 12px">【置顶】</span>-->
                             <strong style="font-size: 12px;">【通知】</strong>
-                            <span style="font-size: 10px;color: #7a7a7a;">这是第三条通知</span>
+                            <span style="font-size: 10px;color: #7a7a7a;" th:text="${item.getContent()}">这是第一条通知</span>
+                            <!--                            <span style="float: right;" th:text="${item.getTime()}"></span>-->
                         </li>
                     </ui>
                 </div>
