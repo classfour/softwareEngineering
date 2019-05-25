@@ -50,4 +50,14 @@ public class CookiesServiceImpl implements CookiesService {
 
         return null;
     }
+
+    @Override
+    public boolean isLogin() {
+        String name = getCookies("username");
+        if(name == null || name.equals("")) {
+            return false;
+        }
+
+        return true;
+    }
 }

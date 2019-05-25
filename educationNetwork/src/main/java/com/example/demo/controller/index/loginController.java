@@ -32,6 +32,12 @@ public class loginController {
     }
     @RequestMapping("home")
     public String index(Model model) {
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
         String lv = cookiesService.getCookies("lv");
         Notice[] notices = noticeService.getAllNotice();
         if(lv.equals("0")) {
@@ -50,6 +56,7 @@ public class loginController {
             model.addAttribute("college", "-");
         }
         model.addAttribute("notice", notices);
+        cookiesService.isLogin();
 //        System.out.println(notices[0].getContent());
         return "index/index";
     }

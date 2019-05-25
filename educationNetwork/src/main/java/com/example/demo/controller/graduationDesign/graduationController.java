@@ -36,6 +36,8 @@ public class graduationController {
     private SubjectResultsService subjectResultsService;
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private OperationService operationService;
 
     @GetMapping("checkResult")
     public String checkResult(Model model) {
@@ -44,15 +46,25 @@ public class graduationController {
 //        model.addAttribute("result", "");
 //        model.addAttribute("subject", "");
 //        model.addAttribute("student", "");
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
         return "graduationDesign/checkResult";
     }
 
 
     @PostMapping("findResult")
     public String findResult(String year, String term, Model model) {
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
         String[] s = year.split("-");
-//        System.out.println(s[0]);
-//        System.out.println(term);
         if(!s[0].equals("2018") || !term.equals("2")) {
             return "redirect:/graduationDesign/checkResult";
         }
@@ -111,11 +123,18 @@ public class graduationController {
 
     @GetMapping("content")
     public String content(Model model) {
+        int judge = operationService.isSubjectOpen();
+        if(judge == 0) {
+            model.addAttribute("msg", "当前不是毕设时间");
+            model.addAttribute("url", "/home");
+
+            return "graduationDesign/error";
+        }
         String studentNumber = cookiesService.getCookies("username");
         SubjectResults subjectResults = subjectResultsService.selectByStudent(studentNumber);
         if(subjectResults == null) {
             model.addAttribute("msg", "您暂未选择任何课题");
-            model.addAttribute("url", "/index");
+            model.addAttribute("url", "/home");
             return "graduationDesign/error";
         }
         model.addAttribute("result", subjectResults);
@@ -193,6 +212,19 @@ public class graduationController {
 
     @GetMapping("selectSubject")
     public String selectSubject(Model model) {
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
+        int judge = operationService.isSubjectOpen();
+        System.out.println(judge);
+        if(judge == 0) {
+            model.addAttribute("msg", "当前时间不是选题时间");
+            model.addAttribute("url", "/home");
+            return "graduationDesign/error";
+        }
         String studentNumber = cookiesService.getCookies("username");
         SubjectResults subjectResults = subjectResultsService.selectByStudent(studentNumber);
         if(subjectResults!=null) {
@@ -274,6 +306,7 @@ public class graduationController {
 
     @GetMapping("select")
     public String test(ModelMap modelMap) {
+
         GraduationSubject graduationSubject = graduationSubjectService.getSubject("001");
         modelMap.addAttribute("graduationSubject", graduationSubject);
         return "graduationDesign/test";
@@ -281,6 +314,12 @@ public class graduationController {
 
     @GetMapping("mystudent")
     public String mystudent(Model model) {
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
         String number = cookiesService.getCookies("username");
         GraduationSubject subject = graduationSubjectService.selectByNumber(number);
         if(subject==null)
@@ -301,6 +340,12 @@ public class graduationController {
     }
     @GetMapping("declare")
     public String declare(Model model) {
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
         Label[] label = labelService.getAllLabel();
 //        System.out.println(label[0]);
         model.addAttribute("label", label);
@@ -308,6 +353,12 @@ public class graduationController {
     }
     @GetMapping("appraise")
     public String appraise(String studentNumber, Model model) {
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
         Student student = studentService.selectStudent(studentNumber);
         SubjectResults subjectResults = subjectResultsService.selectByStudent(studentNumber);
         String course = subjectResults.getCourseNumber();
@@ -322,6 +373,12 @@ public class graduationController {
     }
     @GetMapping("detail")
     public String detail(Model model) {
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
         String number = cookiesService.getCookies("username");
 //        System.out.println(number);
         GraduationSubject graduationSubject = graduationSubjectService.selectByNumber(number);

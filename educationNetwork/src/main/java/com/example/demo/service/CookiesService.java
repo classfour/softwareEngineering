@@ -6,4 +6,5 @@ import javax.servlet.http.HttpServletResponse;
 public interface CookiesService {
     public boolean setCookies(String name, String value);
     public String getCookies(String cookieName);
+    public boolean isLogin();
 }
