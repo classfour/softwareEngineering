@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.jws.WebParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.Service;
 
 @Controller
@@ -31,7 +33,10 @@ public class loginController {
         return "index/login";
     }
     @RequestMapping("home")
-    public String index(Model model) {
+    public String index(Model model, HttpServletResponse response) {
+        response.setHeader("Cache-Control", "no-store");
+
+
         if(!cookiesService.isLogin()){
             model.addAttribute("msg", "请先登陆");
             model.addAttribute("url", "/login");
