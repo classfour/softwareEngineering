@@ -36,6 +36,12 @@ public class Score_query {
 
     @RequestMapping("/score_query")
     public String score_query(@RequestParam(value = "study_year",defaultValue = "all") String study_year,ModelMap model){
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
         boolean f=false;
         if(lst_study_year!=null){
             study_year=lst_study_year;

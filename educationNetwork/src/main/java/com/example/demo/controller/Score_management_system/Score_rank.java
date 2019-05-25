@@ -19,6 +19,13 @@ public class Score_rank {
     private CookiesService cookiesService;//新加获取cookie
     @RequestMapping("/score_rank")//这里也应该获取登录者的学号做形参输入
     public String score_rank(@RequestParam(value = "study_year",defaultValue = "all") String study_year,ModelMap model){
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
+
         boolean f=false;
         if(study_year.equals("all")){
             f=true;

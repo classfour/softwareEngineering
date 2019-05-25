@@ -1,9 +1,6 @@
 package com.example.demo.controller.index;
 
-import com.example.demo.domain.Notice;
-import com.example.demo.domain.Student;
-import com.example.demo.domain.Teacher;
-import com.example.demo.domain.User;
+import com.example.demo.domain.*;
 import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.jws.WebParam;
 import javax.xml.ws.Service;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class loginController {
@@ -25,6 +24,8 @@ public class loginController {
     TeacherService teacherService;
     @Autowired
     NoticeService noticeService;
+    @Autowired
+    Choose_courseService choose_courseService;
 
     @RequestMapping("login")
     public String login(String usernmae, String password) {
@@ -45,6 +46,17 @@ public class loginController {
             model.addAttribute("name", student.getName());
             model.addAttribute("lv", "学生");
             model.addAttribute("college", student.getDepartments());
+            List<ScoreEntity> lst=choose_courseService.Score_query(student.getNumber());
+            if(lst.size()>5){//只显示前5条成绩
+                List<ScoreEntity> new_lst=new ArrayList<ScoreEntity>();
+                for(int i=0;i<5;i++){
+                    new_lst.add(lst.get(i));
+                }
+                model.addAttribute("score",new_lst);
+            }
+            else{
+                model.addAttribute("score",lst);
+            }
         }else if(lv.equals("1")){
             Teacher teacher = teacherService.selectByNumber(cookiesService.getCookies("username"));
             model.addAttribute("name", teacher.getName());
@@ -63,6 +75,7 @@ public class loginController {
     @RequestMapping("submit")
     public String submit(String username, String password, Model model) {
         User user = userService.select(username, password);
+        System.out.println("user_name=="+user.getUsername());
 //        System.out.println(user.getUsername());
         if(user == null) {
             //重定向
