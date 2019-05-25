@@ -30,12 +30,10 @@ public class get_Cookie {
             cookiesService.setCookies("username",username);
             String user_name=cookiesService.getCookies("username");
             System.out.println(user_name);
-            System.out.println(pwd);
-            System.out.println("yes");
-
-            if(username.equals("2016001"))
+            if(user.getLevel().equals("0")){
                 return "redirect:/score_query";
-            else
+            }
+            else if(user.getLevel().equals("1"))
                 return "redirect:/tscore_query";
         }
         System.out.println("no");
