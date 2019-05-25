@@ -340,14 +340,19 @@ public class graduationController {
         model.addAttribute("allLabels", labels);
 //        ChooseSubject[] chooseSubjects = chooseSubjectService.selectChoose(graduationSubject.getSerialnumber());
         String[] studentNumber = chooseSubjectService.selectStudent(graduationSubject.getSerialnumber());
-        ArrayList<Student> students = new ArrayList<Student>();
-        for(String val:studentNumber) {
-            Student student = studentService.selectStudent(val);
-            if(student.getStatus()==0)
-                students.add(student);
+        if(studentNumber==null) {
+            model.addAttribute("students", null);
+        }else{
+            ArrayList<Student> students = new ArrayList<Student>();
+            for(String val:studentNumber) {
+                Student student = studentService.selectStudent(val);
+                if(student.getStatus()==0)
+                    students.add(student);
+            }
+            Student[] newArray=students.toArray(new Student[students.size()]);
+            model.addAttribute("students", newArray);
         }
-        Student[] newArray=students.toArray(new Student[students.size()]);
-        model.addAttribute("students", newArray);
+
         return "graduationDesign/Subdetail-teacher";
     }
 }

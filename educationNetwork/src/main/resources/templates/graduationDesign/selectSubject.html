@@ -26,23 +26,23 @@
             <a class="navbar-brand" href="#"  style="color: white;">教务管理系统</a>
         </div>
         <div>
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">
-                        毕业设计
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">学生选题</a> </li>
-                        <li class="divider"></li>
-                        <li><a href="#">选题信息</a> </li>
-                        <li class="divider"></li>
-                        <li><a href="#">进度查询</a> </li>
-                        <li class="divider"></li>
-                        <li><a href="#">成绩查询</a> </li>
-                    </ul>
-                </li>
-            </ul>
+<!--            <ul class="nav navbar-nav">-->
+<!--                <li class="dropdown">-->
+<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">-->
+<!--                        毕业设计-->
+<!--                        <b class="caret"></b>-->
+<!--                    </a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li><a href="#">学生选题</a> </li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li><a href="#">选题信息</a> </li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li><a href="#">进度查询</a> </li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li><a href="#">成绩查询</a> </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--            </ul>-->
 
 <!--            <ul class="nav navbar-nav navbar-right">-->
 <!--                <li><a href="#">退出</a> </li>-->
@@ -104,12 +104,14 @@
                 "serialnumber":courseNumber
             },
             type:"post",
-            url:"http://localhost:8080//graduationDesign/exit",
+            url:"/graduationDesign/exit",
             success:function (data) {
                 if(data) {
-                    alert("退选成功")
+                    alert("退选成功");
+                    location.reload();
                 }else{
-                    alert("退选失败")
+                    alert("退选失败");
+                    location.reload();
                 }
             }
         })
@@ -123,7 +125,7 @@
                 "serialnumber":courseNumber,
             },
             type:"post",
-            url:"http://localhost:8080//graduationDesign/chooseSubject",
+            url:"/graduationDesign/chooseSubject",
             success:function (data) {
                 if(data) {
                     alert("选择成功");
@@ -167,7 +169,7 @@
                     chooseLabel:message.label,
                     remain:message.remain
                 },
-                url:"http://localhost:8080/graduationDesign/labelChoose",
+                url:"/graduationDesign/labelChoose",
                 success:function (data) {
                     number = data;
                     console.log(data);
@@ -190,7 +192,7 @@
                                     "serialnumber":item.serialnumber,
                                 },
                                 type:"post",
-                                url:"http://localhost:8080//graduationDesign/chooseSubject",
+                                url:"/graduationDesign/chooseSubject",
                                 success:function (data) {
                                     if(data) {
                                         alert("选择成功");
@@ -245,7 +247,7 @@
                         chooseLabel:message.label,
                         remain:message.remain
                     },
-                    url:"http://localhost:8080/graduationDesign/labelChoose",
+                    url:"/graduationDesign/labelChoose",
                     success:function (data) {
                         number = data;
                         console.log(data);
@@ -268,7 +270,7 @@
                                         "serialnumber":item.serialnumber,
                                     },
                                     type:"post",
-                                    url:"http://localhost:8080//graduationDesign/chooseSubject",
+                                    url:"/graduationDesign/chooseSubject",
                                     success:function (data) {
                                         if(data) {
                                             alert("选择成功");
