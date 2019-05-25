@@ -17,6 +17,7 @@ import javax.jws.WebParam;
 import javax.security.auth.Subject;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -64,8 +65,13 @@ public class graduationController {
 
             return "graduationDesign/error";
         }
+        Calendar cale = null;
+        cale = Calendar.getInstance();
+        int y = cale.get(Calendar.YEAR)-1;
         String[] s = year.split("-");
-        if(!s[0].equals("2018") || !term.equals("2")) {
+        System.out.println(y);
+        if(!s[0].equals(y+"") || !term.equals("2")) {
+//            System.out.println("out");
             return "redirect:/graduationDesign/checkResult";
         }
         String username = cookiesService.getCookies("username");
