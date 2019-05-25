@@ -24,7 +24,7 @@ public interface Choose_courseMapper {
     public void setScore(Score_excel score_excel);
 
     //查询选了课程号为coursenumber的所有学生的成绩及学生信息
-    @Select("select student.number,student.name,student.class,course.name as course_name,choose_course.score,choose_course.time,choose_course.gpa from choose_course,student,course where choose_course.course_number=course.number and choose_course.student_number=student.number and choose_course.course_number=#{coursenumber} and choose_course.score is not null and choose_course.gpa is not null")
+    @Select("select student.number,student.name,student.team,course.name as course_name,choose_course.score,choose_course.time,choose_course.gpa from choose_course,student,course where choose_course.course_number=course.number and choose_course.student_number=student.number and choose_course.course_number=#{coursenumber} and choose_course.score is not null and choose_course.gpa is not null")
     public List<StudentScore> studentScore_query(String coursenumber);
     //蔡秉岐部分
     //查询单科课程成绩sql语句

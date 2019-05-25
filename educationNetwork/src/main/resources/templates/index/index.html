@@ -175,19 +175,11 @@
                 <div class="col-md-4 content" style="border-style: solid;border-color: #fafafa;border-top-width: 10px;border-right-width: 10px">
                     <strong style="margin-left: 20px;margin-top: 10px;display: block;">成绩</strong>
                     <hr>
-                    <div class="item">
-                        <span>2018-2019-1-专业必修-编译原理</span>
-                        <span style="float: right;">85</span>
-                        <hr>
-                    </div>
-                    <div class="item">
-                        <span>2018-2019-1-专业必修-编译原理</span>
-                        <span style="float: right;">85</span>
-                        <hr>
-                    </div>
-                    <div class="item">
-                        <span>2018-2019-1-专业必修-编译原理</span>
-                        <span style="float: right;">85</span>
+                    <div class="item" th:each="e:${score}">
+                        <span th:text="${e.getStudy_year()}"></span>
+                        <span>-</span>
+                        <span th:text="${e.getCoursename()}"></span>
+                        <span style="float: right" th:text="${e.getTotal()}"></span>
                         <hr>
                     </div>
                 </div>

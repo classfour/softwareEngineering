@@ -23,6 +23,13 @@ public class Score_query_Based_On_course_name {
     private CookiesService cookiesService;//新加获取cookie
     @RequestMapping(value = "/score_query/search_course",method = RequestMethod.POST)
     public String Search_course(@RequestParam(value = "course_name",defaultValue = "") String course_name, @RequestParam(value = "study_year",defaultValue = "all") String study_year,ModelMap model){
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
+
         boolean f=false;
         if(study_year.equals("all")){
             f=true;

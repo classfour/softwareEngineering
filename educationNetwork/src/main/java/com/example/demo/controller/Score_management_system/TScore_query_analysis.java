@@ -27,6 +27,13 @@ public class TScore_query_analysis {
     private CookiesService cookiesService;//新加获取cookie
     @RequestMapping("/tscore_query/analysis")
     public String tscore_query(@RequestParam(value = "course_name",defaultValue = "empty")String course_name, ModelMap model) {
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
+
         String user_name=cookiesService.getCookies("username");//新加cookie
 //        List<Course_imformation> Course_list = choose_courseService.Course_query("1");
         List<Course_imformation> Course_list = choose_courseService.Course_query(user_name);

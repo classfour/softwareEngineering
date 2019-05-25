@@ -20,6 +20,13 @@ public class Score_single_rank {
     private CookiesService cookiesService;//新加获取cookie
     @RequestMapping(value = "/score_rank/singlerank",method = RequestMethod.POST)
     public String Search_single_rank(@RequestParam(value = "single_score",defaultValue = "") String course_name,@RequestParam(value = "study_year",defaultValue = "all")String study_year, ModelMap model){
+        if(!cookiesService.isLogin()){
+            model.addAttribute("msg", "请先登陆");
+            model.addAttribute("url", "/login");
+
+            return "graduationDesign/error";
+        }
+
         String s=new String();
         s="%"+course_name+"%";
         List<EachSubjectRank> get_single_rank=Get_subject_rank(s,study_year);
