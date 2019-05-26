@@ -80,7 +80,7 @@ public class Score_query {
             model.addAttribute("select",new Study_year(study_year));
             model.addAttribute("model",new_lst);
         }
-        return "/index(groupFour)/score_query";
+        return "index(groupFour)/score_query";
     }
 
     @RequestMapping(value = "/score_query_json/{study_year}",method = RequestMethod.GET)
