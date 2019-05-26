@@ -41,17 +41,14 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
-                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学生申请交流项目</a>
+                    <a class="dropdown-item" href="#">辅修报名</a>
+                    <a class="dropdown-item" href="#">重修报名</a>
+                    <a class="dropdown-item" href="#">学生证补办申请</a>
+                    <a class="dropdown-item" href="#">学生转专业申请</a>
+                    <a class="dropdown-item" href="#">补考确认</a>
+                    <a class="dropdown-item" href="#">校内课程代替申请</a>
+                    <a class="dropdown-item" href="#">校内学分节点替代申请</a>
                 </div>
             </li>
 
@@ -62,12 +59,12 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">学生监护人信息采集</a>
-                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
-                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
-                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
-                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
-                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
-                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
+                    <a class="dropdown-item" href="#">学生个人信息维护</a>
+                    <a class="dropdown-item" href="#">主修专业确认</a>
+                    <a class="dropdown-item" href="#">个人培养方案</a>
+                    <a class="dropdown-item" href="#">创新创业学分确认</a>
+                    <a class="dropdown-item" href="#">实习过程资料</a>
+                    <a class="dropdown-item" href="#">专业方向确认</a>
                 </div>
             </li>
 
@@ -76,10 +73,6 @@
                     选课
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">自主选课</a>
-                    <a class="dropdown-item" href="#">自主选课</a>
-                    <a class="dropdown-item" href="#">自主选课</a>
-                    <a class="dropdown-item" href="#">自主选课</a>
                     <a class="dropdown-item" href="#">自主选课</a>
                 </div>
             </li>
@@ -90,12 +83,12 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">查询个人信息</a>
-                    <a class="dropdown-item" href="#">查询个人信息</a>
-                    <a class="dropdown-item" href="#">查询个人信息</a>
+                    <a class="dropdown-item" href="#">学籍预警查询</a>
+                    <a class="dropdown-item" href="#">学生课表查询</a>
                     <a class="dropdown-item" href="/score_query" target="_blank">学生成绩查询</a>
-                    <a class="dropdown-item" href="#">查询个人信息</a>
-                    <a class="dropdown-item" href="#">查询个人信息</a>
-                    <a class="dropdown-item" href="#">查询个人信息</a>
+                    <a class="dropdown-item" href="#">考试信息查询</a>
+                    <a class="dropdown-item" href="#">考试时间查询</a>
+                    <a class="dropdown-item" href="#">创新创业获得学分</a>
                 </div>
             </li>
 
@@ -105,10 +98,9 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">学生评价</a>
-                    <a class="dropdown-item" href="#">学生评价</a>
-                    <a class="dropdown-item" href="#">学生评价</a>
-                    <a class="dropdown-item" href="#">学生评价</a>
-                    <a class="dropdown-item" href="#">学生评价</a>
+                    <a class="dropdown-item" href="#">课程过程评价</a>
+                    <a class="dropdown-item" href="#">课程问卷调查</a>
+                    <a class="dropdown-item" href="#">教学信息反馈</a>
                 </div>
             </li>
 
@@ -117,12 +109,21 @@
                     毕业设计(论文)
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/graduationDesign/selectSubject" target="_blank">学生选题</a>
+                    <a class="dropdown-item" href="/graduationDesign/selectSubject" target="_blank" th:if="${lv=='学生'}">学生选题</a>
                     <a class="dropdown-item" href="/graduationDesign/declare" target="_blank" th:if="${lv=='教师'}">申报课题</a>
                     <a class="dropdown-item" href="/graduationDesign/mystudent" target="_blank" th:if="${lv=='教师'}">我的学生</a>
-                    <a class="dropdown-item" href="/graduationDesign/checkResult" target="_blank">成绩查看</a>
+                    <a class="dropdown-item" href="/graduationDesign/checkResult" target="_blank" th:if="${lv=='学生'}">成绩查看</a>
                     <a class="dropdown-item" href="/graduationDesign/detail" target="_blank" th:if="${lv=='教师'}">修改课题/选择学生</a>
-                    <a class="dropdown-item" href="/graduationDesign/content" target="_blank">提交课设</a>
+                    <a class="dropdown-item" href="/graduationDesign/content" target="_blank" th:if="${lv=='学生'}">提交课设</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown" th:if="${lv=='管理员'}">
+                <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown">
+                    排课管理
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">自主排课</a>
                 </div>
             </li>
         </ul>
