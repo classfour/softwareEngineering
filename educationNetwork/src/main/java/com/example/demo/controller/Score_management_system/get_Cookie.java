@@ -19,7 +19,7 @@ public class get_Cookie {
     @RequestMapping("/login")
     public String Login()
     {
-        return "/index(groupFour)/login";
+        return "index(groupFour)/login";
     }
     @RequestMapping("/test_user")
 //    @ResponseBody
