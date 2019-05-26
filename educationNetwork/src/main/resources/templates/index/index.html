@@ -117,12 +117,12 @@
                     毕业设计(论文)
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/graduationDesign/selectSubject" target="_blank">学生选题</a>
+                    <a class="dropdown-item" href="/graduationDesign/selectSubject" target="_blank" th:if="${lv=='学生'}">学生选题</a>
                     <a class="dropdown-item" href="/graduationDesign/declare" target="_blank" th:if="${lv=='教师'}">申报课题</a>
                     <a class="dropdown-item" href="/graduationDesign/mystudent" target="_blank" th:if="${lv=='教师'}">我的学生</a>
-                    <a class="dropdown-item" href="/graduationDesign/checkResult" target="_blank">成绩查看</a>
+                    <a class="dropdown-item" href="/graduationDesign/checkResult" target="_blank" th:if="${lv=='学生'}">成绩查看</a>
                     <a class="dropdown-item" href="/graduationDesign/detail" target="_blank" th:if="${lv=='教师'}">修改课题/选择学生</a>
-                    <a class="dropdown-item" href="/graduationDesign/content" target="_blank">提交课设</a>
+                    <a class="dropdown-item" href="/graduationDesign/content" target="_blank" th:if="${lv=='学生'}">提交课设</a>
                 </div>
             </li>
         </ul>
