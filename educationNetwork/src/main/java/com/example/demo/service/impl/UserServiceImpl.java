@@ -16,5 +16,4 @@ public class UserServiceImpl implements UserService {
     public User select(String usernmae, String password) {
         return userMapper.select(usernmae, password);
     }
-
 }

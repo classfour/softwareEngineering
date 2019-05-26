@@ -5,6 +5,14 @@ public class ChooseClass {
     private  String student_number;
     private  String course_number;
     private  int score;
+    private  int status;
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public void setId(int id) {
         this.id = id;

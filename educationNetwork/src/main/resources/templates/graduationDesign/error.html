@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align: center">
+        <span th:text="${msg}"></span> <br>
+        <span id="back">还剩3s返回</span> <br>
+        <a th:href="@{${url}}" id="href">返回</a>
+    </div>
+    <script>
+        var back = document.querySelector("#back");
+        var i = 3;
+        function out() {
+            if(i!=5) {
+                back.innerHTML = "还剩"+(5-i)+"s返回";
+                setTimeout(out, 1000);
+                i++;
+            }else{
+                var href = document.querySelector("#href");
+                href.click();
+            }
+        }
+        setTimeout(out, 1000);
+    </script>
+</body>
+</html>

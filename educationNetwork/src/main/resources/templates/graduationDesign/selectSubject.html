@@ -1,0 +1,418 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>毕业设计</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta content="text/html; charset=utf-8" http-equiv=Content-Type />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="max-age=300" />
+<!--    <script src="/js/jquery.min.js"></script>-->
+<!--    <link rel="stylesheet" href="/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+<!--    <link rel="stylesheet" href="/css/iconfont/fontawesome-webfont.eot">-->
+<!--    <link rel="stylesheet" href="/css/iconfont/fontawesome-webfont.ttf">-->
+<!--    <link rel="stylesheet" href="/css/iconfont/fontawesome-webfont.woff">-->
+</head>
+
+<body>
+<!-- 导航栏 -->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid" style="background-color: #0683d4;">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"  style="color: white;">教务管理系统</a>
+        </div>
+        <div>
+<!--            <ul class="nav navbar-nav">-->
+<!--                <li class="dropdown">-->
+<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">-->
+<!--                        毕业设计-->
+<!--                        <b class="caret"></b>-->
+<!--                    </a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li><a href="#">学生选题</a> </li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li><a href="#">选题信息</a> </li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li><a href="#">进度查询</a> </li>-->
+<!--                        <li class="divider"></li>-->
+<!--                        <li><a href="#">成绩查询</a> </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--            </ul>-->
+
+<!--            <ul class="nav navbar-nav navbar-right">-->
+<!--                <li><a href="#">退出</a> </li>-->
+<!--            </ul>-->
+        </div>
+    </div>
+</nav>
+
+<!-- 条件筛选 -->
+<div style="width:946px; margin:0 auto;">
+    <div id="page-search-store" class="mb10 border sxcon">
+        <div class="search-by by-category relative">
+            <dl class="relative clearfix">
+                <dt class="floatLeft"><a href="">学院：</a></dt>
+                <dd class="floatLeft show-con">
+                    <a href="" class="">化学工程学院</a>
+                    <a href="" class="">材料科学与工程学院</a>
+                    <a href="" class="">机电工程学院</a>
+                    <a href="" class="">信息科学与技术学院</a>
+                    <a href="" class="">经济管理学院</a>
+                    <a href="" class="">理学院</a>
+                    <a href="" class="">文法学院</a>
+                    <a href="" class="">生命科学与技术学院</a>
+                    <a href="" class="">国际教育学院</a>
+                    <a href="" class="">马克思主义学院</a>
+                </dd>
+                <dd class="floatLeft show-more"><h3 class="pointer clearfix"><span>更多</span><i class="icon-angle-down"></i></h3></dd>
+            </dl>
+            <dl class="relative clearfix" style="border-bottom:0">
+                <dt class="floatLeft"><a href="">标签：</a></dt>
+                <dd class="floatLeft show-con">
+                    <a th:each="label : ${labels}" th:text="${label.name}" href="" class="">系统管理</a>
+                </dd>
+                <dd class="floatLeft show-more"><h3 class="pointer clearfix"><span>更多</span><i class="icon-angle-down"></i></h3></dd>
+            </dl>
+            </dl>
+            <dl class="relative clearfix" style="border-bottom:0">
+                <dt class="floatLeft"><a href="">余量：</a></dt>
+                <dd class="floatLeft show-con">
+                    <a href="" class="">有</a>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="clearfix">
+        <p class="shaixuan-tj floatLeft clearfix">
+            <span><a href="">已选条件:</a></span>
+        </p>
+        <p id="sxbtn" class="shaixuan-btn clearfix"><span><em>收起筛选</em><i class="icon-angle-up"></i></span></p>
+    </div>
+</div>
+
+<script>
+    
+    function exit(courseNumber) {
+        $.ajax({
+            async:false,
+            data:{
+                "serialnumber":courseNumber
+            },
+            type:"post",
+            url:"/graduationDesign/exit",
+            success:function (data) {
+                if(data) {
+                    alert("退选成功");
+                    location.reload();
+                }else{
+                    alert("退选失败");
+                    location.reload();
+                }
+            }
+        })
+    }
+
+    function submit(courseNumber) {
+        // alert("hello")
+        $.ajax({
+            async:false,
+            data:{
+                "serialnumber":courseNumber,
+            },
+            type:"post",
+            url:"/graduationDesign/chooseSubject",
+            success:function (data) {
+                if(data) {
+                    alert("选择成功");
+                }else{
+                    alert("选择失败");
+                }
+                location.reload();
+            }
+        })
+
+    }
+    $(function(){
+
+        var message={"department":"", "label":"", "remain":false};
+        //$(".shaixuan-tj span.crumb-select-item").live('hover',function(event){
+        $(".shaixuan-tj").on('hover',"span.crumb-select-item",function(event){
+            if(event.type=='mouseenter'){
+                $(this).addClass("crumb-select-itemon");
+            }else{
+                $(this).removeClass("crumb-select-itemon");
+            }
+        });
+        //$(".shaixuan-tj span.crumb-select-item").live('click', function(event){
+        $(".shaixuan-tj").on('click',"span.crumb-select-item" ,function(event){
+            event.preventDefault();
+            $(this).remove();
+            var TTR = $(this).find("em").text();
+            console.log(TTR)
+            if(message.label == TTR) {
+                message.label="";
+            }else if(message.department == TTR){
+                message.department ="";
+            }else{
+                message.remain = !message.remain;
+            }
+            $.ajax({
+                async:false,
+                type:"post",
+                data:{
+                    chooseDepartment:message.department,
+                    chooseLabel:message.label,
+                    remain:message.remain
+                },
+                url:"/graduationDesign/labelChoose",
+                success:function (data) {
+                    number = data;
+                    console.log(data);
+                    $("#content").empty();
+                    data.forEach(function(item) {
+                        console.log(item);
+                        var tr = $("<tr></tr>")
+                        var serialnumber = $("<td></td>").text(item.serialnumber);
+                        var name = $("<td></td>").text(item.name);
+                        var introduce=$("<td></td>").text(item.introduce);
+                        var teacher=$("<td></td>").text(item.teacher);
+                        var confirm=$("<td></td>").text(item.number+"/"+item.max);
+                        var now=$("<td></td>").text(item.nowNumber+"/"+item.maxNumber)
+                        // var op=$("<td></td>").text("操作");
+                        var btn = $("<button type='button' class='btn btn-default'></button>").text("选择");
+                        btn.on("click", function () {
+                            $.ajax({
+                                async:false,
+                                data:{
+                                    "serialnumber":item.serialnumber,
+                                },
+                                type:"post",
+                                url:"/graduationDesign/chooseSubject",
+                                success:function (data) {
+                                    if(data) {
+                                        alert("选择成功");
+                                    }else{
+                                        alert("选择失败");
+                                    }
+                                    location.reload();
+                                }
+                            })
+                        })
+                        tr.append(serialnumber, name, introduce, teacher, confirm, now, btn);
+                        $("#content").append(tr);
+                    })
+                    // console.log($("#content"));
+                }
+            })
+            $(".show-con a").each(function(){
+                var TT = $(this).text();
+                THI = $(this);
+                THIPP = $(this).parents("dl");
+                if(TTR==TT){
+                    THI.removeClass("nzw12");
+                    THIPP.css("display","block");
+                }
+            })
+        });
+        $(".show-con a").click(function(event){
+            event.preventDefault();
+            THIP = $(this).parents("dl");
+            if($(this).hasClass("nzw12")){
+            }else{
+                $(this).addClass("nzw12");
+                var zhiclass = $(this).parents("dd").siblings("dt").find("a").text();
+                zhicon = $(this).text();
+                if(zhiclass == "标签：") {
+                    message.label = zhicon;
+                }else if(zhiclass == "学院："){
+                    message.department = zhicon;
+                }else if(zhiclass == "余量：") {
+                    message.remain=false;
+                }
+                // console.log(zhiclass)
+                // console.log(zhicon)
+                tianjaneir="<span class='crumb-select-item'><a href=''><b>"+zhiclass+"</b><em>"+zhicon+"</em><i class='icon-remove'></i></a></span>"
+                $(".shaixuan-tj").children().last().after(tianjaneir);
+                THIP.css("display","none");
+                $.ajax({
+                    async:false,
+                    type:"post",
+                    data:{
+                        chooseDepartment:message.department,
+                        chooseLabel:message.label,
+                        remain:message.remain
+                    },
+                    url:"/graduationDesign/labelChoose",
+                    success:function (data) {
+                        number = data;
+                        console.log(data);
+                        $("#content").empty();
+                        data.forEach(function(item) {
+                            console.log(item);
+                            var tr = $("<tr></tr>")
+                            var serialnumber = $("<td></td>").text(item.serialnumber);
+                            var name = $("<td></td>").text(item.name);
+                            var introduce=$("<td></td>").text(item.introduce);
+                            var teacher=$("<td></td>").text(item.teacher);
+                            var confirm=$("<td></td>").text(item.number+"/"+item.max);
+                            var now=$("<td></td>").text(item.nowNumber+"/"+item.maxNumber)
+                            // var op=$("<td></td>").text("操作");
+                            var btn = $("<button type='button' class='btn btn-default'></button>").text("选择");
+                            btn.on("click", function () {
+                                $.ajax({
+                                    async:false,
+                                    data:{
+                                        "serialnumber":item.serialnumber,
+                                    },
+                                    type:"post",
+                                    url:"/graduationDesign/chooseSubject",
+                                    success:function (data) {
+                                        if(data) {
+                                            alert("选择成功");
+                                        }else{
+                                            alert("选择失败");
+                                        }
+                                        location.reload();
+                                    }
+                                })
+                            })
+                            // btn.addClass("btn");
+                            // btn.addClass("btn-danger")
+                            tr.append(serialnumber, name, introduce, teacher, confirm, now, btn);
+                            $("#content").append(tr);
+                        })
+                        // console.log($("#content"));
+                    }
+                })
+            }
+        });
+        $(".show-more").click(function(event){
+            // console.log("success")
+            event.preventDefault();
+            var ticon = $(this).find("i");
+            tspan = $(this).find("span");
+            if($(this).hasClass("zk")){
+                $(this).siblings(".show-con").css("height","30px");
+                ticon.removeClass("icon-angle-up");
+                ticon.addClass("icon-angle-down");
+                tspan.html("更多");
+                $(this).removeClass("zk")
+            }else{
+                $(this).siblings(".show-con").css("height","auto");
+                ticon.removeClass("icon-angle-down");
+                ticon.addClass("icon-angle-up");
+                tspan.html("收起");
+                $(this).addClass("zk")
+            }
+        });
+        $("#sxbtn").click(function(event){
+            event.preventDefault();
+            var xicon = $(this).find("span i");
+            xspan = $(this).find("span em");
+            if($(this).hasClass("zkon")){
+                xspan.text("收起筛选");
+                xicon.removeClass("icon-angle-down");
+                xicon.addClass("icon-angle-up");
+                $(".sxcon").slideDown();
+                $(this).removeClass("zkon")
+            }else{
+                xspan.text("查看筛选");
+                xicon.removeClass("icon-angle-up");
+                xicon.addClass("icon-angle-down");
+                $(".sxcon").slideUp();
+                $(this).addClass("zkon")
+            }
+        })
+    })
+</script>
+
+<!-- 选题模块 -->
+<div style="width:85%" class="center-block">
+    <table class="table table-striped">
+        <<caption>
+        <button type="button" class="btn btn-default" style="border:none">毕业设计题目显示</button>
+        <div style="float:right">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">查看已选课题</button>
+        </div>
+    </caption>
+        <thread>
+            <tr>
+                <th>课题编号</th>
+                <th>课题名称</th>
+                <th>课题简介</th>
+                <th>指导教师</th>
+                <th>老师已选人数</th>
+                <th>课题已选人数</th>
+                <th>操作</th>
+            </tr>
+        </thread>
+        <tbody id="content">
+        <tr th:each="subject,state : ${subjects}">
+            <td th:text="${subject.serialnumber}">1001</td>
+            <td th:text="${subject.name}">管理系统设计</td>
+            <td th:text="${subject.introduce}">简介</td>
+            <td th:text="${name[state.index]    }">Brain</td>
+            <td>
+                <span th:text="${subject.number}"></span>/
+                <span th:text="${subject.max}"></span>
+            </td>
+            <td>
+                <span th:text="${subject.nowNumber}"></span>/
+                <span th:text="${subject.maxNumber}"></span>
+            </td>
+            <td>
+                <button th:if="${subject.nowNumber==subject.maxNumber || subject.number==subject.max}" class="btn btn-default" disabled="disabled" th:onclick="submit([[${subject.serialnumber}]]);">已满</button>
+                <button th:if="${subject.nowNumber!=subject.maxNumber && subject.number!=subject.max}" class="btn btn-default" th:onclick="submit([[${subject.serialnumber}]]);">选择</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">已选课题 </h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thread>
+                        <tr>
+                            <th>课题编号</th>
+                            <th>课题名称</th>
+                            <th>指导教师</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                    <tr th:each="subject:${choose}">
+                        <td th:text="${subject.serialnumber}">1001</td>
+                        <td th:text="${subject.name}">管理系统设计</td>
+                        <td th:text="${subject.teacher}">Brain</td>
+                        <td th:if="${confirm==null || confirm!=subject.serialnumber}">未选上</td>
+                        <td th:if="${confirm!=null && confirm==subject.serialnumber}">已选上</td>
+                        <td>
+                            <button th:if="${confirm==null || confirm!=subject.serialnumber}" type="button" class="btn btn-danger" th:onclick="exit([[${subject.serialnumber}]])">退选</button>
+                            <button th:if="${confirm!=null && confirm==subject.serialnumber}" type="button" class="btn btn-danger" disabled="disabled">已确认</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

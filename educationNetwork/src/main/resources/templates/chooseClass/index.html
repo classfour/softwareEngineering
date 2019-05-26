@@ -1,51 +1,34 @@
-<!--<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--    <meta content="webthemez" name="author" />-->
-<!--    <title>自主选课</title>-->
-<!--    <link rel="stylesheet" href="/css/style.css">-->
-<!--    <link rel="stylesheet" href="/css/bootstrap.css">-->
-<!--    <link href="/css/model/bootstrap.css" rel="stylesheet" />-->
-<!--    <link href="/css/model/font-awesome.css" rel="stylesheet" />-->
-<!--    &lt;!&ndash; Morris Chart Styles&ndash;&gt;-->
 
-<!--    &lt;!&ndash; Custom Styles&ndash;&gt;-->
-<!--    <link href="/css/model/custom-styles.css" rel="stylesheet" />-->
-<!--    &lt;!&ndash; Google Fonts&ndash;&gt;-->
-<!--    &lt;!&ndash;    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />&ndash;&gt;-->
-<!--    &lt;!&ndash; TABLE STYLES&ndash;&gt;-->
-<!--    <link href="/js/model/dataTables/dataTables.bootstrap.css" rel="stylesheet" />-->
-
-<!--    &lt;!&ndash;[if lt IE 9]>-->
-<!--    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
-<!--    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>-->
-<!--    <![endif]&ndash;&gt;-->
 <!DOCTYPE html>
-    <html lang="zh-cn">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>自主选课</title>
-<!--        <link rel="stylesheet" href="/css/style.css">-->
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/bootstrap.css">
-        <link href="/css/model/bootstrap.css" rel="stylesheet" />
-        <link href="/css/model/font-awesome.css" rel="stylesheet" />
-        <!-- Morris Chart Styles-->
+<html lang="zh-cn" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自主选课</title>
+    <!--        <link rel="stylesheet" href="/css/style.css">-->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link href="/css/model/bootstrap.css" rel="stylesheet" />
+    <link href="/css/model/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
 
-        <!-- Custom Styles-->
-        <link href="/css/model/custom-styles.css" rel="stylesheet" />
-        <!-- Google Fonts-->
-        <!--    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />-->
-        <!-- TABLE STYLES-->
-        <link href="/js/model/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="/css/model/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <!--    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />-->
+    <!-- TABLE STYLES-->
+    <link href="/js/model/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 
-        <script>
-        function exit(number) {
+    <script>
+
+
+function myFunction()
+{
+    alert("hello")
+ }
+  function exit(number)
+        {
                $.ajax({
             async:false,
             data:{
@@ -54,8 +37,8 @@
             type:"post",
             url:"http://localhost:8080//chooseClass/exit",
             success:function (data) {
-                alert(data)
-                if(data) {
+
+                if(data=="true") {
                     alert("选课成功")
                 }else{
                     alert("选课失败")
@@ -64,7 +47,8 @@
             }
         })
         }
-         function retire(number) {
+  function retire(number)
+         {
                $.ajax({
             async:false,
             data:{
@@ -73,8 +57,8 @@
             type:"post",
             url:"http://localhost:8080//chooseClass/retire",
             success:function (data) {
-                alert(data)
-                if(data) {
+
+                if(data=="true") {
                     alert("退选成功")
                 }else{
                     alert("退选失败")
@@ -83,64 +67,39 @@
             }
         })
         }
+
+
     </script>
 </head>
-<!--<body id="courseSelect">-->
-<!--<header class="course-header">自主选课</header>-->
-<!--<div class="course-container">-->
-<!--    <div class="query-part container">-->
-<!--        <form action="" class="query row">-->
-<!--            <input type="text" class="query-input" placeholder="请输入课程号或课程名称或教学班名称查询！" >-->
-<!--            <input type="submit" value="查询" class="query-btn form-btn">-->
-<!--            <input type="reset" value="重置" class="reset-btn form-btn">-->
-<!--        </form>-->
-<!--        <div class="selected-conditions-container row">-->
-<!--            <div class="selected-const-text">已选条件：</div>-->
-<!--            <ul class="selected-conditions">-->
-<!--                <li class="selected-item"><span class="selected-item-question">有无余量</span>:<span class="selected-item-answer">有</span><span class="deselect-cross"></span></li>-->
-<!--                <li class="selected-item"><span class="selected-item-question">是否重修</span>:<span class="selected-item-answer">否</span><span class="deselect-cross"></span></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--        <table class="condition-container" id="conditionTable">-->
-<!--            <colgroup>-->
-<!--                <col class="condition-name">-->
-<!--                <col class="condition-values">-->
-<!--            </colgroup>-->
-<!--            &lt;!&ndash;<tr>&ndash;&gt;-->
-<!--            &lt;!&ndash;<td>年级：</td>&ndash;&gt;-->
-<!--            &lt;!&ndash;<td><span class="condition-value-item">2022</span><span class="condition-value-item">2021</span><span class="condition-value-item">2020</span><span class="condition-value-item">2019</span></td>&ndash;&gt;-->
-<!--            &lt;!&ndash;</tr>&ndash;&gt;-->
-<!--        </table>-->
-<!--        <div class="toggle-visible" id="toggleBtn">收起</div>-->
-<!--    </div>-->
-    <body id="courseSelect">
-    <header class="course-header">自主选课</header>
-    <div class="course-container">
-        <div class="query-part container">
-            <form action="" class="query row">
-                <input type="text" class="query-input" placeholder="请输入课程号或课程名称或教学班名称查询！" >
-                <input type="submit" value="查询" class="query-btn form-btn">
-                <input type="reset" value="重置" class="reset-btn form-btn">
-            </form>
-            <div class="selected-conditions-container row">
-                <div class="selected-const-text">已选条件：</div>
-                <ul class="selected-conditions">
-                    <!--                <li class="selected-item"><span class="selected-item-question">有无余量</span>:<span class="selected-item-answer">有</span><span class="deselect-cross"></span></li>-->
-                    <!--                <li class="selected-item"><span class="selected-item-question">是否重修</span>:<span class="selected-item-answer">否</span><span class="deselect-cross"></span></li>-->
-                </ul>
-            </div>
-            <table class="condition-container" id="conditionTable">
-                <colgroup>
-                    <col class="condition-name">
-                    <col class="condition-values">
-                </colgroup>
-                <!--<tr>-->
-                <!--<td>年级：</td>-->
-                <!--<td><span class="condition-value-item">2022</span><span class="condition-value-item">2021</span><span class="condition-value-item">2020</span><span class="condition-value-item">2019</span></td>-->
-                <!--</tr>-->
-            </table>
-            <div class="toggle-visible" id="toggleBtn">收起</div>
+
+<body id="courseSelect">
+<header class="course-header">自主选课</header>
+<div class="course-container">
+    <div class="query-part container">
+        <form action="" class="query row">
+            <input type="text" class="query-input" placeholder="请输入课程号或课程名称或教学班名称查询！" >
+            <input type="submit" value="查询" class="query-btn form-btn">
+            <input type="reset" value="重置" class="reset-btn form-btn">
+        </form>
+        <div class="selected-conditions-container row">
+            <div class="selected-const-text">已选条件：</div>
+            <ul class="selected-conditions">
+                <!--                <li class="selected-item"><span class="selected-item-question">有无余量</span>:<span class="selected-item-answer">有</span><span class="deselect-cross"></span></li>-->
+                <!--                <li class="selected-item"><span class="selected-item-question">是否重修</span>:<span class="selected-item-answer">否</span><span class="deselect-cross"></span></li>-->
+            </ul>
         </div>
+        <table class="condition-container" id="conditionTable">
+            <colgroup>
+                <col class="condition-name">
+                <col class="condition-values">
+            </colgroup>
+            <!--<tr>-->
+            <!--<td>年级：</td>-->
+            <!--<td><span class="condition-value-item">2022</span><span class="condition-value-item">2021</span><span class="condition-value-item">2020</span><span class="condition-value-item">2019</span></td>-->
+            <!--</tr>-->
+        </table>
+        <div class="toggle-visible" id="toggleBtn">收起</div>
+    </div>
 
     <div class="result-part container">
 
@@ -165,26 +124,31 @@
                                 </tr>
                                 </thead>
                                 <tbody id="content">
-                                    <tr th:each="temp: ${contents}">
-                                        <td th:text="${temp.name}">高等数学</td>
-                                        <td th:text="${temp.name}">杨卫星</td>
-                                        <td th:text="${temp.occupation}">星期五8-10</td>
-                                        <td th:text="${temp.location}">A阶梯101</td>
-                                        <td th:text="${temp.type}">实验课</td>
-                                        <td th:text="${temp.people}">167</td>
-                                        <td th:text="${temp.max_number}">190</td>
-                                        <td th:text="${temp.status}"></td>
-                                        <td>
-                                            <!--                <a th:href="@{'/change/'+${temp.number}+'/'+${temp.status}}" th:if="${temp.status == 0 }" >选课</a>-->
-                                            <!--                <a th:href="@{'/change/'+${temp.number}+'/'+${temp.status}}" th:if="${temp.status == 1 }" >退选</a>-->
-                                            <!--                <button onclick="statusChange" th:if="${temp.status == 0 }">选课</button>-->
-                                            <button th:if="${temp.status == 0 }" class="btn btn-default" th:onclick="exit([[${temp.number}]]);">选课</button>
-                                            <button th:if="${temp.status == 1}" class="btn btn-default" th:onclick="retire([[${temp.number}]]);">退课</button>
-                                            <!--                <a th:href="@{/change}" th:if="${temp.status == 0 }" >选课</a>-->
-                                            <!--                <a th:href="@{/change}"  th:if="${temp.status == 1 }" >退选</a>-->
+                                <tr th:each="temp: ${contents}">
+                                    <td th:text="${temp.name}">高等数学</td>
+                                    <td th:text="${temp.teachername}">杨卫星</td>
+                                    <td th:text="${temp.occupation}">星期五8-10</td>
+                                    <td th:text="${temp.location}">A阶梯101</td>
+                                    <td th:text="${temp.type}">实验课</td>
+                                    <!--                                        <td th:if="${temp.type == 0 }" >非实验课</td>-->
+                                    <!--                                        <td th:if="${temp.type == 1 }" >实验课</td>-->
+                                    <td th:text="${temp.people}">167</td>
+                                    <td th:text="${temp.max_number}">190</td>
+                                    <!--                                        <td th:text="${temp.choosestatus}"></td>-->
+                                    <td th:if="${temp.choosestatus == 0 }" >未选</td>
+                                    <td th:if="${temp.choosestatus == 1 }" >已选</td>
+                                    <td>
+                                        <!--                <a th:href="@{'/change/'+${temp.number}+'/'+${temp.status}}" th:if="${temp.status == 0 }" >选课</a>-->
+                                        <!--                <a th:href="@{'/change/'+${temp.number}+'/'+${temp.status}}" th:if="${temp.status == 1 }" >退选</a>-->
+                                        <!--                                            &lt;!&ndash;                <button onclick="statusChange" th:if="${temp.status == 0 }">选课</button>&ndash;&gt;-->
+                                        <button th:if="${temp.choosestatus == 0 }" class="btn btn-default" th:onclick="exit([[${temp.number}]]);">选课</button>
+                                        <button th:if="${temp.choosestatus == 1}" class="btn btn-default" th:onclick="retire([[${temp.number}]]);">退课</button>
 
-                                        </td>
-                                    </tr>
+                                        <!--                                            <button onclick="myFunction()">点我</button>-->
+                                        <!--                <a th:href="@{/change}" th:if="${temp.status == 0 }" >选课</a>-->
+                                        <!--                <a th:href="@{/change}"  th:if="${temp.status == 1 }" >退选</a>-->
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -195,170 +159,102 @@
             </div>
         </div>
     </div>
-<!--    <aside class="course-info-container hide-aside">-->
-<!--        <div class="toggle-panel">-->
-<!--            <div class="toggle-arrow"></div>-->
-<!--            选课信息-->
-<!--            <p style="margin-top: 20px; color: white;">已选</p>-->
-<!--            <span class="badge">8</span>-->
-<!--        </div>-->
-<!--        <div class="course-info">-->
-<!--            <table class="free-time-table">-->
-<!--                <thead>-->
-<!--                <tr>-->
-<!--                    <th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-<!--&lt;!&ndash;                <tr >&ndash;&gt;t-->
-<!--                <tr th:each="temp: ${one}">-->
-<!--                    <td>1</td><td th:if="${one} == 0 }" class="free"></td><td class="free"><td>1</td><td th:if="${one.A == 1 }" class="busy"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>2</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>3</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>4</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>5</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>6</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>7</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>8</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>9</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>10</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>11</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>12</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>13</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td colspan="8" class="course-info-description">-->
-<!--                        <span>空余周数=总周数</span>-->
-<!--                        <span>空余周数>=(总周数/2)</span>-->
-<!--                        <span>空余周数<(总周数/2)</span>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--            <div>单位发你得分无法</div>-->
-        <aside class="course-info-container hide-aside">
-            <div class="toggle-panel">
-                <div class="toggle-arrow"></div>
-                选课信息
-                <p style="margin-top: 20px; color: white;">已选</p>
-                <span class="badge">8</span>
-            </div>
-            <div class="course-info">
-                <table class="free-time-table">
-                    <thead>
-                    <tr>
-                        <th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>2</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>3</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>4</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>5</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>6</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>7</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>8</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>9</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>10</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>11</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>12</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td>13</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="8" class="course-info-description">
-                            <span>空余周数=总周数</span>
-                            <span>空余周数>=(总周数/2)</span>
-                            <span>空余周数<(总周数/2)</span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+
+    <aside class="course-info-container hide-aside">
+        <div class="toggle-panel">
+            <div class="toggle-arrow"></div>
+            选课信息
+            <p style="margin-top: 20px; color: white;">已选</p>
+            <span class="badge">8</span>
+        </div>
+        <div class="course-info">
+            <table class="free-time-table">
+                <thead>
+                <tr>
+                    <th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>2</td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>3</td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>4</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>5</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>6</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>7</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>8</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>9</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>10</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>11</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>12</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>13</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="course-info-description">
+                        <span>空余周数=总周数</span>
+                        <span>空余周数>=(总周数/2)</span>
+                        <span>空余周数<(总周数/2)</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
             <div>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th>教学班</th>
-                        <th>教师</th>
-                        <th>学分</th>
-                        <th>时间</th>
-                        <th>地点</th>
-                        <th>自选否</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody >
-                    <tr th:each="temp: ${filtercontents}">
+                        <thead>
+                        <tr>
+                            <th>教学班</th>
+                            <th>教师</th>
+                            <th>学分</th>
+                            <th>时间</th>
+                            <th>地点</th>
+                            <th>自选否</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <tr th:each="temp: ${filtercontents}">
 
-                        <td th:text="${temp.name}">高等数学</td>
-                        <td th:text="${temp.name}">杨卫星</td>
-                        <td th:text="${temp.credits}">3</td>
-                        <td th:text="${temp.occupation}">星期五8-10</td>
-                        <td th:text="${temp.location}">A阶梯101</td>
-                        <td th:text="${temp.volunteer}">已选上</td>
-                        <td>
-                            <!--                <a th:href="@{'/change/'+${temp.number}+'/'+${temp.status}}" th:if="${temp.status == 0 }" >选课</a>-->
-                            <!--                <a th:href="@{'/change/'+${temp.number}+'/'+${temp.status}}" th:if="${temp.status == 1 }" >退选</a>-->
-                            <!--                <button onclick="statusChange" th:if="${temp.status == 0 }">选课</button>-->
-                            <p th:if="${temp.volunteer == 0 }" >已选上</p>
-                            <button th:if="${temp.volunteer == 1}" class="btn btn-default" th:onclick="retire([[${temp.number}]]);">退选</button>
-                            <!--                <a th:href="@{/change}" th:if="${temp.status == 0 }" >选课</a>-->
-                            <!--                <a th:href="@{/change}"  th:if="${temp.status == 1 }" >退选</a>-->
-
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                            <td th:text="${temp.name}">高等数学</td>
+                            <td th:text="${temp.teachername}">杨卫星</td>
+                            <td th:text="${temp.credits}">3</td>
+                            <td th:text="${temp.occupation}">星期五8-10</td>
+                            <td th:text="${temp.location}">A阶梯101</td>
+                            <!--                        <td th:text="${temp.volunteer}">已选上</td>-->
+                            <td th:if="${temp.volunteer == 0 }" >校选</td>
+                            <td th:if="${temp.volunteer == 1 }" >自选</td>
+                            <td>
+                                <p th:if="${temp.volunteer == 0 }" >已选</p>
+                                <button th:if="${temp.volunteer == 1}" class="btn btn-default" th:onclick="retire([[${temp.number}]]);">退选</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
