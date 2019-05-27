@@ -172,7 +172,7 @@
                 url:"/graduationDesign/labelChoose",
                 success:function (data) {
                     number = data;
-                    console.log(data);
+                    // console.log(data);
                     $("#content").empty();
                     data.forEach(function(item) {
                         console.log(item);
@@ -232,12 +232,13 @@
                 }else if(zhiclass == "学院："){
                     message.department = zhicon;
                 }else if(zhiclass == "余量：") {
-                    message.remain=false;
+                    message.remain=true;
                 }
                 // console.log(zhiclass)
                 // console.log(zhicon)
                 tianjaneir="<span class='crumb-select-item'><a href=''><b>"+zhiclass+"</b><em>"+zhicon+"</em><i class='icon-remove'></i></a></span>"
                 $(".shaixuan-tj").children().last().after(tianjaneir);
+                console.log(message);
                 THIP.css("display","none");
                 $.ajax({
                     async:false,
@@ -250,10 +251,10 @@
                     url:"/graduationDesign/labelChoose",
                     success:function (data) {
                         number = data;
-                        console.log(data);
+                        // console.log(data);
                         $("#content").empty();
                         data.forEach(function(item) {
-                            console.log(item);
+                            // console.log(item);
                             var tr = $("<tr></tr>")
                             var serialnumber = $("<td></td>").text(item.serialnumber);
                             var name = $("<td></td>").text(item.name);

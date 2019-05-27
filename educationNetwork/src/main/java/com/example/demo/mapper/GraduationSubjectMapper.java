@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Update;
 * @Date: 2019/4/17
 */
 public interface GraduationSubjectMapper {
-    @Select("select * from graduation_subject")
+    @Select("select * from graduation_subject where status = 1")
     public GraduationSubject[] selectAll();
     @Select("select * from graduation_subject where serialnumber = #{serialnumber}")
     public GraduationSubject select(String serialnumber);

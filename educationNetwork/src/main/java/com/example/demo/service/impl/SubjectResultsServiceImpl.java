@@ -11,8 +11,8 @@ public class SubjectResultsServiceImpl implements SubjectResultsService {
     @Autowired
     SubjectResultsMapper subjectResultsMapper;
     @Override
-    public boolean updateResult(int result, String studentNumber) {
-        return subjectResultsMapper.updateResult(result, studentNumber);
+    public boolean updateResult(int result,String evaluate,  String studentNumber) {
+        return subjectResultsMapper.updateResult(result, evaluate, studentNumber);
     }
 
     @Override

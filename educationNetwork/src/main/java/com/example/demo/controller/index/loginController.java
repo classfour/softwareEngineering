@@ -80,7 +80,7 @@ public class loginController {
     @RequestMapping("submit")
     public String submit(String username, String password, Model model) {
         User user = userService.select(username, password);
-        System.out.println("user_name=="+user.getUsername());
+//        System.out.println("user_name=="+user.getUsername());
 //        System.out.println(user.getUsername());
         if(user == null) {
             //重定向
