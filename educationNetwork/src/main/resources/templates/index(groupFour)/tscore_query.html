@@ -18,7 +18,7 @@
     <ul class="default">
         <li>
             <img class="left" src="/images(groupFour)/computer.png">
-            <h1 style="font-size: 32px;"><a class="left" href="#">教务管理系统</a></h1>
+            <h1 style="font-size: 32px;"><a class="left" href="/home">教务管理系统</a></h1>
         </li>
     </ul>
 </div>
@@ -88,7 +88,6 @@
                             <a th:href="@{'/tscore_query/studentscore_sort_up/'+${select_course_name.getCourse_name()}}"><img style="width: 20px;height: 20px;" src="/images(groupFour)/up.png" ></a>总成绩
                             <a th:href="@{'/tscore_query/studentscore_sort_down/'+${select_course_name.getCourse_name()}}"><img style="width: 20px;height: 20px;" src="/images(groupFour)/down.png"></a>
                         </th>
-                        <th>操作</th>
                     </tr>
                     <tr th:each="e:${model}">
                         <td th:text="${e.getStudentnumber()}"></td>

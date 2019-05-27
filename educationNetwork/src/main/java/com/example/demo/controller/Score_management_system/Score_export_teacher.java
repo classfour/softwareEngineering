@@ -33,7 +33,8 @@ public class Score_export_teacher {
     private CookiesService cookiesService;//新加获取cookie
     @RequestMapping(value = "/tscore_query/score_export",method = RequestMethod.POST)
     public void score_export_teacher(@RequestParam("course_name") String course_name, HttpServletResponse response) throws IOException {
-        List<Course_imformation> lst=choose_courseService.Course_query("1");
+        String user_name=cookiesService.getCookies("username");
+        List<Course_imformation> lst=choose_courseService.Course_query(user_name);
         String course_id=null;
         for(Course_imformation e:lst){
             if(e.getCourse_name().equals(course_name)){
