@@ -112,7 +112,7 @@ public class chooseClassController {
         model.addAttribute("filtercontents",eventshow);
         model.addAttribute("contents",allshow);
 
-        return "/chooseClass/index";
+        return "chooseClass/index";
     }
     @GetMapping(value = "/change}")
     public String change_status( String number,int status){

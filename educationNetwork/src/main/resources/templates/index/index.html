@@ -85,7 +85,8 @@
                     <a class="dropdown-item" href="#">查询个人信息</a>
                     <a class="dropdown-item" href="#">学籍预警查询</a>
                     <a class="dropdown-item" href="#">学生课表查询</a>
-                    <a class="dropdown-item" href="/score_query" target="_blank">学生成绩查询</a>
+                    <a class="dropdown-item" href="/score_query" target="_blank" th:if="${lv=='学生'}">成绩查询</a>
+                    <a class="dropdown-item" href="/tscore_query" target="_blank" th:if="${lv=='教师'}">学生成绩查询</a>
                     <a class="dropdown-item" href="#">考试信息查询</a>
                     <a class="dropdown-item" href="#">考试时间查询</a>
                     <a class="dropdown-item" href="#">创新创业获得学分</a>

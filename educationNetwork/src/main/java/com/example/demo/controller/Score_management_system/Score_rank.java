@@ -32,13 +32,20 @@ public class Score_rank {
         }
         List<GetStudentCourseNumber> allcourse=testcourse();
         List<EachSubjectRank> show_rank=new ArrayList<EachSubjectRank>();
+        System.out.println("okokokookokook");
         for(int i=0;i<allcourse.size();i++)
         {
             if(f||allcourse.get(i).getStudy_year().equals(study_year)){
                 EachSubjectRank temp= Get_subject_rank(allcourse.get(i).getCoursenumber());
-                show_rank.add(temp);
+                if(temp!=null){
+                    show_rank.add(temp);
+                }
             }
         }
+        for(EachSubjectRank e:show_rank){
+            System.out.println("course_name=="+e.getCoursename()+"    year=="+e.getStudy_year());
+        }
+        System.out.println("size=="+show_rank.size());
 //        return show_rank;
         model.addAttribute("select",new Study_year(study_year));
         model.addAttribute("model",show_rank);
@@ -62,6 +69,7 @@ public class Score_rank {
 //            if(sort_list.get(i).getStu_num().equals("2016001"))//此处应该传入登录者的学号
             if(sort_list.get(i).getStu_num().equals(user_name))//此处应该传入登录者的学号
             {
+                System.out.println(sort_list.get(i).getCoursenum());
                 EachSubjectRank e=new EachSubjectRank(sort_list.get(i).getCoursename(),i+1,sort_list.get(i).getStudy_year());
                 return e;
             }
