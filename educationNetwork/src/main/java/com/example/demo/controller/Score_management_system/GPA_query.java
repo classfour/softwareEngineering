@@ -21,7 +21,7 @@ public class GPA_query {
     private CookiesService cookiesService;//新加获取cookie
     @RequestMapping("/GPA_query")
     public String gpa_query(){
-        return "/index(groupFour)/GPA_query";
+        return "index(groupFour)/GPA_query";
     }
 
     @RequestMapping(value = "/GPA_query_json",method = RequestMethod.GET)

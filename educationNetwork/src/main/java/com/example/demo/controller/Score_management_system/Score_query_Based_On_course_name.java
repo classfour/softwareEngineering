@@ -52,7 +52,7 @@ public class Score_query_Based_On_course_name {
             model.addAttribute("model",lst);
         }
         model.addAttribute("select",new Study_year(study_year));
-        return "/index(groupFour)/score_query_based_on_name";
+        return "index(groupFour)/score_query_based_on_name";
     }
 }
     
