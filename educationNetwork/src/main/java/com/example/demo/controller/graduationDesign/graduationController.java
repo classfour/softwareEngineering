@@ -196,6 +196,10 @@ public class graduationController {
     public boolean chooseSubject(String serialnumber) {
         System.out.println(serialnumber);
         String studentNumber = cookiesService.getCookies("username");
+        SubjectResults subjectResults = subjectResultsService.selectByStudent(studentNumber);
+        if(subjectResults!=null) {
+            return false;
+        }
         GraduationSubject graduationSubject = graduationSubjectService.getSubject(serialnumber);
         if(graduationSubject.getMax() == graduationSubject.getNumber() || graduationSubject.getMaxNumber() == graduationSubject.getNowNumber()) {
             return false;
@@ -417,5 +421,14 @@ public class graduationController {
         }
 
         return "graduationDesign/Subdetail-teacher";
+    }
+
+    @PostMapping("result")
+    public String result(String studentNumber, int grade, String text) {
+        System.out.println(studentNumber);
+        System.out.println(grade);
+        System.out.println(text);
+        subjectResultsService.updateResult(grade, text, studentNumber);
+        return "redirect:/graduationDesign/mystudent";
     }
 }

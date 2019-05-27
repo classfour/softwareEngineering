@@ -8,8 +8,8 @@ import org.apache.ibatis.annotations.Update;
 public interface SubjectResultsMapper {
     @Insert("insert into subject_results values(#{studentNumber}, #{courseNumber}, #{title}, #{content}, #{result}, #{status}, #{evaluate})")
     public boolean insertResults(SubjectResults subjectResults);
-    @Update("update subject_results set result = #{result} where student_number = #{studentNumber}")
-    public boolean updateResult(int result, String studentNumber);
+    @Update("update subject_results set result = #{result}, evaluate=#{evaluate} where student_number = #{studentNumber}")
+    public boolean updateResult(int result,String evaluate,  String studentNumber);
     @Update("update subject_results set title=#{title}, content=#{content} where student_number = #{studentNumber}")
     public boolean submit(String title, String content, String studentNumber);
     @Select("select result from subject_results where student_number = #{studentNumber}")
