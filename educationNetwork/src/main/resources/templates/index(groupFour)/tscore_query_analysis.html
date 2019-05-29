@@ -18,7 +18,7 @@
     <ul class="default">
         <li>
             <img class="left" src="/images(groupFour)/computer.png">
-            <h1 style="font-size: 32px;"><a class="left" href="#">教务管理系统</a></h1>
+            <h1 style="font-size: 32px;"><a class="left" href="/home">教务管理系统</a></h1>
         </li>
     </ul>
 </div>
@@ -61,6 +61,9 @@
                 </button>
             </form>
             <form action="/tscore_query/score_export" method="post" style="display: inline-block;float:right;margin-top: 10px;margin-bottom: 10px;">
+                <select name="course_name" style="width: 0px;height: 0px;display: none" >
+                    <option th:text="${select_course_name.getCourse_name()}"></option>
+                </select>
                 <button class="btn btn-outline-primary center" style="float: right" type="submit">
                     导出成绩
                 </button>

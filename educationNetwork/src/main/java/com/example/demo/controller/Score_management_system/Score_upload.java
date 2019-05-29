@@ -14,6 +14,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,10 @@ public class Score_upload {
     }
 
     @RequestMapping(value = "/upload_score",method = RequestMethod.POST)
-    public String uploadScore(@RequestParam MultipartFile file) throws IOException {
+    public String uploadScore(@RequestParam MultipartFile file, ModelMap model) throws IOException {
+        model.addAttribute("err","成绩导入失败");
+        model.addAttribute("message","请检查导入的数据是否正确");
+        model.addAttribute("url","/tscore_query/import_score");
         if(file==null)
             return "index(groupFour)/error";
         String fileName=file.getOriginalFilename();
