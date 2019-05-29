@@ -35,7 +35,7 @@ public class loginController {
     }
     @RequestMapping("home")
     public String index(Model model, HttpServletResponse response) {
-        response.setHeader("Cache-Control", "no-store");
+//        response.setHeader("Cache-Control", "no-store");
 
 
         if(!cookiesService.isLogin()){
