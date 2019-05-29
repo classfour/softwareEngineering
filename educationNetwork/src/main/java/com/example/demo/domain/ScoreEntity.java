@@ -38,7 +38,7 @@ public class ScoreEntity {
         for(i=0;i<3;i++){
             ans=ans+score[i]*rate[i]/100.0;
         }
-        total=ans;
+        total=(int)(ans+0.5);
     }
 
     //三项成绩,score[0]对应平时成绩,score[1]对应期中成绩,score[2]对应期末成绩
