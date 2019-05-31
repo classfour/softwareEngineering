@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/iconfont/iconfont.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header clearfix">
+        <span>
+            <i class="iconfont icon-diannao" style="font-size: 30px;vertical-align: middle"></i>
+            计科1604教务管理系统
+<!--            <span th:text="用户名+${username}"></span>-->
+        </span>
+        <span class="float-right">
+            <a href="/loginout" style="color: white">注销</a>
+<!--            <img class="rounded-circle" src="images/buct.jpg" alt="" width="40px" height="40px" >-->
+        </span>
+    </header>
+    <nav class="navbar navbar-expand-sm">
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
+                    报名申请
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">学籍异动申请</a>
+                    <a class="dropdown-item" href="#">学生申请交流项目</a>
+                    <a class="dropdown-item" href="#">辅修报名</a>
+                    <a class="dropdown-item" href="#">重修报名</a>
+                    <a class="dropdown-item" href="#">学生证补办申请</a>
+                    <a class="dropdown-item" href="#">学生转专业申请</a>
+                    <a class="dropdown-item" href="#">补考确认</a>
+                    <a class="dropdown-item" href="#">校内课程代替申请</a>
+                    <a class="dropdown-item" href="#">校内学分节点替代申请</a>
+                </div>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+                    信息维护
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">学生监护人信息采集</a>
+                    <a class="dropdown-item" href="#">学生个人信息维护</a>
+                    <a class="dropdown-item" href="#">主修专业确认</a>
+                    <a class="dropdown-item" href="#">个人培养方案</a>
+                    <a class="dropdown-item" href="#">创新创业学分确认</a>
+                    <a class="dropdown-item" href="#">实习过程资料</a>
+                    <a class="dropdown-item" href="#">专业方向确认</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop3" data-toggle="dropdown">
+                    选课
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="chooseClass/index" target="_blank">自主选课</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop4" data-toggle="dropdown">
+                    信息查询
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">查询个人信息</a>
+                    <a class="dropdown-item" href="#">学籍预警查询</a>
+                    <a class="dropdown-item" href="#">学生课表查询</a>
+                    <a class="dropdown-item" href="/score_query" target="_blank" th:if="${lv=='学生'}">成绩查询</a>
+                    <a class="dropdown-item" href="/tscore_query" target="_blank" th:if="${lv=='教师'}">学生成绩查询</a>
+                    <a class="dropdown-item" href="#">考试信息查询</a>
+                    <a class="dropdown-item" href="#">考试时间查询</a>
+                    <a class="dropdown-item" href="#">创新创业获得学分</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop5" data-toggle="dropdown">
+                    教学评价
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">学生评价</a>
+                    <a class="dropdown-item" href="#">课程过程评价</a>
+                    <a class="dropdown-item" href="#">课程问卷调查</a>
+                    <a class="dropdown-item" href="#">教学信息反馈</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop6" data-toggle="dropdown">
+                    毕业设计(论文)
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/graduationDesign/selectSubject" target="_blank" th:if="${lv=='学生'}">学生选题</a>
+                    <a class="dropdown-item" href="/graduationDesign/declare" target="_blank" th:if="${lv=='教师'}">申报课题</a>
+                    <a class="dropdown-item" href="/graduationDesign/mystudent" target="_blank" th:if="${lv=='教师'}">我的学生</a>
+                    <a class="dropdown-item" href="/graduationDesign/checkResult" target="_blank" th:if="${lv=='学生'}">成绩查看</a>
+                    <a class="dropdown-item" href="/graduationDesign/detail" target="_blank" th:if="${lv=='教师'}">修改课题/选择学生</a>
+                    <a class="dropdown-item" href="/graduationDesign/content" target="_blank" th:if="${lv=='学生'}">提交课设</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown" th:if="${lv=='管理员'}">
+                <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown">
+                    排课管理
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/CourseArrangement.html" target="_blank">自主排课</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div>
+            <div class="row" style="margin-top: 25px;">
+                <div class="col-md-4 ">
+                    <div class="row content" style="padding:10px 20px;border-style:solid;border-left-width: 20px;border-right-width: 10px;border-color: #fafafa">
+                        <div class="col-md-3" style="line-height: 80px">
+                            <img src="images/buct.jpg" width="80px" height="80px">
+                        </div>
+                        <div class="col-md-7">
+                            <strong style="display: block;" th:text="${name}"></strong>
+                            <span style="display: block;" th:text="${lv}"></span>
+                            <span style="display: block;font-size: 10px;color: #7a7a7a;" th:text="${college}"></span>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-12 content" style="height:200px;border-style: solid;border-color: #fafafa;border-right-width: 10px">
+                            <strong style="margin-left: 20px; display: block;">文件</strong>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8" style="background-color: white;padding:10px 20px">
+                    <strong style="margin-left: 20px;display: block;">通知</strong>
+                    <hr>
+                    <ui>
+                        <li th:if="${item.getStatus()==1}" style="height: 20px;line-height: 20px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis" th:each="item:${notice}">
+                            <span style="color:red;font-size: 12px">【置顶】</span>
+                            <strong style="font-size: 12px;">【通知】</strong>
+                            <span style="font-size: 10px;color: #7a7a7a;" th:text="${item.getContent()}">这是第一条通知</span>
+<!--                            <span style="float: right;" th:text="${item.getTime()}"></span>-->
+                        </li>
+                        <li th:if="${item.getStatus()==0}" style="height: 20px;line-height: 20px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis" th:each="item:${notice}">
+<!--                            <span style="color:red;font-size: 12px">【置顶】</span>-->
+                            <strong style="font-size: 12px;">【通知】</strong>
+                            <span style="font-size: 10px;color: #7a7a7a;" th:text="${item.getContent()}">这是第一条通知</span>
+                            <!--                            <span style="float: right;" th:text="${item.getTime()}"></span>-->
+                        </li>
+                    </ui>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-md-4 col-md-4 content" style="height:300px;border-style: solid;border-color: #fafafa;border-top-width: 10px;border-right-width: 10px">
+                    <strong style="margin-left: 20px;margin-top: 10px;;display: block;">消息</strong>
+                    <hr>
+                </div>
+                <div class="col-md-4 content" style="border-style: solid;border-color: #fafafa;border-top-width: 10px;border-right-width: 10px">
+                    <strong style="margin-left: 20px;margin-top: 10px;display: block;">成绩</strong>
+                    <hr>
+                    <div class="item" th:each="e:${score}">
+                        <span th:text="${e.getStudy_year()}"></span>
+                        <span>-</span>
+                        <span th:text="${e.getCoursename()}"></span>
+                        <span style="float: right" th:text="${e.getTotal()}"></span>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

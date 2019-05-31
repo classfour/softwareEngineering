@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自主选课</title>
+    <!--        <link rel="stylesheet" href="/css/style.css">-->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link href="/css/model/bootstrap.css" rel="stylesheet" />
+    <link href="/css/model/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+
+    <!-- Custom Styles-->
+    <link href="/css/model/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <!--    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />-->
+    <!-- TABLE STYLES-->
+    <link href="/js/model/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+
+    <script>
+
+
+function myFunction()
+{
+    alert("hello")
+ }
+  function exit(number)
+        {
+               $.ajax({
+            async:false,
+            data:{
+                "number":number
+            },
+            type:"post",
+            url:"http://localhost:8080//chooseClass/exit",
+            success:function (data) {
+
+                if(data=="true") {
+                    alert("选课成功")
+                }else{
+                    alert("选课失败")
+                }
+                location.reload();
+            }
+        })
+        }
+  function retire(number)
+         {
+               $.ajax({
+            async:false,
+            data:{
+                "number":number
+            },
+            type:"post",
+            url:"http://localhost:8080//chooseClass/retire",
+            success:function (data) {
+
+                if(data=="true") {
+                    alert("退选成功")
+                }else{
+                    alert("退选失败")
+                }
+                location.reload();
+            }
+        })
+        }
+
+
+    </script>
+</head>
+
+<body id="courseSelect">
+<header class="course-header">自主选课</header>
+<div class="course-container">
+    <div class="query-part container">
+        <form action="" class="query row">
+            <input type="text" class="query-input" placeholder="请输入课程号或课程名称或教学班名称查询！" >
+            <input type="submit" value="查询" class="query-btn form-btn">
+            <input type="reset" value="重置" class="reset-btn form-btn">
+        </form>
+        <div class="selected-conditions-container row">
+            <div class="selected-const-text">已选条件：</div>
+            <ul class="selected-conditions">
+                <!--                <li class="selected-item"><span class="selected-item-question">有无余量</span>:<span class="selected-item-answer">有</span><span class="deselect-cross"></span></li>-->
+                <!--                <li class="selected-item"><span class="selected-item-question">是否重修</span>:<span class="selected-item-answer">否</span><span class="deselect-cross"></span></li>-->
+            </ul>
+        </div>
+        <table class="condition-container" id="conditionTable">
+            <colgroup>
+                <col class="condition-name">
+                <col class="condition-values">
+            </colgroup>
+            <!--<tr>-->
+            <!--<td>年级：</td>-->
+            <!--<td><span class="condition-value-item">2022</span><span class="condition-value-item">2021</span><span class="condition-value-item">2020</span><span class="condition-value-item">2019</span></td>-->
+            <!--</tr>-->
+        </table>
+        <div class="toggle-visible" id="toggleBtn">收起</div>
+    </div>
+
+    <div class="result-part container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th>教学班</th>
+                                    <th>上课教师</th>
+                                    <th>上课时间</th>
+                                    <th>地点</th>
+                                    <th>课程性质</th>
+                                    <th>已选人数</th>
+                                    <th>课堂容量</th>
+                                    <th>课程状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="content">
+                                <tr th:each="temp: ${contents}">
+                                    <td th:text="${temp.name}">高等数学</td>
+                                    <td th:text="${temp.teachername}">杨卫星</td>
+                                    <td th:text="${temp.occupation}">星期五8-10</td>
+                                    <td th:text="${temp.location}">A阶梯101</td>
+                                    <td th:text="${temp.type}">实验课</td>
+                                    <!--                                        <td th:if="${temp.type == 0 }" >非实验课</td>-->
+                                    <!--                                        <td th:if="${temp.type == 1 }" >实验课</td>-->
+                                    <td th:text="${temp.people}">167</td>
+                                    <td th:text="${temp.max_number}">190</td>
+                                    <!--                                        <td th:text="${temp.choosestatus}"></td>-->
+                                    <td th:if="${temp.choosestatus == 0 }" >未选</td>
+                                    <td th:if="${temp.choosestatus == 1 }" >已选</td>
+                                    <td>
+                                        <!--                <a th:href="@{'/change/'+${temp.number}+'/'+${temp.status}}" th:if="${temp.status == 0 }" >选课</a>-->
+                                        <!--                <a th:href="@{'/change/'+${temp.number}+'/'+${temp.status}}" th:if="${temp.status == 1 }" >退选</a>-->
+                                        <!--                                            &lt;!&ndash;                <button onclick="statusChange" th:if="${temp.status == 0 }">选课</button>&ndash;&gt;-->
+                                        <button th:if="${temp.choosestatus == 0 }" class="btn btn-default" th:onclick="exit([[${temp.number}]]);">选课</button>
+                                        <button th:if="${temp.choosestatus == 1}" class="btn btn-default" th:onclick="retire([[${temp.number}]]);">退课</button>
+
+                                        <!--                                            <button onclick="myFunction()">点我</button>-->
+                                        <!--                <a th:href="@{/change}" th:if="${temp.status == 0 }" >选课</a>-->
+                                        <!--                <a th:href="@{/change}"  th:if="${temp.status == 1 }" >退选</a>-->
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+    </div>
+
+    <aside class="course-info-container hide-aside">
+        <div class="toggle-panel">
+            <div class="toggle-arrow"></div>
+            选课信息
+            <p style="margin-top: 20px; color: white;">已选</p>
+            <span class="badge">8</span>
+        </div>
+        <div class="course-info">
+            <table class="free-time-table">
+                <thead>
+                <tr>
+                    <th>节次</th><th>星期一</th><th>星期二</th><th>星期三</th><th>星期四</th><th>星期五</th><th>星期六</th><th>星期日</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>2</td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>3</td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free" style=" background-color: red;"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>4</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>5</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>6</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>7</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>8</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>9</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>10</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>11</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>12</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td>13</td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td><td class="free"></td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="course-info-description">
+                        <span>空余周数=总周数</span>
+                        <span>空余周数>=(总周数/2)</span>
+                        <span>空余周数<(总周数/2)</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>教学班</th>
+                            <th>教师</th>
+                            <th>学分</th>
+                            <th>时间</th>
+                            <th>地点</th>
+                            <th>自选否</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <tr th:each="temp: ${filtercontents}">
+
+                            <td th:text="${temp.name}">高等数学</td>
+                            <td th:text="${temp.teachername}">杨卫星</td>
+                            <td th:text="${temp.credits}">3</td>
+                            <td th:text="${temp.occupation}">星期五8-10</td>
+                            <td th:text="${temp.location}">A阶梯101</td>
+                            <!--                        <td th:text="${temp.volunteer}">已选上</td>-->
+                            <td th:if="${temp.volunteer == 0 }" >校选</td>
+                            <td th:if="${temp.volunteer == 1 }" >自选</td>
+                            <td>
+                                <p th:if="${temp.volunteer == 0 }" >已选</p>
+                                <button th:if="${temp.volunteer == 1}" class="btn btn-default" th:onclick="retire([[${temp.number}]]);">退选</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+<footer class="course-footer">
+    <span class="copyright">版权所有© Copyright 1958-2019 北京化工大学</span>
+    <span class="address">北京化工大学昌平校区计科1604</span>
+</footer>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/model/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="/js/model/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="/js/model/jquery.metisMenu.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="/js/model/dataTables/jquery.dataTables.js"></script>
+<script src="/js/model/dataTables/dataTables.bootstrap.js"></script>
+<script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
+<!-- Custom Js -->
+<script src="/js/model/custom-scripts.js"></script>
+</body>
+
+</html>

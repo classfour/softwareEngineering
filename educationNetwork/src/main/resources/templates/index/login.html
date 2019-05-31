@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/iconfont/iconfont.css">
+    <title>教务系统</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row title">
+        <div class="col-md-5 offset-md-1 col-sm-12 mt-5">
+            <i class="icon-diannao iconfont ml-sm-2" style="font-size: 30px;vertical-align: middle"></i>
+            计科1604教务管理系统
+        </div>
+    </div>
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-7 offset-md-1 border d-none d-md-block">
+            <img src="images/login_bg_pic.jpg" alt="登陆" width="100%">
+        </div>
+        <div class="col-md-3 border">
+            <div class="login">
+                    <span class="loginTitle">
+                        用户登录
+                    </span>
+                <form action="/submit">
+                    <div class="input-group">
+                        <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-yonghuming"></i>
+                            </span>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                    </div>
+                    <div class="input-group mt-2">
+                        <div class="input-group-prepend w-100">
+                            <span class="input-group-text">
+                                <i class="iconfont icon-mima"></i>
+                            </span>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                    </div>
+
+                    <div class="text-right mt-4">
+                        <a href="">忘记密码了？</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-sm mt-2 w-100">登录</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

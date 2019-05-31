@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>学生成绩查询-教师端</title>
+    <script src="/js(groupFour)/echarts.min.js"></script>
+    <script src="/js(groupFour)/jquery-3.4.0.min.js"></script>
+    <script src="/js(groupFour)/style_teacher(groupFour).js"></script>
+    <script src="/js(groupFour)/popper.min.js"></script>
+    <script src="/js(groupFour)/bootstrap.min.js"></script>
+    <script src="/js(groupFour)/jquery-3.4.0.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
+</head>
+<body class="default">
+<div class="top">
+    <ul class="default">
+        <li>
+            <img class="left" src="/images(groupFour)/computer.png">
+            <h1 style="font-size: 32px;"><a class="left" href="/home">教务管理系统</a></h1>
+        </li>
+    </ul>
+</div>
+<div class="orghead">
+    <div class="container">
+        <div class="title">
+            <img class="title" src="/images(groupFour)/grade.png">
+            <h1 class="title">成绩管理子系统-教师端</h1>
+        </div>
+        <div class="orgnav">
+            <a href="/tscore_query" class="pagehead-tabs-item selected">
+                <img class="label" src="/images(groupFour)/score_figure.png">学生成绩查询
+            </a>
+        </div>
+        <div class="orgnav">
+            <a href="/tscore_query/analysis" class="pagehead-tabs-item">
+                <img class="label" src="/images(groupFour)/pie.png">学生成绩总览
+            </a>
+        </div>
+        <div class="orgnav">
+            <a href="/tscore_query/import_score" class="pagehead-tabs-item">
+                <img class="label" src="/images(groupFour)/score_export.png">学生成绩导入
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="cardblock">
+            <h5>成绩列表</h5>
+            <form action="#" method="post" style="width: 400px;height: 38px;float: left;margin-top: 10px;">
+                <select id="course_select" class="form-control" name="course_name" style="width: 230px;float: left">
+                    <div th:each="e:${course_name}">
+                        <option th:text="${e.getCourse_name()}"></option>
+                    </div>
+                    <option th:text="${select_course_name.getCourse_name()}" style="display: none"></option>
+                </select>
+                <button class="btn btn-outline-primary center" type="submit" style="margin-left: 30px;">
+                    确认
+                </button>
+            </form>
+            <form action="/tscore_query/score_export" method="post" style="display: inline-block;float:right;margin-top: 10px;margin-bottom: 10px;">
+                <select name="course_name" style="width: 0px;height: 0px;display: none" >
+                    <option th:text="${select_course_name.getCourse_name()}"></option>
+                </select>
+                <button class="btn btn-outline-primary center" style="float: right" type="submit">
+                    导出成绩
+                </button>
+            </form>
+
+            <div class="table-responsive">
+
+                <table id="p" class="table">
+                    <tr>
+                        <th>
+                            <a th:href="@{'/tscore_query/studentnumber_sort_up/'+${select_course_name.getCourse_name()}}"><img style="width: 20px;height: 20px;" src="/images(groupFour)/up.png" ></a>学生学号
+                            <a th:href="@{'/tscore_query/studentnumber_sort_down/'+${select_course_name.getCourse_name()}}"><img style="width: 20px;height: 20px;" src="/images(groupFour)/down.png"></a>
+                        </th>
+                        <th>学生姓名</th>
+                        <th>平时成绩</th>
+                        <th>平时占比</th>
+                        <th>期中成绩</th>
+                        <th>期中占比</th>
+                        <th>期末成绩</th>
+                        <th>期末占比</th>
+                        <th>
+                            <a th:href="@{'/tscore_query/studentscore_sort_up/'+${select_course_name.getCourse_name()}}"><img style="width: 20px;height: 20px;" src="/images(groupFour)/up.png" ></a>总成绩
+                            <a th:href="@{'/tscore_query/studentscore_sort_down/'+${select_course_name.getCourse_name()}}"><img style="width: 20px;height: 20px;" src="/images(groupFour)/down.png"></a>
+                        </th>
+                    </tr>
+                    <tr th:each="e:${model}">
+                        <td th:text="${e.getStudentnumber()}"></td>
+                        <td th:text="${e.getStudentname()}"></td>
+                        <td th:text="${e.getScore().getScoreUsual()}"></td>
+                        <td th:text="${e.getScore().getScoreUsualRate()}"></td>
+                        <td th:text="${e.getScore().getScoreMid()}"></td>
+                        <td th:text="${e.getScore().getScoreMidRate()}"></td>
+                        <td th:text="${e.getScore().getScoreFinal()}"></td>
+                        <td th:text="${e.getScore().getScoreFinalRate()}"></td>
+                        <td th:text="${e.getScore().getTotal()}"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

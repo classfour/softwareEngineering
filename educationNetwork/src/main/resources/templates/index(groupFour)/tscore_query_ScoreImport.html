@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>学生成绩查询-教师端</title>
+    <script src="/js(groupFour)/echarts.min.js"></script>
+    <script src="/js(groupFour)/jquery-3.4.0.min.js"></script>
+    <script src="/js(groupFour)/style_teacher(groupFour).js"></script>
+    <script src="/js(groupFour)/popper.min.js"></script>
+    <script src="/js(groupFour)/bootstrap.min.js"></script>
+    <script src="/js(groupFour)/jquery-3.4.0.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
+</head>
+<body class="default">
+<div class="top">
+    <ul class="default">
+        <li>
+            <img class="left" src="/images(groupFour)/computer.png">
+            <h1 style="font-size: 32px;"><a class="left" href="/home">教务管理系统</a></h1>
+        </li>
+    </ul>
+</div>
+<div class="orghead">
+    <div class="container">
+        <div class="title">
+            <img class="title" src="/images(groupFour)/grade.png">
+            <h1 class="title">成绩管理子系统-教师端</h1>
+        </div>
+        <div class="orgnav">
+            <a href="/tscore_query" class="pagehead-tabs-item">
+                <img class="label" src="/images(groupFour)/score_figure.png">学生成绩查询
+            </a>
+        </div>
+        <div class="orgnav">
+            <a href="/tscore_query/analysis" class="pagehead-tabs-item">
+                <img class="label" src="/images(groupFour)/pie.png">学生成绩总览
+            </a>
+        </div>
+        <div class="orgnav">
+            <a href="/tscore_query/import_score" class="pagehead-tabs-item selected">
+                <img class="label" src="/images(groupFour)/score_export.png">学生成绩导入
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="cardblock" style="height: 260px;">
+            <h5>成绩导入</h5>
+            <form action="/upload_score" method="post" style="width: 960px;height: 38px;margin-top: 20px;" enctype="multipart/form-data">
+                <div class="form-group" style="display:inline-block;width:800px;">
+                    <div class="col-sm-6" style="padding-left: 0px;">
+                        <div class="input-group">
+                            <label class="input-group-btn">
+                                <input type="button" id="i-check" value="浏览文件" class="btn btn-primary" onclick="$('#i-file').click();">
+                            </label>
+                            <input style="height:38px;margin-left: 5px;" id='location' class="form-control" onclick="$('#i-file').click();">
+                        </div>
+                    </div>
+                    <input type="file" name="file" id='i-file' accept=".xls, .xlsx" onchange="$('#location').val($('#i-file').val());" style="display: none">
+                </div>
+                <button class="btn btn-outline-primary center" type="submit" style="margin-left: 30px;float: right;" >
+                    导入成绩
+                </button>
+            </form>
+            <h5 style="margin-top: 30px;margin-bottom: 20px;">导入文件的格式如下:</h5>
+            <table class="table table-bordered">
+                <tr>
+                    <th>课程编号</th>
+                    <th>学生学号</th>
+                    <th>平时成绩</th>
+                    <th>平时成绩占比</th>
+                    <th>期中成绩</th>
+                    <th>期中成绩占比</th>
+                    <th>期末成绩</th>
+                    <th>期末成绩占比</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

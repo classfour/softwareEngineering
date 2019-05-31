@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GPA查询</title>
+    <script src="/js(groupFour)/echarts.min.js"></script>
+    <script src="/js(groupFour)/jquery-3.4.0.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css(groupFour)/top.css">
+</head>
+<body class="default">
+<div class="top">
+    <ul class="default">
+        <li>
+            <img class="left" src="images(groupFour)/computer.png">
+            <h1 style="font-size: 32px;"><a class="left" href="/home">教务管理系统</a></h1>
+        </li>
+    </ul>
+</div>
+<div class="orghead">
+    <div class="container">
+        <div class="title">
+            <img class="title" src="images(groupFour)/grade.png">
+            <h1 class="title">成绩管理子系统</h1>
+        </div>
+        <div class="orgnav">
+            <a href="/score_query" class="pagehead-tabs-item ">
+                <img class="label" src="images(groupFour)/score_figure.png">基本成绩查询
+            </a>
+        </div>
+        <div class="orgnav">
+            <a href="/GPA_query" class="pagehead-tabs-item selected">
+                <img class="label" src="images(groupFour)/GPA_figure.png">GPA查询
+            </a>
+        </div>
+        <div class="orgnav">
+            <a href="/score_rank" class="pagehead-tabs-item">
+                <img class="label" src="images(groupFour)/rank.png">成绩排名查询
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="main" style="width: 1000px;height:600px;"class="card echart"></div>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+
+            title: {
+                text: 'GPA学期变动情况'
+            },
+            tooltip: {},
+            legend: {
+                data:['GPA']
+            },
+            xAxis: {
+                boundaryGap: false,
+                data: []
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                name:'GPA',
+                type: 'line',
+                data: []
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        $.ajax({
+            type:"get",
+            async:false,
+            url:"/GPA_query_json",
+            data:{},
+            dataTye:"json",
+            success:function (result) {
+                var lst=[];
+                var mark=[];
+                for(var i=0;i<result.GPA.length;i++){
+                    lst.push({value:result.GPA[i],coord:[i,result.GPA[i]]});
+                }
+                mark.push({yAxis:result.total,name:'平均GPA'});
+                myChart.setOption({
+                    xAxis: {
+                        data:result.study_year
+                    },
+                    series: {
+                        name:'GPA',
+                        type: 'line',
+                        data:result.GPA,
+                        markPoint: {
+                            data: lst
+                        },
+                        markLine: {
+                            data:mark
+                        }
+                    }
+                });
+            },
+            error:function () {
+                alert("图表请求数据失败!");
+            }
+        })
+
+    </script>
+
+</div>
+</body>
+</html>
